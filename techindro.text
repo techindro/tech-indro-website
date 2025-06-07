@@ -1,0 +1,22 @@
+tech-indro-website/
+├── public/
+│   ├── index.html
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── logo.svg
+│   │   │   ├── hero-bg.jpg
+│   │   │   └── course-thumbnails/
+│   │   ├── videos/
+│   │   │   └── demo.mp4
+│   │   └── fonts/
+│   └── favicon.ico
+├── src/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── main.js
+│   └── scss/
+│       └── components/
+├── README.md
+├── LICENSE
+└── .gitignore
