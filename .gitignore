@@ -1,0 +1,40 @@
+# General
+.DS_Store
+*.log
+*.env
+*.env.local
+*.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js
+node_modules/
+dist/
+.cache/
+
+# IDE Specific
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Build files
+.sass-cache/
+*.css.map
+*.js.map
+*.min.js
+*.min.css
+build/
+
+# System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
