@@ -1,10 +1,720 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Indro - India's #1 AI & Robotics Learning Platform</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .login-btn {
+            background: #ff6b35;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section - PW Style */
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat h3 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-stat p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-video-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 280px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-video-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .trust-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #28a745;
+        }
+
+        /* Course Categories */
+        .categories {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: #ff6b35;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .category-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .course-count {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Popular Courses - PW Style */
+        .popular-courses {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .course-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ff6b35;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .course-instructor {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ffa500;
+        }
+
+        .course-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .discount {
+            background: #ff6b35;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .trust-content {
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 3px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -30,14 +740,363 @@
     </header>
 
     <main>
-        <!-- All your HTML sections here (hero, courses, testimonials etc.) -->
-        <!-- Keep all the content from your original file -->
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>India's <span class="hero-highlight">#1 Platform</span> for AI & Robotics Learning</h1>
+                        <p class="hero-subtitle">Join 2.5 Lakh+ students already learning with Tech Indro. Master AI, Robotics, and Coding with India's most trusted educational platform.</p>
+                        
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <h3>2.5L+</h3>
+                                <p>Active Students</p>
+                            </div>
+                            <div class="hero-stat">
+                                <h3>50+</h3>
+                                <p>Expert Mentors</p>
+                            </div>
+                            <div class="hero-stat">
+                                <h3>95%</h3>
+                                <p>Success Rate</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-cta">
+                            <a href="#courses" class="btn-primary">🚀 Start Learning Free</a>
+                            <a href="#programs" class="btn-secondary">View All Programs</a>
+                        </div>
+                        
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">
+                            ⭐ 4.9/5 Rating | 🎯 100% Job Assistance | 📱 Learn on Mobile
+                        </p>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <div class="hero-video-placeholder">
+                            <div class="play-btn">▶</div>
+                        </div>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Watch Demo Class</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-content">
+                    <div class="trust-item">
+                        <span>✅</span> India's Most Trusted AI Platform
+                    </div>
+                    <div class="trust-item">
+                        <span>🏆</span> Award Winning Curriculum
+                    </div>
+                    <div class="trust-item">
+                        <span>👨‍💼</span> 100% Job Assistance
+                    </div>
+                    <div class="trust-item">
+                        <span>📱</span> Learn Anytime, Anywhere
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Categories -->
+        <section id="courses" class="categories">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Choose Your Learning Path</h2>
+                    <p class="section-subtitle">Master the technologies that shape tomorrow</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card fade-in">
+                        <div class="category-icon">🤖</div>
+                        <h3>Artificial Intelligence</h3>
+                        <p>Master ML, Deep Learning, Computer Vision, and NLP with hands-on projects</p>
+                        <div class="course-count">12 Comprehensive Courses</div>
+                    </div>
+                    
+                    <div class="category-card fade-in">
+                        <div class="category-icon">⚙️</div>
+                        <h3>Robotics Engineering</h3>
+                        <p>Build and program robots, learn automation, IoT, and embedded systems</p>
+                        <div class="course-count">8 Practical Courses</div>
+                    </div>
+                    
+                    <div class="category-card fade-in">
+                        <div class="category-icon">💻</div>
+                        <h3>Programming & Development</h3>
+                        <p>Python, JavaScript, C++, Web Development, and Mobile App Development</p>
+                        <div class="course-count">15 Coding Courses</div>
+                    </div>
+                    
+                    <div class="category-card fade-in">
+                        <div class="category-icon">🚀</div>
+                        <h3>Student-preneurship</h3>
+                        <p>Early-age entrepreneurship program for young innovators and future leaders</p>
+                        <div class="course-count">5 Business Courses</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Courses -->
+        <section class="popular-courses">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Most Popular Courses</h2>
+                    <p class="section-subtitle">Join thousands of students already enrolled</p>
+                </div>
+                
+                <div class="courses-grid">
+                    <div class="course-card fade-in">
+                        <div class="course-thumbnail">
+                            <div class="course-badge">BESTSELLER</div>
+                            🤖
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Complete AI & Machine Learning Bootcamp</h3>
+                            <p class="course-instructor">By Shubham Patel & Expert Team</p>
+                            <div class="course-meta">
+                                <div class="course-rating">
+                                    <span>⭐</span> 4.9 (2,547 reviews)
+                                </div>
+                                <div>🎓 15,234 students</div>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">₹2,999</span>
+                                <span class="original-price">₹9,999</span>
+                                <span class="discount">70% OFF</span>
+                            </div>
+                            <a href="#" class="btn-primary" style="width: 100%; text-align: center;">Enroll Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card fade-in">
+                        <div class="course-thumbnail">
+                            <div class="course-badge">NEW</div>
+                            ⚙️
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Robotics Engineering Masterclass</h3>
+                            <p class="course-instructor">By Tech Indro Expert Mentors</p>
+                            <div class="course-meta">
+                                <div class="course-rating">
+                                    <span>⭐</span> 4.8 (1,832 reviews)
+                                </div>
+                                <div>🎓 8,567 students</div>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">₹3,499</span>
+                                <span class="original-price">₹12,999</span>
+                                <span class="discount">73% OFF</span>
+                            </div>
+                            <a href="#" class="btn-primary" style="width: 100%; text-align: center;">Enroll Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card fade-in">
+                        <div class="course-thumbnail">
+                            <div class="course-badge">TRENDING</div>
+                            💻
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">Full Stack Development with AI</h3>
+                            <p class="course-instructor">By Senior Industry Experts</p>
+                            <div class="course-meta">
+                                <div class="course-rating">
+                                    <span>⭐</span> 4.9 (3,124 reviews)
+                                </div>
+                                <div>🎓 12,456 students</div>
+                            </div>
+                            <div class="course-price">
+                                <span class="current-price">₹2,499</span>
+                                <span class="original-price">₹8,999</span>
+                                <span class="discount">72% OFF</span>
+                            </div>
+                            <a href="#" class="btn-primary" style="width: 100%; text-align: center;">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="about" class="features">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Why Choose Tech Indro?</h2>
+                    <p class="section-subtitle">The complete learning ecosystem for future tech leaders</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Project-Based Learning</h3>
+                        <p>Learn by building real-world projects that you can showcase in your portfolio</p>
+                    </div>
+                    
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3>Expert Mentorship</h3>
+                        <p>Get guidance from industry experts and experienced professionals</p>
+                    </div>
+                    
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">📚</div>
+                        <h3>Comprehensive Curriculum</h3>
+                        <p>Courses designed by industry leaders to match current job market demands</p>
+                    </div>
+                    
+                    <div class="feature-item fade-in">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Career Support</h3>
+                        <p>Resume building, interview preparation, and job placement assistance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="community" class="testimonials">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">What Our Students Say</h2>
+                    <p class="section-subtitle">Success stories from our Tech Indro community</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-content">"Tech Indro's AI course transformed my career. Within 6 months of completing the program, I landed a job as an AI Engineer at a top tech company. The hands-on projects were exactly what employers were looking for!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RP</div>
+                            <div class="author-info">
+                                <h4>Rahul Patel</h4>
+                                <p>AI Engineer at TechSolutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-content">"The robotics program exceeded my expectations. The mentors were always available to help, and the curriculum was perfectly balanced between theory and practical applications. I built my first robot within 2 weeks!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PS</div>
+                            <div class="author-info">
+                                <h4>Priya Sharma</h4>
+                                <p>Robotics Student</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <p class="testimonial-content">"As a complete beginner, I was nervous about learning to code. Tech Indro's structured approach and supportive community made the journey enjoyable. I've now developed 3 apps and started freelancing!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AM</div>
+                            <div class="author-info">
+                                <h4>Ankit Mishra</h4>
+                                <p>App Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content fade-in">
+                    <h2>Ready to Launch Your Tech Career?</h2>
+                    <p>Join India's most trusted AI & Robotics learning platform today</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="#" class="btn-primary">Start Free Trial</a>
+                        <a href="#" class="btn-secondary">Talk to Counselor</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Footer -->
     <footer id="contact">
-        <!-- Footer content from your original file -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Tech Indro</h3>
+                    <p>India's #1 AI & Robotics learning platform helping students and professionals build future-ready skills through industry-relevant courses.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#">FB</a>
+                        <a href="#">TW</a>
+                        <a href="#">IG</a>
+                        <a href="#">YT</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📧 hello@techindro.com</p>
+                    <p>📞 +91 9876543210</p>
+                    <p>🏢 Tech Indro HQ, Bangalore, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 Tech Indro. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
 </body>
 </html>
