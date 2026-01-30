@@ -1,7 +1,7 @@
 # tech-indro-website
 # Tech Indro - AI & Robotics Learning Platform
 
-India's #1 platform for AI & Robotics education with 250,000+ students.
+India's #1 platform for AI & Robotics education with 50,000+ students.
 
 ## Features
 - Responsive modern design
