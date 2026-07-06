@@ -1,0 +1,838 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        pointer-events: none;
+        border: 2px solid var(--primary);
+    }
+    .ai-speech-bubble.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="leaderboard.html">Rankings</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>India's First <span class="hero-highlight">AI-Agent Powered</span> Learning Platform</h1>
+                        <p class="hero-subtitle">Learn Coding, Hackathons, Freelancing, Fitness, and more from zero to one. Taught by our intelligent AI Agents in 50+ languages! <b>Designed for everyone: IT, Non-IT, and learners of any age.</b></p>
+                        
+                        <div class="hero-stats">
+
+                            <div class="hero-stat">
+
+                                <h3>1.2L+</h3>
+
+                                <p>Active Students</p>
+
+                            </div>
+
+                            <div class="hero-stat">
+
+                                <h3>24/7</h3>
+
+                                <p>AI Tutors</p>
+
+                            </div>
+
+                            <div class="hero-stat">
+
+                                <h3>95%</h3>
+
+                                <p>Success Rate</p>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="hero-cta">
+
+                            <a href="programs.html" class="btn-primary">🚀 Start Learning Free</a>
+
+                            <a href="programs.html" class="btn-secondary">View All Programs</a>
+
+                        </div>
+
+                        
+
+                        <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 1.5rem; display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; flex-wrap: wrap; color: var(--text-muted);">
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="star" style="width: 16px; height: 16px; color: var(--accent); fill: var(--accent);"></i> 4.9/5 Rating</span> | 
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="target" style="width: 16px; height: 16px; color: var(--primary);"></i> 100% Job Assistance</span> | 
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="smartphone" style="width: 16px; height: 16px; color: var(--secondary);"></i> Learn on Mobile</span>
+                        </p>
+
+
+
+
+
+
+
+
+
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+
+        <section class="trust-section">
+
+            <div class="container">
+
+                <div class="trust-content">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon"><i data-lucide="shield-check"></i></div> India's Most Trusted AI Platform
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon"><i data-lucide="award"></i></div> Award Winning Curriculum
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon"><i data-lucide="briefcase"></i></div> 100% Job Assistance
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon"><i data-lucide="smartphone"></i></div> Learn Anytime, Anywhere
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Course Categories -->
+
+        <section id="courses" class="categories">
+
+            <div class="container">
+
+                <div class="section-header fade-in">
+
+                    <h2 class="section-title">Choose Your Learning Path</h2>
+
+                    <p class="section-subtitle">Master the technologies that shape tomorrow</p>
+
+                </div>
+
+                
+
+                <div class="categories-grid">
+
+                    <div class="category-card fade-in">
+
+                        <div class="category-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">
+
+                            <i data-lucide="code"></i>
+
+                        </div>
+
+                        <h3>Coding & Development</h3>
+
+                        <p>AI, Web Dev & Open Source.</p>
+
+                    </div>
+
+                    
+
+                    <div class="category-card fade-in">
+
+                        <div class="category-icon" style="background: rgba(236, 72, 153, 0.1); color: var(--secondary);">
+
+                            <i data-lucide="brain"></i>
+
+                        </div>
+
+                        <h3>Life & Health</h3>
+
+                        <p>Physical Fitness & Mental Resilience.</p>
+
+                    </div>
+
+
+
+                    <div class="category-card fade-in">
+
+                        <div class="category-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--accent);">
+
+                            <i data-lucide="trending-up"></i>
+
+                        </div>
+
+                        <h3>Business & Marketing</h3>
+
+                        <p>Sales, Marketing & Entrepreneurship.</p>
+
+                    </div>
+
+
+
+                    <div class="category-card fade-in">
+
+                        <div class="category-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+
+                            <i data-lucide="newspaper"></i>
+
+                        </div>
+
+                        <h3>Communication</h3>
+
+                        <p>The Hindu, English & Interviews.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PW Style: Live AI Batches -->
+
+        <section class="live-batches">
+
+            <div class="container">
+
+                <div class="section-header fade-in">
+
+                    <h2 class="section-title">Live AI-Guided Cohorts</h2>
+
+                    <p class="section-subtitle">Join thousands of students learning in real-time with our AI Mentors</p>
+
+                </div>
+
+                
+
+                <div class="batches-scroll-container">
+
+                    <div class="batch-card fade-in">
+
+                        <div class="badge">STARTING SOON</div>
+
+                        <div class="batch-card-img">MNC Cracker Batch</div>
+
+                        <div class="batch-card-content">
+
+                            <h3>Zero to One: Placements</h3>
+
+                            <div class="batch-meta">
+
+                                <span><i data-lucide="calendar"></i> Starts 15 Aug</span>
+
+                                <span><i data-lucide="bot"></i> AI Mentor</span>
+
+                            </div>
+
+                            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Target Top Product-Based Companies. Full Stack + DSA + CS Core.</p>
+
+                            <a href="programs.html" class="btn-primary" style="width: 100%; text-align: center;">Explore Batch</a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="batch-card fade-in">
+
+                        <div class="badge">ENROLLING</div>
+
+                        <div class="batch-card-img" style="background: linear-gradient(135deg, #10b981, #059669);">Alpha SIH Batch</div>
+
+                        <div class="batch-card-content">
+
+                            <h3>Hackathon Winners Program</h3>
+
+                            <div class="batch-meta">
+
+                                <span><i data-lucide="calendar"></i> Ongoing</span>
+
+                                <span><i data-lucide="bot"></i> AI Mentor</span>
+
+                            </div>
+
+                            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Crack Smart India Hackathon & ISRO Projects with Google Cloud.</p>
+
+                            <a href="programs.html" class="btn-primary" style="width: 100%; text-align: center;">Explore Batch</a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="batch-card fade-in">
+
+                        <div class="badge">POPULAR</div>
+
+                        <div class="batch-card-img" style="background: linear-gradient(135deg, #f59e0b, #d97706);">Founder's Batch</div>
+
+                        <div class="batch-card-content">
+
+                            <h3>0-to-1 Entrepreneurship</h3>
+
+                            <div class="batch-meta">
+
+                                <span><i data-lucide="calendar"></i> Next Week</span>
+
+                                <span><i data-lucide="bot"></i> AI Mentor</span>
+
+                            </div>
+
+                            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Sales, Digital Marketing, and building a startup from scratch.</p>
+
+                            <a href="programs.html" class="btn-primary" style="width: 100%; text-align: center;">Explore Batch</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Features -->
+
+        <section id="about" class="features">
+
+            <div class="container">
+
+                <div class="section-header fade-in">
+
+                    <h2 class="section-title">Why Choose Tech Indro?</h2>
+
+                    <p class="section-subtitle">The complete learning ecosystem for future tech leaders</p>
+
+                </div>
+
+                
+
+                <div class="features-grid">
+
+                    <div class="feature-item fade-in">
+
+                        <div class="feature-icon-wrap"><i data-lucide="target"></i></div>
+
+                        <h3>Project-Based Learning</h3>
+
+                        <p>Learn by building real-world projects that you can showcase in your portfolio</p>
+
+                    </div>
+
+                    
+
+                    <div class="feature-item fade-in">
+
+                        <div class="feature-icon-wrap"><i data-lucide="bot"></i></div>
+
+                        <h3>Multilingual AI Mentors</h3>
+
+                        <p>Learn directly from intelligent AI Agents that adapt to your pace, 24/7, in Hindi, English, Tamil, French, and Bhojpuri.</p>
+
+                    </div>
+
+                    
+
+                    <div class="feature-item fade-in">
+
+                        <div class="feature-icon-wrap"><i data-lucide="book-open"></i></div>
+
+                        <h3>Comprehensive Curriculum</h3>
+
+                        <p>Courses designed by industry leaders to match current job market demands</p>
+
+                    </div>
+
+                    
+
+                    <div class="feature-item fade-in">
+
+                        <div class="feature-icon-wrap"><i data-lucide="handshake"></i></div>
+
+                        <h3>Career Support</h3>
+
+                        <p>Resume building, interview preparation, and job placement assistance</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Unacademy Style: 24x7 AI Doubt Solver -->
+
+        <section class="container fade-in" style="margin-top: 4rem;">
+
+            <div class="doubt-banner">
+
+                <div class="doubt-content">
+
+                    <h2>24x7 Instant AI Doubt Solver</h2>
+
+                    <p>Stuck at 3 AM? Don't wait for human teachers. Upload a photo of your question or type it in, and our AI will explain the concept instantly in Hindi, Bhojpuri, Tamil, English, and more.</p>
+
+                    <a href="programs.html" class="btn-primary" style="background: white; color: black;">Ask a Doubt Now</a>
+
+                </div>
+
+                <div class="doubt-icon" style="position: relative; z-index: 2;">
+
+                    <i data-lucide="message-square" style="width: 150px; height: 150px; color: rgba(255,255,255,0.2);"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PW Style: Wall of Fame -->
+
+        <section class="container" style="margin-top: 6rem;">
+
+            <div class="section-header fade-in">
+
+                <h2 class="section-title">From Zero to Top MNCs</h2>
+
+                <p class="section-subtitle">Meet our incredible students who achieved their dreams with AI Mentorship</p>
+
+            </div>
+
+            
+
+            <div class="wall-of-fame">
+
+                <div class="story-card fade-in">
+
+                    <div class="story-avatar">R</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+                    <div class="testimonial-card fade-in">
+
+                        <p class="testimonial-content">"As a complete beginner, I was nervous about learning to code. Tech Indro's structured approach and supportive community made the journey enjoyable. I've now developed 3 apps and started freelancing!"</p>
+
+                        <div class="testimonial-author">
+
+                            <div class="author-avatar">AM</div>
+
+                            <div class="author-info">
+
+                                <h4>Ankit Mishra</h4>
+
+                                <p>App Developer</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Unacademy Style: App Banner -->
+
+        <section class="container fade-in">
+
+            <div class="app-banner">
+
+                <div class="app-banner-text">
+
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Carry Your AI Mentor Everywhere</h2>
+
+                    <p style="font-size: 1.1rem; opacity: 0.9;">Download the Tech Indro app and learn Coding, Life Skills, and more on the go.</p>
+
+                </div>
+
+                <div class="app-buttons">
+
+                    <a href="#" onclick="alert('Android App coming soon!')" class="app-btn">
+
+                        <i data-lucide="play-circle"></i> Google Play
+
+                    </a>
+
+                    <a href="#" onclick="alert('iOS App coming soon!')" class="app-btn">
+
+                        <i data-lucide="apple"></i> App Store
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CTA Section -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-content fade-in">
+
+                    <h2>Ready to Launch Your Tech Career?</h2>
+
+                    <p>Join India's most trusted AI & Robotics learning platform today</p>
+
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+
+                        <a href="login.html" class="btn-primary">Start Free Trial</a>
+
+                        <a href="#contact-form" class="btn-secondary">Talk to Counselor</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Contact Section -->
+
+        <section id="contact-form" class="features" style="padding-top: 2rem;">
+
+            <div class="container">
+
+                <div class="section-header fade-in">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="footer-section">
+
+                    <h3>About Tech Indro</h3>
+
+                    <p>India's #1 AI & Robotics learning platform helping students and professionals build future-ready skills through industry-relevant courses.</p>
+
+                    <div class="social-links" style="margin-top: 1.5rem;">
+
+                        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+
+                        <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="footer-section">
+
+                    <h3>Quick Links</h3>
+
+                    <ul>
+
+                        <li><a href="#courses">Courses</a></li>
+
+                        <li><a href="#programs">Programs</a></li>
+
+                        <li><a href="#about">About Us</a></li>
+
+                        <li><a href="#community">Community</a></li>
+
+                        <li><a href="#">Success Stories</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div class="footer-section">
+
+                    <h3>Support</h3>
+
+                    <ul>
+
+                        <li><a href="#">Help Center</a></li>
+
+                        <li><a href="#">Terms & Conditions</a></li>
+
+                        <li><a href="#">Privacy Policy</a></li>
+
+                        <li><a href="#">Refund Policy</a></li>
+
+                        <li><a href="#">Contact Us</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div class="footer-section">
+
+                    <h3>Contact Info</h3>
+
+                    <p>📧 hello@techindro.com</p>
+
+                    <p>📞 +91 7007896695</p>
+
+                    <p>🏢 Tech Indro HQ, Varanasi,India</p>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="footer-bottom">
+
+                <p>© 2026 Tech Indro. All Rights Reserved<a href="isro-lab.html" style="color: inherit; text-decoration: none; cursor: default;" title="ISRO Virtual Space Lab">.</a></p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="main.js"></script>
+
+    <script src="api-client.js"></script>
+
+
+    <!-- Floating AI Widget -->
+    <a href="ai-mentor.html" class="floating-ai" title="Chat with AI Mentor">
+        <i data-lucide="bot" style="width: 32px; height: 32px;"></i>
+    </a>
+    <div class="ai-speech-bubble" id="aiGreeting">
+        Namaste bhaiya, aaj aap kya sikhenge?
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Show AI Greeting after 2 seconds of visiting
+            setTimeout(() => {
+                const greeting = document.getElementById('aiGreeting');
+                if(greeting) {
+                    greeting.classList.add('show');
+                    
+                    // Speak the greeting in a female voice
+                    try {
+                        const speechMsg = new SpeechSynthesisUtterance();
+                        speechMsg.text = "Namaste bhaiya, aaj aap kya sikhenge?";
+                        speechMsg.lang = "hi-IN"; // Hindi India locale
+                        speechMsg.rate = 0.9;
+                        speechMsg.pitch = 1.1; // Slightly higher pitch for female voice
+                        
+                        // Try to find a female Hindi or English voice
+                        const voices = window.speechSynthesis.getVoices();
+                        // Find explicitly Indian Female Voices (Hindi or English-India)
+                        const femaleVoice = voices.find(v => {
+                            const name = v.name.toLowerCase();
+                            const lang = v.lang.toLowerCase();
+                            return (lang.includes('hi-in') || lang.includes('en-in')) && 
+                                   (name.includes('female') || name.includes('neerja') || name.includes('swara') || name.includes('lekha') || name.includes('veena') || name.includes('google हिन्दी'));
+                        }) || voices.find(v => v.lang === 'hi-IN' || v.lang === 'en-IN'); // Any Indian Voice as fallback
+                        if (femaleVoice) {
+                            speechMsg.voice = femaleVoice;
+                        }
+                        
+                        window.speechSynthesis.speak(speechMsg);
+                    } catch(e) {
+                        console.log("Speech synthesis failed or blocked by browser.", e);
+                    }
+                    
+                    // Hide after 6 seconds
+                    setTimeout(() => {
+                        greeting.classList.remove('show');
+                    }, 6000);
+                }
+            }, 2000);
+            
+            // Note: Browsers may block audio if user hasn't interacted with the page yet.
+            // If they click anywhere, we make sure voices are loaded.
+            window.speechSynthesis.getVoices();
+        });
+    </script>
+</body>
+
+</html>
+
+

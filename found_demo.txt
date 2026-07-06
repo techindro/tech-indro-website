@@ -1,0 +1,15 @@
+  old_index.html:777:                        <div class="hero-video-placeholder">
+  old_index.html:778:                            <div class="play-btn">▶</div>
+  old_index.html:779:                        </div>
+  old_index.html:780:                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Watch 
+Demo Class</p>
+  old_index.html:781:                    </div>
+  old_index.html:782:                </div>
+  old_index.html:783:            </div>
+  old_index.html:784:        </section>
+  old_index.html:785:
+  old_index.html:786:        <!-- Trust Section -->
+  old_index.html:787:        <section class="trust-section">
+  old_index.html:788:            <div class="container">
+  old_index.html:789:                <div class="trust-content">
+  old_index.html:790:                    <div class="trust-item">
