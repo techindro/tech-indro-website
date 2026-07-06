@@ -9,6 +9,13 @@ India's #1 platform for AI & Robotics education with more than 50,000+ students.
 - Student testimonials
 - Interactive elements and animations
 
+## Architecture
+The Tech Indro platform consists of:
+- **Frontend**: Vanilla HTML/CSS/JavaScript with responsive design principles. Contains pages for course details, interactive labs (e.g., ISRO Lab), and student dashboards.
+- **Backend**: Node.js and Express.js providing REST APIs (`server.js`).
+- **Data Storage**: A JSON-based file storage system (`database.json`, `courses.json`) simulating a database for courses, users, and content.
+- **AI Integration**: Integration with the `@google/genai` library for intelligent mentoring and dynamic content generation.
+
 ## Technologies Used
 - HTML5
 - CSS3
