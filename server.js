@@ -8,7 +8,7 @@ const cluster = require('cluster');
 const os = require('os');
 
 if (cluster.isPrimary) {
-    // Load Balancer (Crash Protection): Run master process
+    // setup cluster for basic crash recovery
     const numCPUs = os.cpus().length;
     console.log(`\n=========================================`);
     console.log(`🛡️ Load Balancer Active! Primary PID: ${process.pid}`);
@@ -24,7 +24,7 @@ if (cluster.isPrimary) {
         cluster.fork();
     });
 } else {
-    // Worker processes run the actual server logic
+    // worker setup
     const app = express();
 const PORT = process.env.PORT || 5000;
 const DB_FILE = path.join(__dirname, 'database.json');
@@ -35,7 +35,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname)); // Serve static files from the same directory
 
-// Initialize Database if it doesn't exist
+// setup db file if missing
 if (!fs.existsSync(DB_FILE)) {
     fs.writeFileSync(DB_FILE, JSON.stringify({ users: [], contacts: [], analytics: { totalVisits: 0 } }, null, 2));
 } else {
@@ -53,9 +53,9 @@ const readDB = () => JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
 // Helper to write DB
 const writeDB = (data) => fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 
-// Visitor Analytics Middleware
+// track page visits
 app.use((req, res, next) => {
-    // Only track page loads (HTML files) or root, avoid static assets flooding count
+    // ignore assets, only count html or root loads
     if (req.method === 'GET' && (req.url === '/' || req.url.endsWith('.html'))) {
         try {
             const db = readDB();
@@ -68,9 +68,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// --- API ROUTES ---
+// --- routes ---
 
-// 1. User Login (Strict)
 app.post('/api/auth/login', (req, res) => {
     const { email, password } = req.body;
     
@@ -94,7 +93,7 @@ app.post('/api/auth/login', (req, res) => {
     res.json({ message: "Login successful", user: userWithoutPassword });
 });
 
-// 1.5 User Registration
+// register user
 app.post('/api/auth/register', (req, res) => {
     const { name, email, password } = req.body;
 
@@ -124,7 +123,7 @@ app.post('/api/auth/register', (req, res) => {
     res.json({ message: "Registration successful", user: userWithoutPassword });
 });
 
-// 2. Submit Contact Form
+// contact form submission
 app.post('/api/contact', (req, res) => {
     const { name, email, message } = req.body;
     
@@ -147,7 +146,7 @@ app.post('/api/contact', (req, res) => {
     res.json({ message: "Contact form submitted successfully!", contact: newContact });
 });
 
-// 3. Get All Courses
+// fetch all courses
 app.get('/api/courses', (req, res) => {
     try {
         const courses = JSON.parse(fs.readFileSync(path.join(__dirname, 'courses.json'), 'utf8'));
@@ -157,7 +156,7 @@ app.get('/api/courses', (req, res) => {
     }
 });
 
-// Serve Shikshak (Kids) Courses
+// fetch kids courses
 app.get('/api/shikshak-courses', (req, res) => {
     try {
         const courses = JSON.parse(fs.readFileSync(path.join(__dirname, 'shikshak-courses.json'), 'utf8'));
@@ -167,7 +166,7 @@ app.get('/api/shikshak-courses', (req, res) => {
     }
 });
 
-// 4. Get Single Course by ID
+// fetch course details
 app.get('/api/courses/:id', (req, res) => {
     try {
         if (!fs.existsSync(COURSES_FILE)) {
@@ -186,7 +185,7 @@ app.get('/api/courses/:id', (req, res) => {
     }
 });
 
-// 5. Analytics Endpoint
+// analytics
 app.get('/api/analytics', (req, res) => {
     try {
         const db = readDB();
@@ -196,7 +195,7 @@ app.get('/api/analytics', (req, res) => {
     }
 });
 
-// 6. Mock Payment Gateway
+// mock payment flow
 app.post('/api/payment/checkout', (req, res) => {
     const { courseId, userId, amount, cardNumber } = req.body;
     
@@ -221,12 +220,12 @@ app.post('/api/payment/checkout', (req, res) => {
 
 // Start Server
 
-// --- AI Chatbot Route ---
+// chatbot api
 app.post('/api/chat', async (req, res) => {
     const { message, lang } = req.body;
     if (!message) return res.status(400).json({ error: "Message is required" });
 
-    // Fallback if API key is not set
+    // check for api key
     if (!process.env.GEMINI_API_KEY) {
         setTimeout(() => {
             res.json({
