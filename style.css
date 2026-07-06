@@ -41,6 +41,26 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* --- Elegant Refinements --- */
+::selection {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(103, 71, 168, 0.3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(103, 71, 168, 0.6);
+}
+
 .container {
     max-width: 1280px;
     margin: 0 auto;
@@ -262,16 +282,18 @@ nav {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary));
+    background-size: 200% 200%;
     color: white;
-    box-shadow: 0 4px 14px 0 rgb(79 70 229 / 39%);
+    box-shadow: 0 4px 14px 0 rgba(103, 71, 168, 0.25);
     border: 1px solid transparent;
+    transition: all 0.4s ease;
 }
 
 .btn-primary:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(103, 71, 168, 0.45);
 }
 
 .btn-secondary {
@@ -513,7 +535,8 @@ nav {
 
 .course-card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(103, 71, 168, 0.15);
+    border-color: rgba(103, 71, 168, 0.3);
 }
 
 .course-thumbnail {
