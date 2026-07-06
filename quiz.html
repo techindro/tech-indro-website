@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Top MNC DSA Test Series</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding-top: 60px;
+        }
+        
+        .test-wrapper {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            height: calc(100vh - 100px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .test-header h1 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 107, 53, 0.1);
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+
+        .test-body {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            min-height: 0;
+        }
+
+        .question-section {
+            flex: 3;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: #f8fafc;
+        }
+
+        .question-content {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .q-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .option-item:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .option-item input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .question-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+        }
+        .btn-outline:hover { background: #f1f5f9; }
+
+        .btn-review {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-review:hover { background: #7c3aed; }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-save:hover { opacity: 0.9; }
+
+        .palette-section {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            min-width: 280px;
+            position: sticky;
+            top: 80px;
+            align-self: flex-start;
+            max-height: calc(100vh - 100px);
+        }
+
+        .palette-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .q-node {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid #cbd5e1;
+            background: #f1f5f9; /* default: not visited */
+            color: var(--text-main);
+            transition: transform 0.1s;
+        }
+        
+        .q-node:active { transform: scale(0.95); }
+
+        /* Status Colors */
+        .q-node.active-q { border: 2px solid var(--primary); box-shadow: 0 0 0 2px rgba(255,107,53,0.3); }
+        .q-node.status-not-answered { background: #ef4444; color: white; border-color: #dc2626; } /* Red */
+        .q-node.status-answered { background: #10b981; color: white; border-color: #059669; } /* Green */
+        .q-node.status-review { background: #8b5cf6; color: white; border-color: #7c3aed; } /* Purple */
+        .q-node.status-review-answered { background: #8b5cf6; color: white; border-color: #7c3aed; position: relative; } 
+        .q-node.status-review-answered::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        .palette-legend {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: #f8fafc;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-box {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .submit-btn-container {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: #ef4444;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .btn-submit:hover { background: #dc2626; }
+
+        /* Result Screen Overlay */
+        .result-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .result-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Floating Video */
+        .proctor-video {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 112px;
+            background: #000;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            object-fit: cover;
+            transform: scaleX(-1); /* mirror */
+        }
+
+        /* Floating Calculator */
+        .calc-wrapper {
+            position: absolute;
+            top: 70px;
+            right: 320px;
+            width: 250px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .calc-header {
+            background: #1e293b;
+            color: white;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+        }
+        .calc-display {
+            background: #f1f5f9;
+            padding: 15px;
+            text-align: right;
+            font-size: 1.5rem;
+            font-family: monospace;
+            border-bottom: 1px solid var(--border);
+            min-height: 60px;
+            word-break: break-all;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+        }
+        .calc-btn {
+            background: white;
+            border: none;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .calc-btn:hover { background: #f8fafc; }
+        .calc-btn.action { background: #e2e8f0; font-weight: bold; }
+        .calc-btn.eval { background: var(--primary); color: white; }
+
+        /* Domain Selection Screen */
+        .domain-selector-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .domain-selector-wrapper h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .domain-selector-wrapper p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .domain-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .domain-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.1);
+        }
+
+        .domain-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .domain-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="quiz.html" style="color: var(--primary); font-weight: 800;">Test Series</a></li>
+                <li><a href="leaderboard.html">Rankings</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Domain Selection Screen -->
+    <div class="domain-selector-wrapper" id="domainSelector">
+        <h1>Select Your Target Role</h1>
+        <p>Choose your domain to practice role-specific questions (Data Science, SWE, DevOps, etc.)</p>
+        
+        <div class="domain-grid">
+            <div class="domain-card" onclick="startDomainTest('Data Scientist')">
+                <div class="domain-icon"><i data-lucide="bar-chart-2"></i></div>
+                <h3>Data Scientist</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Software Engineer')">
+                <div class="domain-icon"><i data-lucide="code"></i></div>
+                <h3>Software Engineer (SWE)</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('System Design')">
+                <div class="domain-icon"><i data-lucide="server"></i></div>
+                <h3>System Design</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Cybersecurity & Ethical Hacking')">
+                <div class="domain-icon"><i data-lucide="shield-alert"></i></div>
+                <h3>Cybersecurity</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('AI/ML Engineer')">
+                <div class="domain-icon"><i data-lucide="brain"></i></div>
+                <h3>AI/ML Engineer</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('DevOps')">
+                <div class="domain-icon"><i data-lucide="infinity"></i></div>
+                <h3>DevOps</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Android Development')">
+                <div class="domain-icon"><i data-lucide="smartphone"></i></div>
+                <h3>Android Development</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Web Development')">
+                <div class="domain-icon"><i data-lucide="globe"></i></div>
+                <h3>Web Development</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Robotics Engineer')">
+                <div class="domain-icon"><i data-lucide="cpu"></i></div>
+                <h3>Robotics Engineer</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Ethical Hacking')">
+                <div class="domain-icon"><i data-lucide="shield"></i></div>
+                <h3>Ethical Hacking</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Targeted Course')">
+                <div class="domain-icon"><i data-lucide="target"></i></div>
+                <h3>Targeted Course (Test Series)</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('Communication Skill')">
+                <div class="domain-icon"><i data-lucide="message-circle"></i></div>
+                <h3>Communication Skill</h3>
+            </div>
+            <div class="domain-card" onclick="startDomainTest('GATE/PSU/ISRO')">
+                <div class="domain-icon"><i data-lucide="book-open"></i></div>
+                <h3>GATE/PSU/ISRO</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Wrapper (Hidden Initially) -->
+    <div class="test-wrapper" id="testWrapper" style="display: none;">
+        <div class="test-header" style="position: relative;">
+            <h1 id="testMainTitle"><i data-lucide="laptop-2" style="vertical-align: middle; margin-right: 10px; color: var(--primary);"></i>Top MNC DSA Practice Test</h1>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <button class="btn-outline" onclick="toggleCalc()" style="padding: 5px 10px; font-size: 0.9rem;"><i data-lucide="calculator" style="width: 16px; margin-right: 5px; vertical-align: text-bottom;"></i>Calculator</button>
+                <div class="timer" id="timer">
+                    <i data-lucide="clock"></i> <span id="timeText">15:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Calculator -->
+        <div class="calc-wrapper" id="calcWrapper">
+            <div class="calc-header" id="calcHeader">
+                <span>Scientific Calculator</span>
+                <i data-lucide="x" style="cursor: pointer; width: 16px;" onclick="toggleCalc()"></i>
+            </div>
+            <div class="calc-display" id="calcDisplay">0</div>
+            <div class="calc-grid">
+                <button class="calc-btn action" onclick="calcInput('C')">C</button>
+                <button class="calc-btn action" onclick="calcInput('(')">(</button>
+                <button class="calc-btn action" onclick="calcInput(')')">)</button>
+                <button class="calc-btn action" onclick="calcInput('/')">/</button>
+                
+                <button class="calc-btn" onclick="calcInput('7')">7</button>
+                <button class="calc-btn" onclick="calcInput('8')">8</button>
+                <button class="calc-btn" onclick="calcInput('9')">9</button>
+                <button class="calc-btn action" onclick="calcInput('*')">*</button>
+                
+                <button class="calc-btn" onclick="calcInput('4')">4</button>
+                <button class="calc-btn" onclick="calcInput('5')">5</button>
+                <button class="calc-btn" onclick="calcInput('6')">6</button>
+                <button class="calc-btn action" onclick="calcInput('-')">-</button>
+                
+                <button class="calc-btn" onclick="calcInput('1')">1</button>
+                <button class="calc-btn" onclick="calcInput('2')">2</button>
+                <button class="calc-btn" onclick="calcInput('3')">3</button>
+                <button class="calc-btn action" onclick="calcInput('+')">+</button>
+                
+                <button class="calc-btn" onclick="calcInput('0')" style="grid-column: span 2;">0</button>
+                <button class="calc-btn" onclick="calcInput('.')">.</button>
+                <button class="calc-btn eval" onclick="calcInput('=')">=</button>
+            </div>
+        </div>
+        
+        <!-- Webcam feed -->
+        <video id="proctorVideo" class="proctor-video" autoplay playsinline muted></video>
+
+        <div class="test-body">
+            <!-- Left Side: Question Area -->
+            <div class="question-section">
+                <div class="question-header">
+                    Question <span id="qNumberDisplay">1</span> of 10
+                </div>
+                
+                <div class="question-content">
+                    <div class="q-text" id="qText">Loading question...</div>
+                    <div class="options-list" id="qOptions">
+                        <!-- Options injected via JS -->
+                    </div>
+                </div>
+
+                <div class="question-footer">
+                    <button class="btn-outline" onclick="clearResponse()">Clear Response</button>
+                    <div class="action-btns">
+                        <button class="btn-review" onclick="markForReview()">Mark for Review & Next</button>
+                        <button class="btn-save" onclick="saveAndNext()">Save & Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Palette -->
+            <div class="palette-section">
+                <div class="palette-header">Question Palette</div>
+                <div class="palette-grid" id="paletteGrid">
+                    <!-- Nodes injected via JS -->
+                </div>
+                
+                <div class="palette-legend">
+                    <div class="legend-item"><div class="legend-box" style="background:#10b981; border-color:#059669;"></div> Answered</div>
+                    <div class="legend-item"><div class="legend-box" style="background:#ef4444; border-color:#dc2626;"></div> Not Answered</div>
+                    <div class="legend-item"><div class="legend-box" style="background:#f1f5f9; border-color:#cbd5e1;"></div> Not Visited</div>
+                    <div class="legend-item"><div class="legend-box" style="background:#8b5cf6; border-color:#7c3aed;"></div> Marked</div>
+                </div>
+
+                <div class="submit-btn-container">
+                    <button class="btn-submit" onclick="submitTest()">Submit Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Overlay -->
+    <div class="result-overlay" id="resultOverlay">
+        <div class="result-box">
+            <i data-lucide="check-circle-2" style="width: 80px; height: 80px; color: #10b981; margin-bottom: 20px;"></i>
+            <h2>Test Submitted Successfully!</h2>
+            <div style="margin: 20px 0; font-size: 1.2rem; display: flex; flex-direction: column; gap: 10px;">
+                <div>Total Score: <strong id="finalScore" style="color: var(--primary); font-size: 1.5rem;">0</strong> / 100</div>
+                <div style="font-size: 1rem; color: var(--text-muted);">
+                    Correct: <span id="rCorrect" style="color:#10b981; font-weight:bold;">0</span> | 
+                    Incorrect: <span id="rIncorrect" style="color:#ef4444; font-weight:bold;">0</span> |
+                    Skipped: <span id="rSkipped" style="font-weight:bold;">0</span>
+                </div>
+                <div style="font-size: 0.9rem; color: #ef4444;">Penalty applied: -<span id="rPenalty">0</span> marks</div>
+            </div>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
+                <button class="btn-outline" onclick="location.reload()">Retake Test</button>
+                <a href="leaderboard.html" class="btn-save" style="text-decoration:none;">View Rankings</a>
+            </div>
+            
+            <button class="btn-outline" onclick="showReview()" id="reviewBtn" style="margin-top: 15px; width: 100%; border-color: var(--primary); color: var(--primary);">View Correct Answers</button>
+            <div id="reviewSection" style="display:none; text-align: left; margin-top: 20px; max-height: 300px; overflow-y: auto; border-top: 1px solid var(--border); padding-top: 15px;">
+                <!-- Review content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let quizData = [];
+        const TOTAL_QUESTIONS = 10;
+        
+        // State variables
+        let currentQIndex = 0;
+        let answers = []; // stores user's answers (index for MCQ, array for MSQ, string for NAT)
+        let statuses = []; // Statuses: 0=Not Visited, 1=Not Answered, 2=Answered, 3=Review
+        let timeSpent = []; // seconds spent on each question
+        let selectedDomain = "";
+        let timerInterval = null;
+        let timeRemaining = 15 * 60;
+
+        // Elements
+        const qText = document.getElementById('qText');
+        const qOptions = document.getElementById('qOptions');
+        const qNumberDisplay = document.getElementById('qNumberDisplay');
+        const paletteGrid = document.getElementById('paletteGrid');
+        
+        // Calculator Logic
+        let calcExpr = "";
+        const calcDisplay = document.getElementById('calcDisplay');
+        const calcWrapper = document.getElementById('calcWrapper');
+        
+        window.toggleCalc = function() {
+            calcWrapper.style.display = (calcWrapper.style.display === 'none' || calcWrapper.style.display === '') ? 'flex' : 'none';
+        }
+        window.calcInput = function(val) {
+            if (val === 'C') {
+                calcExpr = "";
+            } else if (val === '=') {
+                try {
+                    // Safe eval alternative for basic math
+                    calcExpr = Function('"use strict";return (' + calcExpr + ')')().toString();
+                } catch(e) {
+                    calcExpr = "Error";
+                }
+            } else {
+                if (calcExpr === "Error") calcExpr = "";
+                calcExpr += val;
+            }
+            calcDisplay.innerText = calcExpr || "0";
+        }
+        
+        // Draggable Calculator
+        const calcHeader = document.getElementById('calcHeader');
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        calcHeader.addEventListener('mousedown', dragStart);
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('mousemove', drag);
+        
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            if (e.target === calcHeader || e.target.parentNode === calcHeader) {
+                isDragging = true;
+            }
+        }
+        function dragEnd() {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                calcWrapper.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+            }
+        }
+
+        // Proctoring Video
+        async function startProctoring() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                document.getElementById('proctorVideo').srcObject = stream;
+            } catch (err) {
+                console.warn("Camera access denied or not available. Proctoring simulation skipped.");
+            }
+        }
+        
+        function startDomainTest(domainName) {
+            selectedDomain = domainName;
+            document.getElementById('domainSelector').style.display = 'none';
+            document.getElementById('testWrapper').style.display = 'block';
+            document.getElementById('testMainTitle').innerHTML = `<i data-lucide="laptop-2" style="vertical-align: middle; margin-right: 10px; color: var(--primary);"></i>${domainName} Practice Test`;
+            lucide.createIcons();
+            
+            fetchQuestions();
+            startTimer();
+            startProctoring();
+        }
+
+        // Fetch Questions
+        async function fetchQuestions() {
+            try {
+                const res = await fetch('questions.json');
+                const rawQs = await res.json();
+                
+                // Filter by domain
+                const allQs = rawQs.filter(q => q.domain === selectedDomain);
+                
+                // Shuffle and pick 10
+                for (let i = allQs.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allQs[i], allQs[j]] = [allQs[j], allQs[i]];
+                }
+                quizData = allQs.slice(0, TOTAL_QUESTIONS);
+                
+                // Initialize state
+                answers = new Array(TOTAL_QUESTIONS).fill(null);
+                statuses = new Array(TOTAL_QUESTIONS).fill(0);
+                timeSpent = new Array(TOTAL_QUESTIONS).fill(0);
+                statuses[0] = 1;
+
+                initPalette();
+                renderQuestion(0);
+            } catch (e) {
+                console.error("Error loading questions", e);
+                qText.innerText = "Failed to load questions. Please try again.";
+            }
+        }
+
+        // Initialize Palette
+        function initPalette() {
+            paletteGrid.innerHTML = '';
+            for(let i=0; i<TOTAL_QUESTIONS; i++) {
+                const div = document.createElement('div');
+                div.className = 'q-node';
+                div.innerText = i + 1;
+                div.id = `qnode-${i}`;
+                div.onclick = () => jumpToQuestion(i);
+                paletteGrid.appendChild(div);
+            }
+            updatePaletteUI();
+        }
+
+        function updatePaletteUI() {
+            for(let i=0; i<TOTAL_QUESTIONS; i++) {
+                const node = document.getElementById(`qnode-${i}`);
+                if (!node) continue;
+                node.className = 'q-node'; // reset
+                
+                if (i === currentQIndex) node.classList.add('active-q');
+
+                if (statuses[i] === 1) node.classList.add('status-not-answered');
+                else if (statuses[i] === 2) node.classList.add('status-answered');
+                else if (statuses[i] === 3) {
+                    // Check if answered
+                    const isAns = Array.isArray(answers[i]) ? answers[i].length > 0 : (answers[i] !== null && answers[i] !== "");
+                    if (isAns) node.classList.add('status-review-answered');
+                    else node.classList.add('status-review');
+                }
+            }
+        }
+
+        function renderQuestion(index) {
+            currentQIndex = index;
+            if(statuses[index] === 0) statuses[index] = 1; 
+
+            qNumberDisplay.innerText = index + 1;
+            const q = quizData[index];
+            
+            let typeBadge = "";
+            if (q.type === "MSQ") typeBadge = `<span style="background:var(--primary); color:white; padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-right:10px;">MSQ</span>`;
+            else if (q.type === "NAT") typeBadge = `<span style="background:#8b5cf6; color:white; padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-right:10px;">NAT</span>`;
+            else typeBadge = `<span style="background:#10b981; color:white; padding:2px 8px; border-radius:4px; font-size:0.8rem; margin-right:10px;">MCQ</span>`;
+
+            qText.innerHTML = `${typeBadge} ${index + 1}. ${q.question}`;
+            qOptions.innerHTML = '';
+            
+            if (q.type === "NAT") {
+                const val = answers[index] || "";
+                qOptions.innerHTML = `<input type="text" id="natInput" value="${val}" placeholder="Type your numerical answer here..." style="width:100%; padding: 15px; font-size: 1.2rem; border: 2px solid var(--border); border-radius: 6px; outline: none;" oninput="updateNAT()">`;
+            } 
+            else if (q.type === "MSQ") {
+                const userAnsArr = answers[index] || [];
+                q.options.forEach((opt, i) => {
+                    const isChecked = userAnsArr.includes(i);
+                    const optDiv = document.createElement('label');
+                    optDiv.className = `option-item ${isChecked ? 'selected' : ''}`;
+                    optDiv.innerHTML = `
+                        <input type="checkbox" name="q_opt" value="${i}" ${isChecked ? 'checked' : ''} onchange="toggleMSQOption(this, ${i})">
+                        <span>${opt}</span>
+                    `;
+                    qOptions.appendChild(optDiv);
+                });
+            } 
+            else { // MCQ
+                q.options.forEach((opt, i) => {
+                    const isChecked = answers[index] === i;
+                    const optDiv = document.createElement('label');
+                    optDiv.className = `option-item ${isChecked ? 'selected' : ''}`;
+                    optDiv.innerHTML = `
+                        <input type="radio" name="q_opt" value="${i}" ${isChecked ? 'checked' : ''} onchange="selectMCQOption(${i})">
+                        <span>${opt}</span>
+                    `;
+                    qOptions.appendChild(optDiv);
+                });
+            }
+
+            updatePaletteUI();
+        }
+
+        window.selectMCQOption = function(optIndex) {
+            answers[currentQIndex] = optIndex;
+            const items = qOptions.querySelectorAll('.option-item');
+            items.forEach((item, idx) => {
+                if(idx === optIndex) item.classList.add('selected');
+                else item.classList.remove('selected');
+            });
+        }
+
+        window.toggleMSQOption = function(cb, optIndex) {
+            if (!answers[currentQIndex]) answers[currentQIndex] = [];
+            
+            if (cb.checked) {
+                if (!answers[currentQIndex].includes(optIndex)) answers[currentQIndex].push(optIndex);
+                cb.parentElement.classList.add('selected');
+            } else {
+                answers[currentQIndex] = answers[currentQIndex].filter(v => v !== optIndex);
+                cb.parentElement.classList.remove('selected');
+            }
+        }
+
+        window.updateNAT = function() {
+            answers[currentQIndex] = document.getElementById('natInput').value.trim();
+        }
+
+        window.jumpToQuestion = function(index) {
+            renderQuestion(index);
+        }
+
+        window.clearResponse = function() {
+            answers[currentQIndex] = null;
+            statuses[currentQIndex] = 1; // back to not answered
+            renderQuestion(currentQIndex);
+        }
+
+        window.saveAndNext = function() {
+            const ans = answers[currentQIndex];
+            const hasAns = (Array.isArray(ans) && ans.length > 0) || (ans !== null && ans !== "");
+            
+            if (hasAns) statuses[currentQIndex] = 2; // Answered
+            else statuses[currentQIndex] = 1; // Not Answered
+            
+            if (currentQIndex < TOTAL_QUESTIONS - 1) renderQuestion(currentQIndex + 1);
+            else updatePaletteUI();
+        }
+
+        window.markForReview = function() {
+            statuses[currentQIndex] = 3; // Review
+            if (currentQIndex < TOTAL_QUESTIONS - 1) renderQuestion(currentQIndex + 1);
+            else updatePaletteUI();
+        }
+
+        // Timer Logic
+        const timerDisplay = document.getElementById('timeText');
+        
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                    return;
+                }
+                timeRemaining--;
+                timeSpent[currentQIndex]++; // Track time per question
+                
+                let m = Math.floor(timeRemaining / 60);
+                let s = timeRemaining % 60;
+                timerDisplay.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                if(timeRemaining < 60) timerDisplay.style.color = '#ef4444'; // turn red in last minute
+            }, 1000);
+        }
+
+        window.submitTest = function() {
+            clearInterval(timerInterval);
+            
+            // Stop camera if running
+            const video = document.getElementById('proctorVideo');
+            if (video && video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
+            
+            let marks = 0;
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
+            let penalty = 0;
+
+            for(let i=0; i<TOTAL_QUESTIONS; i++) {
+                const q = quizData[i];
+                const ans = answers[i];
+                const hasAns = (Array.isArray(ans) && ans.length > 0) || (ans !== null && ans !== "");
+
+                if (!hasAns) {
+                    skipped++;
+                } else {
+                    let isCorrect = false;
+                    if (q.type === "NAT") {
+                        if (ans === q.correct) isCorrect = true;
+                    } else if (q.type === "MSQ") {
+                        // compare arrays exactly
+                        if (ans.length === q.correct.length && ans.every(v => q.correct.includes(v))) {
+                            isCorrect = true;
+                        }
+                    } else { // MCQ
+                        if (ans === q.correct) isCorrect = true;
+                    }
+
+                    if (isCorrect) {
+                        correct++;
+                        marks += 10;
+                    } else {
+                        incorrect++;
+                        if (q.type === "MCQ") {
+                            // Negative marking only for MCQ
+                            penalty += 3.33;
+                        }
+                    }
+                }
+            }
+            
+            marks = Math.max(0, marks - penalty).toFixed(2); // Apply penalty, format to 2 decimals
+
+            document.getElementById('finalScore').innerText = marks;
+            document.getElementById('rCorrect').innerText = correct;
+            document.getElementById('rIncorrect').innerText = incorrect;
+            document.getElementById('rSkipped').innerText = skipped;
+            document.getElementById('rPenalty').innerText = penalty.toFixed(2);
+
+            // Save to LocalStorage
+            let userName = prompt("Enter your name for the Global Leaderboard:", "Guest User");
+            if (!userName) userName = "Anonymous";
+            
+            let leaderboard = JSON.parse(localStorage.getItem('techIndro_leaderboard')) || [];
+            
+            // Check if user already exists
+            const existingUserIndex = leaderboard.findIndex(u => u.name === userName);
+            if (existingUserIndex > -1) {
+                // Update score only if new score is higher
+                if (marks > leaderboard[existingUserIndex].score) {
+                    leaderboard[existingUserIndex].score = marks;
+                }
+            } else {
+                leaderboard.push({
+                    name: userName,
+                    score: marks,
+                    badge: marks >= 80 ? 'Pro Coder' : (marks >= 50 ? 'Student' : 'Beginner'),
+                    status: 'Online'
+                });
+            }
+            
+            localStorage.setItem('techIndro_leaderboard', JSON.stringify(leaderboard));
+
+            document.getElementById('resultOverlay').style.display = 'flex';
+        }
+        
+        window.showReview = function() {
+            document.getElementById('reviewBtn').style.display = 'none';
+            const reviewSection = document.getElementById('reviewSection');
+            reviewSection.style.display = 'block';
+            
+            let html = '<h3>Solutions:</h3>';
+            quizData.forEach((q, i) => {
+                const userAns = answers[i];
+                const hasAns = (Array.isArray(userAns) && userAns.length > 0) || (userAns !== null && userAns !== "");
+                
+                let isCorrect = false;
+                let userStr = "Skipped";
+                let corrStr = "";
+
+                if (q.type === "NAT") {
+                    corrStr = q.correct;
+                    if (hasAns) {
+                        userStr = userAns;
+                        if (userAns === q.correct) isCorrect = true;
+                    }
+                } else if (q.type === "MSQ") {
+                    corrStr = q.correct.map(idx => q.options[idx]).join(', ');
+                    if (hasAns) {
+                        userStr = userAns.map(idx => q.options[idx]).join(', ');
+                        if (userAns.length === q.correct.length && userAns.every(v => q.correct.includes(v))) isCorrect = true;
+                    }
+                } else { // MCQ
+                    corrStr = q.options[q.correct];
+                    if (hasAns) {
+                        userStr = q.options[userAns];
+                        if (userAns === q.correct) isCorrect = true;
+                    }
+                }
+                
+                html += `<div style="margin-bottom: 15px; padding: 10px; background: #f8fafc; border-radius: 6px;">`;
+                html += `<div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                            <strong>Q${i+1} [${q.type}]:</strong>
+                            <span style="font-size:0.85rem; color:#64748b; background:#e2e8f0; padding:2px 8px; border-radius:12px;">⏱ ${timeSpent[i]}s</span>
+                         </div>`;
+                html += `<div>${q.question}</div><br>`;
+                
+                if (hasAns && !isCorrect) {
+                    html += `<div style="color: #ef4444; margin-top: 5px;">Your Answer: ${userStr} ❌ (Penalty: ${q.type === 'MCQ' ? '-3.33' : '0.00'})</div>`;
+                } else if (!hasAns) {
+                    html += `<div style="color: #f59e0b; margin-top: 5px;">Skipped ⚠️ (No Penalty)</div>`;
+                }
+                
+                html += `<div style="color: #10b981; margin-top: 5px;">Correct Answer: ${corrStr} ✅</div>`;
+                html += `</div>`;
+            });
+            
+            reviewSection.innerHTML = html;
+        }
+
+        // We DO NOT call fetchQuestions() automatically anymore, it is called when a domain is clicked.
+    </script>
+</body>
+</html>

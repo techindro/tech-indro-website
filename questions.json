@@ -1,0 +1,4559 @@
+[
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[Wipro 2025] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "[TCS Digital 2023] How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[ISRO 2022] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[DRDO 2023] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[Google 2022] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[Google 2022] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "[GATE 2022] How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "NAT",
+        "question": "[GATE 2022] How many bits are in an IPv4 address?",
+        "options": [],
+        "correct": "32"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "Which phase of ethical hacking involves gathering information about a target before an attack?",
+        "options": [
+            "Reconnaissance",
+            "Scanning",
+            "Gaining Access",
+            "Maintaining Access"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[GATE 2025] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[ISRO 2022] Which HTML element is used for the largest heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<heading>",
+            "<h1>"
+        ],
+        "correct": 3
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[GATE 2024] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[Google 2022] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[GATE 2020] Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[Infosys 2022] In a paging scheme, if the logical address space is 4GB and the page size is 4KB, how many entries will the page table have?",
+        "options": [
+            "1 Million",
+            "4 Million",
+            "1024",
+            "4096"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "[TCS Ninja 2021] What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[GATE 2021] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "[GATE 2025] How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "Which database is best suited for heavily connected graph data?",
+        "options": [
+            "MySQL",
+            "MongoDB",
+            "Neo4j",
+            "Redis"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[DRDO 2023] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[Microsoft 2026] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "Which data structure uses LIFO?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Tree",
+            "Graph"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which of these are valid HTTP methods?",
+        "options": [
+            "GET",
+            "PUSH",
+            "POST",
+            "FETCH"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "Which of the following are considered 'soft skills'?",
+        "options": [
+            "Empathy",
+            "Python Programming",
+            "Adaptability",
+            "Teamwork"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "NAT",
+        "question": "[GATE 2024] If you have a 3x3 input image and apply a 2x2 filter with stride 1, what is the output width?",
+        "options": [],
+        "correct": "2"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are common actuators used in robotics?",
+        "options": [
+            "DC Motor",
+            "Servo Motor",
+            "Stepper Motor",
+            "Thermistor"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "What does ROS stand for?",
+        "options": [
+            "Robotic Operating System",
+            "Robot Operating System",
+            "Runtime Output System",
+            "Robotics Output Software"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Microsoft 2026] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "In a paging scheme, if the logical address space is 4GB and the page size is 4KB, how many entries will the page table have?",
+        "options": [
+            "1 Million",
+            "4 Million",
+            "1024",
+            "4096"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2025] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[GATE 2024] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[ISRO 2020] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[Wipro 2025] What does ROS stand for?",
+        "options": [
+            "Robotic Operating System",
+            "Robot Operating System",
+            "Runtime Output System",
+            "Robotics Output Software"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "NAT",
+        "question": "[GATE 2025] How many bits are in an IPv4 address?",
+        "options": [],
+        "correct": "32"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2022] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "NAT",
+        "question": "[TCS Ninja 2021] If you have a 3x3 input image and apply a 2x2 filter with stride 1, what is the output width?",
+        "options": [],
+        "correct": "2"
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[GATE 2022] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2024] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "Which of these are valid loss functions for classification?",
+        "options": [
+            "Cross-Entropy",
+            "Mean Squared Error",
+            "Hinge Loss",
+            "MAE"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "NAT",
+        "question": "[GATE 2023] What is the default port number for a local React development server (Create React App)?",
+        "options": [],
+        "correct": "3000"
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[Microsoft 2026] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which of the following grammars are ambiguous?",
+        "options": [
+            "S -> SS | a | b",
+            "S -> aSb | a | b",
+            "S -> aS | Sa | a",
+            "S -> aSb | e"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are common actuators used in robotics?",
+        "options": [
+            "DC Motor",
+            "Servo Motor",
+            "Stepper Motor",
+            "Thermistor"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[TCS Ninja 2021] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2024] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[DRDO 2023] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[ISRO 2022] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[ISRO 2022] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[Microsoft 2026] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "NAT",
+        "question": "[ISRO 2020] If a subnet mask is 255.255.255.0, what is the CIDR notation (e.g., /X)?",
+        "options": [],
+        "correct": "24"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Google 2022] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[ISRO 2022] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Google 2022] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[GATE 2024] Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[GATE 2024] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[Microsoft 2026] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[Wipro 2025] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[GATE 2024] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[Wipro 2025] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "NAT",
+        "question": "If you have a 3x3 input image and apply a 2x2 filter with stride 1, what is the output width?",
+        "options": [],
+        "correct": "2"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which of these are types of Malware?",
+        "options": [
+            "Ransomware",
+            "Trojan",
+            "VPN",
+            "Worm"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[Wipro 2025] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[Google 2022] Which of these are common actuators used in robotics?",
+        "options": [
+            "DC Motor",
+            "Servo Motor",
+            "Stepper Motor",
+            "Thermistor"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "NAT",
+        "question": "If a server handles 100 requests per second and each request takes 0.5s, what is the minimum number of concurrent threads needed (assuming no wait time)?",
+        "options": [],
+        "correct": "50"
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[Google 2022] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2024] What is the worst-case time complexity of QuickSort?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[GATE 2023] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2022] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[DRDO 2023] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Which of the following grammars are ambiguous?",
+        "options": [
+            "S -> SS | a | b",
+            "S -> aSb | a | b",
+            "S -> aS | Sa | a",
+            "S -> aSb | e"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[Google 2022] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2024] Which of these are valid HTTP methods?",
+        "options": [
+            "GET",
+            "PUSH",
+            "POST",
+            "FETCH"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2025] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2022] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Amazon 2024] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "NAT",
+        "question": "[Amazon 2024] If a subnet mask is 255.255.255.0, what is the CIDR notation (e.g., /X)?",
+        "options": [],
+        "correct": "24"
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[GATE 2020] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of these are valid HTTP methods?",
+        "options": [
+            "GET",
+            "PUSH",
+            "POST",
+            "FETCH"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[GATE 2020] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[ISRO 2022] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] Which tool is used for container orchestration?",
+        "options": [
+            "Docker",
+            "Jenkins",
+            "Kubernetes",
+            "Ansible"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[GATE 2024] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[Google 2022] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "Which of these are types of Malware?",
+        "options": [
+            "Ransomware",
+            "Trojan",
+            "VPN",
+            "Worm"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "Which tools/libraries are part of Android Jetpack?",
+        "options": [
+            "Room",
+            "ViewModel",
+            "Volley",
+            "LiveData"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "NAT",
+        "question": "[GATE 2020] If a subnet mask is 255.255.255.0, what is the CIDR notation (e.g., /X)?",
+        "options": [],
+        "correct": "24"
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[DRDO 2023] In a normal distribution, what percentage of data falls within 1 standard deviation?",
+        "options": [
+            "50%",
+            "68%",
+            "95%",
+            "99.7%"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Google 2022] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[DRDO 2023] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[GATE 2020] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "[Microsoft 2026] How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[TCS Digital 2023] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[GATE 2024] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2025] Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Infosys 2022] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Google 2022] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[GATE 2021] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[TCS Digital 2023] Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "NAT",
+        "question": "[TCS Ninja 2021] If you have a 3x3 input image and apply a 2x2 filter with stride 1, what is the output width?",
+        "options": [],
+        "correct": "2"
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[GATE 2021] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[TCS Ninja 2021] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are valid loss functions for classification?",
+        "options": [
+            "Cross-Entropy",
+            "Mean Squared Error",
+            "Hinge Loss",
+            "MAE"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "[GATE 2023] What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[DRDO 2023] What does CAP stand for in the CAP theorem?",
+        "options": [
+            "Consistency, Availability, Partition tolerance",
+            "Consistency, Accuracy, Performance",
+            "Compute, Availability, Partition",
+            "Cache, Availability, Performance"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2024] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which database is best suited for heavily connected graph data?",
+        "options": [
+            "MySQL",
+            "MongoDB",
+            "Neo4j",
+            "Redis"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Google 2022] Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[Microsoft 2026] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "[Infosys 2022] What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "NAT",
+        "question": "[Microsoft 2026] By default, which port does a generic HTTP web server (like Nginx) listen on?",
+        "options": [],
+        "correct": "80"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[GATE 2020] Which tools/libraries are part of Android Jetpack?",
+        "options": [
+            "Room",
+            "ViewModel",
+            "Volley",
+            "LiveData"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Infosys 2022] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[Infosys 2022] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[GATE 2021] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2025] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[GATE 2022] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[GATE 2021] Which database is best suited for heavily connected graph data?",
+        "options": [
+            "MySQL",
+            "MongoDB",
+            "Neo4j",
+            "Redis"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What is the worst-case time complexity of QuickSort?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "In a normal distribution, what percentage of data falls within 1 standard deviation?",
+        "options": [
+            "50%",
+            "68%",
+            "95%",
+            "99.7%"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[GATE 2024] Which HTML element is used for the largest heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<heading>",
+            "<h1>"
+        ],
+        "correct": 3
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "Which of the following grammars are ambiguous?",
+        "options": [
+            "S -> SS | a | b",
+            "S -> aSb | a | b",
+            "S -> aS | Sa | a",
+            "S -> aSb | e"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "NAT",
+        "question": "[GATE 2020] By default, which port does a generic HTTP web server (like Nginx) listen on?",
+        "options": [],
+        "correct": "80"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2021] Which phase of ethical hacking involves gathering information about a target before an attack?",
+        "options": [
+            "Reconnaissance",
+            "Scanning",
+            "Gaining Access",
+            "Maintaining Access"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "[Google 2022] How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2020] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "NAT",
+        "question": "What is the default port number for a local React development server (Create React App)?",
+        "options": [],
+        "correct": "3000"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2024] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[GATE 2022] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[Infosys 2022] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[GATE 2020] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[GATE 2021] Which tool is used for container orchestration?",
+        "options": [
+            "Docker",
+            "Jenkins",
+            "Kubernetes",
+            "Ansible"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[TCS Digital 2023] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[TCS Ninja 2021] Which of the following are supervised learning algorithms?",
+        "options": [
+            "K-Means Clustering",
+            "Linear Regression",
+            "Random Forest",
+            "PCA"
+        ],
+        "correct": [
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[GATE 2022] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "NAT",
+        "question": "[GATE 2021] If you have a 3x3 input image and apply a 2x2 filter with stride 1, what is the output width?",
+        "options": [],
+        "correct": "2"
+    },
+    {
+        "domain": "DevOps",
+        "type": "NAT",
+        "question": "[DRDO 2023] By default, which port does a generic HTTP web server (like Nginx) listen on?",
+        "options": [],
+        "correct": "80"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which of these are valid loss functions for classification?",
+        "options": [
+            "Cross-Entropy",
+            "Mean Squared Error",
+            "Hinge Loss",
+            "MAE"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[Infosys 2022] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are valid HTTP methods?",
+        "options": [
+            "GET",
+            "PUSH",
+            "POST",
+            "FETCH"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Microsoft 2026] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Infosys 2022] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[GATE 2021] Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which are SOLID principles?",
+        "options": [
+            "Single Responsibility",
+            "Open-Closed",
+            "Liskov Substitution",
+            "Dependency Injection"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which of these are types of Malware?",
+        "options": [
+            "Ransomware",
+            "Trojan",
+            "VPN",
+            "Worm"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MSQ",
+        "question": "Which of these are valid HTTP methods?",
+        "options": [
+            "GET",
+            "PUSH",
+            "POST",
+            "FETCH"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[Google 2022] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2022] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "What is the worst-case time complexity of QuickSort?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "System Design",
+        "type": "NAT",
+        "question": "[GATE 2023] If a server handles 100 requests per second and each request takes 0.5s, what is the minimum number of concurrent threads needed (assuming no wait time)?",
+        "options": [],
+        "correct": "50"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[GATE 2022] Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[Amazon 2024] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2025] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Amazon 2021] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "What does CAP stand for in the CAP theorem?",
+        "options": [
+            "Consistency, Availability, Partition tolerance",
+            "Consistency, Accuracy, Performance",
+            "Compute, Availability, Partition",
+            "Cache, Availability, Performance"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MCQ",
+        "question": "[Wipro 2025] What is the primary goal of a White Hat hacker?",
+        "options": [
+            "Steal data",
+            "Find and report vulnerabilities",
+            "Deface websites",
+            "Create malware"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[Amazon 2024] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which of these are valid JavaScript variable declarations?",
+        "options": [
+            "var",
+            "let",
+            "const",
+            "def"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[Amazon 2024] Which HTML element is used for the largest heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<heading>",
+            "<h1>"
+        ],
+        "correct": 3
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[GATE 2021] What does CAP stand for in the CAP theorem?",
+        "options": [
+            "Consistency, Availability, Partition tolerance",
+            "Consistency, Accuracy, Performance",
+            "Compute, Availability, Partition",
+            "Cache, Availability, Performance"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[DRDO 2023] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2022] Which tools are commonly used for network scanning/sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Photoshop",
+            "Metasploit"
+        ],
+        "correct": [
+            0,
+            1
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[Infosys 2022] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Microsoft 2026] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2020] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[DRDO 2023] Which HTML element is used for the largest heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<heading>",
+            "<h1>"
+        ],
+        "correct": 3
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[TCS Digital 2023] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[GATE 2022] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "What does XSS stand for?",
+        "options": [
+            "Cross-Site Scripting",
+            "XML Site Spoofing",
+            "Cross-Server Scripting",
+            "Extended Style Sheets"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2021] Which data structure uses LIFO?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Tree",
+            "Graph"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "[GATE 2022] What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which tools are commonly used for penetration testing?",
+        "options": [
+            "Metasploit",
+            "Burp Suite",
+            "Excel",
+            "Nmap"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Amazon 2024] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[GATE 2022] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[ISRO 2020] In a normal distribution, what percentage of data falls within 1 standard deviation?",
+        "options": [
+            "50%",
+            "68%",
+            "95%",
+            "99.7%"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[Amazon 2024] In a paging scheme, if the logical address space is 4GB and the page size is 4KB, how many entries will the page table have?",
+        "options": [
+            "1 Million",
+            "4 Million",
+            "1024",
+            "4096"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is the worst-case time complexity of QuickSort?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[Google 2022] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "NAT",
+        "question": "How many bits are in an IPv4 address?",
+        "options": [],
+        "correct": "32"
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[GATE 2023] What does CAP stand for in the CAP theorem?",
+        "options": [
+            "Consistency, Availability, Partition tolerance",
+            "Consistency, Accuracy, Performance",
+            "Compute, Availability, Partition",
+            "Cache, Availability, Performance"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2025] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[Microsoft 2026] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[GATE 2025] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2025] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[Google 2022] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2020] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What does CAP stand for in the CAP theorem?",
+        "options": [
+            "Consistency, Availability, Partition tolerance",
+            "Consistency, Accuracy, Performance",
+            "Compute, Availability, Partition",
+            "Cache, Availability, Performance"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[ISRO 2022] Which sensor is commonly used in robotics for mapping surroundings using lasers?",
+        "options": [
+            "Sonar",
+            "Lidar",
+            "Radar",
+            "Gyroscope"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "NAT",
+        "question": "[Google 2022] What is the numerical code for the HTTP 'OK' response commonly checked in Retrofit?",
+        "options": [],
+        "correct": "200"
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[GATE 2022] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[Amazon 2021] In a normal distribution, what percentage of data falls within 1 standard deviation?",
+        "options": [
+            "50%",
+            "68%",
+            "95%",
+            "99.7%"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "NAT",
+        "question": "How many degrees of freedom does a standard rigid object in 3D space have?",
+        "options": [],
+        "correct": "6"
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[ISRO 2020] What does ROS stand for?",
+        "options": [
+            "Robotic Operating System",
+            "Robot Operating System",
+            "Runtime Output System",
+            "Robotics Output Software"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "Which of these are common actuators used in robotics?",
+        "options": [
+            "DC Motor",
+            "Servo Motor",
+            "Stepper Motor",
+            "Thermistor"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[GATE 2025] Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2025] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MCQ",
+        "question": "[Amazon 2024] Which database is best suited for heavily connected graph data?",
+        "options": [
+            "MySQL",
+            "MongoDB",
+            "Neo4j",
+            "Redis"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "NAT",
+        "question": "If a subnet mask is 255.255.255.0, what is the CIDR notation (e.g., /X)?",
+        "options": [],
+        "correct": "24"
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] In a paging scheme, if the logical address space is 4GB and the page size is 4KB, how many entries will the page table have?",
+        "options": [
+            "1 Million",
+            "4 Million",
+            "1024",
+            "4096"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "NAT",
+        "question": "[ISRO 2020] What is the time complexity of a binary search on a sorted array of size 1024 (in terms of max comparisons)?",
+        "options": [],
+        "correct": "10"
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MCQ",
+        "question": "Which of the following problems is undecidable?",
+        "options": [
+            "Halting Problem",
+            "Determining if a DFA accepts any string",
+            "Context-Free Grammar Parsing",
+            "Graph Coloring"
+        ],
+        "correct": 0
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "NAT",
+        "question": "[ISRO 2020] If a dataset has 10 features and you apply PCA to reduce it to 3 components, how many principal components are returned?",
+        "options": [],
+        "correct": "3"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "Which layout is recommended for complex UI hierarchies to avoid deep nesting?",
+        "options": [
+            "LinearLayout",
+            "RelativeLayout",
+            "ConstraintLayout",
+            "FrameLayout"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "NAT",
+        "question": "[Google 2022] Consider a pipeline with 4 stages with delays 10ns, 20ns, 15ns, and 25ns. What is the clock cycle time in ns (ignoring latch delays)?",
+        "options": [],
+        "correct": "25"
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[Amazon 2024] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[GATE 2023] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which are popular frontend JavaScript frameworks/libraries?",
+        "options": [
+            "React",
+            "Django",
+            "Vue",
+            "Angular"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[DRDO 2023] What is the primary purpose of an 'Elevator Pitch'?",
+        "options": [
+            "To sell elevators",
+            "To give a brief, persuasive summary of yourself or your project",
+            "To talk loudly",
+            "To end a conversation quickly"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2020] Which data structure uses LIFO?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Tree",
+            "Graph"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MSQ",
+        "question": "Which of these are valid JavaScript variable declarations?",
+        "options": [
+            "var",
+            "let",
+            "const",
+            "def"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Select valid pandas methods for handling missing data:",
+        "options": [
+            "dropna()",
+            "fillna()",
+            "remove_nulls()",
+            "interpolate()"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Ethical Hacking",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of the following are common types of social engineering attacks?",
+        "options": [
+            "Phishing",
+            "SQL Injection",
+            "Baiting",
+            "Tailgating"
+        ],
+        "correct": [
+            0,
+            2,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MSQ",
+        "question": "[ISRO 2020] Which of these are types of Malware?",
+        "options": [
+            "Ransomware",
+            "Trojan",
+            "VPN",
+            "Worm"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Android Development",
+        "type": "MCQ",
+        "question": "[Microsoft 2026] What is the primary language recommended by Google for modern Android apps?",
+        "options": [
+            "Java",
+            "Kotlin",
+            "C++",
+            "Python"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "[GATE 2020] What is Terraform primarily used for?",
+        "options": [
+            "CI/CD Pipeline",
+            "Infrastructure as Code",
+            "Monitoring",
+            "Log management"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "Which of these are popular CI/CD tools?",
+        "options": [
+            "Jenkins",
+            "GitLab CI",
+            "Prometheus",
+            "GitHub Actions"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Cybersecurity & Ethical Hacking",
+        "type": "MCQ",
+        "question": "[TCS Digital 2023] Which port is used by default for SSH?",
+        "options": [
+            "21",
+            "22",
+            "80",
+            "443"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "NAT",
+        "question": "[Google 2022] What is the default port number for a local React development server (Create React App)?",
+        "options": [],
+        "correct": "3000"
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[GATE 2020] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2022] What does the 'learning rate' control in neural networks?",
+        "options": [
+            "The number of layers",
+            "Step size during gradient descent",
+            "The batch size",
+            "The activation function"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Data Scientist",
+        "type": "MCQ",
+        "question": "[GATE 2020] Which library is primarily used for Data Manipulation in Python?",
+        "options": [
+            "Matplotlib",
+            "Pandas",
+            "PyTorch",
+            "Flask"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which caching eviction policies are commonly used?",
+        "options": [
+            "LRU",
+            "LFU",
+            "FIFO",
+            "DFS"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Android Development",
+        "type": "MSQ",
+        "question": "[TCS Digital 2023] Which of these are core Android App Components?",
+        "options": [
+            "Activity",
+            "Service",
+            "Broadcast Receiver",
+            "Fragment"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "Which HTML element is used for the largest heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<heading>",
+            "<h1>"
+        ],
+        "correct": 3
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MSQ",
+        "question": "[Amazon 2021] Which techniques help prevent overfitting?",
+        "options": [
+            "Dropout",
+            "L2 Regularization",
+            "Increasing model size",
+            "Early Stopping"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "AI/ML Engineer",
+        "type": "MCQ",
+        "question": "[GATE 2023] Which activation function outputs values between 0 and 1?",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Leaky ReLU"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Web Development",
+        "type": "NAT",
+        "question": "[GATE 2024] What is the default port number for a local React development server (Create React App)?",
+        "options": [],
+        "correct": "3000"
+    },
+    {
+        "domain": "DevOps",
+        "type": "NAT",
+        "question": "By default, which port does a generic HTTP web server (like Nginx) listen on?",
+        "options": [],
+        "correct": "80"
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which algorithms are typically used for robot path planning?",
+        "options": [
+            "A* Search",
+            "Dijkstra's Algorithm",
+            "RSA Encryption",
+            "RRT (Rapidly-exploring Random Tree)"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "GATE/PSU/ISRO",
+        "type": "MSQ",
+        "question": "[ISRO 2022] Which scheduling algorithms can suffer from starvation?",
+        "options": [
+            "Shortest Job First (SJF)",
+            "Round Robin",
+            "Priority Scheduling",
+            "First Come First Serve (FCFS)"
+        ],
+        "correct": [
+            0,
+            2
+        ]
+    },
+    {
+        "domain": "System Design",
+        "type": "MSQ",
+        "question": "[Wipro 2025] Which of these are typical strategies to scale a database?",
+        "options": [
+            "Sharding",
+            "Read Replicas",
+            "Using a slower CPU",
+            "Partitioning"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    },
+    {
+        "domain": "Software Engineer",
+        "type": "MCQ",
+        "question": "[Amazon 2021] Which data structure uses LIFO?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Tree",
+            "Graph"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "DevOps",
+        "type": "MCQ",
+        "question": "Which tool is used for container orchestration?",
+        "options": [
+            "Docker",
+            "Jenkins",
+            "Kubernetes",
+            "Ansible"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MCQ",
+        "question": "[DRDO 2023] Which of the following is a key element of active listening?",
+        "options": [
+            "Interrupting frequently",
+            "Maintaining eye contact",
+            "Formulating a reply while the other speaks",
+            "Checking your phone"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Web Development",
+        "type": "MCQ",
+        "question": "[Google 2022] Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correct": 2
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "NAT",
+        "question": "[GATE 2025] According to the 7-38-55 rule by Albert Mehrabian, what percentage of communication of feelings is attributed to spoken words?",
+        "options": [],
+        "correct": "7"
+    },
+    {
+        "domain": "Robotics Engineer",
+        "type": "MCQ",
+        "question": "[TCS Ninja 2021] What does ROS stand for?",
+        "options": [
+            "Robotic Operating System",
+            "Robot Operating System",
+            "Runtime Output System",
+            "Robotics Output Software"
+        ],
+        "correct": 1
+    },
+    {
+        "domain": "Communication Skill",
+        "type": "MSQ",
+        "question": "[GATE 2021] Which of these are forms of non-verbal communication?",
+        "options": [
+            "Body Language",
+            "Tone of Voice",
+            "Facial Expressions",
+            "Email"
+        ],
+        "correct": [
+            0,
+            1,
+            2
+        ]
+    },
+    {
+        "domain": "DevOps",
+        "type": "MSQ",
+        "question": "[GATE 2023] Which of these are valid Kubernetes resources?",
+        "options": [
+            "Pod",
+            "Deployment",
+            "Droplet",
+            "Service"
+        ],
+        "correct": [
+            0,
+            1,
+            3
+        ]
+    }
+]

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISRO Virtual Space Lab - Rohini AI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background: #020617;
+            color: white;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 2s ease;
+        }
+
+        /* Stars Background */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: transparent url('https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579_1280.png') repeat top center;
+            animation: move-twink-back 200s linear infinite;
+            opacity: 0.6;
+            transition: opacity 2s ease;
+        }
+        @keyframes move-twink-back {
+            from {background-position: 0 0;}
+            to {background-position: -10000px 5000px;}
+        }
+
+        /* Lab Header */
+        .lab-header {
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .lab-header a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+        .lab-header a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .mission-badge {
+            background: rgba(14, 165, 233, 0.2); 
+            border: 1px solid rgba(14, 165, 233, 0.5); 
+            padding: 0.5rem 1rem; 
+            border-radius: 20px; 
+            color: #38bdf8; 
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Space Scene Engine */
+        .space-scene {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+            padding-right: 40%; /* Shift left to make room for chat */
+            transition: all 1.5s ease;
+            perspective: 1000px;
+        }
+
+        /* -------------------------------- */
+        /* Dynamic Environments             */
+        /* -------------------------------- */
+
+        /* 1. Default (Moon) */
+        .obj-moon {
+            width: 40vh;
+            height: 40vh;
+            background: radial-gradient(circle at 30% 30%, #e2e8f0, #64748b);
+            border-radius: 50%;
+            box-shadow: inset -25px -25px 40px rgba(0,0,0,0.7), 0 0 50px rgba(255,255,255,0.2);
+            position: relative;
+            animation: float-obj 15s ease-in-out infinite;
+        }
+        .obj-moon .crater {
+            position: absolute;
+            background: rgba(0,0,0,0.15);
+            border-radius: 50%;
+            box-shadow: inset 3px 3px 10px rgba(0,0,0,0.4);
+        }
+        .obj-moon .crater-1 { width: 15%; height: 15%; top: 20%; left: 30%; }
+        .obj-moon .crater-2 { width: 25%; height: 25%; top: 50%; left: 50%; }
+        .obj-moon .crater-3 { width: 10%; height: 10%; top: 60%; left: 20%; }
+        
+        .obj-moon .rocket-svg {
+            position: absolute;
+            width: 25%; height: 35%;
+            bottom: -10%; right: -10%;
+            transform: rotate(45deg);
+        }
+
+        /* 2. Mars Surface */
+        .obj-mars {
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 40%, #7c2d12 60%, #431407 100%);
+            position: absolute;
+            bottom: 0;
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        .mars-mountain {
+            position: absolute;
+            bottom: 10%; left: 10%;
+            width: 300px; height: 150px;
+            background: #9a3412;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .mars-mountain-2 {
+            position: absolute;
+            bottom: 5%; left: 35%;
+            width: 400px; height: 250px;
+            background: #7c2d12;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .mars-rover {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            width: 60px; height: 40px;
+            background: #cbd5e1;
+            border-radius: 5px;
+            box-shadow: -10px 10px 20px rgba(0,0,0,0.5);
+            animation: rover-drive 10s infinite alternate linear;
+        }
+        .mars-rover::before, .mars-rover::after {
+            content: ''; position: absolute; bottom: -10px; width: 15px; height: 15px; background: #333; border-radius: 50%;
+        }
+        .mars-rover::before { left: 5px; } .mars-rover::after { right: 5px; }
+        
+        @keyframes rover-drive {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100px); }
+        }
+
+        /* 3. The Sun */
+        .obj-sun {
+            width: 50vh; height: 50vh;
+            background: radial-gradient(circle at 50% 50%, #fffbeb 0%, #fde047 20%, #f97316 60%, transparent 80%);
+            border-radius: 50%;
+            box-shadow: 0 0 100px #f59e0b, 0 0 200px #ef4444, inset 0 0 50px #fbbf24;
+            display: none; opacity: 0;
+            animation: sun-pulse 4s infinite alternate;
+        }
+        @keyframes sun-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 100px #f59e0b, 0 0 200px #ef4444; }
+            100% { transform: scale(1.05); box-shadow: 0 0 150px #f59e0b, 0 0 250px #ef4444; }
+        }
+
+        /* 4. Black Hole */
+        .obj-blackhole {
+            width: 30vh; height: 30vh;
+            background: black;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(255,255,255,0.05), 0 0 150px #3b82f6;
+            position: relative;
+            display: none; opacity: 0;
+        }
+        .accretion-disk {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 250%; height: 250%;
+            border-radius: 50%;
+            border: 20px solid transparent;
+            border-top-color: #60a5fa;
+            border-bottom-color: #f472b6;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            animation: spin-disk 2s linear infinite;
+            filter: drop-shadow(0 0 20px #60a5fa);
+        }
+        @keyframes spin-disk {
+            100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+        }
+
+        /* 5. Earth */
+        .obj-earth {
+            width: 45vh; height: 45vh;
+            background: radial-gradient(circle at 30% 30%, #60a5fa, #1e3a8a);
+            border-radius: 50%;
+            box-shadow: inset -25px -25px 40px rgba(0,0,0,0.7), 0 0 50px rgba(96, 165, 250, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: none; opacity: 0;
+            animation: float-obj 15s ease-in-out infinite;
+        }
+        .earth-continent {
+            position: absolute;
+            background: #22c55e;
+            filter: blur(2px);
+            opacity: 0.8;
+        }
+        .earth-c1 { width: 40%; height: 60%; border-radius: 40% 60% 70% 30%; top: 20%; left: 10%; }
+        .earth-c2 { width: 50%; height: 40%; border-radius: 60% 40% 30% 70%; bottom: 10%; right: 10%; }
+        
+        /* 6. Mercury */
+        .obj-mercury {
+            width: 30vh; height: 30vh;
+            background: radial-gradient(circle at 30% 30%, #a3a3a3, #404040);
+            border-radius: 50%;
+            box-shadow: inset -20px -20px 30px rgba(0,0,0,0.8), 0 0 40px rgba(255,255,255,0.2);
+            display: none; opacity: 0;
+            animation: float-obj 12s ease-in-out infinite;
+        }
+
+        /* 7. Venus */
+        .obj-venus {
+            width: 40vh; height: 40vh;
+            background: radial-gradient(circle at 30% 30%, #fcd34d, #b45309);
+            border-radius: 50%;
+            box-shadow: inset -20px -20px 30px rgba(0,0,0,0.8), 0 0 50px rgba(252, 211, 77, 0.3);
+            display: none; opacity: 0;
+            animation: float-obj 14s ease-in-out infinite;
+        }
+
+        /* 8. Jupiter */
+        .obj-jupiter {
+            width: 55vh; height: 55vh;
+            background: repeating-linear-gradient(0deg, #92400e 0%, #d97706 10%, #fcd34d 20%, #b45309 30%, #fef3c7 45%, #92400e 55%, #d97706 70%, #fef3c7 80%);
+            border-radius: 50%;
+            box-shadow: inset -30px -30px 50px rgba(0,0,0,0.8);
+            position: relative;
+            display: none; opacity: 0;
+            animation: float-obj 18s ease-in-out infinite;
+        }
+        .great-red-spot {
+            position: absolute; bottom: 30%; right: 20%;
+            width: 15%; height: 10%;
+            background: #7c2d12; border-radius: 50%;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* 9. Saturn */
+        .obj-saturn {
+            width: 45vh; height: 45vh;
+            background: radial-gradient(circle at 30% 30%, #fde68a, #d97706);
+            border-radius: 50%;
+            box-shadow: inset -25px -25px 40px rgba(0,0,0,0.8);
+            position: relative;
+            display: none; opacity: 0;
+            animation: float-obj 16s ease-in-out infinite;
+        }
+        .saturn-rings {
+            position: absolute; top: 50%; left: 50%;
+            width: 250%; height: 250%;
+            border-radius: 50%;
+            border: 30px solid rgba(253, 230, 138, 0.5);
+            border-bottom: 30px solid rgba(217, 119, 6, 0.8);
+            transform: translate(-50%, -50%) rotateX(75deg) rotateY(10deg);
+        }
+
+        /* 10. Uranus */
+        .obj-uranus {
+            width: 40vh; height: 40vh;
+            background: radial-gradient(circle at 30% 30%, #7dd3fc, #0284c7);
+            border-radius: 50%;
+            box-shadow: inset -20px -20px 40px rgba(0,0,0,0.8);
+            position: relative; display: none; opacity: 0;
+            animation: float-obj 14s ease-in-out infinite;
+        }
+        .uranus-rings {
+            position: absolute; top: 50%; left: 50%;
+            width: 200%; height: 200%; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.4);
+            transform: translate(-50%, -50%) rotateX(85deg) rotateY(90deg);
+        }
+
+        /* 11. Neptune */
+        .obj-neptune {
+            width: 42vh; height: 42vh;
+            background: radial-gradient(circle at 30% 30%, #3b82f6, #1e3a8a);
+            border-radius: 50%;
+            box-shadow: inset -20px -20px 40px rgba(0,0,0,0.8);
+            display: none; opacity: 0;
+            animation: float-obj 15s ease-in-out infinite;
+        }
+
+        /* 12. Gaganyaan (ISRO) */
+        .obj-gaganyaan {
+            width: 25vh; height: 12vh;
+            background: linear-gradient(to right, #cbd5e1 20%, #f8fafc 50%, #94a3b8 80%);
+            border-radius: 40px 20px 20px 40px;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.2);
+            position: relative;
+            display: none; opacity: 0;
+            animation: float-obj 8s ease-in-out infinite;
+        }
+        .gaganyaan-module {
+            position: absolute;
+            left: -15px; top: 15%;
+            width: 30px; height: 70%;
+            background: #94a3b8;
+            border-radius: 15px 0 0 15px;
+            border-right: 2px solid #64748b;
+        }
+        .gaganyaan-panels {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 250%; height: 25px;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            display: flex; justify-content: space-between;
+        }
+        .gaganyaan-panel {
+            width: 35%; height: 100%;
+            background: repeating-linear-gradient(90deg, #1e3a8a, #1e3a8a 10px, #60a5fa 10px, #60a5fa 12px);
+            border: 2px solid #93c5fd;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+        }
+        .gaganyaan-window {
+            position: absolute;
+            top: 30%; right: 15%;
+            width: 20px; height: 20px;
+            background: #7dd3fc;
+            border-radius: 50%;
+            border: 3px solid #334155;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.6);
+        }
+
+        @keyframes float-obj {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Rohini Chat Interface */
+        .chat-container {
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 40%;
+            min-width: 400px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+        .chat-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(0,0,0,0.2);
+        }
+        .rohini-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+            font-size: 1.5rem;
+        }
+        .rohini-info h2 { font-size: 1.2rem; margin: 0; color: white; display: flex; align-items: center; gap: 0.5rem; }
+        .rohini-info p { margin: 0; font-size: 0.85rem; color: #38bdf8; }
+        .chat-box { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; scroll-behavior: smooth; }
+        .chat-box::-webkit-scrollbar { width: 6px; }
+        .chat-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+        
+        .msg { max-width: 85%; padding: 1rem; border-radius: 16px; line-height: 1.5; font-size: 1rem; animation: popIn 0.3s ease; }
+        @keyframes popIn { 0% { opacity: 0; transform: translateY(10px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .msg.rohini { background: rgba(14, 165, 233, 0.15); border: 1px solid rgba(14, 165, 233, 0.3); border-top-left-radius: 2px; align-self: flex-start; color: #f1f5f9; }
+        .msg.user { background: linear-gradient(135deg, #3b82f6, #2563eb); border-top-right-radius: 2px; align-self: flex-end; color: white; }
+        
+        .chat-input-area { padding: 1.5rem; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 1rem; }
+        .chat-input-area input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); padding: 1rem 1.5rem; border-radius: 30px; color: white; font-size: 1rem; }
+        .chat-input-area input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        .send-btn { background: #38bdf8; border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: 0.3s; }
+        .send-btn:hover { transform: scale(1.1); background: #0ea5e9; }
+        .voice-btn { background: rgba(236, 72, 153, 0.2); border: 1px solid rgba(236, 72, 153, 0.5); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f472b6; cursor: pointer; transition: 0.3s; }
+        
+        .typing-indicator { display: none; gap: 4px; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 12px; align-self: flex-start; margin-bottom: 1rem; }
+        .dot { width: 6px; height: 6px; background: #94a3b8; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div class="stars" id="bgStars"></div>
+
+    <div class="lab-header">
+        <a href="shikshak.html"><i data-lucide="arrow-left"></i> Back</a>
+        <div class="mission-badge" id="envBadge">
+            <i data-lucide="satellite"></i> Lunar Orbit (Default)
+        </div>
+    </div>
+
+    <!-- Dynamic Space Scene Engine -->
+    <div class="space-scene" id="sceneContainer">
+        
+        <!-- Scene 1: Moon (Default) -->
+        <div class="obj-moon" id="envMoon">
+            <div class="crater crater-1"></div>
+            <div class="crater crater-2"></div>
+            <div class="crater crater-3"></div>
+            <svg class="rocket-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#38bdf8">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.52-.52a5 5 0 0 0-3-3l-.52.52ZM21 3s-4.04 0-9 5l-2.43 2.43a2.97 2.97 0 0 0 0 4.2l3.4 3.4a2.97 2.97 0 0 0 4.2 0L19.6 15.6c1.33-1.33 5-9 5-9s.5-3.74-2-5c-1.26-1.5-5-2-5-2Z"/>
+                <path d="M11 19.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.52-.52a5 5 0 0 0-3-3l-.52.52ZM16 11.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/>
+            </svg>
+        </div>
+
+        <!-- Scene 2: Mars Surface -->
+        <div class="obj-mars" id="envMars">
+            <div class="mars-mountain"></div>
+            <div class="mars-mountain-2"></div>
+            <div class="mars-rover"></div>
+        </div>
+
+        <!-- Scene 3: The Sun -->
+        <div class="obj-sun" id="envSun"></div>
+
+        <!-- Scene 4: Black Hole -->
+        <div class="obj-blackhole" id="envBlackhole">
+            <div class="accretion-disk"></div>
+        </div>
+
+        <!-- Scene 5: Earth -->
+        <div class="obj-earth" id="envEarth">
+            <div class="earth-continent earth-c1"></div>
+            <div class="earth-continent earth-c2"></div>
+        </div>
+
+        <!-- Scene 6: Mercury -->
+        <div class="obj-mercury" id="envMercury"></div>
+
+        <!-- Scene 7: Venus -->
+        <div class="obj-venus" id="envVenus"></div>
+
+        <!-- Scene 8: Jupiter -->
+        <div class="obj-jupiter" id="envJupiter">
+            <div class="great-red-spot"></div>
+        </div>
+
+        <!-- Scene 9: Saturn -->
+        <div class="obj-saturn" id="envSaturn">
+            <div class="saturn-rings"></div>
+        </div>
+
+        <!-- Scene 10: Uranus -->
+        <div class="obj-uranus" id="envUranus">
+            <div class="uranus-rings"></div>
+        </div>
+
+        <!-- Scene 11: Neptune -->
+        <div class="obj-neptune" id="envNeptune"></div>
+
+        <!-- Scene 12: Gaganyaan -->
+        <div class="obj-gaganyaan" id="envGaganyaan">
+            <div class="gaganyaan-module"></div>
+            <div class="gaganyaan-panels">
+                <div class="gaganyaan-panel"></div>
+                <div class="gaganyaan-panel"></div>
+            </div>
+            <div class="gaganyaan-window"></div>
+        </div>
+
+    </div>
+
+    <!-- Holographic Chat Interface -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="rohini-avatar">🧑🏽‍🚀</div>
+            <div class="rohini-info">
+                <h2>Rohini <i data-lucide="check-circle" style="width:16px; color:#34d399;"></i></h2>
+                <p>Chief ISRO AI Astronomer</p>
+            </div>
+            <button class="voice-btn" style="margin-left:auto; background:none; border:none; box-shadow:none;" onclick="toggleVoice()" id="voiceToggle" title="Toggle Voice Output">
+                <i data-lucide="volume-2"></i>
+            </button>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="msg rohini">
+                Namaskar! Main hoon Rohini, aapki ISRO ki guide. Aaj hum is pure universe ki safar par chalenge! Aapko kis planet ya taare ke baare mein jaanna hai? Just type it, and I'll take you there!
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Ask about Gaganyaan, Mars, Black Hole..." onkeypress="handleKeyPress(event)">
+            <button class="voice-btn" onclick="alert('Mic requires HTTPS. Please type!')"><i data-lucide="mic"></i></button>
+            <button class="send-btn" onclick="sendMessage()"><i data-lucide="send"></i></button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- Visual Engine Logic ---
+        const environments = {
+            default: { id: "envMoon", badge: "Lunar Orbit (Default)", bg: "#020617", starsOpacity: 0.6 },
+            mars: { id: "envMars", badge: "Mars Surface Simulation", bg: "#431407", starsOpacity: 0.2 },
+            sun: { id: "envSun", badge: "Solar Observation (Aditya-L1)", bg: "#1e0b00", starsOpacity: 0 },
+            blackhole: { id: "envBlackhole", badge: "Deep Space Anomaly", bg: "#000000", starsOpacity: 0.8 },
+            earth: { id: "envEarth", badge: "Earth Orbit", bg: "#020617", starsOpacity: 0.8 },
+            mercury: { id: "envMercury", badge: "Mercury Proximity", bg: "#171717", starsOpacity: 0.4 },
+            venus: { id: "envVenus", badge: "Venus Atmosphere", bg: "#451a03", starsOpacity: 0.1 },
+            jupiter: { id: "envJupiter", badge: "Jupiter Gas Giant", bg: "#020617", starsOpacity: 0.7 },
+            saturn: { id: "envSaturn", badge: "Saturn Rings", bg: "#020617", starsOpacity: 0.7 },
+            uranus: { id: "envUranus", badge: "Uranus Ice Giant", bg: "#020617", starsOpacity: 0.7 },
+            neptune: { id: "envNeptune", badge: "Neptune Storms", bg: "#020617", starsOpacity: 0.7 },
+            gaganyaan: { id: "envGaganyaan", badge: "ISRO Gaganyaan Mission", bg: "#0f172a", starsOpacity: 0.9 }
+        };
+
+        let currentEnv = "default";
+
+        function changeEnvironment(envKey) {
+            if (currentEnv === envKey) return;
+            
+            // Hide all
+            Object.values(environments).forEach(env => {
+                const el = document.getElementById(env.id);
+                if (el) {
+                    el.style.opacity = '0';
+                    setTimeout(() => { if (currentEnv !== env.id.replace('env','').toLowerCase()) el.style.display = 'none'; }, 500);
+                }
+            });
+
+            currentEnv = envKey;
+            const newEnv = environments[envKey];
+            
+            // Show new
+            const newEl = document.getElementById(newEnv.id);
+            if(newEl) {
+                newEl.style.display = 'block';
+                setTimeout(() => { newEl.style.opacity = '1'; }, 50);
+            }
+
+            // Update UI
+            document.body.style.background = newEnv.bg;
+            document.getElementById('bgStars').style.opacity = newEnv.starsOpacity;
+            document.getElementById('envBadge').innerHTML = `<i data-lucide="satellite"></i> ${newEnv.badge}`;
+            lucide.createIcons();
+        }
+
+        // --- ROHINI AI LOGIC ---
+        const chatBox = document.getElementById('chatBox');
+        const userInput = document.getElementById('userInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+        let voiceEnabled = true;
+
+        const rohiniKnowledge = [
+            {
+                keywords: ["black hole", "blackhole"],
+                env: "blackhole",
+                response: "Warping to a Black Hole! Ek Black Hole space ka woh region hai jahan gravity itni intense hoti hai ki light (photons) bhi escape nahi kar sakti. Iski boundary ko 'Event Horizon' kehte hain. Jab koi bada tara (massive star) apne hi gravitational force se collapse ho jata hai, tab yeh banta hai. Iske ird-gird superheated gas ki chamakti ring ko 'Accretion Disk' kehte hain."
+            },
+            {
+                keywords: ["mars", "mangal", "red planet"],
+                env: "mars",
+                response: "Landing on Mars! Mangal grah ko 'Red Planet' kehte hain kyunki uski surface par Iron Oxide (rust) ki bhaarari matra hai. Mars ka atmosphere bohot thin hai (95% CO2). ISRO ka Mangalyaan pehli koshish mein Mars orbit mein enter karne wala duniya ka pehla mission tha. Wahan jo simulation dikh raha hai, future mein aap jaise bache wahan ISRO ka asli rover land karwayenge!"
+            },
+            {
+                keywords: ["sun", "suraj", "star"],
+                env: "sun",
+                response: "Observing the Sun! Suraj ek 'G-type Main-Sequence Star' hai, jo mostly Hydrogen aur Helium se bana hai. Iski core mein 'Nuclear Fusion' ka process hota hai jo massive energy produce karta hai. ISRO ka Aditya-L1 mission Sun ke outer atmosphere (Corona) aur Solar Flares ki padhai karne ke liye Lagrange Point 1 par bheja gaya hai."
+            },
+            {
+                keywords: ["earth", "prithvi"],
+                env: "earth",
+                response: "Orbiting Earth! Humari Prithvi solar system ke 'Goldilocks Zone' (habitable zone) mein aati hai jahan temperature perfect hai ki paani liquid form mein reh sake. Earth ka atmosphere (78% Nitrogen, 21% Oxygen) aur Ozone layer humein harmful solar radiation se protect karta hai."
+            },
+            {
+                keywords: ["moon", "chand", "chandrayaan"],
+                env: "default",
+                response: "Returning to the Moon! Chand Prithvi ka ekmatra natural satellite hai aur iski gravity Earth ki gravity ka sirf 1/6th hai. ISRO ke Chandrayaan-3 mission ne history create ki jab Pragyan rover ne Lunar South Pole ke paas soft landing ki, jahan use water ice ki khoj karni thi."
+            },
+            {
+                keywords: ["mercury", "budh"],
+                env: "mercury",
+                response: "Warping to Mercury! Budh grah Suraj ke sabse kareeb hone ke bavajood sabse garm planet nahi hai. Kyunki iska koi atmosphere nahi hai, yahan ka temperature din mein 430°C tak aur raat mein -180°C tak chala jata hai. Iski surface meteorites ke takrane se bane craters se bhari hai."
+            },
+            {
+                keywords: ["venus", "shukra"],
+                env: "venus",
+                response: "Approaching Venus! Shukra grah solar system ka sabse garm planet hai. Iska atmosphere bohot thick hai jo zyadatar CO2 se bana hai. Yeh ek 'Runaway Greenhouse Effect' create karta hai, jisse garmi trap ho jati hai. Yeh apne axis par baaki planets se ulta (retrograde) ghoomta hai!"
+            },
+            {
+                keywords: ["jupiter", "brihaspati"],
+                env: "jupiter",
+                response: "Wow, we are at Jupiter! Brihaspati ek massive 'Gas Giant' hai, jo mostly Hydrogen aur Helium se bana hai. Iska famous 'Great Red Spot' asal mein ek giant anti-cyclonic storm hai jo Earth se bhi bada hai aur saikdo saalon se chal raha hai!"
+            },
+            {
+                keywords: ["saturn", "shani"],
+                env: "saturn",
+                response: "Looking at Saturn! Shani grah ki density itni kam hai ki yeh actually paani par tair (float) sakta hai! Iske spectacular rings mostly water ice particles aur rocky debris se bane hain. Iska sabse bada moon, Titan, akela moon hai jiska thick atmosphere hai."
+            },
+            {
+                keywords: ["uranus", "arun"],
+                env: "uranus",
+                response: "Warping to Uranus! Arun ek 'Ice Giant' hai. Iske atmosphere mein Methane gas ki wajah se iska rang pale blue dikhta hai. Iska axial tilt lagbhag 98 degrees hai, jiska matlab yeh apne side par 'roll' karte hue Suraj ka chakkar lagata hai!"
+            },
+            {
+                keywords: ["neptune", "varun"],
+                env: "neptune",
+                response: "Reaching Neptune! Varun solar system ka sabse door ka planet hai aur yeh bhi ek Ice Giant hai. Yahan solar system ki sabse tez hawayein (supersonic winds) chalti hain jo 2,000 km/h tak pahunch sakti hain. Iski khoj mathematical predictions ke through hui thi!"
+            },
+            {
+                keywords: ["gaganyaan", "space station", "human spaceflight", "astronaut", "bas"],
+                env: "gaganyaan",
+                response: "Gaganyaan Mission activate! Gaganyaan ISRO ka pehla human spaceflight programme hai, jisme Indian astronauts (Gaganauts) ko 400 km ki orbit mein bheja jayega. Yeh ISRO ki history ka sabse ambitious mission hai, jiska ultimate goal ek Bharatiya Antariksha Station (BAS) establish karna hai!"
+            },
+            {
+                keywords: ["asteroid", "meteor", "meteorite", "kshootra grah", "shooting star"],
+                env: "default",
+                response: "Asteroids (Kshootra Grah) solar system ke formation ke bache hue rocky remnants hain, jo zyada tar Mars aur Jupiter ke beech 'Asteroid Belt' mein milte hain. Jab koi meteoroid Earth ke atmosphere mein enter karta hai toh friction se jal uthta hai, jise hum 'Shooting Star' (tootta tara) kehte hain!"
+            },
+            {
+                keywords: ["pluto"],
+                env: "default",
+                response: "Targeting Pluto! Pluto ek 'Dwarf Planet' hai jo Kuiper Belt mein milta hai. 2006 tak isko solar system ka 9th planet mana jata tha. Yahan surface par nitrogen ice ke badhe badhe glaciers hain aur iska sabse bada moon 'Charon' itna bada hai ki dono ek dusre ke aas paas ghoomte hain!"
+            }
+        ];
+
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            const icon = document.querySelector('#voiceToggle i');
+            if(voiceEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                speak("Voice is on");
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                window.speechSynthesis.cancel();
+            }
+            lucide.createIcons();
+        }
+
+        function speak(text) {
+            if (!voiceEnabled) return;
+            window.speechSynthesis.cancel(); 
+            const cleanText = text.replace(/[\*\#\(\)]/g, ''); 
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            const voices = window.speechSynthesis.getVoices();
+            const hindiVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const lang = v.lang.toLowerCase();
+                return (lang.includes('hi-in') || lang.includes('en-in')) && 
+                       (name.includes('female') || name.includes('neerja') || name.includes('swara') || name.includes('lekha') || name.includes('veena') || name.includes('google हिन्दी'));
+            }) || voices.find(v => v.lang.toLowerCase().includes('hi-in') || v.lang.toLowerCase().includes('en-in'));
+            if(hindiVoice) utterance.voice = hindiVoice;
+            utterance.rate = 0.9;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        setTimeout(() => speak("Namaskar! Main hoon Rohini. Aaj hum pure universe ki safar par chalenge! Type kijiye aap kahan jana chahte hain?"), 1000);
+
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+
+        async function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            userInput.value = '';
+
+            typingIndicator.style.display = 'flex';
+            chatBox.appendChild(typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            let response = null;
+            let targetEnv = null;
+            const lowerText = text.toLowerCase();
+            
+            // 1. Check if user mentioned any space keywords to trigger visual effects
+            for(let item of rohiniKnowledge) {
+                if(item.keywords.some(kw => lowerText.includes(kw))) {
+                    targetEnv = item.env;
+                    break; // Just get the environment, ignore hardcoded response
+                }
+            }
+
+            if(targetEnv) {
+                changeEnvironment(targetEnv);
+            }
+
+            // 2. ALWAYS use Gemini API to generate the response for ANY question
+            try {
+                const aiPrompt = "You are Rohini, a friendly ISRO Space Guide and AI Mentor. You have vast knowledge and can answer ANY question—whether it's about space, coding, science, general knowledge, or casual chat. Explain clearly in Hindi/Hinglish. If asked to explain code, explain it line by line. The user asks: " + text;
+                const res = await fetch('http://localhost:5000/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: aiPrompt, lang: 'hi' })
+                });
+                const data = await res.json();
+                response = data.response || "Sorry, mujhe kuch samajh nahi aaya. Kya aap dobara bolenge?";
+            } catch(e) {
+                response = "System offline hai. Main abhi connect nahi kar pa rahi.";
+            }
+
+            typingIndicator.style.display = 'none';
+            appendMessage(response, 'rohini');
+            speak(response);
+        }
+
+        function appendMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `msg ${sender}`;
+            div.innerText = text;
+            chatBox.insertBefore(div, typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

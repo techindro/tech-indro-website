@@ -1,20 +1,35 @@
+// Initialize Lucide Icons
+lucide.createIcons();
+
 // Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
         
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+}
+        
+// Header scroll effect
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
 });
-        
+
 // Scroll animations
-const fadeElements = document.querySelectorAll('.fade-in');
-        
 const fadeInOnScroll = () => {
+    const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
         
-        if (elementTop < windowHeight - 100) {
+        if (elementTop < windowHeight - 50) {
             element.classList.add('visible');
         }
     });

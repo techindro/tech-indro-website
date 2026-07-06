@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - All Programs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="firebase-config.js"></script>
+    <style>
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+        .search-container i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                    <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                    <span style="font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; background: linear-gradient(90deg, #111, #444); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tech Indro</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="shikshak.html">AI Mentor</a></li>
+                    <li><a href="cyber-playground.html">IndroLabs</a></li>
+                    <li><a href="quiz.html">Test Series</a></li>
+                    <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+        <section class="container" style="padding: 4rem 1.5rem;">
+            <div class="section-header text-center">
+                <h2>Explore All Programs</h2>
+                <p>Everything you need from zero to one. Taught by Multilingual AI Agents in Hindi, English, Tamil, French, Bhojpuri, and more!</p>
+            </div>
+            
+            <!-- Search & Filters -->
+            <div class="search-container">
+                <i data-lucide="search"></i>
+                <input type="text" id="searchInput" placeholder="Search for programs (e.g. Machine Learning, Marketing...)">
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="coding">Coding & AI</button>
+                <button class="filter-btn" data-filter="business">Business & Startup</button>
+                <button class="filter-btn" data-filter="life">Life Skills</button>
+            </div>
+            
+            <div class="programs-grid" id="programsGrid">
+                <!-- Courses will be loaded here dynamically -->
+                <p style="text-align: center; width: 100%; grid-column: 1 / -1;">Loading programs...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+                <p>India's First AI-Agent Powered Learning Platform.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let allCourses = [];
+
+        // Fetch courses and render them
+        document.addEventListener("DOMContentLoaded", async () => {
+            const grid = document.getElementById("programsGrid");
+            try {
+                const res = await fetch("http://localhost:5000/api/courses");
+                allCourses = await res.json();
+                renderCourses(allCourses);
+            } catch (err) {
+                grid.innerHTML = "<p>Error loading programs. Please make sure the backend is running.</p>";
+            }
+        });
+
+        function renderCourses(coursesToRender) {
+            const grid = document.getElementById("programsGrid");
+            grid.innerHTML = ""; // clear loading
+            
+            if (coursesToRender.length === 0) {
+                grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);'><i data-lucide='search-x' style='width: 48px; height: 48px; margin-bottom: 1rem;'></i><p>No programs found matching your search.</p></div>";
+                lucide.createIcons();
+                return;
+            }
+
+            const imageMap = {
+                'coding-ai': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80',
+                'sih-hackathon': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+                'marketing-sales': 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
+                'communication': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80',
+                'freelancing': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80',
+                'life-skills': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80',
+                'research-papers': 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80'
+            };
+
+            coursesToRender.forEach(course => {
+                const card = document.createElement("div");
+                card.className = "course-card";
+                const imageUrl = course.image || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80';
+                
+                card.innerHTML = `
+                    <div class="course-thumbnail">
+                        <img src="${imageUrl}" alt="${course.title}">
+                        <span class="course-badge">${course.duration}</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-instructor"><i data-lucide="bot" style="width: 14px; height: 14px;"></i> ${course.instructor}</p>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.5rem 0 1rem;">${course.description.substring(0, 80)}...</p>
+                        <div class="course-price-wrap">
+                            <div class="course-price">
+                                <span class="current-price">Free Trial</span>
+                            </div>
+                            <a href="course-details.html?id=${course.id}" class="btn-primary" style="padding: 0.5rem 1rem;">View Details</a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Search logic
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = allCourses.filter(c => 
+                c.title.toLowerCase().includes(term) || 
+                c.description.toLowerCase().includes(term)
+            );
+            
+            // Apply current active filter as well
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            applyFilterAndSearch(activeFilter, filtered);
+        });
+
+        // Category Filter logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                const filter = e.target.getAttribute('data-filter');
+                const term = document.getElementById('searchInput').value.toLowerCase();
+                
+                // First filter by search term, then by category
+                const searchedCourses = allCourses.filter(c => 
+                    c.title.toLowerCase().includes(term) || 
+                    c.description.toLowerCase().includes(term)
+                );
+                
+                applyFilterAndSearch(filter, searchedCourses);
+            });
+        });
+
+        function applyFilterAndSearch(filter, baseList) {
+            if (filter === 'all') {
+                renderCourses(baseList);
+            } else if (filter === 'coding') {
+                renderCourses(baseList.filter(c => ['coding-ai', 'sih-hackathon', 'research-papers', 'ethical-hacking'].includes(c.id)));
+            } else if (filter === 'business') {
+                renderCourses(baseList.filter(c => ['marketing-sales', 'freelancing'].includes(c.id)));
+            } else if (filter === 'life') {
+                renderCourses(baseList.filter(c => ['communication', 'life-skills'].includes(c.id)));
+            }
+        }
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

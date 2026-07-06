@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": "1783169904703",
+      "name": "shubham",
+      "email": "test@gmail.com",
+      "password": "test@123",
+      "createdAt": "2026-07-04T12:58:24.703Z"
+    }
+  ],
+  "contacts": [],
+  "analytics": {
+    "totalVisits": 0
+  }
+}

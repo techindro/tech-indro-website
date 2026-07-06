@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - IndroLabs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        main {
+            height: calc(100vh - 80px);
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .playground-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        select#languageSelect {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            font-family: inherit;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .playground-container {
+            display: flex;
+            flex: 1 1 auto;
+            gap: 20px;
+            min-height: 0;
+        }
+        .editor-pane, .preview-pane {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 0;
+        }
+        .pane-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .editor-wrapper {
+            flex: 1 1 auto;
+            position: relative;
+            min-height: 0;
+        }
+        #editor {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        /* Outputs */
+        iframe#livePreview {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+        pre#terminalOutput {
+            flex: 1;
+            margin: 0;
+            padding: 15px;
+            background: #ffffff;
+            color: #333333;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            overflow: auto;
+            display: none; /* hidden by default */
+        }
+        .output-loading {
+            display: none;
+            padding: 15px;
+            color: #64748b;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="dashboard.html">My Dashboard</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="ai-mentor.html">AI Mentor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: 120px;">
+        <div class="playground-header">
+            <h2><i data-lucide="terminal"></i> IndroLabs Compiler</h2>
+            <div class="controls">
+                <select id="languageSelect">
+                    <option value="html">HTML / Web</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="sql">SQL (SQLite)</option>
+                </select>
+                <button class="btn-primary" onclick="executeCode()"><i data-lucide="play"></i> Run Code</button>
+            </div>
+        </div>
+        <div class="playground-container">
+            <div class="editor-pane">
+                <div class="pane-header">
+                    <span style="display:flex; gap:8px; align-items:center;"><i data-lucide="file-code-2"></i> <span id="filename">index.html</span></span>
+                </div>
+                <div class="editor-wrapper">
+                    <div id="editor"></div>
+                </div>
+            </div>
+            <div class="preview-pane">
+                <div class="pane-header"><i data-lucide="monitor"></i> <span id="previewTitle">Output Preview</span></div>
+                <iframe id="livePreview"></iframe>
+                <pre id="terminalOutput"></pre>
+                <div id="loadingIndicator" class="output-loading">Executing on remote server...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // Boilerplate codes
+        const templates = {
+            html: `<!DOCTYPE html>\n<html lang="en">\n<head>\n    <title>IndroLabs Test</title>\n    <style>\n        body { background: #f8fafc; font-family: sans-serif; text-align: center; margin-top: 50px; }\n        h1 { color: #4f46e5; }\n    </style>\n</head>\n<body>\n    <h1>Hello World</h1>\n    <p>Welcome to IndroLabs Web Compiler.</p>\n</body>\n</html>`,
+            python: `def greet(name):\n    print(f"Hello, {name}! Welcome to IndroLabs.")\n\ngreet("Developer")\nprint("Python compilation successful!")`,
+            java: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from Java!");\n        System.out.println("IndroLabs Java Compiler running.");\n    }\n}`,
+            cpp: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, C++ World!" << std::endl;\n    std::cout << "IndroLabs C++ compiler ready." << std::endl;\n    return 0;\n}`,
+            sql: `CREATE TABLE users (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL\n);\n\nINSERT INTO users (name) VALUES ('TechIndro'), ('Rohini AI');\n\nSELECT * FROM users;`
+        };
+
+        // Initialize Ace Editor
+        const editor = ace.edit("editor");
+        editor.setTheme("ace/theme/chrome");
+        editor.session.setMode("ace/mode/html");
+        editor.setValue(templates.html, -1);
+        editor.setOptions({
+            fontSize: "15px",
+            showPrintMargin: false,
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            wrap: true
+        });
+
+        // DOM elements
+        const langSelect = document.getElementById("languageSelect");
+        const filenameDisplay = document.getElementById("filename");
+        const iframePreview = document.getElementById("livePreview");
+        const terminalOutput = document.getElementById("terminalOutput");
+        const loadingIndicator = document.getElementById("loadingIndicator");
+        const previewTitle = document.getElementById("previewTitle");
+
+        // Handle language change
+        langSelect.addEventListener("change", (e) => {
+            const lang = e.target.value;
+            
+            // Set mode and template
+            let mode = "ace/mode/" + (lang === "cpp" ? "c_cpp" : lang);
+            editor.session.setMode(mode);
+            editor.setValue(templates[lang], -1);
+
+            // Update filename
+            const files = {
+                html: "index.html", python: "main.py", java: "Main.java", cpp: "main.cpp", sql: "query.sql"
+            };
+            filenameDisplay.innerText = files[lang];
+
+            // Switch view
+            if (lang === "html") {
+                terminalOutput.style.display = "none";
+                iframePreview.style.display = "block";
+                previewTitle.innerText = "Live Preview";
+                runHtml();
+            } else {
+                iframePreview.style.display = "none";
+                terminalOutput.style.display = "block";
+                previewTitle.innerText = "Terminal Output";
+                terminalOutput.innerText = "Click 'Run Code' to execute " + lang.toUpperCase() + " program...";
+            }
+        });
+
+        function runHtml() {
+            const code = editor.getValue();
+            const doc = iframePreview.contentWindow.document;
+            doc.open();
+            doc.write(code);
+            doc.close();
+        }
+
+        async function executeCode() {
+            const lang = langSelect.value;
+            if (lang === "html") {
+                runHtml();
+                return;
+            }
+
+            const code = editor.getValue();
+            terminalOutput.innerText = "";
+            loadingIndicator.style.display = "block";
+
+            // Piston API mapping
+            const languageMap = {
+                python: { language: "python", version: "3.10.0" },
+                java: { language: "java", version: "15.0.2" },
+                cpp: { language: "cpp", version: "10.2.0" },
+                sql: { language: "sqlite3", version: "3.36.0" }
+            };
+
+            const payload = {
+                language: languageMap[lang].language,
+                version: languageMap[lang].version,
+                files: [{ content: code }]
+            };
+
+            try {
+                const response = await fetch("https://emkc.org/api/v2/piston/execute", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                
+                if (result.run) {
+                    terminalOutput.innerText = result.run.output || "No output";
+                } else if (result.message) {
+                    terminalOutput.innerText = "Error: " + result.message;
+                } else {
+                    terminalOutput.innerText = "Execution failed.";
+                }
+            } catch (err) {
+                terminalOutput.innerText = "Network Error: Could not reach execution server.";
+                console.error(err);
+            } finally {
+                loadingIndicator.style.display = "none";
+            }
+        }
+
+        // Initial run
+        runHtml();
+        
+        // Auto-run only for HTML
+        let timeout;
+        editor.session.on('change', () => {
+            if (langSelect.value === "html") {
+                clearTimeout(timeout);
+                timeout = setTimeout(runHtml, 500);
+            }
+        });
+    </script>
+</body>
+</html>

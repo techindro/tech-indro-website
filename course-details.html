@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | Tech Indro</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .course-hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(to right, var(--background), #1e1e24);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .course-header {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 1024px) {
+            .course-header {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        .course-badge-large {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        .course-title-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .course-meta-large {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        .course-meta-large > div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .course-preview {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .course-preview img {
+            width: 100%;
+            display: block;
+        }
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .play-button-overlay:hover {
+            background: var(--primary);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .course-content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            padding: 4rem 0;
+        }
+        @media (max-width: 1024px) {
+            .course-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .curriculum-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        .module {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .module-header {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            font-weight: 600;
+        }
+        .module-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .pricing-card {
+            background: rgba(30, 30, 36, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: sticky;
+            top: 100px;
+        }
+        .price-huge {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            margin: 1rem 0;
+        }
+        .original-price-huge {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+        .perks-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        .perks-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+        .perks-list li i {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#programs">Programs</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main style="padding-top: 80px;" id="courseMain">
+        <!-- Course Hero Section -->
+        <section class="course-hero">
+            <div class="container hero-content-large">
+                <div class="course-header">
+                <div class="course-text fade-in">
+                    <span class="course-badge-large" id="courseDuration">Loading...</span>
+                    <h1 class="course-title-large" id="courseTitle">Loading Course...</h1>
+                    <p class="hero-subtitle" style="font-size: 1.1rem;" id="courseDesc">Please wait while we fetch the curriculum.</p>
+                    
+                    <div class="course-meta-large">
+                        <div><i data-lucide="star" style="color: var(--accent); fill: var(--accent);"></i> 4.9 (2,547 reviews)</div>
+                        <div id="courseInstructor"><i data-lucide="bot"></i> AI Agent</div>
+                    </div>
+                </div>
+                
+                <div class="course-preview fade-in">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Course Banner" id="courseBannerImg">
+                    <div class="play-button-overlay">
+                        <i data-lucide="play" style="width: 32px; height: 32px; fill: white; color: white; margin-left: 4px;"></i>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Content -->
+        <section class="container course-content-grid">
+            <div class="curriculum-section fade-in">
+                <h3>Course Curriculum</h3>
+                <div class="curriculum-list" id="courseModules">
+                    <!-- Modules dynamically loaded -->
+                </div>
+            </div>
+
+            <div class="curriculum-section fade-in" style="margin-top: 3rem;">
+                <h3>Best Real-World Resources</h3>
+                <div class="curriculum-list" id="courseResources" style="display: grid; gap: 1rem;">
+                    <!-- Resources dynamically loaded -->
+                </div>
+            </div>
+
+            <div class="course-sidebar fade-in">
+                <div class="pricing-card">
+                    <div class="original-price-huge">₹9,999</div>
+                    <div class="price-huge">₹2,999</div>
+                    <p style="color: var(--secondary); font-weight: bold; margin-bottom: 1.5rem;">🔥 70% OFF - Limited Time Offer</p>
+                    
+                    <h3>What You Will Get</h3>
+                    <ul class="perks-list" id="coursePerks">
+                        <!-- Perks dynamically loaded -->
+                    </ul>
+                    
+                    <a href="#" class="btn-primary" id="enrollBtn" style="width: 100%; text-align: center; justify-content: center; font-size: 1.1rem; padding: 1rem;">Enroll Now</a>
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">14-Day Money-Back Guarantee</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('id');
+
+            if (!courseId) {
+                document.getElementById('courseTitle').innerText = "Course Not Found";
+                document.getElementById('courseDesc').innerText = "Please go back to the programs page.";
+                return;
+            }
+
+            try {
+                const res = await fetch(`http://localhost:5000/api/courses/${courseId}`);
+                if (!res.ok) throw new Error("Course not found");
+                
+                const course = await res.json();
+                
+                // Update text
+                document.getElementById('courseTitle').innerText = course.title;
+                document.getElementById('courseDesc').innerText = course.description;
+                document.getElementById('courseDuration').innerText = course.duration;
+                document.getElementById('courseInstructor').innerHTML = `<i data-lucide="bot"></i> Taught by ${course.instructor}`;
+                if (course.image) {
+                    document.getElementById('courseBannerImg').src = course.image;
+                }
+                
+                // Update perks
+                const perksHtml = course.perks.map(p => `<li><i data-lucide="check-circle"></i> ${p}</li>`).join('');
+                document.getElementById('coursePerks').innerHTML = perksHtml;
+                
+                // Update resources
+                if (course.resources && course.resources.length > 0) {
+                    const resHtml = course.resources.map(r => {
+                        let icon = 'external-link';
+                        let color = '#3b82f6';
+                        if (r.type === 'youtube') { icon = 'youtube'; color = '#ef4444'; }
+                        else if (r.type === 'newspaper') { icon = 'book-open'; color = '#10b981'; }
+                        else if (r.type === 'research') { icon = 'file-text'; color = '#8b5cf6'; }
+                        
+                        return `
+                        <a href="${r.url}" target="_blank" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; color: var(--text); transition: all 0.2s;">
+                            <i data-lucide="${icon}" style="color: ${color};"></i>
+                            <span style="font-weight: 500;">${r.title}</span>
+                            <i data-lucide="arrow-right" style="margin-left: auto; width: 16px; opacity: 0.5;"></i>
+                        </a>`;
+                    }).join('');
+                    document.getElementById('courseResources').innerHTML = resHtml;
+                }
+                
+                // Update modules
+                const modulesHtml = course.modules.map(m => `
+                    <div class="module">
+                        <div class="module-header">
+                            <h4>${m.title}</h4>
+                            <i data-lucide="chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <p>${m.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+                document.getElementById('courseModules').innerHTML = modulesHtml;
+
+                lucide.createIcons();
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('courseTitle').innerText = "Course Not Found";
+                document.getElementById('courseDesc').innerText = "The requested course could not be loaded.";
+            }
+
+            // Handle Enrollment
+            const enrollBtn = document.getElementById('enrollBtn');
+            if (enrollBtn) {
+                enrollBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if(!courseId) return;
+                    
+                    let enrolled = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+                    if (!enrolled.includes(courseId)) {
+                        enrolled.push(courseId);
+                        localStorage.setItem('enrolledCourses', JSON.stringify(enrolled));
+                    }
+                    
+                    // Simulate processing
+                    enrollBtn.innerText = "Processing...";
+                    enrollBtn.style.opacity = "0.7";
+                    
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html";
+                    }, 800);
+                });
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Tech Indro</h3>
+                    <p>India's #1 AI & Robotics learning platform helping students and professionals build future-ready skills through industry-relevant courses.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#courses">Courses</a></li>
+                        <li><a href="index.html#programs">Programs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tech Indro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="firebase-config.js"></script>
+</body>
+</html>

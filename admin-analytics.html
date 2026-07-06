@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Admin Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .analytics-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: rgba(30, 30, 36, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+            border: 2px solid var(--primary);
+        }
+        .stat-card h1 {
+            font-size: 5rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <span style="color: var(--primary); font-weight: 800; font-size: 1.4rem; letter-spacing: 1px;">ADMIN</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="admin-cms.html">Content Manager</a></li>
+                <li><a href="admin-analytics.html" style="color: var(--primary)">Analytics</a></li>
+                <li><a href="index.html">Back to Site</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="analytics-container fade-in">
+            <h2>Platform Analytics <i data-lucide="bar-chart-2"></i></h2>
+            <p>Live tracking of user visits across the Tech Indro platform.</p>
+
+            <div class="stat-card">
+                <i data-lucide="users" style="width: 48px; height: 48px; color: var(--text-muted);"></i>
+                <h1 id="visitorCount">--</h1>
+                <p>Total Unique Page Views</p>
+            </div>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #6b7280;">
+                Note: The load balancer (Node Cluster) is active. Crash protection is enabled.
+            </p>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        async function fetchAnalytics() {
+            try {
+                // If running statically, we might not hit the API, but server.js is running.
+                const res = await fetch('http://localhost:5000/api/analytics');
+                const data = await res.json();
+                document.getElementById('visitorCount').innerText = data.totalVisits || 0;
+            } catch (err) {
+                console.error("Failed to load analytics", err);
+                document.getElementById('visitorCount').innerText = "Error";
+            }
+        }
+
+        // Fetch on load
+        fetchAnalytics();
+        
+        // Auto refresh every 5 seconds
+        setInterval(fetchAnalytics, 5000);
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

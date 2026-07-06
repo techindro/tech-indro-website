@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - AI Coding Workspace</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e24; /* Dark mode for IDE feel */
+            color: white;
+            overflow: hidden;
+        }
+        
+        .header-slim {
+            background: #111115;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .header-slim .logo-text { color: white; font-size: 1.2rem; font-weight: bold; }
+        .header-slim .logo-icon { background: #f59e0b; color: white; width: 30px; height: 30px; border-radius: 6px; display: inline-flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 10px;}
+
+        .workspace {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 50px);
+        }
+
+        .editor-pane {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .editor-tabs {
+            display: flex;
+            background: #25252b;
+            padding-top: 8px;
+            padding-left: 10px;
+        }
+        .editor-tab {
+            background: #1e1e24;
+            padding: 8px 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #f59e0b;
+        }
+
+        .code-area {
+            flex: 1;
+            background: #1e1e24;
+            color: #d1d5db;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border: none;
+            outline: none;
+            resize: none;
+            line-height: 1.5;
+        }
+
+        .console-pane {
+            height: 150px;
+            background: #0f0f13;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem;
+            font-family: monospace;
+            color: #10b981;
+            overflow-y: auto;
+        }
+
+        .ai-pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: #1f2937;
+        }
+        .ai-header {
+            padding: 15px;
+            background: white;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .bubble {
+            max-width: 85%;
+            padding: 1rem;
+            border-radius: 16px;
+            line-height: 1.5;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .bubble-ai {
+            align-self: flex-start;
+            background: white;
+            border: 2px solid #f59e0b;
+            border-bottom-left-radius: 4px;
+        }
+        .bubble-kid {
+            align-self: flex-end;
+            background: #3b82f6;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .controls {
+            padding: 1rem;
+            background: white;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        .mic-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .workspace {
+                flex-direction: column;
+            }
+            .editor-pane {
+                flex: 1;
+                border-right: none;
+                border-bottom: 2px solid #000;
+            }
+            .ai-pane {
+                flex: 1;
+            }
+            .console-pane {
+                height: 80px; /* smaller console on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-slim">
+        <div>
+            <div class="logo-icon">TI</div>
+            <span class="logo-text">Tech Indro Workspace</span>
+        </div>
+        <div>
+            <button style="background: #10b981; color: white; border: none; padding: 6px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="runCode()">
+                <i data-lucide="play" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: middle;"></i> Run Code
+            </button>
+            <a href="dashboard.html" style="color: #9ca3af; text-decoration: none; margin-left: 15px; font-size: 0.9rem;">Exit</a>
+        </div>
+    </div>
+
+    <div class="workspace">
+        
+        <!-- Code Editor Pane -->
+        <div class="editor-pane">
+            <div class="editor-tabs">
+                <div class="editor-tab">variables.py</div>
+            </div>
+            
+            <!-- Simple Python Code Editor (Textarea for demo, normally Monaco/Ace) -->
+            <textarea class="code-area" id="codeInput" spellcheck="false"># Write your first variable below!
+
+</textarea>
+            
+            <!-- Feedback/Console Display Area -->
+            <div class="console-pane" id="consoleOutput">
+                > System Ready. Waiting for Python code...
+            </div>
+        </div>
+
+        <!-- AI Rohini Pane -->
+        <div class="ai-pane">
+            <div class="ai-header">
+                <div style="background: #f59e0b; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🤖</div>
+                Rohini AI (IsroLabs)
+            </div>
+            
+            <!-- Chat Interface -->
+            <div class="chat-history" id="chatHistory">
+                <div class="bubble bubble-ai">
+                    Namaskar! Main hoon Tumhara Rohini AI (IsroLabs). Aaj hum seekhenge Python mein Variables kya hote hain. <br><br>
+                    Variables ko sochiye jaise ki ek box jismein hum cheezein rakhte hain - jaise ki apna cricket score ya apni pasand ki chocolate! 🏏🍫<br><br>
+                    Ab aapko ek chhota sa experiment karna hai. Neeche diye gaye code box mein likhiye:<br>
+                    <code>score = 100</code>
+                </div>
+            </div>
+
+            <div class="controls">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Chat with Rohini AI..." autocomplete="off">
+                <button class="mic-btn" onclick="askAI()">
+                    <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let step = 1;
+
+        // Note on safe code execution: 
+        // In a real application, NEVER use eval() for user-submitted code in production!
+        // You should send the code to a secure backend sandbox (like Docker container) 
+        // or use an in-browser Python interpreter like Pyodide to safely execute code.
+        
+        function runCode() {
+            const code = document.getElementById('codeInput').value.trim();
+            const output = document.getElementById('consoleOutput');
+            const history = document.getElementById('chatHistory');
+            
+            output.innerHTML += "<br>> Executing Python script...";
+            
+            // Simulating basic Python variable assignment check
+            // We use simple string matching here for the prototype demonstration
+            if (step === 1 && code.replace(/\s+/g, '') === "score=100") {
+                setTimeout(() => {
+                    output.innerHTML += "<br>> <span style='color: #10b981;'>SUCCESS! Variable created in memory.</span>";
+                    
+                    // Trigger AI congratulation and next question
+                    const aiBubble = document.createElement('div');
+                    aiBubble.className = 'bubble bubble-ai';
+                    aiBubble.innerHTML = "Wow! Aapne uspehi apna pehla variable banaya. 🎉<br><br>Ab ek sawal: Agar main <code>score = score + 5</code> likhoo, to score ki naya value kya hogi?";
+                    history.appendChild(aiBubble);
+                    history.scrollTop = history.scrollHeight;
+                    step = 2; // Move to next step of the lesson
+                }, 800);
+            } else if (step === 1) {
+                setTimeout(() => {
+                    output.innerHTML += "<br>> <span style='color: #ef4444;'>SyntaxError: Make sure you typed exactly: score = 100</span>";
+                    
+                    const aiBubble = document.createElement('div');
+                    aiBubble.className = 'bubble bubble-ai';
+                    aiBubble.innerHTML = "Koi baat nahi! Try writing exactly: <code>score = 100</code> on a new line.";
+                    history.appendChild(aiBubble);
+                    history.scrollTop = history.scrollHeight;
+                }, 800);
+            }
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // How to connect to an LLM API:
+        // async function callLLM(userMessage) {
+        //     const apiKey = "YOUR_API_KEY_PLACEHOLDER";
+        //     const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        //         body: JSON.stringify({
+        //             model: "gpt-4o-mini",
+        //             messages: [
+        //                 { role: "system", content: "You are Rohini AI (IsroLabs)..." }, // From agent-prompt.txt
+        //                 { role: "user", content: userMessage }
+        //             ]
+        //         })
+        //     });
+        //     const data = await response.json();
+        //     return data.choices[0].message.content;
+        // }
+
+        function askAI() {
+            const input = document.getElementById('chatInput');
+            const history = document.getElementById('chatHistory');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            // User msg
+            const kidBubble = document.createElement('div');
+            kidBubble.className = 'bubble bubble-kid';
+            kidBubble.innerText = msg;
+            history.appendChild(kidBubble);
+            input.value = '';
+            
+            // AI Reply
+            setTimeout(() => {
+                const aiBubble = document.createElement('div');
+                aiBubble.className = 'bubble bubble-ai';
+                
+                // Hardcoded logic for the demo flow
+                if(step === 2 && msg.includes("105")) {
+                    aiBubble.innerHTML = "Bahut achha! Ekdum sahi jawab! 🏆 Score ab 105 ho gaya hai. You are officially a coder now!";
+                } else {
+                    // Generic fallback simulating LLM response
+                    aiBubble.innerHTML = "Main abhi seekh raha hoon, par real app mein main turant jawab dunga (using the LLM API)! Try running the code above first!";
+                }
+                
+                history.appendChild(aiBubble);
+                history.scrollTop = history.scrollHeight;
+            }, 1000);
+        }
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

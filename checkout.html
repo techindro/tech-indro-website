@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout - Tech Indro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .checkout-container {
+            max-width: 600px;
+            margin: 100px auto 50px;
+            padding: 3rem;
+            background: rgba(30, 30, 36, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            font-family: inherit;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        .order-summary {
+            background: rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .order-summary h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+        }
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        #paymentSuccess {
+            display: none;
+            text-align: center;
+        }
+        #paymentFormContainer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Back to Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="checkout-container fade-in" id="paymentFormContainer">
+            <h2 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i data-lucide="lock" style="color: var(--primary);"></i> Secure Checkout
+            </h2>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Course Name</span>
+                    <span id="courseNameDisp">Loading...</span>
+                </div>
+                <div class="summary-row">
+                    <span>Access Duration</span>
+                    <span>Lifetime Access</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total Amount</span>
+                    <span id="coursePriceDisp">₹0</span>
+                </div>
+            </div>
+
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label>Cardholder Name</label>
+                    <input type="text" id="cardName" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Card Number (Mock)</label>
+                    <input type="text" id="cardNumber" placeholder="1111 2222 3333 4444" required>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>CVV</label>
+                        <input type="password" placeholder="***" required>
+                    </div>
+                </div>
+
+                <div id="paymentError" style="color: #fb7185; margin-bottom: 1rem; display: none;"></div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; border: none; font-size: 1.1rem; padding: 1rem;" id="payBtn">
+                    Pay Now <i data-lucide="arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="secure-badge">
+                <i data-lucide="shield-check"></i> 256-bit SSL Secure Payment (Simulation)
+            </div>
+        </div>
+
+        <!-- Success View -->
+        <div class="checkout-container fade-in" id="paymentSuccess">
+            <div style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+                <i data-lucide="check-circle" style="width: 40px; height: 40px; color: #10b981;"></i>
+            </div>
+            <h2 style="margin-bottom: 1rem; color: #10b981;">Payment Successful!</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Your course access has been unlocked. Transaction ID: <span id="txnIdDisp" style="color: white; font-weight: bold;"></span></p>
+            <a href="dashboard.html" class="btn-primary" style="justify-content: center;">Go to Dashboard</a>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // Get course details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id') || 'C101';
+        let amount = 4999; // Default mock price
+        
+        // Mock fetch course details
+        document.getElementById('courseNameDisp').innerText = "Tech Indro Premium Batch";
+        document.getElementById('coursePriceDisp').innerText = "₹" + amount;
+
+        // Payment Form Submission
+        document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = document.getElementById('payBtn');
+            const errorDiv = document.getElementById('paymentError');
+            const cardNumber = document.getElementById('cardNumber').value;
+            
+            btn.innerHTML = 'Processing... <i data-lucide="loader" class="spin"></i>';
+            btn.disabled = true;
+            errorDiv.style.display = 'none';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/payment/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        courseId: courseId,
+                        userId: "user_" + Date.now(),
+                        amount: amount,
+                        cardNumber: cardNumber
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('paymentFormContainer').style.display = 'none';
+                    document.getElementById('paymentSuccess').style.display = 'block';
+                    document.getElementById('txnIdDisp').innerText = data.transactionId;
+                } else {
+                    errorDiv.innerText = data.error || "Payment failed. Please try again.";
+                    errorDiv.style.display = 'block';
+                    btn.innerHTML = 'Pay Now <i data-lucide="arrow-right"></i>';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error("Payment error:", err);
+                errorDiv.innerText = "Network error. Is the backend server running?";
+                errorDiv.style.display = 'block';
+                btn.innerHTML = 'Pay Now <i data-lucide="arrow-right"></i>';
+                btn.disabled = false;
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

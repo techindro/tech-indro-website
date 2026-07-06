@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - AI Mentor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 80px auto 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            padding: 1rem;
+        }
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 1.25rem;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-user {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-bottom-right-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+        .chat-ai {
+            align-self: flex-start;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(236,72,153,0.3);
+            border-bottom-left-radius: 4px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .ai-avatar-inline {
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-main);
+        }
+        .chat-input-box {
+            padding: 1.5rem 1rem;
+            background: var(--bg-main);
+            position: relative;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: border-color 0.3s ease;
+        }
+        .input-wrapper:focus-within {
+            border-color: var(--primary);
+        }
+        .input-wrapper input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        .input-wrapper input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+        .send-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+                <ul class="nav-links">
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="dashboard.html">My Dashboard</a></li>
+                    <li><a href="ai-mentor.html" style="color: var(--primary);">AI Mentor</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="chat-container">
+        <div class="chat-history" id="chatHistory">
+            <div class="chat-bubble chat-ai">
+                <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                <strong>Tech Indro AI Mentor</strong><br>
+                Namaste! I am your 24/7 AI Mentor. Ask me any doubt about Coding, Hackathons, or Career prep in Hindi, English, or any language you prefer!
+            </div>
+        </div>
+        
+        <div class="chat-input-box">
+            <form id="chatForm" class="input-wrapper">
+                <select id="chatLang" style="background: transparent; border: none; color: white; padding: 0.5rem; outline: none; border-right: 1px solid rgba(255,255,255,0.2); margin-right: 0.5rem; cursor: pointer; font-family: inherit;">
+                    <option value="en" style="color: black;">English</option>
+                    <option value="hi" style="color: black;">Hindi</option>
+                    <option value="ta" style="color: black;">Tamil</option>
+                </select>
+                <input type="text" id="chatInput" placeholder="Type your doubt here... (e.g. How does Google Cloud scale?)" autocomplete="off">
+                <button type="submit" class="send-btn">
+                    <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const form = document.getElementById('chatForm');
+        const input = document.getElementById('chatInput');
+        const history = document.getElementById('chatHistory');
+
+        const langSelect = document.getElementById('chatLang');
+
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            // Add user message
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-bubble chat-user';
+            userBubble.innerText = msg;
+            history.appendChild(userBubble);
+            
+            input.value = '';
+            history.scrollTop = history.scrollHeight;
+
+            const lang = langSelect.value;
+            
+            // Add typing indicator
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'chat-bubble chat-ai';
+            typingBubble.innerHTML = `
+                <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                <strong>AI Mentor</strong><br>
+                <em>Thinking...</em>
+            `;
+            history.appendChild(typingBubble);
+            lucide.createIcons();
+            history.scrollTop = history.scrollHeight;
+
+            try {
+                // Call real AI backend
+                const response = await fetch('http://localhost:5000/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg, lang: lang })
+                });
+                
+                const data = await response.json();
+                
+                // Replace typing indicator with real response
+                typingBubble.innerHTML = `
+                    <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                    <strong>AI Mentor</strong><br>
+                    ${data.response ? data.response.replace(/\n/g, '<br>') : 'Error parsing response'}
+                `;
+            } catch (error) {
+                typingBubble.innerHTML = `
+                    <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                    <strong>AI Mentor</strong><br>
+                    <em>Sorry, the server is offline or unreachable. Please try again.</em>
+                `;
+            }
+            
+            lucide.createIcons();
+            history.scrollTop = history.scrollHeight;
+        });
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

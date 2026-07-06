@@ -1,0 +1,706 @@
+[
+    {
+        "id": "coding-ai",
+        "title": "Complete AI & Machine Learning Bootcamp",
+        "description": "Master Python, Machine Learning, Deep Learning, and AI. Taught by our AI Agent in English, Hindi, Tamil, French, and Bhojpuri. Build real-world tools from zero to one.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "6 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "15 Real-World Projects",
+            "Personal AI Teaching Agent",
+            "Build your own Tools"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Python from Scratch",
+                "desc": "Learn Python programming starting from zero."
+            },
+            {
+                "title": "Module 2: Machine Learning Algorithms",
+                "desc": "Understand the math and code behind ML."
+            },
+            {
+                "title": "Module 3: Neural Networks & Deep Learning",
+                "desc": "Build deep learning models using TensorFlow."
+            },
+            {
+                "title": "Module 4: GenAI & LLMs",
+                "desc": "Build your own AI Agents and chatbots."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Stanford CS229 Machine Learning",
+                "url": "https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU",
+                "type": "youtube"
+            },
+            {
+                "title": "Kaggle Datasets",
+                "url": "https://www.kaggle.com/",
+                "type": "website"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "sih-hackathon",
+        "title": "Crack Smart India Hackathon & ISRO Research",
+        "description": "Don't just study—win! Learn how to build winning projects for SIH, collaborate on ISRO research, and use Google Cloud to deploy massive architectures.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "SIH Winning Strategies",
+            "ISRO Research Methodologies",
+            "Google Cloud Architectures"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Ideation & Problem Statements",
+                "desc": "How to select and decode SIH problem statements."
+            },
+            {
+                "title": "Module 2: Rapid Prototyping",
+                "desc": "Building MVP software and hardware in 36 hours."
+            },
+            {
+                "title": "Module 3: Cloud Deployment",
+                "desc": "Scaling projects using Google Cloud."
+            },
+            {
+                "title": "Module 4: ISRO & Space Tech",
+                "desc": "Contributing to Bharatiya Antariksh Anusandhan."
+            }
+        ],
+        "resources": [
+            {
+                "title": "SIH Portal",
+                "url": "https://sih.gov.in/",
+                "type": "website"
+            },
+            {
+                "title": "ISRO E-Learning",
+                "url": "https://elearning.iirs.gov.in/",
+                "type": "website"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "marketing-sales",
+        "title": "0-to-1 Marketing, Sales & Entrepreneurship",
+        "description": "Colleges don't teach you how to sell. Learn the art of marketing, digital sales, and building a startup from scratch.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "4 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Build your own startup",
+            "Digital Marketing Mastery",
+            "B2B and B2C Sales Tactics"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Mindset of an Entrepreneur",
+                "desc": "How to think from zero to one."
+            },
+            {
+                "title": "Module 2: Marketing Strategies",
+                "desc": "Growth hacking, SEO, and content marketing."
+            },
+            {
+                "title": "Module 3: The Art of Sales",
+                "desc": "Cold calling, pitching, and closing deals."
+            },
+            {
+                "title": "Module 4: Business Operations",
+                "desc": "Scaling your startup to an MNC level."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Y Combinator Startup School",
+                "url": "https://www.youtube.com/c/ycombinator",
+                "type": "youtube"
+            },
+            {
+                "title": "Hubspot Academy",
+                "url": "https://academy.hubspot.com/",
+                "type": "website"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "communication",
+        "title": "Master Communication & Newspaper Analysis",
+        "description": "Develop world-class communication skills. Learn how to read and analyze The Hindu and Indian Express like a UPSC topper to stay ahead in the corporate world.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "2 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Daily The Hindu Analysis",
+            "Public Speaking Mastery",
+            "Corporate English Fluency"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Spoken English & Confidence",
+                "desc": "Speak fluently in interviews and meetings."
+            },
+            {
+                "title": "Module 2: Decoding The Hindu",
+                "desc": "How to read editorials and extract value."
+            },
+            {
+                "title": "Module 3: Indian Express Analysis",
+                "desc": "Understanding global and national affairs."
+            },
+            {
+                "title": "Module 4: Corporate Emails & Writing",
+                "desc": "Professional communication for MNCs."
+            }
+        ],
+        "resources": [
+            {
+                "title": "The Hindu (Editorials)",
+                "url": "https://www.thehindu.com/opinion/editorial/",
+                "type": "newspaper"
+            },
+            {
+                "title": "TED Talks",
+                "url": "https://www.youtube.com/c/TED",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "freelancing",
+        "title": "Freelancing, Social Media & Open Source",
+        "description": "Start earning while learning. Master freelancing platforms, grow your social media presence, and contribute to Open Source projects.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Fiverr & Upwork Mastery",
+            "Social Media Algorithms",
+            "GitHub & Open Source"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Setting up Freelance Profiles",
+                "desc": "Getting your first client on Upwork."
+            },
+            {
+                "title": "Module 2: Open Source Contributions",
+                "desc": "How to contribute to massive GitHub repos."
+            },
+            {
+                "title": "Module 3: Social Media Growth",
+                "desc": "Building a personal brand on LinkedIn and Twitter."
+            },
+            {
+                "title": "Module 4: Client Management",
+                "desc": "Delivering projects and retaining clients."
+            }
+        ],
+        "resources": [
+            {
+                "title": "GitHub Free Code Camp",
+                "url": "https://www.youtube.com/c/Freecodecamp",
+                "type": "youtube"
+            },
+            {
+                "title": "Upwork Guide",
+                "url": "https://www.upwork.com/resources/",
+                "type": "website"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "life-skills",
+        "title": "Physical Activity, Discipline & Mental Health",
+        "description": "A healthy mind requires a healthy body. Learn discipline, workout routines, and mental resilience to survive and thrive in high-pressure MNC jobs.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "Ongoing",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Custom Workout Plans",
+            "Meditation & Focus",
+            "Time Management Strategies"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: The Biology of Discipline",
+                "desc": "Understanding dopamine and focus."
+            },
+            {
+                "title": "Module 2: Physical Workouts for Coders",
+                "desc": "Fixing posture and staying active."
+            },
+            {
+                "title": "Module 3: Mental Resilience",
+                "desc": "Handling stress and avoiding burnout."
+            },
+            {
+                "title": "Module 4: Diet and Nutrition",
+                "desc": "Eating right for optimal brain performance."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Huberman Lab",
+                "url": "https://www.youtube.com/@hubermanlab",
+                "type": "youtube"
+            },
+            {
+                "title": "Medito Foundation",
+                "url": "https://meditofoundation.org/",
+                "type": "website"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "research-papers",
+        "title": "Research Papers & Tool Building",
+        "description": "Go beyond generic projects. Learn how to conduct deep research, publish research papers, and build highly specialized software tools.",
+        "instructor": "Multilingual AI Agent",
+        "duration": "5 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Publish your first paper",
+            "Advanced Tool Development",
+            "Academic Writing Skills"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Intro to Research",
+                "desc": "How to read and understand existing papers."
+            },
+            {
+                "title": "Module 2: Formulating a Hypothesis",
+                "desc": "Finding gaps in current technology."
+            },
+            {
+                "title": "Module 3: Building the Tool",
+                "desc": "Coding the implementation of your research."
+            },
+            {
+                "title": "Module 4: Writing and Publishing",
+                "desc": "Formatting and submitting to journals."
+            }
+        ],
+        "resources": [
+            {
+                "title": "NeurIPS Proceedings",
+                "url": "https://papers.nips.cc/",
+                "type": "research"
+            },
+            {
+                "title": "arXiv preprint server",
+                "url": "https://arxiv.org/",
+                "type": "research"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "software-engineering",
+        "title": "Full-Stack Software Engineering",
+        "description": "Master end-to-end software development. Learn Frontend, Backend, System Design, and Scalability to crack FAANG.",
+        "instructor": "AI Mentor & Industry Experts",
+        "duration": "6 Months",
+        "perks": [
+            "Taught in any language",
+            "MERN/Next.js Stack",
+            "System Design Patterns",
+            "Real-world clone projects"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Advanced Frontend",
+                "desc": "React, Next.js, and State Management."
+            },
+            {
+                "title": "Module 2: Backend Mastery",
+                "desc": "Node.js, Express, Microservices."
+            },
+            {
+                "title": "Module 3: System Design",
+                "desc": "Designing scalable architectures like Netflix."
+            },
+            {
+                "title": "Module 4: Deployment",
+                "desc": "Docker, Kubernetes, and CI/CD."
+            }
+        ],
+        "resources": [
+            {
+                "title": "System Design Primer",
+                "url": "https://github.com/donnemartin/system-design-primer",
+                "type": "website"
+            },
+            {
+                "title": "FreeCodeCamp Full Course",
+                "url": "https://www.youtube.com/c/Freecodecamp",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "data-science",
+        "title": "Data Science & Big Analytics",
+        "description": "Become a Data Scientist. Learn Statistics, Python, Pandas, Tableau, and Machine Learning algorithms.",
+        "instructor": "AI Mentor",
+        "duration": "5 Months",
+        "perks": [
+            "Taught in any language",
+            "Real Kaggle Datasets",
+            "Data Visualization",
+            "Math for Data Science"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Python & Pandas",
+                "desc": "Data manipulation and cleaning."
+            },
+            {
+                "title": "Module 2: Statistics & Math",
+                "desc": "Probability, hypothesis testing, and calculus."
+            },
+            {
+                "title": "Module 3: Machine Learning Models",
+                "desc": "Regression, Classification, and Clustering."
+            },
+            {
+                "title": "Module 4: Data Visualization",
+                "desc": "Tableau, PowerBI, and Matplotlib."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Kaggle Datasets",
+                "url": "https://www.kaggle.com/",
+                "type": "website"
+            },
+            {
+                "title": "StatQuest with Josh Starmer",
+                "url": "https://www.youtube.com/c/joshstarmer",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "devops",
+        "title": "DevOps & Cloud Architect Mastery",
+        "description": "Automate everything! Learn Linux, Git, Jenkins, Docker, Kubernetes, and AWS/Azure Cloud Infrastructure.",
+        "instructor": "AI Mentor",
+        "duration": "4 Months",
+        "perks": [
+            "AWS & Azure concepts",
+            "Live server deployment",
+            "Infrastructure as Code",
+            "DevSecOps basics"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Linux & Scripting",
+                "desc": "Bash scripting and Linux administration."
+            },
+            {
+                "title": "Module 2: Version Control & CI/CD",
+                "desc": "Git, GitHub Actions, and Jenkins."
+            },
+            {
+                "title": "Module 3: Containerization",
+                "desc": "Docker and Kubernetes orchestrations."
+            },
+            {
+                "title": "Module 4: Cloud Providers",
+                "desc": "AWS EC2, S3, and Azure services."
+            }
+        ],
+        "resources": [
+            {
+                "title": "DevOps Roadmap",
+                "url": "https://roadmap.sh/devops",
+                "type": "website"
+            },
+            {
+                "title": "TechWorld with Nana",
+                "url": "https://www.youtube.com/c/TechWorldwithNana",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "vlsi-engineer",
+        "title": "VLSI Design & Semiconductor Engineering",
+        "description": "Enter the world of Hardware & Chips! Learn Verilog, SystemVerilog, FPGA prototyping, and ASIC design flow.",
+        "instructor": "Hardware AI Agent",
+        "duration": "6 Months",
+        "perks": [
+            "Verilog & SystemVerilog",
+            "ASIC Design Flow",
+            "FPGA Architecture",
+            "Circuit Simulation"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Digital Electronics",
+                "desc": "Gates, Flip-Flops, and State Machines."
+            },
+            {
+                "title": "Module 2: Verilog HDL",
+                "desc": "Hardware Description Language basics."
+            },
+            {
+                "title": "Module 3: ASIC Flow",
+                "desc": "Synthesis, Placement, and Routing."
+            },
+            {
+                "title": "Module 4: FPGA Prototyping",
+                "desc": "Implementing designs on FPGA boards."
+            }
+        ],
+        "resources": [
+            {
+                "title": "NPTEL VLSI Design",
+                "url": "https://nptel.ac.in/",
+                "type": "website"
+            },
+            {
+                "title": "IEEE Solid-State Circuits",
+                "url": "https://sscs.ieee.org/",
+                "type": "research"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "dsa-cracking",
+        "title": "Cracking DSA for Top MNCs",
+        "description": "Master Data Structures and Algorithms in C++/Java/Python. Solve 500+ Leetcode style questions and crack coding interviews.",
+        "instructor": "AI Mentor",
+        "duration": "4 Months",
+        "perks": [
+            "500+ Coding Problems",
+            "Mock Interviews",
+            "Complexity Analysis",
+            "Dynamic Programming Mastery"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Arrays & Strings",
+                "desc": "Sliding window, two pointers, and hashing."
+            },
+            {
+                "title": "Module 2: Trees & Graphs",
+                "desc": "BFS, DFS, Dijkstra, and Graph algorithms."
+            },
+            {
+                "title": "Module 3: Dynamic Programming",
+                "desc": "Memoization and Tabulation techniques."
+            },
+            {
+                "title": "Module 4: Advanced Data Structures",
+                "desc": "Tries, Segment Trees, and Disjoint Sets."
+            }
+        ],
+        "resources": [
+            {
+                "title": "LeetCode",
+                "url": "https://leetcode.com/",
+                "type": "website"
+            },
+            {
+                "title": "NeetCode",
+                "url": "https://www.youtube.com/c/NeetCode",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "sql-mastery",
+        "title": "SQL & Advanced Database Design",
+        "description": "Become a database wizard. Master complex SQL queries, Joins, Triggers, Normalization, and NoSQL databases.",
+        "instructor": "AI Mentor",
+        "duration": "2 Months",
+        "perks": [
+            "Complex Query Writing",
+            "Database Normalization",
+            "PostgreSQL & MySQL",
+            "MongoDB & Redis"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: SQL Basics & Joins",
+                "desc": "Selects, Inserts, Joins, and Grouping."
+            },
+            {
+                "title": "Module 2: Advanced Queries",
+                "desc": "Subqueries, Window Functions, and CTEs."
+            },
+            {
+                "title": "Module 3: Database Design",
+                "desc": "Normalization (1NF to BCNF) and ER Models."
+            },
+            {
+                "title": "Module 4: NoSQL Databases",
+                "desc": "Intro to MongoDB and unstructured data."
+            }
+        ],
+        "resources": [
+            {
+                "title": "SQL Bolt",
+                "url": "https://sqlbolt.com/",
+                "type": "website"
+            },
+            {
+                "title": "Corey Schafer SQL",
+                "url": "https://www.youtube.com/user/schafer5",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "cybersecurity",
+        "title": "Advanced Cybersecurity & Network Defense",
+        "description": "Protect the digital world. Learn Cryptography, Network Security, Malware Analysis, and SOC Operations.",
+        "instructor": "AI Security Agent",
+        "duration": "4 Months",
+        "perks": [
+            "Network Packet Analysis",
+            "Cryptography Basics",
+            "Defensive Security",
+            "SOC Analyst Training"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Network Fundamentals",
+                "desc": "OSI Model, TCP/IP, and Protocols."
+            },
+            {
+                "title": "Module 2: Defensive Security",
+                "desc": "Firewalls, IDS/IPS, and Endpoint Security."
+            },
+            {
+                "title": "Module 3: Cryptography",
+                "desc": "Encryption, Hashing, and PKI."
+            },
+            {
+                "title": "Module 4: SOC Operations",
+                "desc": "SIEM tools, Log Analysis, and Incident Response."
+            }
+        ],
+        "resources": [
+            {
+                "title": "TryHackMe",
+                "url": "https://tryhackme.com/",
+                "type": "website"
+            },
+            {
+                "title": "NetworkChuck",
+                "url": "https://www.youtube.com/c/NetworkChuck",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "ethical-hacking",
+        "title": "Ethical Hacking & Penetration Testing",
+        "description": "Think like a hacker. Learn Kali Linux, Metasploit, Web App vulnerabilities (OWASP Top 10), and Bug Bounty hunting.",
+        "instructor": "AI Hacker Agent",
+        "duration": "5 Months",
+        "perks": [
+            "Kali Linux Mastery",
+            "Bug Bounty Strategies",
+            "OWASP Top 10",
+            "Reverse Engineering"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Information Gathering",
+                "desc": "Reconnaissance, Nmap, and OSINT."
+            },
+            {
+                "title": "Module 2: Web App Penetration",
+                "desc": "SQL Injection, XSS, and CSRF."
+            },
+            {
+                "title": "Module 3: System Exploitation",
+                "desc": "Metasploit, Privilege Escalation."
+            },
+            {
+                "title": "Module 4: Bug Bounty",
+                "desc": "How to hunt on HackerOne and Bugcrowd."
+            }
+        ],
+        "resources": [
+            {
+                "title": "HackTheBox",
+                "url": "https://www.hackthebox.com/",
+                "type": "website"
+            },
+            {
+                "title": "David Bombal",
+                "url": "https://www.youtube.com/c/DavidBombal",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "app-development",
+        "title": "Android & iOS App Development",
+        "description": "Build stunning mobile applications for Android and iOS using Flutter, React Native, and Swift/Kotlin.",
+        "instructor": "AI Mobile Agent",
+        "duration": "5 Months",
+        "perks": [
+            "Cross-Platform Apps",
+            "UI/UX Design for Mobile",
+            "App Store Deployment",
+            "Firebase Integration"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Intro to Mobile UI",
+                "desc": "Designing responsive layouts."
+            },
+            {
+                "title": "Module 2: Frameworks",
+                "desc": "Flutter (Dart) and React Native."
+            },
+            {
+                "title": "Module 3: State Management",
+                "desc": "Redux, Provider, and Backend integration."
+            },
+            {
+                "title": "Module 4: App Publishing",
+                "desc": "Google Play and Apple App Store guidelines."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Flutter Documentation",
+                "url": "https://flutter.dev/docs",
+                "type": "website"
+            },
+            {
+                "title": "Fireship",
+                "url": "https://www.youtube.com/c/Fireship",
+                "type": "youtube"
+            }
+        ],
+        "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+    }
+]

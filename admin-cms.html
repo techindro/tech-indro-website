@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Educator CMS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background: #f3f4f6; color: #1f2937; }
+        #header { background: white; border-bottom: 1px solid #e5e7eb; }
+        .logo-text, .nav-links a { color: #1f2937 !important; }
+        
+        .cms-container {
+            max-width: 1000px;
+            margin: 120px auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .card-box {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        
+        .btn-submit {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.05rem;
+        }
+        .btn-submit:hover { background: #2563eb; }
+
+        .table-container {
+            margin-top: 3rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th { background: #f9fafb; font-weight: bold; }
+        .action-btn { background: none; border: none; cursor: pointer; color: #ef4444; }
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="login-btn" onclick="alert('Logged out')">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="cms-container">
+        
+        <h1 style="margin-bottom: 2rem;">Add New Lesson/Course</h1>
+        
+        <div class="card-box">
+            <form id="addCourseForm">
+                <div class="form-group">
+                    <label>Course Title</label>
+                    <input type="text" id="cTitle" placeholder="e.g., Intro to Machine Learning" required>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="cCategory">
+                            <option>AI</option>
+                            <option>Robotics</option>
+                            <option>Coding</option>
+                            <option>Science</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Age Group</label>
+                        <input type="text" id="cLevel" placeholder="e.g., Ages 10-15" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description (AI Prompt Context)</label>
+                    <textarea id="cDesc" rows="3" placeholder="Describe the course. The AI Rohini uses this to understand the topic." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i data-lucide="plus" style="width: 18px; height: 18px; vertical-align: middle;"></i> Publish to Platform
+                </button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h2 style="margin-bottom: 1rem;">Active Courses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Age Group</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    <!-- Dynamic -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Load existing courses
+        async function loadCourses() {
+            try {
+                const res = await fetch("http://localhost:5000/api/shikshak-courses");
+                const data = await res.json();
+                const tbody = document.getElementById('courseTable');
+                tbody.innerHTML = "";
+                data.forEach(course => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${course.title}</strong></td>
+                            <td><span style="background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem;">${course.category}</span></td>
+                            <td>${course.level}</td>
+                        </tr>
+                    `;
+                });
+                lucide.createIcons();
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        document.getElementById('addCourseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('In a real production environment, this would POST to /api/admin/courses and update the JSON file. For now, the UI simulates the success!');
+            document.getElementById('addCourseForm').reset();
+        });
+
+        loadCourses();
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

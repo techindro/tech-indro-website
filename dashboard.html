@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - My Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .dashboard-main {
+            padding-top: 100px;
+            min-height: 80vh;
+        }
+        .dashboard-header {
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            grid-column: 1 / -1;
+            backdrop-filter: blur(20px);
+        }
+        .floating-ai {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(236,72,153,0.5);
+            color: white;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .floating-ai:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(236,72,153,0.7);
+        }
+
+        /* Gyan Streak Styles */
+        .gyan-streak {
+            background: rgba(251, 146, 60, 0.1);
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(251, 146, 60, 0.1);
+        }
+        .streak-fire {
+            font-size: 2.5rem;
+            animation: flicker 1.5s infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.8));
+        }
+        .streak-details h3 {
+            color: #fb923c;
+            margin-bottom: 0.25rem;
+            font-size: 1.2rem;
+        }
+        .streak-details p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.5)); }
+            100% { transform: scale(1.1) rotate(5deg); filter: drop-shadow(0 0 20px rgba(251, 146, 60, 1)); }
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Cinzel:wght@600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Certificate Hidden Container */
+        #certificate-container {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            z-index: -100;
+        }
+
+        /* NASA Style Certificate Design */
+        .nasa-certificate {
+            width: 1123px; /* A4 Landscape width at 96 DPI */
+            height: 794px; /* A4 Landscape height at 96 DPI */
+            background-color: #ffffff;
+            background-image: radial-gradient(circle, rgba(0, 50, 150, 0.03) 10%, transparent 10%), radial-gradient(circle, rgba(0, 50, 150, 0.03) 10%, transparent 10%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            padding: 40px;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+        }
+        
+        .nasa-cert-border {
+            border: 4px solid #002244;
+            height: 100%;
+            position: relative;
+            padding: 40px 60px;
+            box-sizing: border-box;
+        }
+        
+        .nasa-cert-border::before {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px solid #d4af37; /* Gold accent */
+        }
+
+        .cert-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #002244;
+            padding-bottom: 20px;
+        }
+
+        .cert-logo img {
+            height: 80px;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .cert-agency {
+            text-align: right;
+            color: #002244;
+        }
+        .cert-agency h4 {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .cert-agency h3 {
+            margin: 5px 0 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .cert-body {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cert-title {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: #002244;
+            letter-spacing: 5px;
+            margin: 0 0 40px 0;
+            font-weight: 800;
+        }
+
+        .cert-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cert-name {
+            font-family: 'Caveat', cursive;
+            font-size: 64px;
+            color: #002244;
+            margin: 0 0 20px 0;
+            border-bottom: 1px solid #ccc;
+            display: inline-block;
+            padding: 0 40px;
+            line-height: 1;
+        }
+
+        .cert-course {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: #d4af37;
+            font-weight: 600;
+            margin: 20px 0 50px 0;
+        }
+
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 60px;
+        }
+
+        .cert-signature {
+            text-align: center;
+            width: 250px;
+        }
+        
+        .cert-signature-img {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: #002244;
+            margin-bottom: -10px;
+        }
+
+        .cert-signature-line {
+            border-top: 1px solid #002244;
+            margin-top: 10px;
+            padding-top: 5px;
+            font-size: 12px;
+            color: #002244;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .cert-date {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            text-align: center;
+        }
+        
+        .cert-seal {
+            width: 120px;
+            height: 120px;
+            border: 3px double #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+                <ul class="nav-links">
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="dashboard.html" style="color: var(--primary);">My Dashboard</a></li>
+                    <li><a href="ai-mentor.html">AI Mentor</a></li>
+                    <li><a href="#" class="login-btn" onclick="logout()"><i data-lucide="log-out" style="width: 18px; height: 18px;"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-main container">
+        <div class="dashboard-header fade-in">
+            <div>
+                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Welcome back, Student! 👋</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Ready to conquer your goals today?</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="programs.html" class="btn-primary">Browse More Courses</a>
+                    <a href="checkout.html" class="btn-secondary" style="margin-left: 1rem;"><i data-lucide="shopping-cart"></i> Buy Premium</a>
+                </div>
+            </div>
+            
+            <div class="gyan-streak fade-in" style="animation-delay: 0.2s;">
+                <div class="streak-fire">🪔</div>
+                <div class="streak-details">
+                    <h3>7 Day Gyan Streak!</h3>
+                    <p>You're on fire! Keep lighting the lamp of knowledge.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">My Active Enrolled Courses</h2>
+        
+        <div class="dashboard-grid" id="enrolledGrid">
+            <!-- Courses dynamically loaded -->
+        </div>
+
+    </main>
+
+
+    <footer style="margin-top: 5rem;">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Tech Indro Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function logout() {
+            localStorage.removeItem('techIndroUser');
+            alert('Logged out successfully!');
+            window.location.href = "index.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const grid = document.getElementById("enrolledGrid");
+            const enrolledList = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+
+            if (enrolledList.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="book-open" style="width: 64px; height: 64px; color: rgba(255,255,255,0.3); margin-bottom: 1rem;"></i>
+                        <h3>You haven't enrolled in any courses yet.</h3>
+                        <p style="color: var(--text-muted); margin: 1rem 0 2rem;">Start your Zero to One journey today!</p>
+                        <a href="programs.html" class="btn-primary">Explore Programs</a>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            try {
+                const res = await fetch("http://localhost:5000/api/courses");
+                const allCourses = await res.json();
+                
+                grid.innerHTML = ""; 
+                
+                allCourses.forEach(course => {
+                    if (enrolledList.includes(course.id)) {
+                        // Generate random progress for demo
+                        const randomProgress = Math.floor(Math.random() * 60) + 10; 
+                        
+                        const card = document.createElement("div");
+                        card.className = "batch-card fade-in";
+                        card.style.minWidth = "auto";
+                        card.style.scrollSnapAlign = "none";
+                        card.innerHTML = `
+                            <div class="batch-card-img" style="height: 140px; font-size: 1.5rem;">
+                                ${course.title.split(' ')[0]} ${course.title.split(' ')[1] || ''}
+                            </div>
+                            <div class="batch-card-content">
+                                <h3 style="font-size: 1.25rem;">${course.title}</h3>
+                                <div class="batch-meta" style="margin-bottom: 0.5rem;">
+                                </div>
+                                
+                                <div style="margin-top: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted);">
+                                        <span>Course Progress</span>
+                                        <span>${randomProgress}%</span>
+                                    </div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-fill" style="width: ${randomProgress}%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+                                    <a href="course-details.html?id=${course.id}" class="btn-primary" style="flex: 1; text-align: center; padding: 0.75rem;">Resume</a>
+                                    <button onclick="downloadCertificate('${course.title.replace(/'/g, "\'")}')" class="btn-secondary" style="flex: 1; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10b981;" title="Download NASA-Style Certificate">
+                                        <i data-lucide="award"></i> Certificate
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    }
+                });
+                lucide.createIcons();
+            } catch (err) {
+                grid.innerHTML = "<p>Error loading dashboard. Please ensure backend is running.</p>";
+            }
+        });
+    
+        async function downloadCertificate(courseTitle) {
+            // Get User Name
+            let userName = "Tech Indro Student";
+            try {
+                const userObj = JSON.parse(localStorage.getItem('techIndroUser'));
+                if (userObj && userObj.name) userName = userObj.name;
+            } catch(e) {}
+            
+            // PROMPT USER FOR EXACT NAME TO PRINT
+            let finalName = prompt("Enter your full name EXACTLY as you want it on the Certificate:", userName);
+            if (!finalName) {
+                return; // User cancelled
+            }
+            userName = finalName;
+            
+            // Set dynamic data in template
+            document.getElementById('certUserName').innerText = userName;
+            document.getElementById('certCourseName').innerText = courseTitle;
+            
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }).toUpperCase();
+            document.getElementById('certDate').innerText = dateStr;
+            
+            // Show toast
+            const btnEvent = window.event;
+            const btn = btnEvent ? btnEvent.currentTarget : null;
+            let originalHtml = '';
+            if (btn) {
+                originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Generating...';
+                lucide.createIcons();
+            }
+
+            try {
+                // Wait a moment for fonts to load if necessary
+                await new Promise(r => setTimeout(r, 500));
+                
+                const certElement = document.getElementById('certTemplate');
+                
+                // html2canvas capture
+                const canvas = await html2canvas(certElement, {
+                    scale: 2, // High resolution
+                    useCORS: true,
+                    backgroundColor: '#ffffff'
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                
+                // jsPDF generate A4 Landscape PDF
+                const { jsPDF } = window.jspdf;
+                // A4 landscape dimensions in mm: 297 x 210
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+                pdf.save(`Tech_Indro_Certificate_${userName.replace(/ /g, '_')}.pdf`);
+                
+                if (btn) {
+                    btn.innerHTML = '<i data-lucide="check"></i> Downloaded';
+                    lucide.createIcons();
+                    setTimeout(() => { btn.innerHTML = originalHtml; lucide.createIcons(); }, 3000);
+                }
+            } catch(e) {
+                console.error("Certificate Error:", e);
+                alert("Failed to generate certificate. Please try again.");
+                if(btn) { btn.innerHTML = originalHtml; lucide.createIcons(); }
+            }
+        }
+    </script>
+<script src="main.js"></script>
+
+    <!-- Certificate Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Hidden Certificate Template -->
+    <div id="certificate-container">
+        <div class="coursera-certificate" id="certTemplate">
+            <!-- Colorful modern borders -->
+            <div class="cert-corner top-left"></div>
+            <div class="cert-corner bottom-right"></div>
+            
+            <div class="cert-inner">
+                <div class="cert-header">
+                    <img src="assets/user-photo.jpg" alt="Tech Indro" class="cert-logo-left">
+                    <div class="cert-partner">
+                        <span style="color:#0056D2; font-weight:800; font-size:24px; letter-spacing:1px;">TECH INDRO</span><br>
+                        <span style="color:#555; font-size:12px; letter-spacing:2px;">ONLINE LEARNING</span>
+                    </div>
+                </div>
+                
+                <div class="cert-body">
+                    <div class="cert-label">COURSE CERTIFICATE</div>
+                    <div class="cert-text">This is to certify that</div>
+                    <div class="cert-name" id="certUserName">John Doe</div>
+                    <div class="cert-text">has successfully completed</div>
+                    <div class="cert-course" id="certCourseName">Advanced Artificial Intelligence Bootcamp</div>
+                    <div class="cert-text" style="max-width: 600px; margin: 15px auto; font-size: 14px; line-height: 1.5; color: #555;">
+                        an online non-credit course authorized by Tech Indro and offered through our advanced e-learning platform.
+                    </div>
+                </div>
+                
+                <div class="cert-footer">
+                    <div class="signature-block">
+                        <div class="signature-img" style="font-family: 'Caveat', cursive; font-size: 54px; transform: rotate(-3deg) translateY(5px); color: #001133;">Shubham Patel</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-name">Shubham Patel</div>
+                        <div class="signature-title">Founder & CEO, Tech Indro</div>
+                    </div>
+                    
+                    <div class="verify-block">
+                        <div class="cert-date" id="certDate">July 5, 2026</div>
+                        <div style="font-size: 10px; color: #777; margin-top: 5px;">Verify at: techindro.com/verify</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .coursera-certificate {
+            width: 1123px; /* A4 Landscape */
+            height: 794px;
+            background-color: #fcfcfc;
+            position: relative;
+            font-family: 'Space Grotesk', 'Arial', sans-serif;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .cert-corner {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #0056D2 0%, #10b981 100%);
+            z-index: 1;
+        }
+        .top-left {
+            top: -150px;
+            left: -150px;
+            transform: rotate(45deg);
+        }
+        .bottom-right {
+            bottom: -150px;
+            right: -150px;
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, #ff6b35 0%, #facc15 100%);
+        }
+        
+        .cert-inner {
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            background: #ffffff;
+            z-index: 2;
+            border: 1px solid #eee;
+            padding: 50px 80px;
+            box-sizing: border-box;
+            background-image: repeating-linear-gradient(45deg, rgba(0,86,210,0.02) 0, rgba(0,86,210,0.02) 2px, transparent 2px, transparent 10px);
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+        .cert-logo-left {
+            height: 70px;
+            border-radius: 8px;
+        }
+        .cert-partner {
+            text-align: right;
+        }
+        
+        .cert-body {
+            text-align: center;
+        }
+        
+        .cert-label {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 4px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        
+        .cert-name {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            color: #111;
+            margin: 20px 0;
+            font-weight: 800;
+        }
+        
+        .cert-course {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0056D2;
+            margin: 10px 0;
+        }
+        
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 60px;
+        }
+        
+        .signature-block {
+            text-align: left;
+            width: 300px;
+        }
+        .signature-line {
+            border-top: 1px solid #333;
+            margin: 5px 0;
+        }
+        .signature-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #111;
+        }
+        .signature-title {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .verify-block {
+            text-align: right;
+            border-left: 2px solid #eee;
+            padding-left: 20px;
+        }
+        .cert-date {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+    </style>
+</body>
+</html>
+</html>

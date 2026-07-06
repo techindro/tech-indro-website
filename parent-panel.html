@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Parent Oversight Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background: #f3f4f6; color: #1f2937; }
+        #header { background: white; border-bottom: 1px solid #e5e7eb; }
+        .logo-text, .nav-links a { color: #1f2937 !important; }
+        
+        .panel-container {
+            max-width: 1200px;
+            margin: 120px auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+        .stat-card h3 { font-size: 0.9rem; color: #6b7280; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-card .value { font-size: 2rem; font-weight: bold; color: #111827; }
+        .stat-card .trend { font-size: 0.85rem; color: #10b981; display: flex; align-items: center; gap: 4px; margin-top: 5px; }
+
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .card-box {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .log-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .log-item:last-child { border-bottom: none; }
+        .log-time { font-size: 0.8rem; color: #9ca3af; margin-bottom: 4px; }
+        .log-text { font-size: 0.95rem; }
+        .log-ai { color: #f59e0b; font-weight: 500; }
+
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #10b981; }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                
+            </a>
+                <ul class="nav-links">
+                    <li><a href="shikshak.html">Kids Portal</a></li>
+                    <li><a href="#" class="login-btn" onclick="alert('Logged out')">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="panel-container">
+        
+        <div class="panel-header">
+            <div>
+                <h1>Parent Oversight Panel</h1>
+                <p style="color: #6b7280;">Monitoring: <strong>Arjun (Age 12)</strong></p>
+            </div>
+            <button style="background: white; border: 1px solid #e5e7eb; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                <i data-lucide="download" style="width: 16px; height: 16px; vertical-align: middle;"></i> Export Report
+            </button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Learning Time (This Week)</h3>
+                <div class="value">4h 12m</div>
+                <div class="trend"><i data-lucide="trending-up" style="width: 14px; height: 14px;"></i> +15% from last week</div>
+            </div>
+            <div class="stat-card">
+                <h3>Courses Active</h3>
+                <div class="value">2</div>
+                <div class="trend" style="color: #6b7280;">Python, Robotics</div>
+            </div>
+            <div class="stat-card">
+                <h3>Questions Asked</h3>
+                <div class="value">47</div>
+                <div class="trend"><i data-lucide="check-circle" style="width: 14px; height: 14px;"></i> High curiosity index</div>
+            </div>
+            <div class="stat-card">
+                <h3>Safety Alerts</h3>
+                <div class="value" style="color: #10b981;">0</div>
+                <div class="trend" style="color: #6b7280;">All interactions safe</div>
+            </div>
+        </div>
+
+        <div class="dashboard-layout">
+            <!-- Left: Transcript -->
+            <div class="card-box">
+                <div class="card-header">
+                    Recent AI Transcripts (Last 24h)
+                </div>
+                <div class="card-body">
+                    <div class="log-item">
+                        <div class="log-time">Today, 2:15 PM - Python Coding</div>
+                        <div class="log-text"><strong>Arjun:</strong> Robot ko aage move karne ke liye code kaise likhein?</div>
+                        <div class="log-text log-ai"><strong>AI Shikshak:</strong> Arre waah! Good try! Think of loops like a Cricket bowler...</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">Today, 2:20 PM - Python Coding</div>
+                        <div class="log-text"><strong>Arjun:</strong> motor_forward(speed=100)</div>
+                        <div class="log-text log-ai"><strong>AI Shikshak:</strong> Arre waah! 🎉 You did it! The robot is moving!</div>
+                    </div>
+                    <div class="log-item">
+                        <div class="log-time">Yesterday, 5:30 PM - Science</div>
+                        <div class="log-text"><strong>Arjun:</strong> How did Chandrayaan land on the moon?</div>
+                        <div class="log-text log-ai"><strong>AI Shikshak:</strong> Great question! It used thrusters to slow down, just like braking a bicycle...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Safety Controls -->
+            <div class="card-box">
+                <div class="card-header">
+                    Safety & Content Controls
+                </div>
+                <div class="card-body">
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 1.5rem;">Toggle features to restrict what the AI can discuss with your child.</p>
+                    
+                    <div class="toggle-row">
+                        <span>Strict Syllabus Only (Disable general chat)</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>Block Social Media References</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span>Auto-Break Reminder (Every 30 mins)</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row" style="border: none;">
+                        <span>Data Collection (PII)</span>
+                        <span style="color: #ef4444; font-weight: bold; font-size: 0.9rem;">BLOCKED BY SYSTEM</span>
+                    </div>
+
+                    <button style="width: 100%; background: #ef4444; color: white; border: none; padding: 10px; border-radius: 6px; margin-top: 2rem; cursor: pointer; font-weight: bold;">
+                        <i data-lucide="shield-alert" style="width: 16px; height: 16px; vertical-align: middle;"></i> Block AI Access
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

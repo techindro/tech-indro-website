@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up | Tech Indro</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #f8fafc; /* Light clean background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .auth-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .auth-logo img {
+            height: 55px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .auth-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .auth-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 600;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            color: #0f172a;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: #ff6b35;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .auth-btn:hover {
+            background: #e85a28;
+            transform: translateY(-1px);
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: #94a3b8;
+        }
+        .auth-divider::before, .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .auth-divider span {
+            padding: 0 1rem;
+            font-size: 0.85rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .social-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .auth-footer a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            color: #64748b;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .back-home:hover {
+            color: #0f172a;
+        }
+    
+        .login-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+            padding: 0.25rem;
+            border-radius: 8px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 0.5rem;
+            text-align: center;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <a href="index.html" class="back-home">
+                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to Home
+            </a>
+
+            <div class="auth-logo">
+                <a href="index.html">
+                    <img src="assets/user-photo.jpg" alt="Tech Indro Logo">
+                </a>
+            </div>
+            
+            <h2 class="auth-title" id="formTitle">Welcome Back</h2>
+            <p class="auth-subtitle" id="formSubtitle">Log in to access your courses</p>
+            
+            <!-- LOGIN SECTION -->
+            <div id="loginSection">
+                <div class="login-tabs">
+                    <button type="button" class="tab-btn active" id="tabEmail" onclick="switchTab('email')">Email</button>
+                    <button type="button" class="tab-btn" id="tabMobile" onclick="switchTab('mobile')">Mobile Number</button>
+                </div>
+
+                <!-- Email Login Form -->
+                <form id="emailLoginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <label class="form-label" for="password" style="margin-bottom: 0;">Password</label>
+                            <a href="#" style="font-size: 0.8rem; color: #ff6b35; text-decoration: none;">Forgot?</a>
+                        </div>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn" id="loginBtn">Sign In</button>
+                </form>
+
+                <!-- Mobile Login Form -->
+                <form id="mobileLoginForm" style="display: none;">
+                    <div class="form-group" id="phoneGroup">
+                        <label class="form-label" for="mobile">Mobile Number</label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="text" value="+91" style="width: 60px; text-align: center; font-weight: 600; color: #64748b; background: #e2e8f0; border: 1px solid #cbd5e1;" class="form-input" readonly>
+                            <input type="tel" id="mobile" class="form-input" placeholder="9876543210" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="otpGroup" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <label class="form-label" for="otp" style="margin-bottom: 0;">Enter OTP</label>
+                            <a href="#" style="font-size: 0.8rem; color: #ff6b35; text-decoration: none;" onclick="sendOtp(event)">Resend OTP</a>
+                        </div>
+                        <input type="text" id="otp" class="form-input" placeholder="123456" maxlength="6">
+                    </div>
+                    
+                    <button type="button" class="auth-btn" id="sendOtpBtn" onclick="sendOtp(event)">Send OTP</button>
+                    <button type="button" class="auth-btn" id="verifyOtpBtn" style="display: none;" onclick="verifyOtp(event)">Verify & Login</button>
+                </form>
+            </div>
+
+            <!-- REGISTRATION FORM -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label" for="regName">Full Name</label>
+                    <input type="text" id="regName" class="form-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" class="form-input" placeholder="you@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="regPassword" style="margin-bottom: 0.5rem;">Password</label>
+                    <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="auth-btn" id="registerBtn">Create Account</button>
+            </form>
+            
+            <div class="auth-divider">
+                <span>Or continue with</span>
+            </div>
+            
+            <div class="social-grid">
+                <button type="button" class="social-btn" onclick="simulateOAuth('Google')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18px" height="18px"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.7 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> 
+                    Google
+                </button>
+                <button type="button" class="social-btn" onclick="simulateOAuth('Microsoft')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" width="18px" height="18px"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg> 
+                    Microsoft
+                </button>
+                <button type="button" class="social-btn" onclick="simulateOAuth('Facebook')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18px" height="18px"><path fill="#1877F2" d="M48 24C48 10.745 37.255 0 24 0S0 10.745 0 24c0 11.979 8.776 21.908 20.25 23.708v-16.77h-6.094V24h6.094v-5.288c0-6.014 3.583-9.337 9.065-9.337 2.625 0 5.372.469 5.372.469v5.906h-3.026c-2.981 0-3.913 1.849-3.913 3.75V24h6.656l-1.064 6.938H27.75v16.77C39.224 45.908 48 35.978 48 24z"/><path fill="#fff" d="M33.342 30.938L34.406 24h-6.656v-4.492c0-1.901.932-3.75 3.913-3.75h3.026V9.852s-2.747-.469-5.372-.469c-5.482 0-9.065 3.323-9.065 9.337V24h-6.094v6.938h6.094v16.77c1.229.192 2.481.292 3.75.292 1.269 0 2.521-.1 3.75-.292v-16.77h5.594z"/></svg> 
+                    Facebook
+                </button>
+                <button type="button" class="social-btn" onclick="simulateOAuth('LinkedIn')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px"><path fill="#0A66C2" d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM20.45 20.45h-3.56v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.15 1.46-2.15 2.96v5.7h-3.56V9h3.42v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29z"/></svg> 
+                    LinkedIn
+                </button>
+            </div>
+            
+            <div id="oauth-toast" style="display: none; background: #10b981; color: white; padding: 1rem; border-radius: 8px; position: fixed; bottom: 20px; right: 20px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <span id="oauth-toast-msg" style="font-weight: 600;"></span>
+            </div>
+            
+            <div class="auth-footer" id="authFooter">
+                Don't have an account? <a href="#" onclick="toggleAuthMode(event)">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // UI Toggle Logic
+        let isLogin = true;
+        function toggleAuthMode(e) {
+            e.preventDefault();
+            isLogin = !isLogin;
+            
+            const loginSection = document.getElementById('loginSection');
+            const registerForm = document.getElementById('registerForm');
+            const title = document.getElementById('formTitle');
+            const subtitle = document.getElementById('formSubtitle');
+            const footer = document.getElementById('authFooter');
+
+            if (isLogin) {
+                if (loginSection) loginSection.style.display = 'block';
+                if (registerForm) registerForm.style.display = 'none';
+                title.innerText = 'Welcome Back';
+                subtitle.innerText = 'Log in to access your courses';
+                footer.innerHTML = `Don't have an account? <a href="#" onclick="toggleAuthMode(event)">Sign up here</a>`;
+            } else {
+                if (loginSection) loginSection.style.display = 'none';
+                if (registerForm) registerForm.style.display = 'block';
+                title.innerText = 'Create an Account';
+                subtitle.innerText = 'Join Tech Indro to start learning';
+                footer.innerHTML = `Already have an account? <a href="#" onclick="toggleAuthMode(event)">Sign in here</a>`;
+            }
+        }
+
+        // Tab Switching Logic
+        function switchTab(mode) {
+            const emailForm = document.getElementById('emailLoginForm');
+            const mobileForm = document.getElementById('mobileLoginForm');
+            const tabEmail = document.getElementById('tabEmail');
+            const tabMobile = document.getElementById('tabMobile');
+
+            if (mode === 'email') {
+                if(emailForm) emailForm.style.display = 'block';
+                if(mobileForm) mobileForm.style.display = 'none';
+                if(tabEmail) tabEmail.classList.add('active');
+                if(tabMobile) tabMobile.classList.remove('active');
+            } else {
+                if(emailForm) emailForm.style.display = 'none';
+                if(mobileForm) mobileForm.style.display = 'block';
+                if(tabEmail) tabEmail.classList.remove('active');
+                if(tabMobile) tabMobile.classList.add('active');
+            }
+        }
+
+        // OTP Simulator
+        function sendOtp(e) {
+            e.preventDefault();
+            const mobile = document.getElementById('mobile').value;
+            if(mobile.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number");
+                return;
+            }
+            
+            const btn = document.getElementById('sendOtpBtn');
+            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Sending...';
+            lucide.createIcons();
+
+            setTimeout(() => {
+                document.getElementById('phoneGroup').style.display = 'none';
+                document.getElementById('sendOtpBtn').style.display = 'none';
+                
+                document.getElementById('otpGroup').style.display = 'block';
+                document.getElementById('verifyOtpBtn').style.display = 'block';
+                
+                const toast = document.getElementById('oauth-toast');
+                document.getElementById('oauth-toast-msg').innerText = '📲 OTP sent to +91 ' + mobile;
+                toast.style.display = 'block';
+                setTimeout(() => { toast.style.display = 'none'; }, 3000);
+            }, 1000);
+        }
+
+        function verifyOtp(e) {
+            e.preventDefault();
+            const otp = document.getElementById('otp').value;
+            if(otp.length < 4) {
+                alert("Please enter the OTP");
+                return;
+            }
+            
+            let userName = prompt("OTP Verified! Please enter your name to setup your account:", "Student");
+            if (!userName) return;
+
+            const btn = document.getElementById('verifyOtpBtn');
+            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Verifying...';
+            lucide.createIcons();
+
+            setTimeout(() => {
+                const toast = document.getElementById('oauth-toast');
+                document.getElementById('oauth-toast-msg').innerText = '✅ Login Successful!';
+                toast.style.display = 'block';
+                
+                localStorage.setItem('techIndroUser', JSON.stringify({ name: userName, phone: document.getElementById('mobile').value, provider: 'OTP' }));
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            }, 1000);
+        }
+
+        // OAuth Simulator
+        function simulateOAuth(provider) {
+            let userName = prompt(`Enter your name to continue with ${provider}:`, "Student");
+            if (!userName) return; // User cancelled
+
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Connecting...';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                const toast = document.getElementById('oauth-toast');
+                const toastMsg = document.getElementById('oauth-toast-msg');
+                toastMsg.innerText = `✅ Successfully verified with ${provider}!`;
+                toast.style.display = 'block';
+                
+                localStorage.setItem('techIndroUser', JSON.stringify({ name: userName, email: userName.toLowerCase().replace(/ /g, '') + "@example.com", provider: provider }));
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }, 1000);
+        }
+    </script>
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .spin-icon { animation: spin 1s linear infinite; }
+    </style>
+    <script src="api-client.js"></script>
+</body>
+</html>

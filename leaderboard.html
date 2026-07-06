@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Global Rankings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: var(--bg);
+            padding-top: 80px; /* For fixed header */
+        }
+        .leaderboard-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .board {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .board-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px;
+            padding: 15px 25px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .board-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 150px;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            transition: var(--transition);
+        }
+        .board-row:last-child {
+            border-bottom: none;
+        }
+        .board-row:hover {
+            background: #f8fafc;
+            transform: translateX(4px);
+        }
+        .rank {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+        /* Top 3 colors */
+        .rank-1 { color: #FFD700; font-size: 1.75rem; text-shadow: 0 2px 4px rgba(255,215,0,0.3); }
+        .rank-2 { color: #C0C0C0; font-size: 1.5rem; text-shadow: 0 2px 4px rgba(192,192,192,0.3); }
+        .rank-3 { color: #CD7F32; font-size: 1.35rem; text-shadow: 0 2px 4px rgba(205,127,50,0.3); }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avatar {
+            width: 45px;
+            height: 45px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            border: 2px solid #e2e8f0;
+        }
+        .rank-1-row .avatar { border-color: #FFD700; background: rgba(255,215,0,0.1); }
+        .rank-2-row .avatar { border-color: #C0C0C0; background: rgba(192,192,192,0.1); }
+        .rank-3-row .avatar { border-color: #CD7F32; background: rgba(205,127,50,0.1); }
+
+        .player-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .player-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 4px;
+            display: inline-block;
+        }
+        .score {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        .status {
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .status.offline {
+            color: var(--text-muted);
+        }
+        
+        .current-user-row {
+            background: rgba(255, 107, 53, 0.05);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-md);
+            margin-top: 20px;
+        }
+        .current-user-row:hover {
+            background: rgba(255, 107, 53, 0.08);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="leaderboard.html" style="color: var(--primary); font-weight: 800;">Rankings</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="leaderboard-container">
+        <div class="section-header">
+            <h1><i data-lucide="trophy" style="width: 32px; height: 32px; color: var(--primary); vertical-align: text-bottom; margin-right: 10px;"></i>Hall of Fame</h1>
+            <p>Top learners and coders across the Tech Indro platform.</p>
+        </div>
+        
+        <div class="board" id="leaderboardBody">
+            <div class="board-header">
+                <div>Rank</div>
+                <div>User</div>
+                <div>Score (XP)</div>
+                <div>Status</div>
+            </div>
+            <!-- Dynamic content injected via JS -->
+        </div>
+    </main>
+
+    <script>
+        // Default base users if no one has played yet
+        const defaultUsers = [
+            { name: "Rahul Sharma", score: 90, badge: "Pro Coder", status: "Online" },
+            { name: "Priya Singh", score: 80, badge: "System Admin", status: "Online" },
+            { name: "Amit Kumar", score: 60, badge: "Student", status: "Offline" },
+            { name: "Neha Gupta", score: 40, badge: "Beginner", status: "Online" }
+        ];
+
+        function renderLeaderboard() {
+            let leaderboard = JSON.parse(localStorage.getItem('techIndro_leaderboard'));
+            
+            // If empty, initialize with default
+            if (!leaderboard || leaderboard.length === 0) {
+                leaderboard = defaultUsers;
+                localStorage.setItem('techIndro_leaderboard', JSON.stringify(leaderboard));
+            }
+
+            // Sort by score descending
+            leaderboard.sort((a, b) => b.score - a.score);
+
+            const board = document.getElementById('leaderboardBody');
+            
+            // Keep header
+            let html = `
+            <div class="board-header">
+                <div>Rank</div>
+                <div>User</div>
+                <div>Score (Marks)</div>
+                <div>Status</div>
+            </div>`;
+
+            leaderboard.forEach((user, index) => {
+                let rankClass = "";
+                let rankStyle = "";
+                if (index === 0) { rankClass = "rank-1-row"; rankStyle = "rank-1"; }
+                else if (index === 1) { rankClass = "rank-2-row"; rankStyle = "rank-2"; }
+                else if (index === 2) { rankClass = "rank-3-row"; rankStyle = "rank-3"; }
+
+                let badgeHtml = user.badge ? `<span class="player-badge">${user.badge}</span>` : "";
+                
+                let statusHtml = user.status === "Offline" 
+                    ? `<div class="status offline"><i data-lucide="moon" style="width:16px;"></i> Offline</div>`
+                    : `<div class="status"><i data-lucide="zap" style="width:16px;"></i> Online</div>`;
+
+                html += `
+                <div class="board-row ${rankClass}">
+                    <div class="rank ${rankStyle}">#${index + 1}</div>
+                    <div class="player-info">
+                        <div class="avatar"><i data-lucide="user"></i></div>
+                        <div>
+                            <div class="player-name">${user.name}</div>
+                            ${badgeHtml}
+                        </div>
+                    </div>
+                    <div class="score">${user.score} / 100</div>
+                    ${statusHtml}
+                </div>`;
+            });
+
+            board.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        renderLeaderboard();
+    </script>
+</body>
+</html>
