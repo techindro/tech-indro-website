@@ -39,6 +39,21 @@
                 "title": "Kaggle Datasets",
                 "url": "https://www.kaggle.com/",
                 "type": "website"
+            },
+            {
+                "title": "Made With ML (End-to-End MLOps)",
+                "url": "https://github.com/GokuMohandas/Made-With-ML",
+                "type": "github"
+            },
+            {
+                "title": "Kaggle Machine Learning Cert (Free)",
+                "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+                "type": "certificate"
+            },
+            {
+                "title": "Attention Is All You Need (Transformers)",
+                "url": "https://arxiv.org/abs/1706.03762",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
@@ -83,6 +98,21 @@
                 "title": "ISRO E-Learning",
                 "url": "https://elearning.iirs.gov.in/",
                 "type": "website"
+            },
+            {
+                "title": "Smart City Traffic Vision (IoT+AI)",
+                "url": "https://github.com/OlafenwaMoses/ImageAI",
+                "type": "github"
+            },
+            {
+                "title": "Google Cloud Skills Boost (Free Badges)",
+                "url": "https://www.cloudskillsboost.google/",
+                "type": "certificate"
+            },
+            {
+                "title": "The Google File System (Cloud Base)",
+                "url": "https://research.google.com/archive/gfs-sosp2003.pdf",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
@@ -127,6 +157,21 @@
                 "title": "Hubspot Academy",
                 "url": "https://academy.hubspot.com/",
                 "type": "website"
+            },
+            {
+                "title": "B2B CRM Dashboard (React+Node)",
+                "url": "https://github.com/marmelab/react-admin",
+                "type": "github"
+            },
+            {
+                "title": "Google Digital Garage (Free Cert)",
+                "url": "https://learndigital.withgoogle.com/digitalgarage/course/digital-marketing",
+                "type": "certificate"
+            },
+            {
+                "title": "A Framework for Digital Marketing Research",
+                "url": "https://journals.sagepub.com/doi/pdf/10.1509/jm.15.0415",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"
@@ -171,6 +216,21 @@
                 "title": "TED Talks",
                 "url": "https://www.youtube.com/c/TED",
                 "type": "youtube"
+            },
+            {
+                "title": "AI Mock Interview Platform",
+                "url": "https://github.com/nutlope/interview",
+                "type": "github"
+            },
+            {
+                "title": "HP LIFE Business Communication (Free)",
+                "url": "https://www.life-global.org/course/business-communications/",
+                "type": "certificate"
+            },
+            {
+                "title": "The Mathematical Theory of Communication",
+                "url": "https://pure.mpg.de/rest/items/item_2383164_3/component/file_2383163/content",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
@@ -215,6 +275,21 @@
                 "title": "Upwork Guide",
                 "url": "https://www.upwork.com/resources/",
                 "type": "website"
+            },
+            {
+                "title": "Decentralized Freelance Platform",
+                "url": "https://github.com/Bounties-Network/BountiesApp",
+                "type": "github"
+            },
+            {
+                "title": "Upwork Academy Foundations (Free)",
+                "url": "https://academy.upwork.com/",
+                "type": "certificate"
+            },
+            {
+                "title": "The Future of Work: The Gig Economy",
+                "url": "https://www.nber.org/papers/w24386",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
@@ -259,6 +334,21 @@
                 "title": "Medito Foundation",
                 "url": "https://meditofoundation.org/",
                 "type": "website"
+            },
+            {
+                "title": "Gamified Habit Tracker App",
+                "url": "https://github.com/HabitRPG/habitica",
+                "type": "github"
+            },
+            {
+                "title": "OpenLearn Health & Wellbeing (Free)",
+                "url": "https://www.open.edu/openlearn/health-sports-psychology/health-and-wellbeing",
+                "type": "certificate"
+            },
+            {
+                "title": "The Neuroscience of Habits",
+                "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4826769/",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
@@ -295,13 +385,18 @@
         ],
         "resources": [
             {
-                "title": "NeurIPS Proceedings",
-                "url": "https://papers.nips.cc/",
-                "type": "research"
+                "title": "AlphaFold (DeepMind Research)",
+                "url": "https://github.com/google-deepmind/alphafold",
+                "type": "github"
             },
             {
-                "title": "arXiv preprint server",
-                "url": "https://arxiv.org/",
+                "title": "Elsevier Researcher Academy (Free)",
+                "url": "https://researcheracademy.elsevier.com/",
+                "type": "certificate"
+            },
+            {
+                "title": "AlphaFold: Protein Structure Prediction",
+                "url": "https://www.nature.com/articles/s41586-021-03819-2",
                 "type": "research"
             }
         ],
@@ -347,6 +442,21 @@
                 "title": "FreeCodeCamp Full Course",
                 "url": "https://www.youtube.com/c/Freecodecamp",
                 "type": "youtube"
+            },
+            {
+                "title": "Netflix Clone (Microservices)",
+                "url": "https://github.com/adrianhajdin/project_next_14_netflix",
+                "type": "github"
+            },
+            {
+                "title": "FreeCodeCamp Full Stack (100% Free Cert)",
+                "url": "https://www.freecodecamp.org/",
+                "type": "certificate"
+            },
+            {
+                "title": "No Silver Bullet (Fred Brooks)",
+                "url": "http://worrydream.com/refs/Brooks-NoSilverBullet.pdf",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
@@ -391,6 +501,21 @@
                 "title": "StatQuest with Josh Starmer",
                 "url": "https://www.youtube.com/c/joshstarmer",
                 "type": "youtube"
+            },
+            {
+                "title": "Big Data Real-time Dashboard",
+                "url": "https://github.com/apache/superset",
+                "type": "github"
+            },
+            {
+                "title": "IBM Cognitive Class Data Science (Free)",
+                "url": "https://cognitiveclass.ai/courses/data-science-101",
+                "type": "certificate"
+            },
+            {
+                "title": "Data Science and Prediction (Vasant Dhar)",
+                "url": "https://cacm.acm.org/magazines/2013/12/169933-data-science-and-prediction/fulltext",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
@@ -435,6 +560,21 @@
                 "title": "TechWorld with Nana",
                 "url": "https://www.youtube.com/c/TechWorldwithNana",
                 "type": "youtube"
+            },
+            {
+                "title": "E-Commerce K8s Microservices",
+                "url": "https://github.com/GoogleCloudPlatform/microservices-demo",
+                "type": "github"
+            },
+            {
+                "title": "KodeKloud DevOps Prerequisites (Free)",
+                "url": "https://kodekloud.com/learning-path-devops-prerequisites/",
+                "type": "certificate"
+            },
+            {
+                "title": "Borg, Omega, and Kubernetes (Google K8s)",
+                "url": "https://research.google/pubs/pub44843/",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80"
@@ -476,8 +616,18 @@
                 "type": "website"
             },
             {
-                "title": "IEEE Solid-State Circuits",
-                "url": "https://sscs.ieee.org/",
+                "title": "RISC-V CPU Core Design",
+                "url": "https://github.com/ucb-bar/riscv-boom",
+                "type": "github"
+            },
+            {
+                "title": "NPTEL VLSI Design (Free by IITs)",
+                "url": "https://nptel.ac.in/",
+                "type": "certificate"
+            },
+            {
+                "title": "Moore Law (Gordon E. Moore, 1965)",
+                "url": "https://newsroom.intel.com/wp-content/uploads/sites/11/2018/05/moores-law-electronics.pdf",
                 "type": "research"
             }
         ],
@@ -523,6 +673,21 @@
                 "title": "NeetCode",
                 "url": "https://www.youtube.com/c/NeetCode",
                 "type": "youtube"
+            },
+            {
+                "title": "Pathfinding Visualizer (Google ROI)",
+                "url": "https://github.com/clementmihailescu/Pathfinding-Visualizer",
+                "type": "github"
+            },
+            {
+                "title": "HackerRank Problem Solving (Free Cert)",
+                "url": "https://www.hackerrank.com/skills-verification",
+                "type": "certificate"
+            },
+            {
+                "title": "Dijkstras Shortest Path Algorithm (1959)",
+                "url": "https://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80"
@@ -567,6 +732,21 @@
                 "title": "Corey Schafer SQL",
                 "url": "https://www.youtube.com/user/schafer5",
                 "type": "youtube"
+            },
+            {
+                "title": "Distributed SQL DB from Scratch",
+                "url": "https://github.com/cockroachdb/cockroach",
+                "type": "github"
+            },
+            {
+                "title": "HackerRank SQL Certificate (Free Cert)",
+                "url": "https://www.hackerrank.com/skills-verification",
+                "type": "certificate"
+            },
+            {
+                "title": "Relational Model of Data (E.F. Codd, 1970)",
+                "url": "https://www.seas.upenn.edu/~zives/03f/cis550/codd.pdf",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80"
@@ -611,6 +791,21 @@
                 "title": "NetworkChuck",
                 "url": "https://www.youtube.com/c/NetworkChuck",
                 "type": "youtube"
+            },
+            {
+                "title": "Automated Malware Sandbox",
+                "url": "https://github.com/cuckoosandbox/cuckoo",
+                "type": "github"
+            },
+            {
+                "title": "Cisco Intro to Cybersecurity (Free Cert)",
+                "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
+                "type": "certificate"
+            },
+            {
+                "title": "Protection of Information in Computer Systems",
+                "url": "https://www.cs.virginia.edu/~evans/cs551/saltzer/",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
@@ -655,6 +850,21 @@
                 "title": "David Bombal",
                 "url": "https://www.youtube.com/c/DavidBombal",
                 "type": "youtube"
+            },
+            {
+                "title": "Advanced Pentesting Framework",
+                "url": "https://github.com/n1nj4sec/pupy",
+                "type": "github"
+            },
+            {
+                "title": "EC-Council Cyber Essentials (Free Cert)",
+                "url": "https://codered.eccouncil.org/essentials-series/",
+                "type": "certificate"
+            },
+            {
+                "title": "Smashing The Stack For Fun And Profit",
+                "url": "http://phrack.org/issues/49/14.html",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
@@ -699,8 +909,141 @@
                 "title": "Fireship",
                 "url": "https://www.youtube.com/c/Fireship",
                 "type": "youtube"
+            },
+            {
+                "title": "WhatsApp Clone (WebRTC+Firebase)",
+                "url": "https://github.com/adrianhajdin/project_chat_application",
+                "type": "github"
+            },
+            {
+                "title": "Google Android Basics Badges (Free)",
+                "url": "https://developer.android.com/courses/android-basics-kotlin/course",
+                "type": "certificate"
+            },
+            {
+                "title": "React Native (Meta Engineering Paper)",
+                "url": "https://engineering.fb.com/2015/03/26/open-source/react-native-bringing-modern-web-techniques-to-mobile/",
+                "type": "research"
             }
         ],
         "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "agentic-ai",
+        "title": "Agentic AI & LLMs",
+        "description": "Learn to build autonomous AI agents using large language models, LangChain, and advanced prompt engineering.",
+        "instructor": "AI Architect",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "Build real autonomous agents",
+            "LangChain & OpenAI API integration",
+            "Prompt Engineering Mastery"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Intro to LLMs",
+                "desc": "Understanding transformer models and basic API usage."
+            },
+            {
+                "title": "Module 2: Prompt Engineering",
+                "desc": "Advanced techniques for controlling AI outputs."
+            },
+            {
+                "title": "Module 3: LangChain Basics",
+                "desc": "Building chains and utilizing memory."
+            },
+            {
+                "title": "Module 4: Agent Creation",
+                "desc": "Giving LLMs tools to interact with the world."
+            }
+        ],
+        "resources": [
+            {
+                "title": "LangChain Docs",
+                "url": "https://python.langchain.com/",
+                "type": "website"
+            },
+            {
+                "title": "OpenAI API",
+                "url": "https://platform.openai.com/docs/",
+                "type": "website"
+            },
+            {
+                "title": "AutoGPT Autonomous Assistant",
+                "url": "https://github.com/Significant-Gravitas/AutoGPT",
+                "type": "github"
+            },
+            {
+                "title": "DeepLearning.AI Prompt Eng (Free Cert)",
+                "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+                "type": "certificate"
+            },
+            {
+                "title": "ReAct: Synergizing Reasoning and Acting in LLMs",
+                "url": "https://arxiv.org/abs/2210.03629",
+                "type": "research"
+            }
+        ],
+        "image": "assets/agentic_ai_thumbnail_169_full169.png"
+    },
+    {
+        "id": "advanced-robotics",
+        "title": "Advanced Robotics & ROS",
+        "description": "Master Robot Operating System (ROS), kinematics, computer vision, and deploy code to physical robots.",
+        "instructor": "Hardware AI Agent",
+        "duration": "4 Months",
+        "perks": [
+            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
+            "ROS & ROS2 Mastery",
+            "Robot Kinematics",
+            "Hardware Integration"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Intro to Robotics",
+                "desc": "Fundamentals of robot kinematics and dynamics."
+            },
+            {
+                "title": "Module 2: ROS Basics",
+                "desc": "Nodes, Topics, Services, and Actions."
+            },
+            {
+                "title": "Module 3: Computer Vision",
+                "desc": "OpenCV and perception for robots."
+            },
+            {
+                "title": "Module 4: Hardware Integration",
+                "desc": "Controlling motors and reading sensors."
+            }
+        ],
+        "resources": [
+            {
+                "title": "ROS Wiki",
+                "url": "http://wiki.ros.org/",
+                "type": "website"
+            },
+            {
+                "title": "OpenCV Docs",
+                "url": "https://docs.opencv.org/",
+                "type": "website"
+            },
+            {
+                "title": "OpenPilot (Self-Driving Car OS)",
+                "url": "https://github.com/commaai/openpilot",
+                "type": "github"
+            },
+            {
+                "title": "QUT Intro to Robotics via edX (Free)",
+                "url": "https://www.edx.org/course/introduction-to-robotics",
+                "type": "certificate"
+            },
+            {
+                "title": "ROS: An Open-Source Robot Operating System",
+                "url": "https://www.willowgarage.com/sites/default/files/icraoss09-ROS.pdf",
+                "type": "research"
+            }
+        ],
+        "image": "assets/robotics_thumbnail_169_full169.png"
     }
 ]

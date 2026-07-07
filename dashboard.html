@@ -346,7 +346,7 @@
             }
 
             try {
-                const res = await fetch("http://localhost:5000/api/courses");
+                const res = await fetch("/api/courses");
                 const allCourses = await res.json();
                 
                 grid.innerHTML = ""; 

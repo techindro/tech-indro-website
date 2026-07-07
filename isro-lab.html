@@ -702,7 +702,7 @@
             // 2. ALWAYS use Gemini API to generate the response for ANY question
             try {
                 const aiPrompt = "You are Rohini, a friendly ISRO Space Guide and AI Mentor. You have vast knowledge and can answer ANY question—whether it's about space, coding, science, general knowledge, or casual chat. Explain clearly in Hindi/Hinglish. If asked to explain code, explain it line by line. The user asks: " + text;
-                const res = await fetch('http://localhost:5000/api/chat', {
+                const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: aiPrompt, lang: 'hi' })

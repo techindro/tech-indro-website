@@ -4,6 +4,7 @@
   "description": "India's #1 platform for AI & Robotics education with more than 50,000+ students.",
   "main": "main.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -166,6 +166,16 @@ app.get('/api/shikshak-courses', (req, res) => {
     }
 });
 
+// fetch ai tools
+app.get('/api/ai-tools', (req, res) => {
+    try {
+        const tools = JSON.parse(fs.readFileSync(path.join(__dirname, 'ai-tools.json'), 'utf8'));
+        res.json(tools);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch ai tools data' });
+    }
+});
+
 // fetch course details
 app.get('/api/courses/:id', (req, res) => {
     try {
@@ -222,7 +232,7 @@ app.post('/api/payment/checkout', (req, res) => {
 
 // chatbot api
 app.post('/api/chat', async (req, res) => {
-    const { message, lang } = req.body;
+    const { message, lang, agent } = req.body;
     if (!message) return res.status(400).json({ error: "Message is required" });
 
     // check for api key
@@ -241,8 +251,14 @@ app.post('/api/chat', async (req, res) => {
                                     lang === 'ta' ? 'Respond completely in Tamil.' : 
                                     'Respond in English.';
 
-        const systemInstruction = `You are an expert EdTech AI Mentor for Tech Indro. 
-Your goal is to help students learn Coding, DSA, Web Dev, Hackathons, and tech concepts.
+        let agentPersona = "You are an expert EdTech AI Mentor for Tech Indro. Your goal is to help students learn Coding, DSA, Web Dev, Hackathons, and tech concepts.";
+        if (agent === 'career') {
+            agentPersona = "You are an expert Career Coach and HR Interviewer. Your goal is to help students with resume building, placement preparation, mock HR rounds, and career advice.";
+        } else if (agent === 'debug') {
+            agentPersona = "You are an elite Code Debugger. Your goal is to quickly spot bugs in code, explain why they happen, and provide the exact fixed code block.";
+        }
+
+        const systemInstruction = `${agentPersona}
 Always be extremely encouraging, professional, and clear.
 Provide code snippets where helpful.
 ${languageInstruction}`;

@@ -130,7 +130,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             const grid = document.getElementById("programsGrid");
             try {
-                const res = await fetch("http://localhost:5000/api/courses");
+                const res = await fetch("/api/courses");
                 allCourses = await res.json();
                 renderCourses(allCourses);
             } catch (err) {

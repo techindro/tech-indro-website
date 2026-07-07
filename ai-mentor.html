@@ -8,10 +8,13 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
+            background-color: #0f172a;
+            color: #f8fafc;
             height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .chat-container {
             flex: 1;
@@ -75,7 +78,7 @@
         }
         .chat-input-box {
             padding: 1.5rem 1rem;
-            background: var(--bg-main);
+            background: #0f172a;
             position: relative;
         }
         .input-wrapper {
@@ -120,6 +123,60 @@
         .send-btn:hover {
             transform: scale(1.1);
         }
+    
+        .agent-selector-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 1.5rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+        }
+        .agent-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .agent-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .agent-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .agent-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .icon-btn:hover {
+            color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -139,46 +196,92 @@
         </div>
     </header>
 
+    
     <div class="chat-container">
+        <div class="agent-selector-bar">
+            <div class="agent-options">
+                <button class="agent-btn active" onclick="switchAgent('coding')" id="btn-coding">
+                    <i data-lucide="code"></i> Coding Mentor
+                </button>
+                <button class="agent-btn" onclick="switchAgent('career')" id="btn-career">
+                    <i data-lucide="briefcase"></i> Career Coach
+                </button>
+                <button class="agent-btn" onclick="switchAgent('debug')" id="btn-debug">
+                    <i data-lucide="bug"></i> Bug Fixer
+                </button>
+            </div>
+            <div>
+                <select id="chatLang" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.4rem 0.8rem; border-radius: 8px; outline: none; cursor: pointer; font-family: inherit;">
+                    <option value="en" style="color: black;">English</option>
+                    <option value="hi" style="color: black;">Hindi / Hinglish</option>
+                </select>
+            </div>
+        </div>
+
         <div class="chat-history" id="chatHistory">
-            <div class="chat-bubble chat-ai">
+            <div class="chat-bubble chat-ai" id="welcomeMsg">
                 <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
-                <strong>Tech Indro AI Mentor</strong><br>
-                Namaste! I am your 24/7 AI Mentor. Ask me any doubt about Coding, Hackathons, or Career prep in Hindi, English, or any language you prefer!
+                <strong id="agentName">Coding Mentor</strong><br>
+                <span id="agentGreeting">Namaste! Main aapka 24/7 AI Coding Mentor hoon. Aap mujhse kisi bhi language, framework ya hackathon ke baare me pooch sakte hain!</span>
             </div>
         </div>
         
         <div class="chat-input-box">
             <form id="chatForm" class="input-wrapper">
-                <select id="chatLang" style="background: transparent; border: none; color: white; padding: 0.5rem; outline: none; border-right: 1px solid rgba(255,255,255,0.2); margin-right: 0.5rem; cursor: pointer; font-family: inherit;">
-                    <option value="en" style="color: black;">English</option>
-                    <option value="hi" style="color: black;">Hindi</option>
-                    <option value="ta" style="color: black;">Tamil</option>
-                </select>
-                <input type="text" id="chatInput" placeholder="Type your doubt here... (e.g. How does Google Cloud scale?)" autocomplete="off">
+                <button type="button" class="icon-btn" title="Upload File" onclick="document.getElementById('fileUpload').click()">
+                    <i data-lucide="paperclip"></i>
+                </button>
+                <input type="file" id="fileUpload" style="display: none;" onchange="alert('File ' + this.files[0].name + ' selected for upload!')">
+                
+                <input type="text" id="chatInput" placeholder="Type your message here..." autocomplete="off">
+                
+                <button type="button" class="icon-btn" title="Voice Input (Mic)" onclick="alert('Microphone activated! Speak now...')">
+                    <i data-lucide="mic"></i>
+                </button>
+
                 <button type="submit" class="send-btn">
-                    <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                    <i data-lucide="send" style="width: 18px; height: 18px;"></i>
                 </button>
             </form>
         </div>
     </div>
 
+
     <script>
+
         lucide.createIcons();
 
         const form = document.getElementById('chatForm');
         const input = document.getElementById('chatInput');
         const history = document.getElementById('chatHistory');
-
         const langSelect = document.getElementById('chatLang');
+        
+        let currentAgent = 'coding';
+        const agentData = {
+            'coding': { name: 'Coding Mentor', greeting: 'Namaste! Main aapka 24/7 AI Coding Mentor hoon. Aap mujhse kisi bhi language, framework ya hackathon ke baare me pooch sakte hain!' },
+            'career': { name: 'Career Coach', greeting: 'Hello! Main aapka Career Coach hoon. Resume building, interview prep aur placements me main aapki help karunga.' },
+            'debug': { name: 'Bug Fixer', greeting: 'Hey! Code me error aa raha hai? Apna code yahan paste kijiye ya file upload kijiye, main turant fix kar dunga!' }
+        };
 
+        window.switchAgent = function(agent) {
+            currentAgent = agent;
+            document.querySelectorAll('.agent-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + agent).classList.add('active');
+            
+            document.getElementById('agentName').innerText = agentData[agent].name;
+            document.getElementById('agentGreeting').innerText = agentData[agent].greeting;
+            
+            // Clear chat history when switching agents
+            const welcomeBubble = document.getElementById('welcomeMsg').outerHTML;
+            history.innerHTML = welcomeBubble;
+            lucide.createIcons();
+        };
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const msg = input.value.trim();
             if(!msg) return;
 
-            // Add user message
             const userBubble = document.createElement('div');
             userBubble.className = 'chat-bubble chat-user';
             userBubble.innerText = msg;
@@ -189,12 +292,11 @@
 
             const lang = langSelect.value;
             
-            // Add typing indicator
             const typingBubble = document.createElement('div');
             typingBubble.className = 'chat-bubble chat-ai';
             typingBubble.innerHTML = `
                 <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
-                <strong>AI Mentor</strong><br>
+                <strong>${agentData[currentAgent].name}</strong><br>
                 <em>Thinking...</em>
             `;
             history.appendChild(typingBubble);
@@ -202,33 +304,32 @@
             history.scrollTop = history.scrollHeight;
 
             try {
-                // Call real AI backend
-                const response = await fetch('http://localhost:5000/api/chat', {
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: msg, lang: lang })
+                    body: JSON.stringify({ message: msg, lang: lang, agent: currentAgent })
                 });
                 
                 const data = await response.json();
                 
-                // Replace typing indicator with real response
                 typingBubble.innerHTML = `
                     <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
-                    <strong>AI Mentor</strong><br>
+                    <strong>${agentData[currentAgent].name}</strong><br>
                     ${data.response ? data.response.replace(/\n/g, '<br>') : 'Error parsing response'}
                 `;
             } catch (error) {
                 typingBubble.innerHTML = `
                     <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
-                    <strong>AI Mentor</strong><br>
-                    <em>Sorry, the server is offline or unreachable. Please try again.</em>
+                    <strong>${agentData[currentAgent].name}</strong><br>
+                    <em>Sorry, the server is offline. (AI processing requires backend connection)</em>
                 `;
             }
             
             lucide.createIcons();
             history.scrollTop = history.scrollHeight;
         });
-    </script>
+
+</script>
 <script src="main.js"></script>
 </body>
 </html>

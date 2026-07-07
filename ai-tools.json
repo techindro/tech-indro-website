@@ -1,0 +1,434 @@
+[
+  {
+    "id": "t1",
+    "name": "Cursor",
+    "category": "Coding",
+    "description": "The AI-first Code Editor.",
+    "link": "https://cursor.com",
+    "icon": "💻"
+  },
+  {
+    "id": "t2",
+    "name": "v0 by Vercel",
+    "category": "Coding",
+    "description": "Generate UI from text prompts.",
+    "link": "https://v0.dev",
+    "icon": "🎨"
+  },
+  {
+    "id": "t3",
+    "name": "Bolt.new",
+    "category": "Coding",
+    "description": "Build full-stack web apps in seconds.",
+    "link": "https://bolt.new",
+    "icon": "⚡"
+  },
+  {
+    "id": "t4",
+    "name": "GitHub Copilot",
+    "category": "Coding",
+    "description": "Your AI pair programmer.",
+    "link": "https://github.com/features/copilot",
+    "icon": "🐙"
+  },
+  {
+    "id": "t5",
+    "name": "Devin",
+    "category": "Coding",
+    "description": "The first autonomous AI software engineer.",
+    "link": "https://cognition-labs.com",
+    "icon": "🤖"
+  },
+  {
+    "id": "t6",
+    "name": "Codeium",
+    "category": "Coding",
+    "description": "Free AI code completion and chat.",
+    "link": "https://codeium.com",
+    "icon": "⌨️"
+  },
+  {
+    "id": "t7",
+    "name": "Replit Ghostwriter",
+    "category": "Coding",
+    "description": "Code faster in the cloud.",
+    "link": "https://replit.com",
+    "icon": "🔄"
+  },
+  {
+    "id": "t8",
+    "name": "Tabnine",
+    "category": "Coding",
+    "description": "AI assistant for software developers.",
+    "link": "https://tabnine.com",
+    "icon": "9️⃣"
+  },
+  {
+    "id": "t9",
+    "name": "FlutterFlow AI",
+    "category": "Coding",
+    "description": "Build apps using AI prompts.",
+    "link": "https://flutterflow.io",
+    "icon": "📱"
+  },
+  {
+    "id": "t10",
+    "name": "Mutable.ai",
+    "category": "Coding",
+    "description": "AI-accelerated software development.",
+    "link": "https://mutable.ai",
+    "icon": "🧬"
+  },
+  {
+    "id": "t11",
+    "name": "Midjourney",
+    "category": "Design",
+    "description": "Incredible AI image generation from Discord.",
+    "link": "https://midjourney.com",
+    "icon": "⛵"
+  },
+  {
+    "id": "t12",
+    "name": "Ideogram",
+    "category": "Design",
+    "description": "Best AI for generating images with perfect text.",
+    "link": "https://ideogram.ai",
+    "icon": "🔤"
+  },
+  {
+    "id": "t13",
+    "name": "Canva Magic",
+    "category": "Design",
+    "description": "AI design tools built into Canva.",
+    "link": "https://canva.com",
+    "icon": "🖌️"
+  },
+  {
+    "id": "t14",
+    "name": "DALL-E 3",
+    "category": "Design",
+    "description": "OpenAIs advanced image generator.",
+    "link": "https://openai.com/dall-e-3",
+    "icon": "🖼️"
+  },
+  {
+    "id": "t15",
+    "name": "Leonardo AI",
+    "category": "Design",
+    "description": "Create production-quality assets for your projects.",
+    "link": "https://leonardo.ai",
+    "icon": "🦁"
+  },
+  {
+    "id": "t16",
+    "name": "Figma AI",
+    "category": "Design",
+    "description": "AI features inside the best UI/UX design tool.",
+    "link": "https://figma.com",
+    "icon": "📐"
+  },
+  {
+    "id": "t17",
+    "name": "Krea AI",
+    "category": "Design",
+    "description": "Real-time AI generation and upscaling.",
+    "link": "https://krea.ai",
+    "icon": "⚡"
+  },
+  {
+    "id": "t18",
+    "name": "Magnific AI",
+    "category": "Design",
+    "description": "The most advanced AI image upscaler.",
+    "link": "https://magnific.ai",
+    "icon": "🔍"
+  },
+  {
+    "id": "t19",
+    "name": "Recraft",
+    "category": "Design",
+    "description": "Generate and edit vector art using AI.",
+    "link": "https://recraft.ai",
+    "icon": "✒️"
+  },
+  {
+    "id": "t20",
+    "name": "Runway Gen-3",
+    "category": "Video",
+    "description": "State-of-the-art text-to-video generation.",
+    "link": "https://runwayml.com",
+    "icon": "🎥"
+  },
+  {
+    "id": "t21",
+    "name": "Invideo AI",
+    "category": "Video",
+    "description": "Generate faceless YouTube videos instantly.",
+    "link": "https://invideo.io/ai",
+    "icon": "🎬"
+  },
+  {
+    "id": "t22",
+    "name": "Pika Labs",
+    "category": "Video",
+    "description": "Idea-to-video platform that sets your creativity in motion.",
+    "link": "https://pika.art",
+    "icon": "🐇"
+  },
+  {
+    "id": "t23",
+    "name": "HeyGen",
+    "category": "Video",
+    "description": "Create AI avatar videos easily.",
+    "link": "https://heygen.com",
+    "icon": "👤"
+  },
+  {
+    "id": "t24",
+    "name": "Opus Clip",
+    "category": "Video",
+    "description": "Turn long videos into viral shorts in 1 click.",
+    "link": "https://opus.pro",
+    "icon": "✂️"
+  },
+  {
+    "id": "t25",
+    "name": "Sora",
+    "category": "Video",
+    "description": "OpenAI video generation model (Concept).",
+    "link": "https://openai.com/sora",
+    "icon": "🌌"
+  },
+  {
+    "id": "t26",
+    "name": "Synthesia",
+    "category": "Video",
+    "description": "Create professional video from text.",
+    "link": "https://synthesia.io",
+    "icon": "👔"
+  },
+  {
+    "id": "t27",
+    "name": "Luma Dream Machine",
+    "category": "Video",
+    "description": "Next generation AI video model.",
+    "link": "https://lumalabs.ai/dream-machine",
+    "icon": "✨"
+  },
+  {
+    "id": "t28",
+    "name": "Suno",
+    "category": "Audio",
+    "description": "Make any song you can imagine.",
+    "link": "https://suno.com",
+    "icon": "🎵"
+  },
+  {
+    "id": "t29",
+    "name": "Udio",
+    "category": "Audio",
+    "description": "Create extraordinary AI music.",
+    "link": "https://udio.com",
+    "icon": "🎸"
+  },
+  {
+    "id": "t30",
+    "name": "ElevenLabs",
+    "category": "Audio",
+    "description": "The most realistic text-to-speech voice generator.",
+    "link": "https://elevenlabs.io",
+    "icon": "🎙️"
+  },
+  {
+    "id": "t31",
+    "name": "Descript",
+    "category": "Audio",
+    "description": "Edit podcasts and videos by editing text.",
+    "link": "https://descript.com",
+    "icon": "📝"
+  },
+  {
+    "id": "t32",
+    "name": "MusicLM",
+    "category": "Audio",
+    "description": "Google AI tool for music generation.",
+    "link": "https://aitestkitchen.withgoogle.com",
+    "icon": "🎧"
+  },
+  {
+    "id": "t33",
+    "name": "Vocal Remover",
+    "category": "Audio",
+    "description": "Extract vocals and instruments from any song.",
+    "link": "https://vocalremover.org",
+    "icon": "🎼"
+  },
+  {
+    "id": "t34",
+    "name": "ChatGPT",
+    "category": "Productivity",
+    "description": "OpenAIs powerful conversational agent.",
+    "link": "https://chat.openai.com",
+    "icon": "💬"
+  },
+  {
+    "id": "t35",
+    "name": "Claude 3.5",
+    "category": "Productivity",
+    "description": "Anthropic AI assistant, excellent for coding.",
+    "link": "https://claude.ai",
+    "icon": "🧠"
+  },
+  {
+    "id": "t36",
+    "name": "Perplexity",
+    "category": "Productivity",
+    "description": "AI-powered search engine. Where knowledge begins.",
+    "link": "https://perplexity.ai",
+    "icon": "🔍"
+  },
+  {
+    "id": "t37",
+    "name": "Notion AI",
+    "category": "Productivity",
+    "description": "Access the limitless power of AI inside Notion.",
+    "link": "https://notion.so",
+    "icon": "📓"
+  },
+  {
+    "id": "t38",
+    "name": "Gamma",
+    "category": "Productivity",
+    "description": "Create beautiful presentations from a prompt.",
+    "link": "https://gamma.app",
+    "icon": "📊"
+  },
+  {
+    "id": "t39",
+    "name": "Tome",
+    "category": "Productivity",
+    "description": "The AI-powered storytelling format.",
+    "link": "https://tome.app",
+    "icon": "📖"
+  },
+  {
+    "id": "t40",
+    "name": "CrewAI",
+    "category": "AI Agents",
+    "description": "Framework for orchestrating autonomous AI agents.",
+    "link": "https://crewai.com",
+    "icon": "👥"
+  },
+  {
+    "id": "t41",
+    "name": "LangChain",
+    "category": "AI Agents",
+    "description": "Build context-aware reasoning applications.",
+    "link": "https://langchain.com",
+    "icon": "🔗"
+  },
+  {
+    "id": "t42",
+    "name": "AutoGPT",
+    "category": "AI Agents",
+    "description": "The heart of the open-source agent ecosystem.",
+    "link": "https://agpt.co",
+    "icon": "⚙️"
+  },
+  {
+    "id": "t43",
+    "name": "Voiceflow",
+    "category": "Chatbots",
+    "description": "Build conversational AI agents visually.",
+    "link": "https://voiceflow.com",
+    "icon": "🗣️"
+  },
+  {
+    "id": "t44",
+    "name": "Botpress",
+    "category": "Chatbots",
+    "description": "The first generative AI platform for developers.",
+    "link": "https://botpress.com",
+    "icon": "🤖"
+  },
+  {
+    "id": "t45",
+    "name": "Jasper",
+    "category": "Writing",
+    "description": "AI copilot for marketing teams.",
+    "link": "https://jasper.ai",
+    "icon": "✍️"
+  },
+  {
+    "id": "t46",
+    "name": "Copy.ai",
+    "category": "Writing",
+    "description": "Write better marketing copy and content.",
+    "link": "https://copy.ai",
+    "icon": "📝"
+  },
+  {
+    "id": "t47",
+    "name": "Grammarly",
+    "category": "Writing",
+    "description": "AI writing assistant that helps you write clearly.",
+    "link": "https://grammarly.com",
+    "icon": "✅"
+  },
+  {
+    "id": "t48",
+    "name": "Writesonic",
+    "category": "Writing",
+    "description": "Create SEO-optimized and plagiarism-free content.",
+    "link": "https://writesonic.com",
+    "icon": "🚀"
+  },
+  {
+    "id": "t49",
+    "name": "Rytr",
+    "category": "Writing",
+    "description": "An AI writing assistant that helps you create content.",
+    "link": "https://rytr.me",
+    "icon": "✒️"
+  },
+  {
+    "id": "t50",
+    "name": "Taplio",
+    "category": "Marketing",
+    "description": "Leverage AI to grow on LinkedIn.",
+    "link": "https://taplio.com",
+    "icon": "💼"
+  },
+  {
+    "id": "t51",
+    "name": "Tweet Hunter",
+    "category": "Marketing",
+    "description": "Build and monetize your Twitter audience.",
+    "link": "https://tweethunter.io",
+    "icon": "🐦"
+  },
+  {
+    "id": "t52",
+    "name": "HubSpot AI",
+    "category": "Marketing",
+    "description": "AI-powered marketing automation.",
+    "link": "https://hubspot.com",
+    "icon": "📈"
+  },
+  {
+    "id": "t53",
+    "name": "Rosebud AI",
+    "category": "Gaming",
+    "description": "The AI game creation platform.",
+    "link": "https://rosebud.ai",
+    "icon": "🎮"
+  },
+  {
+    "id": "t54",
+    "name": "Ludo.ai",
+    "category": "Gaming",
+    "description": "AI for game research and design.",
+    "link": "https://ludo.ai",
+    "icon": "🎲"
+  }
+]

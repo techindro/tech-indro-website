@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for TSOC - Mentor Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .apply-header {
+            background: linear-gradient(135deg, #0f172a, #334155);
+            padding: 100px 20px 40px;
+            text-align: center;
+            color: white;
+        }
+        .apply-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .apply-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: -30px auto 60px;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Success Modal */
+        #successModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .check-circle {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        .modal-content h2 {
+            margin: 0 0 10px 0;
+            color: #0f172a;
+        }
+        .modal-content p {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .modal-btn {
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <nav style="background: white; padding: 15px 20px; border-radius: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 15px; left: 50%; transform: translateX(-50%); max-width: 1200px; z-index: 1000;">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 45px;">
+                    <img src="assets/user-photo.jpg" alt="TECH INDRO Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <span style="font-family: 'Calibri', sans-serif; font-weight: bold; font-size: 1.4rem; letter-spacing: 1px; color: #1e293b;">TECH INDRO</span>
+                </a>
+                <ul class="nav-links" style="display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center;">
+                    <li><a href="tsoc.html" style="color: #64748b; text-decoration: none; font-weight: 600;">TSOC Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="apply-header">
+        <h1>Mentor Application</h1>
+        <p>Guide the next generation of developers and help shape open-source projects.</p>
+    </div>
+
+    <div class="form-container">
+        <a href="tsoc.html" class="back-link"><i data-lucide="arrow-left" style="width: 16px;"></i> Back to TSOC</a>
+        
+        <form id="applyForm">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" placeholder="jane@example.com" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>GitHub Profile</label>
+                    <input type="url" class="form-control" placeholder="https://github.com/username" required>
+                </div>
+                <div class="form-group">
+                    <label>LinkedIn Profile</label>
+                    <input type="url" class="form-control" placeholder="https://linkedin.com/in/username" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Target Project to Mentor</label>
+                    <select class="form-control" required>
+                        <option value="" disabled selected>Select a project...</option>
+                        <option value="samyam">Samyam LM - Satellite AI</option>
+                        <option value="shikshak">Shikshak AI Backend</option>
+                        <option value="indrolabs">IndroLabs Web IDE</option>
+                        <option value="mobile">TECH INDRO Mobile App</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Years of Experience</label>
+                    <input type="number" class="form-control" placeholder="e.g. 3" min="1" max="20" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Past Mentoring / Leadership Experience</label>
+                <textarea class="form-control" placeholder="Tell us about any previous mentorship (e.g. GSoC, hackathons, team lead)..." style="min-height: 80px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Why do you want to mentor for TSOC?</label>
+                <textarea class="form-control" placeholder="Briefly describe your motivation to mentor students for this open-source program..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Submit Mentor Application <i data-lucide="send" style="width: 18px;"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal">
+        <div class="modal-content">
+            <div class="check-circle">
+                <i data-lucide="check" style="width: 40px; height: 40px;"></i>
+            </div>
+            <h2>Application Received!</h2>
+            <p>Thank you for applying to be a Mentor for the TECH INDRO Summer of Code. We will review your profile and get back to you shortly.</p>
+            <a href="tsoc.html" class="modal-btn">Return to TSOC</a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        document.getElementById('applyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Submitting... <i data-lucide="loader" class="spin"></i>';
+            lucide.createIcons();
+            
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('successModal').style.display = 'flex';
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

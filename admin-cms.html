@@ -153,7 +153,7 @@
         // Load existing courses
         async function loadCourses() {
             try {
-                const res = await fetch("http://localhost:5000/api/shikshak-courses");
+                const res = await fetch("/api/shikshak-courses");
                 const data = await res.json();
                 const tbody = document.getElementById('courseTable');
                 tbody.innerHTML = "";

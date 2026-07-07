@@ -72,7 +72,7 @@
         async function fetchAnalytics() {
             try {
                 // If running statically, we might not hit the API, but server.js is running.
-                const res = await fetch('http://localhost:5000/api/analytics');
+                const res = await fetch('/api/analytics');
                 const data = await res.json();
                 document.getElementById('visitorCount').innerText = data.totalVisits || 0;
             } catch (err) {

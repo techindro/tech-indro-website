@@ -1390,7 +1390,7 @@ footer {
 
 /* 4. App Download Banner (Sleek Glassmorphism) */
 .app-banner {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 32px;
     padding: 4rem 5rem;
@@ -1398,7 +1398,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
     margin: 8rem 0;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);

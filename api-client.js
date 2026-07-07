@@ -2,7 +2,7 @@
 // This file communicates with our custom Node.js Express server running on port 5000.
 // It replaces the previous LocalStorage mock.
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "/api";
 
 document.addEventListener("DOMContentLoaded", () => {
     
