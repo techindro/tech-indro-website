@@ -4,7 +4,6 @@
 </div>
 
 ---
-
 ## 📌 Overview
 Tech Indro is a full-stack educational platform built to deliver an interactive and seamless learning experience. We focus heavily on core web technologies to keep things lightning fast, avoiding bloated frontend frameworks where they aren't strictly necessary. 
 
