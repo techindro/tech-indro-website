@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Shikshak AI Rohini</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: #1f2937;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #header {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-links a, .logo-text { color: #1f2937; }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            margin: 80px auto 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            padding: 1rem;
+        }
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .bubble {
+            max-width: 80%;
+            padding: 1.5rem;
+            border-radius: 24px;
+            line-height: 1.6;
+            font-size: 1.2rem;
+            animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .bubble-ai {
+            align-self: flex-start;
+            background: white;
+            border: 2px solid #f59e0b;
+            border-bottom-left-radius: 4px;
+            position: relative;
+        }
+        .ai-avatar {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 50px;
+            height: 50px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 4px solid #fdfbfb;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+        .bubble-kid {
+            align-self: flex-end;
+            background: #3b82f6;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .controls {
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+
+        .mic-btn {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+            transition: all 0.2s ease;
+        }
+        .mic-btn:hover {
+            transform: scale(1.1);
+        }
+        .mic-btn.recording {
+            animation: pulse 1s infinite;
+            background: linear-gradient(135deg, #22c55e, #10b981);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .reward-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #fef08a;
+            color: #854d0e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="shikshak.html" class="logo">
+                    <div class="logo-icon" style="background: #f59e0b;">TI</div>
+                    <span class="logo-text">TECH INDRO <span style="color: #f59e0b;">KIDS</span></span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="chat-container">
+        <div class="chat-history" id="chatHistory">
+            <div class="bubble bubble-ai">
+                <div class="ai-avatar">🤖</div>
+                <strong>AI Shikshak (Teacher)</strong><br><br>
+                Namaste! Main aapka AI Teacher hoon. Tap the big microphone below and ask me anything about Coding, Robotics, or AI in Hindi or English!
+            </div>
+        </div>
+        
+        <div class="controls">
+            <p style="margin-bottom: 1rem; color: #6b7280; font-weight: bold;">Tap and Speak</p>
+            <button class="mic-btn" id="micBtn" onclick="toggleRecord()">
+                <i data-lucide="mic" style="width: 40px; height: 40px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const history = document.getElementById('chatHistory');
+        const micBtn = document.getElementById('micBtn');
+        let isRecording = false;
+
+        function toggleRecord() {
+            if(!isRecording) {
+                isRecording = true;
+                micBtn.classList.add('recording');
+            } else {
+                isRecording = false;
+                micBtn.classList.remove('recording');
+                simulateInteraction();
+            }
+        }
+
+        function simulateInteraction() {
+            // Child asks something
+            const kidBubble = document.createElement('div');
+            kidBubble.className = 'bubble bubble-kid';
+            kidBubble.innerText = "🎤 (Audio recorded) Robot ko aage move karne ke liye code kaise likhein?";
+            history.appendChild(kidBubble);
+            history.scrollTop = history.scrollHeight;
+
+            // AI Replies
+            setTimeout(() => {
+                const aiBubble = document.createElement('div');
+                aiBubble.className = 'bubble bubble-ai';
+                aiBubble.innerHTML = `
+                    <div class="ai-avatar">🤖</div>
+                    <strong>AI Shikshak</strong><br><br>
+                    Arre waah! Good try! Main aapka AI Mentor hoon. 😊<br><br>
+                    Think of loops like a Cricket bowler. A bowler runs up, bowls the ball, and walks back to the start, right? They repeat this exact same sequence 6 times for an over! 🏏<br><br>
+                    To move the robot forward, hum 'Motor On' command likhenge. Can you guess what command we use to make it wait for 1 second? (Hint: Think about the English word for 'delay'!) 🚀<br>
+                    <div class="reward-badge">🌟 +10 Robotics Points!</div>
+                `;
+                history.appendChild(aiBubble);
+                history.scrollTop = history.scrollHeight;
+            }, 1500);
+        }
+    </script>
+<script src="main.js"></script>
+</body>
+</html>

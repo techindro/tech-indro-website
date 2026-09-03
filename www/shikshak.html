@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - AI Shikshak (Universal Portal)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        
+        /* AI Tools Hub Styles */
+        body.shikshak-mode {
+            background-color: #ffffff;
+        }
+        .tools-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .tools-header h1 {
+            font-size: 3rem;
+            color: var(--shikshak-secondary);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            display: flex;
+            gap: 10px;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            border: 2px solid #e5e7eb;
+            font-size: 1.1rem;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .search-bar input:focus {
+            border-color: var(--shikshak-secondary);
+        }
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        .filter-btn {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4b5563;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--shikshak-secondary);
+            color: white;
+            border-color: var(--shikshak-secondary);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+            border-color: #bfdbfe;
+        }
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        .tool-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .tool-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #1f2937;
+        }
+        .tool-category {
+            font-size: 0.8rem;
+            color: #6366f1;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tool-desc {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        .tool-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            padding: 0.75rem;
+            background: #f1f5f9;
+            color: #475569;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .tool-card:hover .tool-link {
+            background: var(--shikshak-secondary);
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="shikshak-mode">
+
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                    <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                    <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Main Site</a></li>
+                    <li><a href="shikshak-rohini.html" style="color: var(--shikshak-secondary); font-weight: bold;">Ask Rohini</a></li>
+                    <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main class="container" style="padding-top: 120px;">
+        <div class="tools-header">
+            <h1>Tech Indro AI Tools Hub</h1>
+            <p style="color:#6b7280; font-size:1.2rem; max-width: 600px; margin: 0 auto 2rem;">Discover, search, and access the top 50+ AI tools across coding, design, video, and more.</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search AI tools (e.g. video, cursor, midjourney)...">
+        </div>
+
+        <div class="category-filters" id="categoryFilters">
+            <!-- Filters injected by JS -->
+        </div>
+
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools loaded here -->
+        </div>
+    </main>
+
+
+
+
+    
+    <script>
+        lucide.createIcons();
+
+        let allTools = [];
+        let filteredTools = [];
+        let currentCategory = 'All';
+
+        async function fetchTools() {
+            try {
+                const res = await fetch("/api/ai-tools");
+                allTools = await res.json();
+                filteredTools = [...allTools];
+                
+                renderFilters();
+                renderTools();
+                setupSearch();
+            } catch (err) {
+                document.getElementById("toolsGrid").innerHTML = "<p>Error loading AI tools.</p>";
+            }
+        }
+
+        function renderFilters() {
+            const filtersContainer = document.getElementById("categoryFilters");
+            const categories = ['All', ...new Set(allTools.map(t => t.category))];
+            
+            filtersContainer.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement("button");
+                btn.className = `filter-btn ${cat === currentCategory ? 'active' : ''}`;
+                btn.textContent = cat;
+                btn.onclick = () => {
+                    currentCategory = cat;
+                    renderFilters(); // update active class
+                    filterTools();
+                };
+                filtersContainer.appendChild(btn);
+            });
+        }
+
+        function filterTools() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            filteredTools = allTools.filter(tool => {
+                const matchesCat = currentCategory === 'All' || tool.category === currentCategory;
+                const matchesSearch = tool.name.toLowerCase().includes(searchTerm) || 
+                                      tool.description.toLowerCase().includes(searchTerm) ||
+                                      tool.category.toLowerCase().includes(searchTerm);
+                return matchesCat && matchesSearch;
+            });
+            
+            renderTools();
+        }
+
+        function setupSearch() {
+            document.getElementById('searchInput').addEventListener('input', filterTools);
+        }
+
+        function renderTools() {
+            const grid = document.getElementById("toolsGrid");
+            grid.innerHTML = "";
+            
+            if (filteredTools.length === 0) {
+                grid.innerHTML = "<p style='text-align:center; grid-column: 1/-1;'>No AI tools found matching your criteria.</p>";
+                return;
+            }
+            
+            filteredTools.forEach(tool => {
+                const card = document.createElement("div");
+                card.className = "tool-card fade-in";
+                
+                card.innerHTML = `
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <img src="https://www.google.com/s2/favicons?sz=64&domain=${new URL(tool.link).hostname}" alt="${tool.name}" style="width: 40px; height: 40px; border-radius: 8px;" onerror="this.outerHTML=\`<span style='font-size:1.5rem;'>\${tool.icon}</span>\`" />
+                        </div>
+                        <div class="tool-info">
+                            <div class="tool-category">${tool.category}</div>
+                            <h3>${tool.name}</h3>
+                        </div>
+                    </div>
+                    <p class="tool-desc">${tool.description}</p>
+                    <a href="${tool.link}" target="_blank" class="tool-link">Open Tool</a>
+                `;
+                
+                // Make the whole card clickable
+                card.onclick = (e) => {
+                    if(e.target.tagName !== 'A') {
+                        window.open(tool.link, '_blank');
+                    }
+                };
+                
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchTools);
+    </script>
+
+<script src="main.js"></script>
+</body>
+</html>

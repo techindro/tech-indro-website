@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - AI Mentor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        /* Gemini Style Clean Typography & Formatting */
+        .chat-ai {
+            color: #1e293b;
+            line-height: 1.65;
+            font-size: 0.98rem;
+        }
+        .chat-ai p {
+            margin: 0.6rem 0;
+            color: #334155;
+        }
+        .chat-ai strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .chat-ai ul, .chat-ai ol {
+            margin: 0.5rem 0 0.75rem 1.4rem;
+            padding-left: 0.2rem;
+        }
+        .chat-ai li {
+            margin-bottom: 0.35rem;
+            color: #334155;
+            line-height: 1.55;
+        }
+        .inline-code, .chat-ai :not(pre) > code {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-size: 0.88em;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-weight: 500;
+        }
+        .code-block-wrapper {
+            background: #0f172a;
+            border-radius: 12px;
+            margin: 0.9rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+            border: 1px solid #1e293b;
+        }
+        .code-header {
+            background: #1e293b;
+            padding: 0.45rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .copy-code-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #cbd5e1;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-code-btn:hover {
+            background: #ff6b35;
+            color: white;
+        }
+        .code-block-wrapper pre {
+            padding: 1rem 1.25rem;
+            margin: 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #f1f5f9;
+        }
+        .code-block-wrapper code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            font-family: inherit;
+        }
+        .speaking-wave {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            height: 14px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .speaking-wave span {
+            width: 3px;
+            height: 100%;
+            background-color: #ff6b35;
+            border-radius: 2px;
+            animation: waveAnim 0.8s infinite ease-in-out;
+        }
+        .speaking-wave span:nth-child(2) { animation-delay: 0.15s; }
+        .speaking-wave span:nth-child(3) { animation-delay: 0.3s; }
+        .speaking-wave span:nth-child(4) { animation-delay: 0.45s; }
+        @keyframes waveAnim {
+            0%, 100% { height: 4px; }
+            50% { height: 14px; }
+        }
+        @keyframes pulseMic {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        header#header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        header nav .nav-links a {
+            color: #475569 !important;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        header nav .nav-links a:hover {
+            color: var(--primary) !important;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 950px;
+            margin: 85px auto 0;
+            width: 100%;
+            height: calc(100vh - 85px);
+            padding: 1rem 1.5rem;
+        }
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 1.25rem 1.5rem;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-size: 1.02rem;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-user {
+            align-self: flex-end;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+            font-weight: 500;
+        }
+        .chat-ai {
+            align-self: flex-start;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+            position: relative;
+        }
+        .chat-ai strong {
+            color: #ff6b35;
+            font-weight: 700;
+        }
+        .ai-avatar-inline {
+            position: absolute;
+            bottom: -12px;
+            left: -12px;
+            width: 32px;
+            height: 32px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.35);
+        }
+        .chat-input-box {
+            padding: 1rem 0;
+            background: transparent;
+            position: relative;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 35px;
+            padding: 0.4rem 0.8rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .input-wrapper:focus-within {
+            border-color: #ff6b35;
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.15);
+        }
+        .input-wrapper input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #0f172a;
+            padding: 0.75rem 1rem;
+            font-size: 1.05rem;
+            outline: none;
+        }
+        .input-wrapper input::placeholder {
+            color: #94a3b8;
+        }
+        .send-btn {
+            background: #ff6b35;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+            flex-shrink: 0;
+        }
+        .send-btn:hover {
+            transform: scale(1.08);
+            background: #e05a2b;
+        }
+    
+        .agent-selector-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 0.85rem 1.25rem;
+            margin-bottom: 0.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .agent-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .agent-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            padding: 0.5rem 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .agent-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .agent-btn.active {
+            background: #ff6b35;
+            border-color: #ff6b35;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .icon-btn:hover {
+            color: #ff6b35;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <nav>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                    <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); background: white;">
+                    <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="dashboard.html">My Dashboard</a></li>
+                    <li><a href="ai-mentor.html" style="color: var(--primary) !important; font-weight: 700;">AI Mentor</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="chat-container">
+        <div class="agent-selector-bar">
+            <div class="agent-options">
+                <button class="agent-btn active" onclick="switchAgent('coding')" id="btn-coding">
+                    <i data-lucide="code"></i> Coding Mentor
+                </button>
+                <button class="agent-btn" onclick="switchAgent('career')" id="btn-career">
+                    <i data-lucide="briefcase"></i> Career Coach
+                </button>
+                <button class="agent-btn" onclick="switchAgent('debug')" id="btn-debug">
+                    <i data-lucide="bug"></i> Bug Fixer
+                </button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button type="button" id="voiceToggleBtn" class="agent-btn" onclick="toggleVoice()" style="background: #e0f2fe; color: #0284c7; border-color: #bae6fd; font-size: 0.88rem; padding: 0.45rem 0.9rem;" title="AI Voice Talking Mode">
+                    <i data-lucide="volume-2" id="voiceIcon"></i> <span id="voiceText">Voice: ON</span>
+                </button>
+                <select id="chatLang" style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #1e293b; padding: 0.45rem 0.9rem; border-radius: 20px; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; font-size: 0.88rem;">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi / Hinglish</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="chat-history" id="chatHistory">
+            <div class="chat-bubble chat-ai" id="welcomeMsg" style="position: relative;">
+                <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <div>
+                        <strong id="agentName">Coding Mentor</strong>
+                        <div class="speaking-wave current-speaking-wave" style="display: none;">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <button class="icon-btn" onclick="speakText(document.getElementById('agentGreeting').innerText)" style="padding: 2px; color: #94a3b8;" title="Listen to AI Agent">
+                        <i data-lucide="volume-2" style="width: 17px; height: 17px;"></i>
+                    </button>
+                </div>
+                <span id="agentGreeting">Namaste! Main aapka 24/7 AI Coding Mentor hoon. Main aapke sawalon ka jawab dene ke sath aapse interact bhi karunga. Batayein, aaj hum kya build karein?</span>
+            </div>
+        </div>
+        
+        <div class="chat-input-box">
+            <form id="chatForm" class="input-wrapper">
+                <button type="button" class="icon-btn" title="Upload File" onclick="document.getElementById('fileUpload').click()">
+                    <i data-lucide="paperclip"></i>
+                </button>
+                <input type="file" id="fileUpload" style="display: none;" onchange="alert('File ' + this.files[0].name + ' selected for upload!')">
+                
+                <input type="text" id="chatInput" placeholder="Type your message or click mic to talk..." autocomplete="off">
+                
+                <button type="button" class="icon-btn" id="micBtn" title="Speak via Microphone (Voice Input)" onclick="toggleMic()">
+                    <i data-lucide="mic"></i>
+                </button>
+
+                <button type="submit" class="send-btn" title="Send Message">
+                    <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        lucide.createIcons();
+
+        const form = document.getElementById('chatForm');
+        const input = document.getElementById('chatInput');
+        const history = document.getElementById('chatHistory');
+        const langSelect = document.getElementById('chatLang');
+        const micBtn = document.getElementById('micBtn');
+        
+        let currentAgent = 'coding';
+        let voiceEnabled = true;
+        let isListening = false;
+        let recognition = null;
+
+        const agentData = {
+            'coding': { name: 'Coding Mentor', greeting: 'Namaste! Main aapka 24/7 AI Coding Mentor hoon. Main aapke sawalon ka jawab dene ke sath aapse interact bhi karunga. Batayein, aaj hum kya build karein?' },
+            'career': { name: 'Career Coach', greeting: 'Hello! Main aapka personal Career & Placement Coach hoon. Resume, mock interviews aur FAANG guidance me main aapka mentor banunga. Aapka kya goal hai?' },
+            'debug': { name: 'Bug Fixer', greeting: 'Hey! Kahan par error aa raha hai? Apna code snippet ya error message yahan share kijiye, hum milkar turant fix karenge!' }
+        };
+
+        // Voice Engine: SpeechSynthesis
+        function toggleVoice() {
+            voiceEnabled = !voiceEnabled;
+            const btn = document.getElementById('voiceToggleBtn');
+            const txt = document.getElementById('voiceText');
+            const icon = document.getElementById('voiceIcon');
+            if (voiceEnabled) {
+                btn.style.background = '#e0f2fe';
+                btn.style.color = '#0284c7';
+                btn.style.borderColor = '#bae6fd';
+                txt.innerText = 'Voice: ON';
+                icon.setAttribute('data-lucide', 'volume-2');
+                speakText("Voice mode enabled. I will now talk with you!");
+            } else {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                btn.style.background = '#f1f5f9';
+                btn.style.color = '#64748b';
+                btn.style.borderColor = '#cbd5e1';
+                txt.innerText = 'Voice: OFF';
+                icon.setAttribute('data-lucide', 'volume-x');
+            }
+            lucide.createIcons();
+        }
+
+        function speakText(rawText) {
+            if (!voiceEnabled || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            // Format clean speech text (don't read raw brackets or asterisks)
+            let clean = rawText
+                .replace(/```[\s\S]*?```/g, " Maine code example screen par provide kar diya hai. ")
+                .replace(/\*\*(.*?)\*\*/g, "$1")
+                .replace(/\*(.*?)\*/g, "$1")
+                .replace(/`([^`]+)`/g, "$1")
+                .replace(/#+\s+/g, "")
+                .replace(/[-*•]\s+/g, "")
+                .trim();
+
+            if (!clean) return;
+
+            const utterance = new SpeechSynthesisUtterance(clean);
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+
+            const isHindi = langSelect.value === 'hi' || /[अ-ह]/.test(rawText) || /(namaste|karein|hai|hoon|samjhein|poocha|batayein)/i.test(clean);
+            
+            const voices = window.speechSynthesis.getVoices();
+            if (isHindi) {
+                utterance.lang = 'hi-IN';
+                const hiVoice = voices.find(v => v.lang && (v.lang.includes('hi') || v.lang.includes('IN')));
+                if (hiVoice) utterance.voice = hiVoice;
+            } else {
+                utterance.lang = 'en-US';
+                const enVoice = voices.find(v => v.lang && v.lang.includes('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('David')));
+                if (enVoice) utterance.voice = enVoice;
+            }
+
+            const waves = document.querySelectorAll('.speaking-wave');
+            utterance.onstart = () => {
+                waves.forEach(w => w.style.display = 'inline-flex');
+            };
+            utterance.onend = () => {
+                waves.forEach(w => w.style.display = 'none');
+            };
+            utterance.onerror = () => {
+                waves.forEach(w => w.style.display = 'none');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Voice Recognition: Microphone Input
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRec();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            
+            recognition.onstart = () => {
+                isListening = true;
+                micBtn.style.color = '#ef4444';
+                micBtn.style.animation = 'pulseMic 1s infinite';
+                input.placeholder = "Listening... Speak now into your mic...";
+            };
+            
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                input.value = transcript;
+                form.dispatchEvent(new Event('submit'));
+            };
+            
+            recognition.onend = () => {
+                isListening = false;
+                micBtn.style.color = '#64748b';
+                micBtn.style.animation = 'none';
+                input.placeholder = "Type your message or click mic to talk...";
+            };
+            
+            recognition.onerror = (err) => {
+                isListening = false;
+                micBtn.style.color = '#64748b';
+                micBtn.style.animation = 'none';
+                input.placeholder = "Type your message or click mic to talk...";
+            };
+        }
+
+        window.toggleMic = function() {
+            if (!recognition) {
+                alert("Voice recognition is not supported in this browser. Please use Chrome or Edge!");
+                return;
+            }
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.lang = langSelect.value === 'hi' ? 'hi-IN' : 'en-US';
+                recognition.start();
+            }
+        };
+
+        window.switchAgent = function(agent) {
+            currentAgent = agent;
+            document.querySelectorAll('.agent-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + agent).classList.add('active');
+            
+            document.getElementById('agentName').innerText = agentData[agent].name;
+            document.getElementById('agentGreeting').innerText = agentData[agent].greeting;
+            
+            // Clear chat history when switching agents
+            const welcomeBubble = document.getElementById('welcomeMsg').outerHTML;
+            history.innerHTML = welcomeBubble;
+            lucide.createIcons();
+            
+            // Agent greets with voice!
+            speakText(agentData[agent].greeting);
+        };
+
+        // Clean Gemini-Style Markdown Formatter
+        function renderCleanMarkdown(rawText) {
+            if (!rawText) return '';
+
+            let html = '';
+            // Try Marked parser first if loaded
+            if (typeof marked !== 'undefined' && marked.parse) {
+                try {
+                    marked.setOptions({ breaks: true, gfm: true });
+                    html = marked.parse(rawText);
+                } catch (e) {
+                    html = '';
+                }
+            }
+
+            // High-reliability clean parser fallback
+            if (!html) {
+                let text = rawText;
+                
+                // Code blocks with syntax card and copy button
+                text = text.replace(/```([a-zA-Z0-9_-]*)\s*([\s\S]*?)```/g, function(match, lang, code) {
+                    const l = (lang || 'code').toUpperCase();
+                    const safe = code.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    return `<div class="code-block-wrapper">
+                        <div class="code-header">
+                            <span>${l}</span>
+                            <button type="button" class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>${safe}</code></pre>
+                    </div>`;
+                });
+
+                // Bold and italics
+                text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
+                text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                text = text.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+
+                // Bullets
+                text = text.replace(/^\s*[-•]\s+(.*)$/gm, '<li>$1</li>');
+                text = text.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
+                text = text.replace(/<\/ul>\s*<ul>/g, '');
+
+                // Paragraphs
+                html = text.split(/\n{2,}/).map(seg => {
+                    seg = seg.trim();
+                    if (!seg) return '';
+                    if (seg.startsWith('<div class="code-block-wrapper"') || seg.startsWith('<ul')) return seg;
+                    return `<p>${seg.replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+            } else {
+                // If marked produced standard pre code, wrap it in Gemini-style code-block-wrapper
+                html = html.replace(/<pre><code(?:\s+class="language-([a-zA-Z0-9_-]+)")?>([\s\S]*?)<\/code><\/pre>/g, function(match, lang, code) {
+                    const l = (lang || 'code').toUpperCase();
+                    return `<div class="code-block-wrapper">
+                        <div class="code-header">
+                            <span>${l}</span>
+                            <button type="button" class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>${code}</code></pre>
+                    </div>`;
+                });
+            }
+
+            // Completely eliminate any leftover raw markdown symbols
+            html = html.replace(/\*\*/g, '');
+            html = html.replace(/```/g, '');
+
+            return html;
+        }
+
+        window.copyCode = function(btn) {
+            const codeEl = btn.closest('.code-block-wrapper').querySelector('code');
+            if (codeEl) {
+                navigator.clipboard.writeText(codeEl.innerText).then(() => {
+                    btn.innerText = 'Copied!';
+                    setTimeout(() => btn.innerText = 'Copy', 2000);
+                });
+            }
+        };
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-bubble chat-user';
+            userBubble.innerText = msg;
+            history.appendChild(userBubble);
+            
+            input.value = '';
+            history.scrollTop = history.scrollHeight;
+
+            const lang = langSelect.value;
+            
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'chat-bubble chat-ai';
+            typingBubble.innerHTML = `
+                <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <div>
+                        <strong>${agentData[currentAgent].name}</strong>
+                        <div class="speaking-wave" style="display: inline-flex;">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <em>Thinking & formulating advice...</em>
+            `;
+            history.appendChild(typingBubble);
+            lucide.createIcons();
+            history.scrollTop = history.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg, lang: lang, agent: currentAgent })
+                });
+                
+                const data = await response.json();
+                const replyText = data.response || 'Sorry, could not generate response.';
+                const cleanFormattedHtml = renderCleanMarkdown(replyText);
+                
+                typingBubble.innerHTML = `
+                    <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div>
+                            <strong>${agentData[currentAgent].name}</strong>
+                            <div class="speaking-wave" style="display: none;">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <button class="icon-btn" onclick="speakText(this.getAttribute('data-reply'))" data-reply="${replyText.replace(/"/g, '&quot;')}" style="padding: 2px; color: #94a3b8;" title="Listen to AI Agent">
+                            <i data-lucide="volume-2" style="width: 17px; height: 17px;"></i>
+                        </button>
+                    </div>
+                    <div class="ai-message-body">
+                        ${cleanFormattedHtml}
+                    </div>
+                `;
+
+                // The AI Agent talks with the user!
+                speakText(replyText);
+
+            } catch (error) {
+                typingBubble.innerHTML = `
+                    <div class="ai-avatar-inline"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                    <strong>${agentData[currentAgent].name}</strong><br>
+                    <em>Server connection issue. Please check your network.</em>
+                `;
+            }
+            
+            lucide.createIcons();
+            history.scrollTop = history.scrollHeight;
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

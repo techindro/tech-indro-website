@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Tech Indro</string>
+    <string name="title_activity_main">Tech Indro</string>
+    <string name="package_name">com.techindro.app</string>
+    <string name="custom_url_scheme">com.techindro.app</string>
+</resources>

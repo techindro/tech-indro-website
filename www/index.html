@@ -1,0 +1,1674 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - India's #1 AI & Robotics Learning Platform</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .login-btn {
+            background: #ff6b35;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section - Tech Indro */
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat h3 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-stat p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-video-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 280px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-video-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            background: #ffffff;
+            padding: 2.2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .trust-section .container {
+            max-width: 1420px;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .trust-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 0.98rem;
+            white-space: nowrap;
+        }
+
+        .trust-icon {
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Course Categories */
+        .categories {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            border-color: #ff6b35;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .category-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .course-count {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Popular Courses - Tech Indro */
+        .popular-courses {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .course-thumbnail {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ff6b35;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .course-instructor {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ffa500;
+        }
+
+        .course-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .discount {
+            background: #ff6b35;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .trust-content {
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 3px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+                <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+            </a>
+            <div class="nav-links">
+                <a href="programs.html">Programs</a>
+                <a href="tsoc.html">TSOC</a>
+                <a href="cyber-playground.html">IndroLabs</a>
+                <a href="#about">Features</a>
+                <a href="quiz.html">Test Series</a>
+                <a href="login.html" class="login-btn" style="background: var(--primary); color: white; padding: 0.5rem 1.5rem; border-radius: 25px;">Login / Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>India's First <span class="hero-highlight">AI-Powered</span> Learning Platform</h1>
+                        <p class="hero-subtitle">Master in-demand tech skills from scratch. Guided by 24/7 personal AI assistants. <b>Built for everyone — no laptop or tech background required.</b></p>
+                        
+                        <div class="hero-stats">
+
+                            <div class="hero-stat">
+
+                                <h3>1.2L+</h3>
+
+                                <p>Learners</p>
+
+                            </div>
+
+                            <div class="hero-stat">
+
+                                <h3>24/7</h3>
+
+                                <p>AI Mentors</p>
+
+                            </div>
+
+                            <div class="hero-stat">
+
+                                <h3>4.8★</h3>
+
+                                <p>Student Rating</p>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="hero-cta">
+
+                            <a href="programs.html" class="btn-primary">🚀 Start Learning Free</a>
+                            <a href="programs.html" class="btn-secondary">View All Programs</a>
+                        </div>
+                        
+                        <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 1.5rem; display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; flex-wrap: wrap; color: var(--text-muted);">
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="star" style="width: 16px; height: 16px; color: var(--accent); fill: var(--accent);"></i> 4.9/5 Rating</span> | 
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="target" style="width: 16px; height: 16px; color: var(--primary);"></i> 100% Job Assistance</span> | 
+                            <span style="display: flex; align-items: center; gap: 0.25rem;"><i data-lucide="smartphone" style="width: 16px; height: 16px; color: var(--secondary);"></i> Learn on Mobile</span>
+                        </p>
+                    </div>
+                    <div class="hero-image fade-in">
+                        <div onclick="openDemoModal()" style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); width: 100%; max-width: 500px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 3L19 12L5 21V3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span style="color: white; font-weight: 600; font-size: 1.1rem;">Watch Demo Class</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+
+        <section class="trust-section">
+
+            <div class="container">
+
+                <div class="trust-content">
+
+                    <div class="trust-item">
+                        <div class="trust-icon"><i data-lucide="sparkles"></i></div> India's First AI-Powered Learning Platform
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon"><i data-lucide="layers"></i></div> Project-Based Curriculum
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon"><i data-lucide="briefcase"></i></div> Job Oriented Skills
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon"><i data-lucide="globe"></i></div> Learn Anything, Anywhere
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Course Categories (Advanced Redesign) -->
+        <section id="courses" class="categories" style="background: #f8fafc; padding: 6rem 0; position: relative;">
+            <style>
+                .adv-path-card {
+                    background: white;
+                    border-radius: 24px;
+                    padding: 2.5rem;
+                    border: 1px solid rgba(0,0,0,0.04);
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    z-index: 1;
+                }
+                .adv-path-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; width: 100%; height: 100%;
+                    background: linear-gradient(135deg, var(--hover-color), transparent 80%);
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    z-index: -1;
+                }
+                .adv-path-card:hover {
+                    transform: translateY(-12px);
+                    box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+                    border-color: rgba(0,0,0,0.08);
+                }
+                .adv-path-card:hover::before {
+                    opacity: 0.05;
+                }
+                .adv-path-icon {
+                    width: 75px;
+                    height: 75px;
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 2rem;
+                    transition: transform 0.4s ease;
+                }
+                .adv-path-card:hover .adv-path-icon {
+                    transform: scale(1.1) rotate(5deg);
+                }
+                .adv-path-arrow {
+                    margin-top: 2rem;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: #64748b;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    transition: all 0.3s ease;
+                }
+                .adv-path-card:hover .adv-path-arrow {
+                    color: var(--hover-color-solid);
+                    gap: 15px;
+                }
+                @media (max-width: 1024px) {
+                    .adv-path-grid { grid-template-columns: repeat(2, 1fr) !important; }
+                }
+                @media (max-width: 640px) {
+                    .adv-path-grid { grid-template-columns: 1fr !important; }
+                }
+            </style>
+            
+            <div class="container">
+                <div class="section-header fade-in" style="margin-bottom: 4.5rem; text-align: center;">
+                    <div style="display: inline-block; padding: 8px 24px; background: rgba(255, 107, 53, 0.1); color: #ff6b35; font-weight: 800; border-radius: 30px; margin-bottom: 1.5rem; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase;">Discover Pathways</div>
+                    <h2 class="section-title" style="font-size: 3rem; font-weight: 800; color: #0f172a; letter-spacing: -1px; margin-bottom: 1.5rem;">Choose Your Learning Path</h2>
+                    <p class="section-subtitle" style="font-size: 1.2rem; color: #64748b; max-width: 650px; margin: 0 auto; line-height: 1.6;">Master the highly-demanded technologies that shape tomorrow. Pick a category and start your journey from zero to one.</p>
+                </div>
+
+                <div class="adv-path-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+                    
+                    <!-- Card 1 -->
+                    <div class="adv-path-card fade-in" onclick="window.location.href='programs.html'" style="--hover-color: #4f46e5; --hover-color-solid: #4f46e5;">
+                        <div class="adv-path-icon" style="background: rgba(79, 70, 229, 0.1); color: #4f46e5; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);">
+                            <i data-lucide="code" style="width: 36px; height: 36px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">Coding & Development</h3>
+                        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6; margin: 0;">AI, Full-Stack Web Dev, Open Source, and Data Structures.</p>
+                        <div class="adv-path-arrow">Explore Path <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i></div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="adv-path-card fade-in" onclick="window.location.href='programs.html'" style="--hover-color: #ec4899; --hover-color-solid: #ec4899;">
+                        <div class="adv-path-icon" style="background: rgba(236, 72, 153, 0.1); color: #ec4899; box-shadow: 0 10px 25px rgba(236, 72, 153, 0.15);">
+                            <i data-lucide="brain" style="width: 36px; height: 36px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">Life & Health</h3>
+                        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6; margin: 0;">Physical Fitness, Mental Resilience, and Bio-hacking.</p>
+                        <div class="adv-path-arrow">Explore Path <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i></div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="adv-path-card fade-in" onclick="window.location.href='programs.html'" style="--hover-color: #f59e0b; --hover-color-solid: #f59e0b;">
+                        <div class="adv-path-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);">
+                            <i data-lucide="trending-up" style="width: 36px; height: 36px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">Business & Startups</h3>
+                        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6; margin: 0;">Sales, Marketing, Entrepreneurship, and Pitching.</p>
+                        <div class="adv-path-arrow">Explore Path <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i></div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="adv-path-card fade-in" onclick="window.location.href='programs.html'" style="--hover-color: #10b981; --hover-color-solid: #10b981;">
+                        <div class="adv-path-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);">
+                            <i data-lucide="newspaper" style="width: 36px; height: 36px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">Communication Skills</h3>
+                        <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6; margin: 0;">English Fluency, The Hindu Analysis, and Interviews.</p>
+                        <div class="adv-path-arrow">Explore Path <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Tech Indro: Live AI Batches -->
+        <section class="live-batches" style="background: white; padding: 6rem 0; position: relative;">
+            <style>
+                .adv-batch-container {
+                    display: flex;
+                    gap: 2.5rem;
+                    overflow-x: auto;
+                    padding-bottom: 2rem;
+                    padding-top: 1rem;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .adv-batch-container::-webkit-scrollbar {
+                    height: 8px;
+                }
+                .adv-batch-container::-webkit-scrollbar-track {
+                    background: #f1f5f9;
+                    border-radius: 10px;
+                }
+                .adv-batch-container::-webkit-scrollbar-thumb {
+                    background: #cbd5e1;
+                    border-radius: 10px;
+                }
+                .adv-batch-container::-webkit-scrollbar-thumb:hover {
+                    background: #94a3b8;
+                }
+                
+                .adv-batch-card {
+                    min-width: 380px;
+                    background: #ffffff;
+                    border: 1px solid rgba(0,0,0,0.06);
+                    border-radius: 24px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+                    scroll-snap-align: start;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    position: relative;
+                    flex-shrink: 0;
+                }
+                .adv-batch-card:hover {
+                    transform: translateY(-12px);
+                    box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+                    border-color: rgba(0,0,0,0.1);
+                }
+                .adv-batch-badge {
+                    position: absolute;
+                    top: 1.25rem;
+                    right: 1.25rem;
+                    background: white;
+                    color: var(--primary);
+                    font-weight: 800;
+                    padding: 0.5rem 1rem;
+                    border-radius: 30px;
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    z-index: 2;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                }
+                .adv-batch-img {
+                    height: 220px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.8rem;
+                    font-weight: 900;
+                    color: white;
+                    text-align: center;
+                    padding: 2rem;
+                    position: relative;
+                    background-size: cover;
+                    background-position: center;
+                }
+                .adv-batch-img::after {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    background: rgba(0,0,0,0.2);
+                }
+                .adv-batch-img span {
+                    position: relative;
+                    z-index: 1;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                }
+                .adv-batch-content {
+                    padding: 2rem;
+                }
+                .adv-batch-content h3 {
+                    font-size: 1.4rem;
+                    font-weight: 800;
+                    color: #0f172a;
+                    margin-bottom: 1rem;
+                }
+                .adv-batch-meta {
+                    display: flex;
+                    gap: 1.5rem;
+                    margin-bottom: 1.5rem;
+                    color: #475569;
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                }
+                .adv-batch-meta span {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                }
+                .adv-batch-btn {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    background: #f8fafc;
+                    color: #0f172a;
+                    padding: 1rem;
+                    border-radius: 12px;
+                    font-weight: 700;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    border: 1px solid #e2e8f0;
+                }
+                .adv-batch-card:hover .adv-batch-btn {
+                    background: var(--primary);
+                    color: white;
+                    border-color: var(--primary);
+                }
+            </style>
+
+            <div class="container">
+                <div class="section-header fade-in" style="margin-bottom: 4.5rem; text-align: center;">
+                    <div style="display: inline-block; padding: 8px 24px; background: rgba(79, 70, 229, 0.1); color: #4f46e5; font-weight: 800; border-radius: 30px; margin-bottom: 1.5rem; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase;">Live Cohorts</div>
+                    <h2 class="section-title" style="font-size: 3rem; font-weight: 800; color: #0f172a; letter-spacing: -1px; margin-bottom: 1.5rem;">Live AI-Guided Platform</h2>
+                    <p class="section-subtitle" style="font-size: 1.2rem; color: #64748b; max-width: 650px; margin: 0 auto; line-height: 1.6;">Join thousands of students learning in real-time with our advanced AI Mentors. Experience personalized feedback and live doubt solving.</p>
+                </div>
+                
+                <div class="adv-batch-container">
+                    
+                    <!-- Batch 1 -->
+                    <div class="adv-batch-card fade-in">
+                        <div class="adv-batch-badge" style="color: #ef4444;">STARTING SOON</div>
+                        <div class="adv-batch-img" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80');">
+                            <span>MNC Cracker Batch</span>
+                        </div>
+                        <div class="adv-batch-content">
+                            <h3>Zero to One: Placements</h3>
+                            <div class="adv-batch-meta">
+                                <span><i data-lucide="calendar" style="width: 18px; height: 18px; color: #4f46e5;"></i> 15 Aug</span>
+                                <span><i data-lucide="bot" style="width: 18px; height: 18px; color: #4f46e5;"></i> AI Mentor</span>
+                            </div>
+                            <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">Target Top Product-Based Companies. Full Stack + DSA + CS Core concepts.</p>
+                            <a href="programs.html" class="adv-batch-btn">Explore Batch</a>
+                        </div>
+                    </div>
+
+                    <!-- Batch 2 -->
+                    <div class="adv-batch-card fade-in">
+                        <div class="adv-batch-badge" style="color: #10b981;">ENROLLING</div>
+                        <div class="adv-batch-img" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80');">
+                            <span>Alpha SIH Batch</span>
+                        </div>
+                        <div class="adv-batch-content">
+                            <h3>Hackathon Winners Program</h3>
+                            <div class="adv-batch-meta">
+                                <span><i data-lucide="calendar" style="width: 18px; height: 18px; color: #10b981;"></i> Ongoing</span>
+                                <span><i data-lucide="bot" style="width: 18px; height: 18px; color: #10b981;"></i> AI Mentor</span>
+                            </div>
+                            <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">Crack Smart India Hackathon & build massive ISRO Projects with Google Cloud.</p>
+                            <a href="programs.html" class="adv-batch-btn">Explore Batch</a>
+                        </div>
+                    </div>
+
+                    <!-- Batch 3 -->
+                    <div class="adv-batch-card fade-in">
+                        <div class="adv-batch-badge" style="color: #f59e0b;">POPULAR</div>
+                        <div class="adv-batch-img" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80');">
+                            <span>Founder's Batch</span>
+                        </div>
+                        <div class="adv-batch-content">
+                            <h3>0-to-1 Entrepreneurship</h3>
+                            <div class="adv-batch-meta">
+                                <span><i data-lucide="calendar" style="width: 18px; height: 18px; color: #f59e0b;"></i> Next Week</span>
+                                <span><i data-lucide="bot" style="width: 18px; height: 18px; color: #f59e0b;"></i> AI Mentor</span>
+                            </div>
+                            <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2rem;">Master Sales, Digital Marketing, and building a high-growth startup from scratch.</p>
+                            <a href="programs.html" class="adv-batch-btn">Explore Batch</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Features -->
+
+        <section id="about" class="features">
+
+            <div class="container">
+
+                <div class="section-header fade-in">
+
+                    <h2 class="section-title">Why Choose Tech Indro?</h2>
+
+                    <p class="section-subtitle">The complete learning ecosystem for future tech leaders</p>
+
+                </div>
+
+                
+
+                <div class="features-grid">
+
+                    <div class="feature-item fade-in" style="text-align: center; padding: 1.5rem;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #ff7828; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 120, 40, 0.3);">
+                            <span style="font-size: 32px;">🎯</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Project-Based<br>Learning</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Learn by building real-world<br>projects that you can<br>showcase in your portfolio</p>
+                    </div>
+
+                    <div class="feature-item fade-in" style="text-align: center; padding: 1.5rem;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #ff7828; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 120, 40, 0.3);">
+                            <span style="font-size: 32px;">👨‍🏫</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Expert Mentorship</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Get guidance from industry<br>experts and experienced<br>professionals</p>
+                    </div>
+
+                    <div class="feature-item fade-in" style="text-align: center; padding: 1.5rem;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #ff7828; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 120, 40, 0.3);">
+                            <span style="font-size: 32px;">📚</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Comprehensive<br>Curriculum</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Courses designed by industry<br>leaders to match current job<br>market demands</p>
+                    </div>
+
+                    <div class="feature-item fade-in" style="text-align: center; padding: 1.5rem;">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #ff7828; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 120, 40, 0.3);">
+                            <span style="font-size: 32px;">🤝</span>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem;">Career Support</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Resume building, interview<br>preparation, and job<br>placement assistance</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Tech Indro: 24x7 AI Doubt Solver -->
+        <section class="container fade-in" style="margin-top: 6rem; margin-bottom: 2rem;">
+            <style>
+                .adv-doubt-banner {
+                    background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
+                    border-radius: 30px;
+                    padding: 4rem 5rem;
+                    position: relative;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    box-shadow: 0 20px 40px rgba(79, 70, 229, 0.08);
+                    border: 1px solid rgba(255,255,255,0.6);
+                }
+                .adv-doubt-banner::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%; left: -50%; width: 200%; height: 200%;
+                    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 60%);
+                    opacity: 0.5;
+                    pointer-events: none;
+                }
+                .adv-doubt-content {
+                    position: relative;
+                    z-index: 2;
+                    max-width: 600px;
+                }
+                .adv-doubt-badge {
+                    display: inline-block;
+                    padding: 8px 20px;
+                    background: white;
+                    color: #4f46e5;
+                    font-weight: 800;
+                    border-radius: 30px;
+                    margin-bottom: 1.5rem;
+                    font-size: 0.9rem;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                    box-shadow: 0 4px 15px rgba(79,70,229,0.15);
+                }
+                .adv-doubt-content h2 {
+                    font-size: 3rem;
+                    font-weight: 800;
+                    color: #1e293b;
+                    line-height: 1.2;
+                    margin-bottom: 1.5rem;
+                    letter-spacing: -1px;
+                }
+                .adv-doubt-content p {
+                    font-size: 1.15rem;
+                    color: #475569;
+                    line-height: 1.6;
+                    margin-bottom: 2.5rem;
+                }
+                .adv-doubt-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    background: #4f46e5;
+                    color: white;
+                    padding: 1rem 2.5rem;
+                    border-radius: 50px;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 10px 25px rgba(79,70,229,0.4);
+                }
+                .adv-doubt-btn:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 15px 35px rgba(79,70,229,0.5);
+                    background: #4338ca;
+                }
+                .adv-doubt-visual {
+                    position: relative;
+                    z-index: 2;
+                    width: 350px;
+                    height: 350px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .adv-doubt-visual .floating-bubble {
+                    position: absolute;
+                    background: white;
+                    border-radius: 20px;
+                    padding: 1rem 1.5rem;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                    font-weight: 700;
+                    color: #0f172a;
+                    animation: float-bubble 6s ease-in-out infinite;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                .adv-doubt-visual .bubble-1 { top: 10%; right: 10%; animation-delay: 0s; color: #ef4444; }
+                .adv-doubt-visual .bubble-2 { bottom: 20%; left: 0; animation-delay: -2s; color: #10b981; }
+                .adv-doubt-visual .bubble-3 { top: 40%; left: -10%; animation-delay: -4s; color: #f59e0b; }
+                
+                @keyframes float-bubble {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-15px); }
+                }
+                
+                .adv-doubt-center-icon {
+                    width: 160px;
+                    height: 160px;
+                    background: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 20px 50px rgba(79,70,229,0.2);
+                    position: relative;
+                }
+                .adv-doubt-center-icon::before {
+                    content: '';
+                    position: absolute;
+                    top: -10px; left: -10px; right: -10px; bottom: -10px;
+                    border-radius: 50%;
+                    border: 2px dashed rgba(79,70,229,0.3);
+                    animation: spin-slow 20s linear infinite;
+                }
+                @keyframes spin-slow {
+                    100% { transform: rotate(360deg); }
+                }
+
+                @media (max-width: 900px) {
+                    .adv-doubt-banner {
+                        flex-direction: column;
+                        text-align: center;
+                        padding: 3rem 2rem;
+                    }
+                    .adv-doubt-visual {
+                        margin-top: 3rem;
+                        height: 250px;
+                    }
+                }
+            </style>
+
+            <div class="adv-doubt-banner">
+                <div class="adv-doubt-content">
+                    <div class="adv-doubt-badge">24x7 Available</div>
+                    <h2>Stuck with a Doubt? Don't wait.</h2>
+                    <p>Click a photo, type it, or just ask by voice. Our AI Mentor will instantly explain the core concepts step-by-step in Hindi, English, or 50+ other languages.</p>
+                    <a href="shikshak.html" class="adv-doubt-btn">
+                        <i data-lucide="camera" style="width: 20px; height: 20px;"></i> Ask Your Doubt Now
+                    </a>
+                </div>
+                
+                <div class="adv-doubt-visual">
+                    <div class="floating-bubble bubble-1"><i data-lucide="help-circle"></i> Physics?</div>
+                    <div class="floating-bubble bubble-2"><i data-lucide="code"></i> Python Bug?</div>
+                    <div class="floating-bubble bubble-3"><i data-lucide="lightbulb"></i> Startup Idea?</div>
+                    
+                    <div class="adv-doubt-center-icon">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founder's Vision & Quote Section -->
+        <section class="container fade-in" style="margin-top: 5rem; margin-bottom: 5rem;">
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 28px; padding: 3.5rem 4rem; box-shadow: 0 20px 40px rgba(0,0,0,0.06); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(180deg, #ff6b35, #f59e0b);"></div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <span style="font-size: 3.5rem; line-height: 1; color: #ff6b35; font-family: 'Times New Roman', Georgia, serif; font-weight: bold;">“</span>
+                </div>
+                
+                <blockquote style="font-size: 1.65rem; font-weight: 700; line-height: 1.5; color: #0f172a; margin: 0 0 2.5rem; letter-spacing: -0.3px; font-style: normal; max-width: 950px;">
+                    AI is not replacing humans, it's augmenting capabilities. Together, humans and AI can achieve the impossible.
+                </blockquote>
+                
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="assets/shubham-patel.jpg" alt="Shubham Patel" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #ff6b35; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.35);">
+                    <div>
+                        <h4 style="margin: 0; font-size: 1.3rem; font-weight: 800; color: #0f172a;">Shubham Patel</h4>
+                        <p style="margin: 3px 0 0; font-size: 0.95rem; color: #ff6b35; font-weight: 700;">Founder & CEO, Tech Indro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content fade-in">
+                    <h2>Ready to Launch Your Tech Career?</h2>
+                    <p>Join India's most trusted AI & Robotics learning platform today</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="login.html" class="btn-primary">Start Free Trial</a>
+                        <a href="#contact-form" class="btn-secondary">Talk to Counselor</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modern Tech Indro Footer -->
+        <footer style="background: #1e293b; color: #f8fafc; padding: 4rem 0 0; font-family: 'Inter', sans-serif;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+                    
+                    <!-- Column 1: Brand & Apps -->
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 12px; margin-bottom: 1rem;">
+                            <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 45px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: white;">
+                            <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: white;">TECH INDRO</span>
+                        </a>
+                        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                            India's most loved AI & Robotics learning platform. Empowering students with industry-relevant skills.
+                        </p>
+                        <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 40px; cursor: pointer;">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" style="height: 40px; cursor: pointer;">
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Popular Programs -->
+                    <div>
+                        <h3 style="color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.5px;">Popular Programs</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                            <li><a href="programs.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Ethical Hacking</a></li>
+                            <li><a href="programs.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Data Science & AI</a></li>
+                            <li><a href="isro-lab.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">ISRO Space Lab</a></li>
+                            <li><a href="cyber-playground.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Cyber Playground</a></li>
+                            <li><a href="quiz.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Tech Test Series</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Company -->
+                    <div>
+                        <h3 style="color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.5px;">Company</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                            <li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">About Us</a></li>
+                            <li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Careers <span style="background: #ff6b35; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">Hiring</span></a></li>
+                            <li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Success Stories</a></li>
+                            <li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Become a Mentor</a></li>
+                            <li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact & Social -->
+                    <div>
+                        <h3 style="color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.5px;">Get in Touch</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                            <li style="color: #cbd5e1; font-size: 0.95rem; display: flex; align-items: center; gap: 10px;">
+                                <i data-lucide="mail" style="width: 18px; height: 18px; color: #ff6b35;"></i> support@techindro.com
+                            </li>
+                            <li style="color: #cbd5e1; font-size: 0.95rem; display: flex; align-items: center; gap: 10px;">
+                                <i data-lucide="phone" style="width: 18px; height: 18px; color: #ff6b35;"></i> +91 7007896695
+                            </li>
+                            <li style="color: #cbd5e1; font-size: 0.95rem; display: flex; align-items: center; gap: 10px;">
+                                <i data-lucide="map-pin" style="width: 18px; height: 18px; color: #ff6b35;"></i> Tech Indro HQ, Varanasi
+                            </li>
+                        </ul>
+                        
+                        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; align-items: center;">
+                            <!-- YouTube -->
+                            <a href="https://www.youtube.com/@Indrolabs" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#ff0000'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#0077b5'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#e1306c'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <!-- GitHub -->
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#333'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">&copy; 2026 Tech Indro. All Rights Reserved<a href="shikshak-coding.html" style="color: inherit; text-decoration: none; cursor: pointer;" title="Tech Indro Workspace">.</a></p>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem;">Terms & Conditions</a>
+                        <a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+                        <a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem;">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Video Demo Modal -->
+    <div id="demoModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #0f172a; border-radius: 20px; overflow: hidden; width: 100%; max-width: 850px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); position: relative;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: #1e293b; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white; font-size: 1.15rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 10px;">
+                    <span style="display: inline-block; width: 12px; height: 12px; background: #ff6b35; border-radius: 50%;"></span>
+                    Tech Indro: Free AI & Robotics Demo Class
+                </h3>
+                <button onclick="closeDemoModal()" style="background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 2rem; padding: 0 10px; line-height: 1;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#cbd5e1'">&times;</button>
+            </div>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe id="demoVideoIframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/kqtD5dpn9C8?enablejsapi=1" title="Tech Indro Demo Class" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Help & Chat Widget -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; align-items: center; gap: 10px;">
+        <a href="https://wa.me/917007896695" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <div style="background: white; padding: 10px 18px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.12); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #222; border: 1px solid rgba(0,0,0,0.06); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                Need Help? Chat with us!
+            </div>
+            <div style="width: 58px; height: 58px; background-color: #ff6b35; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 18px rgba(255, 107, 53, 0.4); transition: transform 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Video Demo Modal
+        function openDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) modal.style.display = 'flex';
+        }
+        function closeDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) {
+                modal.style.display = 'none';
+                const iframe = document.getElementById('demoVideoIframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = src; // stops video playback
+                }
+            }
+        }
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('demoModal');
+            if (e.target === modal) closeDemoModal();
+        });
+
+        // AI Tutor Toggle
+        function toggleAITutor() {
+            const windowEl = document.getElementById('ai-chat-window');
+            if (!windowEl) return;
+            if (windowEl.style.display === 'none' || windowEl.style.opacity === '0' || windowEl.style.opacity === '') {
+                windowEl.style.display = 'flex';
+                void windowEl.offsetWidth;
+                windowEl.style.opacity = '1';
+                windowEl.style.transform = 'scale(1)';
+                windowEl.style.pointerEvents = 'all';
+            } else {
+                windowEl.style.opacity = '0';
+                windowEl.style.transform = 'scale(0.5)';
+                windowEl.style.pointerEvents = 'none';
+                setTimeout(() => { windowEl.style.display = 'none'; }, 300);
+            }
+        }
+
+        // Live AI Tutor Backend Call
+        async function sendAIMessage() {
+            const input = document.getElementById('ai-chat-input');
+            const messages = document.getElementById('ai-chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // User Message
+            const userDiv = document.createElement('div');
+            userDiv.style.cssText = 'align-self: flex-end; background: #ff6b35; color: white; padding: 12px 16px; border-radius: 16px 16px 4px 16px; max-width: 85%; box-shadow: 0 4px 10px rgba(255, 107, 53, 0.25);';
+            userDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">${text}</p>`;
+            messages.appendChild(userDiv);
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+
+            // Loading state
+            const aiDiv = document.createElement('div');
+            aiDiv.style.cssText = 'align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9;';
+            aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.9rem; color: #64748b;">AI Mentor is thinking...</p>`;
+            messages.appendChild(aiDiv);
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, lang: 'hi', agent: 'coding' })
+                });
+                const data = await res.json();
+                const reply = data.response ? data.response.replace(/\n/g, '<br>') : 'I am here to help you learn!';
+                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.6;">${reply}</p>`;
+            } catch (err) {
+                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155;">Feel free to ask any doubt! For full interactive coding, please explore our <a href="shikshak.html" style="color: #ff6b35; font-weight: bold; text-decoration: underline;">AI Mentor Portal</a>.</p>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 80) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', () => {
+            fadeInOnScroll();
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+    <script src="api-client.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
