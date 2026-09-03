@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Indro - India's #1 AI & Robotics Learning Platform</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
 
         * {
@@ -105,7 +106,7 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section - PW Style */
+        /* Hero Section - Tech Indro */
         .hero {
             padding: 120px 0 60px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -266,9 +267,16 @@
 
         /* Trust Badges */
         .trust-section {
-            background: white;
-            padding: 2rem 0;
-            border-bottom: 1px solid #f0f0f0;
+            background: #ffffff;
+            padding: 2.2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .trust-section .container {
+            max-width: 1420px;
+            width: 95%;
+            margin: 0 auto;
         }
 
         .trust-content {
@@ -276,15 +284,29 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .trust-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            color: #28a745;
+            gap: 0.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 0.98rem;
+            white-space: nowrap;
+        }
+
+        .trust-icon {
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         /* Course Categories */
@@ -363,7 +385,7 @@
             font-size: 0.9rem;
         }
 
-        /* Popular Courses - PW Style */
+        /* Popular Courses - Tech Indro */
         .popular-courses {
             padding: 4rem 0;
             background: white;
@@ -721,7 +743,7 @@
     <header>
                 <nav class="container">
             <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
-                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
                 <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
             </a>
             <div class="nav-links">
@@ -741,7 +763,7 @@
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1>India's First <span class="hero-highlight">AI-Powered</span> Learning Platform</h1>
-                        <p class="hero-subtitle">Master in-demand tech skills from zero to one. Learn directly from intelligent AI Agents available 24/7 in 50+ languages! <b>Designed for everyone: IT, Non-IT, and learners of any age.</b></p>
+                        <p class="hero-subtitle">Master in-demand tech skills from scratch. Guided by 24/7 personal AI assistants. <b>Built for everyone — no laptop or tech background required.</b></p>
                         
                         <div class="hero-stats">
 
@@ -749,7 +771,7 @@
 
                                 <h3>1.2L+</h3>
 
-                                <p>Active Students</p>
+                                <p>Learners</p>
 
                             </div>
 
@@ -763,9 +785,9 @@
 
                             <div class="hero-stat">
 
-                                <h3>95%</h3>
+                                <h3>4.8★</h3>
 
-                                <p>Success Rate</p>
+                                <p>Student Rating</p>
 
                             </div>
 
@@ -786,7 +808,7 @@
                         </p>
                     </div>
                     <div class="hero-image fade-in">
-                        <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); width: 100%; max-width: 500px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: transform 0.3s ease;">
+                        <div onclick="openDemoModal()" style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); width: 100%; max-width: 500px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                             <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
                                 <div style="width: 60px; height: 60px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -810,27 +832,19 @@
                 <div class="trust-content">
 
                     <div class="trust-item">
-
-                        <div class="trust-icon"><i data-lucide="shield-check"></i></div> India's Most Trusted AI Platform
-
+                        <div class="trust-icon"><i data-lucide="sparkles"></i></div> India's First AI-Powered Learning Platform
                     </div>
 
                     <div class="trust-item">
-
-                        <div class="trust-icon"><i data-lucide="award"></i></div> Award Winning Curriculum
-
+                        <div class="trust-icon"><i data-lucide="layers"></i></div> Project-Based Curriculum
                     </div>
 
                     <div class="trust-item">
-
-                        <div class="trust-icon"><i data-lucide="briefcase"></i></div> 100% Job Assistance
-
+                        <div class="trust-icon"><i data-lucide="briefcase"></i></div> Job Oriented Skills
                     </div>
 
                     <div class="trust-item">
-
-                        <div class="trust-icon"><i data-lucide="smartphone"></i></div> Learn Anytime, Anywhere
-
+                        <div class="trust-icon"><i data-lucide="globe"></i></div> Learn Anything, Anywhere
                     </div>
 
                 </div>
@@ -968,7 +982,7 @@
 
 
 
-        <!-- PW Style: Live AI Batches (Advanced Redesign) -->
+        <!-- Tech Indro: Live AI Batches -->
         <section class="live-batches" style="background: white; padding: 6rem 0; position: relative;">
             <style>
                 .adv-batch-container {
@@ -1218,7 +1232,7 @@
 
 
 
-        <!-- Unacademy Style: 24x7 AI Doubt Solver (Advanced Redesign) -->
+        <!-- Tech Indro: 24x7 AI Doubt Solver -->
         <section class="container fade-in" style="margin-top: 6rem; margin-bottom: 2rem;">
             <style>
                 .adv-doubt-banner {
@@ -1375,144 +1389,49 @@
                     <div class="floating-bubble bubble-3"><i data-lucide="lightbulb"></i> Startup Idea?</div>
                     
                     <div class="adv-doubt-center-icon">
-                        <i data-lucide="bot" style="width: 80px; height: 80px; color: #4f46e5;"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-        <!-- PW Style: Wall of Fame -->
-
-        <section class="container" style="margin-top: 6rem;">
-
-            <div class="section-header fade-in">
-
-                <h2 class="section-title">From Zero to Top MNCs</h2>
-
-                <p class="section-subtitle">Meet our incredible students who achieved their dreams with AI Mentorship</p>
-
-            </div>
-
-            
-
-            <div class="wall-of-fame">
-
-                <div class="story-card fade-in">
-
-                    <div class="story-avatar">R</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-                    <div class="testimonial-card fade-in">
-
-                        <p class="testimonial-content">"As a complete beginner, I was nervous about learning to code. Tech Indro's structured approach and supportive community made the journey enjoyable. I've now developed 3 apps and started freelancing!"</p>
-
-                        <div class="testimonial-author">
-
-                            <div class="author-avatar">AM</div>
-
-                            <div class="author-info">
-
-                                <h4>Ankit Mishra</h4>
-
-                                <p>App Developer</p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+        <!-- Founder's Vision & Quote Section -->
+        <section class="container fade-in" style="margin-top: 5rem; margin-bottom: 5rem;">
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 28px; padding: 3.5rem 4rem; box-shadow: 0 20px 40px rgba(0,0,0,0.06); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(180deg, #ff6b35, #f59e0b);"></div>
+                
+                <div style="margin-bottom: 0.75rem;">
+                    <span style="font-size: 3.5rem; line-height: 1; color: #ff6b35; font-family: 'Times New Roman', Georgia, serif; font-weight: bold;">“</span>
                 </div>
-
+                
+                <blockquote style="font-size: 1.65rem; font-weight: 700; line-height: 1.5; color: #0f172a; margin: 0 0 2.5rem; letter-spacing: -0.3px; font-style: normal; max-width: 950px;">
+                    AI is not replacing humans, it's augmenting capabilities. Together, humans and AI can achieve the impossible.
+                </blockquote>
+                
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <img src="assets/shubham-patel.jpg" alt="Shubham Patel" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 3px solid #ff6b35; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.35);">
+                    <div>
+                        <h4 style="margin: 0; font-size: 1.3rem; font-weight: 800; color: #0f172a;">Shubham Patel</h4>
+                        <p style="margin: 3px 0 0; font-size: 0.95rem; color: #ff6b35; font-weight: 700;">Founder & CEO, Tech Indro</p>
+                    </div>
+                </div>
             </div>
-
         </section>
-
-
-
-
-
-
 
         <!-- CTA Section -->
-
         <section class="cta-section">
-
             <div class="container">
-
                 <div class="cta-content fade-in">
-
                     <h2>Ready to Launch Your Tech Career?</h2>
-
                     <p>Join India's most trusted AI & Robotics learning platform today</p>
-
                     <div style="display: flex; gap: 1rem; justify-content: center;">
-
                         <a href="login.html" class="btn-primary">Start Free Trial</a>
-
                         <a href="#contact-form" class="btn-secondary">Talk to Counselor</a>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
-        <!-- Modern EdTech Footer (PW / Unacademy Style) -->
+        <!-- Modern Tech Indro Footer -->
         <footer style="background: #1e293b; color: #f8fafc; padding: 4rem 0 0; font-family: 'Inter', sans-serif;">
             <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
@@ -1520,8 +1439,8 @@
                     <!-- Column 1: Brand & Apps -->
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 12px; margin-bottom: 1rem;">
-                            <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 45px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: white;">
-                            <span style="font-weight: 800; font-size: 1.5rem; color: white;">Tech Indro</span>
+                            <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 45px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: white;">
+                            <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: white;">TECH INDRO</span>
                         </a>
                         <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin: 0;">
                             India's most loved AI & Robotics learning platform. Empowering students with industry-relevant skills.
@@ -1571,11 +1490,31 @@
                             </li>
                         </ul>
                         
-                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                            <a href="#" style="color: white; background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s;"><i data-lucide="facebook" style="width: 18px;"></i></a>
-                            <a href="#" style="color: white; background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s;"><i data-lucide="instagram" style="width: 18px;"></i></a>
-                            <a href="https://www.youtube.com/@Indrolabs" target="_blank" style="color: white; background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s;"><i data-lucide="youtube" style="width: 18px;"></i></a>
-                            <a href="#" style="color: white; background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s;"><i data-lucide="linkedin" style="width: 18px;"></i></a>
+                        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem; align-items: center;">
+                            <!-- YouTube -->
+                            <a href="https://www.youtube.com/@Indrolabs" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#ff0000'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#0077b5'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#e1306c'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <!-- GitHub -->
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="color: white; background: rgba(255,255,255,0.1); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='#333'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.transform='translateY(0)'">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1594,110 +1533,118 @@
             </div>
         </footer>
 
-    <!-- Floating AI Tutor Widget -->
-    <div id="ai-tutor-widget" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        <!-- Chat Window (Hidden by default) -->
-        <div id="ai-chat-window" style="display: none; width: 350px; height: 500px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); overflow: hidden; flex-direction: column; border: 1px solid #e2e8f0; margin-bottom: 20px; transform-origin: bottom right; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; transform: scale(0.5); pointer-events: none;">
-            <!-- Header -->
-            <div style="background: linear-gradient(135deg, #4f46e5, #3b82f6); padding: 1.2rem; color: white; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="background: rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.4);">
-                        <i data-lucide="bot" style="width: 24px; color: white;"></i>
-                    </div>
-                    <div>
-                        <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">Tech Indro AI</h4>
-                        <p style="margin: 0; font-size: 0.8rem; opacity: 0.9; display: flex; align-items: center; gap: 5px;">
-                            <span style="display: inline-block; width: 8px; height: 8px; background: #4ade80; border-radius: 50%;"></span> Online
-                        </p>
-                    </div>
-                </div>
-                <button onclick="toggleAITutor()" style="background: none; border: none; color: white; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><i data-lucide="x" style="width: 24px;"></i></button>
+    <!-- Video Demo Modal -->
+    <div id="demoModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #0f172a; border-radius: 20px; overflow: hidden; width: 100%; max-width: 850px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); position: relative;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: #1e293b; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white; font-size: 1.15rem; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 10px;">
+                    <span style="display: inline-block; width: 12px; height: 12px; background: #ff6b35; border-radius: 50%;"></span>
+                    Tech Indro: Free AI & Robotics Demo Class
+                </h3>
+                <button onclick="closeDemoModal()" style="background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 2rem; padding: 0 10px; line-height: 1;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#cbd5e1'">&times;</button>
             </div>
-            
-            <!-- Messages Area -->
-            <div id="ai-chat-messages" style="flex: 1; padding: 1.2rem; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 1rem;">
-                <div style="align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9;">
-                    <p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.5;">Hello! 👋 I'm your AI Mentor. I can help you solve doubts, explain code, or guide your learning path.</p>
-                </div>
-                <div style="align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9;">
-                    <p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.5;">What would you like to learn today?</p>
-                </div>
-            </div>
-            
-            <!-- Input Area -->
-            <div style="padding: 1rem; background: white; border-top: 1px solid #e2e8f0; display: flex; gap: 10px; align-items: center;">
-                <input type="text" id="ai-chat-input" placeholder="Type your doubt here..." style="flex: 1; padding: 12px 16px; border-radius: 30px; border: 1px solid #cbd5e1; outline: none; font-size: 0.95rem; transition: border-color 0.2s;" onfocus="this.style.borderColor='#4f46e5'" onblur="this.style.borderColor='#cbd5e1'" onkeypress="if(event.key === 'Enter') sendAIMessage()">
-                <button onclick="sendAIMessage()" style="background: linear-gradient(135deg, #4f46e5, #3b82f6); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 10px rgba(79,70,229,0.3);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"><i data-lucide="send" style="width: 20px;"></i></button>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe id="demoVideoIframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/kqtD5dpn9C8?enablejsapi=1" title="Tech Indro Demo Class" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
-
-        <!-- Floating Button -->
-        <button id="ai-tutor-btn" onclick="toggleAITutor()" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #4f46e5, #ec4899); border: none; color: white; display: none !important; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4); cursor: pointer; float: right; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; border: 3px solid white;">
-            <i data-lucide="sparkles" style="width: 32px; height: 32px;"></i>
-            <span style="position: absolute; top: 0px; right: 0px; background: #10b981; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white;"></span>
-        </button>
     </div>
 
+    <!-- Floating Help & Chat Widget -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; align-items: center; gap: 10px;">
+        <a href="https://wa.me/917007896695" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <div style="background: white; padding: 10px 18px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.12); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #222; border: 1px solid rgba(0,0,0,0.06); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                Need Help? Chat with us!
+            </div>
+            <div style="width: 58px; height: 58px; background-color: #ff6b35; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 18px rgba(255, 107, 53, 0.4); transition: transform 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+    <!-- Scripts -->
     <script>
+        // Video Demo Modal
+        function openDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) modal.style.display = 'flex';
+        }
+        function closeDemoModal() {
+            const modal = document.getElementById('demoModal');
+            if (modal) {
+                modal.style.display = 'none';
+                const iframe = document.getElementById('demoVideoIframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = src; // stops video playback
+                }
+            }
+        }
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('demoModal');
+            if (e.target === modal) closeDemoModal();
+        });
+
+        // AI Tutor Toggle
         function toggleAITutor() {
             const windowEl = document.getElementById('ai-chat-window');
-            const btn = document.getElementById('ai-tutor-btn');
-            if (windowEl.style.opacity === '0' || windowEl.style.opacity === '') {
+            if (!windowEl) return;
+            if (windowEl.style.display === 'none' || windowEl.style.opacity === '0' || windowEl.style.opacity === '') {
                 windowEl.style.display = 'flex';
-                // Trigger reflow
                 void windowEl.offsetWidth;
                 windowEl.style.opacity = '1';
                 windowEl.style.transform = 'scale(1)';
                 windowEl.style.pointerEvents = 'all';
-                btn.style.transform = 'scale(0.8)';
             } else {
                 windowEl.style.opacity = '0';
                 windowEl.style.transform = 'scale(0.5)';
                 windowEl.style.pointerEvents = 'none';
-                btn.style.transform = 'scale(1)';
-                setTimeout(() => windowEl.style.display = 'none', 300);
+                setTimeout(() => { windowEl.style.display = 'none'; }, 300);
             }
         }
 
-        function sendAIMessage() {
+        // Live AI Tutor Backend Call
+        async function sendAIMessage() {
             const input = document.getElementById('ai-chat-input');
             const messages = document.getElementById('ai-chat-messages');
             const text = input.value.trim();
-            
             if (!text) return;
-            
-            // User message
+
+            // User Message
             const userDiv = document.createElement('div');
-            userDiv.style.cssText = 'align-self: flex-end; background: #4f46e5; color: white; padding: 12px 16px; border-radius: 16px 16px 4px 16px; max-width: 85%; box-shadow: 0 4px 10px rgba(79,70,229,0.2); animation: popIn 0.3s ease;';
+            userDiv.style.cssText = 'align-self: flex-end; background: #ff6b35; color: white; padding: 12px 16px; border-radius: 16px 16px 4px 16px; max-width: 85%; box-shadow: 0 4px 10px rgba(255, 107, 53, 0.25);';
             userDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">${text}</p>`;
             messages.appendChild(userDiv);
-            
             input.value = '';
             messages.scrollTop = messages.scrollHeight;
-            
-            // AI Response (Mock)
-            setTimeout(() => {
-                const aiDiv = document.createElement('div');
-                aiDiv.style.cssText = 'align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9; animation: popIn 0.3s ease;';
-                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.5;">That's an excellent question! To get a detailed step-by-step explanation and interactive coding guidance, please visit our dedicated <a href="shikshak.html" style="color: #4f46e5; font-weight: bold; text-decoration: underline;">AI Mentor Dashboard</a>. I have all my tools ready there!</p>`;
-                messages.appendChild(aiDiv);
-                messages.scrollTop = messages.scrollHeight;
-                // Add popIn animation style if not exists
-                if (!document.getElementById('ai-anim-style')) {
-                    const style = document.createElement('style');
-                    style.id = 'ai-anim-style';
-                    style.innerHTML = '@keyframes popIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }';
-                    document.head.appendChild(style);
-                }
-            }, 800);
-        }
-    </script>
 
-    <script>
+            // Loading state
+            const aiDiv = document.createElement('div');
+            aiDiv.style.cssText = 'align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9;';
+            aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.9rem; color: #64748b;">AI Mentor is thinking...</p>`;
+            messages.appendChild(aiDiv);
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, lang: 'hi', agent: 'coding' })
+                });
+                const data = await res.json();
+                const reply = data.response ? data.response.replace(/\n/g, '<br>') : 'I am here to help you learn!';
+                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.6;">${reply}</p>`;
+            } catch (err) {
+                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155;">Feel free to ask any doubt! For full interactive coding, please explore our <a href="shikshak.html" style="color: #ff6b35; font-weight: bold; text-decoration: underline;">AI Mentor Portal</a>.</p>`;
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
@@ -1706,31 +1653,22 @@
         
         // Scroll animations
         const fadeElements = document.querySelectorAll('.fade-in');
-        
         const fadeInOnScroll = () => {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
+                if (elementTop < windowHeight - 80) {
                     element.classList.add('visible');
                 }
             });
         };
-        
         window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('load', fadeInOnScroll);
+        window.addEventListener('load', () => {
+            fadeInOnScroll();
+            if (window.lucide) lucide.createIcons();
+        });
     </script>
-
-    <!-- WhatsApp Widget -->
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; align-items: center; gap: 10px;">
-        <div style="background: white; padding: 8px 15px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: sans-serif; font-size: 14px; font-weight: bold; color: #333;">Need Help? Chat with us!</div>
-        <a href="https://wa.me/919999999999" target="_blank" style="width: 60px; height: 60px; background-color: #ff6b35; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4); text-decoration: none; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            <svg viewBox="0 0 24 24" width="35" height="35" fill="none" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-        </a>
-    </div>
+    <script src="api-client.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

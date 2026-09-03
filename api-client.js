@@ -7,7 +7,7 @@ const API_URL = "/api";
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- LOGIN & REGISTER LOGIC ---
-    const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById("emailLoginForm") || document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
 
     if (loginForm) {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            const submitBtn = document.getElementById("loginBtn");
+            const submitBtn = document.getElementById("loginBtn") || loginForm.querySelector("button[type='submit']");
             const originalText = submitBtn.innerText;
             submitBtn.innerText = "Authenticating...";
             
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (response.ok) {
                     localStorage.setItem("techIndroUser", JSON.stringify(data.user));
-                    window.location.href = "index.html";
+                    window.location.href = "dashboard.html";
                 } else {
                     alert("Error: " + data.error);
                     submitBtn.innerText = originalText;
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById("regEmail").value;
             const password = document.getElementById("regPassword").value;
 
-            const submitBtn = document.getElementById("registerBtn");
+            const submitBtn = document.getElementById("registerBtn") || registerForm.querySelector("button[type='submit']");
             const originalText = submitBtn.innerText;
             submitBtn.innerText = "Creating Account...";
             
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     localStorage.setItem("techIndroUser", JSON.stringify(data.user));
                     alert("Account Created! Welcome to Tech Indro.");
-                    window.location.href = "index.html";
+                    window.location.href = "dashboard.html";
                 } else {
                     alert("Error: " + data.error);
                     submitBtn.innerText = originalText;

@@ -37,3 +37,23 @@ const fadeInOnScroll = () => {
         
 window.addEventListener('scroll', fadeInOnScroll);
 window.addEventListener('load', fadeInOnScroll);
+
+// User Session Management
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const rawUser = localStorage.getItem('techIndroUser');
+        if (rawUser) {
+            const user = JSON.parse(rawUser);
+            const loginBtns = document.querySelectorAll('.login-btn, a[href="login.html"]');
+            loginBtns.forEach(btn => {
+                if (!btn.closest('#authFooter') && !btn.classList.contains('back-home')) {
+                    btn.innerHTML = `Dashboard (${user.name ? user.name.split(' ')[0] : 'Student'})`;
+                    btn.href = 'dashboard.html';
+                    btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    btn.style.color = '#ffffff';
+                }
+            });
+            if (window.lucide) lucide.createIcons();
+        }
+    } catch(e) {}
+});

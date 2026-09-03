@@ -957,6 +957,8 @@ footer {
 .hamburger {
     display: none;
     flex-direction: column;
+}
+
 /* CTA Section */
 .cta-section {
     padding: 6rem 0;
@@ -1246,6 +1248,7 @@ footer {
     margin-bottom: 0.75rem;
     font-weight: 700;
     background: linear-gradient(to right, #fff, #a5b4fc);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
