@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Study Notes, Bookmarks & Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="theme-notifications.js"></script>
+    <style>
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .main-container {
+            max-width: 1160px;
+            margin: 110px auto 70px;
+            padding: 0 20px;
+        }
+
+        /* Banner */
+        .notes-hero {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hero-text h1 {
+            margin: 0 0 6px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .hero-text p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action-primary {
+            background: linear-gradient(135deg, #ff6b35, #ea580c);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+        }
+
+        .btn-action-secondary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-action-secondary.active {
+            background: rgba(255, 107, 53, 0.12);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Filter Controls */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .tabs-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary);
+            color: var(--text-main);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 9px 14px 9px 38px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+
+        /* Flashcard Section */
+        .flashcard-wrapper {
+            display: none;
+            margin-bottom: 35px;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            max-width: 640px;
+            margin: 0 auto 20px;
+            height: 320px;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flashcard-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 36px 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .flashcard-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        /* Bookmarks Cards Grid */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .note-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .note-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+        }
+
+        .note-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 10px;
+            line-height: 1.4;
+        }
+
+        .note-content {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 16px;
+            flex: 1;
+        }
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .note-actions-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-card-icon {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-card-icon:hover {
+            color: var(--primary);
+            background: rgba(255, 107, 53, 0.08);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            max-width: 520px;
+            width: 90%;
+            padding: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: fadeInSlide 0.2s ease;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="tsoc.html">TSOC</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="bookmarks.html" style="color: var(--primary); font-weight: 700;">Study Notes</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="quiz.html">Test Series</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Top Action Banner -->
+        <div class="notes-hero">
+            <div class="hero-left">
+                <div class="hero-icon-box">
+                    <i data-lucide="bookmark" style="width: 26px; height: 26px;"></i>
+                </div>
+                <div class="hero-text">
+                    <h1>Study Notes & Spaced-Repetition Flashcards</h1>
+                    <p>Tricky GATE/ISRO concepts, AI Shikshak code explanations, and personal revision notes synced with mobile app.</p>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button class="btn-action-secondary" id="btnToggleFlashcard" onclick="toggleFlashcardMode()">
+                    <i data-lucide="layers" style="width: 16px; height: 16px;"></i> Flashcard Mode
+                </button>
+                <button class="btn-action-primary" onclick="openCreateModal()">
+                    <i data-lucide="plus" style="width: 16px; height: 16px;"></i> New Note
+                </button>
+                <button class="btn-action-secondary" onclick="exportNotes()" title="Export Notes">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i> Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Interactive 3D Flashcard Section -->
+        <div class="flashcard-wrapper" id="flashcardSection">
+            <div style="text-align: center; margin-bottom: 14px;">
+                <span id="flashcardIndexBadge" style="background: rgba(255,107,53,0.12); color: var(--primary); font-size: 0.8rem; font-weight: 800; padding: 4px 14px; border-radius: 20px;">
+                    Card 1 of 6
+                </span>
+            </div>
+
+            <div class="flashcard-container" onclick="flipCurrentCard()">
+                <div class="flashcard-inner" id="flashcardElement">
+                    <div class="card-front">
+                        <span class="note-tag" id="fcFrontTag">Question</span>
+                        <h2 id="fcFrontTitle" style="color: var(--text-main); font-size: 1.3rem; margin: auto 0; line-height: 1.5;"></h2>
+                        <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+                            <i data-lucide="rotate-cw" style="width: 14px; height: 14px;"></i> Click anywhere to flip & reveal answer
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <span class="note-tag" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">Correct Concept & Explanation</span>
+                        <div id="fcBackContent" style="color: var(--text-main); font-size: 1.05rem; line-height: 1.6; margin: auto 0; font-weight: 500;"></div>
+                        <div style="font-size: 0.85rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            <i data-lucide="check-circle-2" style="width: 14px; height: 14px;"></i> Click to flip back
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard-controls">
+                <button class="btn-action-secondary" onclick="prevFlashcard()">
+                    <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i> Previous
+                </button>
+                <button class="btn-action-secondary" onclick="flipCurrentCard()">
+                    <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i> Flip
+                </button>
+                <button class="btn-action-secondary" onclick="nextFlashcard()">
+                    Next <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter and Search Bar -->
+        <div class="controls-bar">
+            <div class="tabs-group">
+                <button class="filter-tab active" onclick="setCategory('all', this)">
+                    All Notes (<span id="countAll">0</span>)
+                </button>
+                <button class="filter-tab" onclick="setCategory('question', this)">
+                    ❓ GATE & ISRO (<span id="countQuestions">0</span>)
+                </button>
+                <button class="filter-tab" onclick="setCategory('ai_note', this)">
+                    🤖 AI Shikshak (<span id="countAi">0</span>)
+                </button>
+                <button class="filter-tab" onclick="setCategory('personal_note', this)">
+                    📝 Personal Notes (<span id="countPersonal">0</span>)
+                </button>
+            </div>
+
+            <div class="search-box">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search saved notes..." oninput="handleSearch(this.value)">
+            </div>
+        </div>
+
+        <!-- Notes Grid -->
+        <div class="notes-grid" id="notesGrid"></div>
+    </div>
+
+    <!-- Create Custom Note Modal -->
+    <div class="modal-overlay" id="createModal">
+        <div class="modal-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: var(--text-main); font-size: 1.2rem; font-weight: 800;">Add Study Note / Bookmark</h3>
+                <button onclick="closeCreateModal()" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;">
+                    <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+
+            <form onsubmit="saveCustomNote(event)">
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select id="modalType" class="form-select">
+                        <option value="question">❓ ISRO / GATE Question</option>
+                        <option value="ai_note">🤖 AI Shikshak Explanation</option>
+                        <option value="personal_note">📝 Personal Revision Note</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Title / Question</label>
+                    <input type="text" id="modalTitle" class="form-input" placeholder="e.g. React useEffect Cleanup Function" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subject / Tag</label>
+                    <input type="text" id="modalTag" class="form-input" placeholder="e.g. Web Dev, Robotics, Python" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Note Content / Answer</label>
+                    <textarea id="modalContent" class="form-textarea" rows="4" placeholder="Write the core takeaway, formula or explanation..." required></textarea>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px;">
+                    <button type="button" class="btn-action-secondary" onclick="closeCreateModal()">Cancel</button>
+                    <button type="submit" class="btn-action-primary">Save to Notes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer style="background:var(--surface); border-top:1px solid var(--border); padding:40px 20px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
+        <p style="color:var(--text-muted); font-weight:500;">© 2026 Tech Indro Engineering Hub. All Rights Reserved.</p>
+        <p style="margin-top:8px;">
+            <a href="index.html" style="color:var(--text-muted); margin:0 10px; text-decoration:none; font-weight:500;">Home</a> •
+            <a href="cyber-playground.html" style="color:var(--text-muted); margin:0 10px; text-decoration:none; font-weight:500;">IndroLabs</a> •
+            <a href="portfolio.html" style="color:var(--text-muted); margin:0 10px; text-decoration:none; font-weight:500;">Portfolio</a> •
+            <a href="bookmarks.html" style="color:var(--primary); margin:0 10px; text-decoration:none; font-weight:600;">Study Notes</a> •
+            <a href="support.html" style="color:var(--text-muted); margin:0 10px; text-decoration:none; font-weight:500;">Support</a>
+        </p>
+    </footer>
+
+    <script>
+        const INITIAL_BOOKMARKS = [
+            {
+                id: 'b1',
+                type: 'question',
+                title: '[ISRO 2022] CSS text color property',
+                content: 'Which CSS property is used to change the text color of an element? Correct Answer: "color". Note that "font-color" is invalid in standard CSS.',
+                tag: 'Web Dev',
+                date: 'Yesterday',
+                extra: 'GATE/ISRO Exam Repeated Question'
+            },
+            {
+                id: 'b2',
+                type: 'ai_note',
+                title: 'React Hooks: useState vs useRef',
+                content: 'useState triggers a component re-render when its value changes. useRef holds a mutable reference object that persists across renders without triggering a re-render.',
+                tag: 'AI Shikshak',
+                date: '2 days ago',
+                extra: 'Saved from AI Tutor chat'
+            },
+            {
+                id: 'b3',
+                type: 'question',
+                title: '[TCS Digital 2023] Degrees of Freedom in 3D Space',
+                content: 'How many degrees of freedom does a standard rigid object in 3D space have? Answer: 6 (3 translational along X, Y, Z + 3 rotational roll, pitch, yaw).',
+                tag: 'Robotics',
+                date: '3 days ago',
+                extra: 'High Frequency Interview Question'
+            },
+            {
+                id: 'b4',
+                type: 'ai_note',
+                title: 'Python: List Comprehension vs Generator Expression',
+                content: 'List comprehension [x for x in data] constructs the entire list in memory immediately. Generator (x for x in data) yields items lazily on-demand, saving RAM on large datasets.',
+                tag: 'Python',
+                date: '4 days ago',
+                extra: 'Algorithm Optimization Tip'
+            },
+            {
+                id: 'b5',
+                type: 'question',
+                title: '[GATE CS 2021] Binary Search Time Complexity',
+                content: 'What is the worst-case time complexity of binary search on a sorted array of N elements? Answer: O(log N). Prerequisite: Array must be sorted.',
+                tag: 'DSA',
+                date: '5 days ago',
+                extra: 'Core Assessment Concept'
+            },
+            {
+                id: 'b6',
+                type: 'personal_note',
+                title: 'Docker Sandboxing for Code Execution',
+                content: 'Always disable container networking with --network=none and enforce strict memory limits (--memory=256m) and CPU throttling (--cpus=1.0) when running untrusted user code.',
+                tag: 'DevOps',
+                date: '1 week ago',
+                extra: 'IndroLabs Architecture Note'
+            }
+        ];
+
+        let bookmarks = [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let flashcardIndex = 0;
+        let isFlashcardMode = false;
+
+        function loadBookmarks() {
+            try {
+                const stored = localStorage.getItem('tech_indro_user_bookmarks');
+                bookmarks = stored ? JSON.parse(stored) : INITIAL_BOOKMARKS;
+            } catch (e) {
+                bookmarks = INITIAL_BOOKMARKS;
+            }
+            updateCounts();
+            renderNotes();
+        }
+
+        function saveBookmarks() {
+            localStorage.setItem('tech_indro_user_bookmarks', JSON.stringify(bookmarks));
+            updateCounts();
+            renderNotes();
+        }
+
+        function updateCounts() {
+            document.getElementById('countAll').innerText = bookmarks.length;
+            document.getElementById('countQuestions').innerText = bookmarks.filter(b => b.type === 'question').length;
+            document.getElementById('countAi').innerText = bookmarks.filter(b => b.type === 'ai_note').length;
+            document.getElementById('countPersonal').innerText = bookmarks.filter(b => b.type === 'personal_note').length;
+        }
+
+        function setCategory(cat, btn) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderNotes();
+            if (isFlashcardMode) {
+                flashcardIndex = 0;
+                renderFlashcard();
+            }
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.toLowerCase().trim();
+            renderNotes();
+        }
+
+        function getFilteredBookmarks() {
+            return bookmarks.filter(b => {
+                const matchesCat = currentFilter === 'all' || b.type === currentFilter;
+                const matchesSearch = !searchQuery ||
+                    b.title.toLowerCase().includes(searchQuery) ||
+                    b.content.toLowerCase().includes(searchQuery) ||
+                    b.tag.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesSearch;
+            });
+        }
+
+        function renderNotes() {
+            const grid = document.getElementById('notesGrid');
+            const filtered = getFilteredBookmarks();
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: var(--surface); border: 1px dashed var(--border); border-radius: 20px;">
+                        <i data-lucide="bookmark-x" style="width: 48px; height: 48px; color: var(--text-muted); margin-bottom: 12px;"></i>
+                        <h3 style="color: var(--text-main); margin: 0 0 8px;">No notes found</h3>
+                        <p style="color: var(--text-muted); margin: 0 0 16px;">Try adjusting your search query or create a new note.</p>
+                        <button class="btn-action-primary" onclick="openCreateModal()">Create Note</button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = filtered.map(b => `
+                <div class="note-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="note-tag">${b.tag}</span>
+                            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">${b.date}</span>
+                        </div>
+                        <h3 class="note-title">${b.title}</h3>
+                        <p class="note-content">${b.content}</p>
+                    </div>
+                    <div class="note-footer">
+                        <span>${b.extra || 'Study Reference'}</span>
+                        <div class="note-actions-row">
+                            <button class="btn-card-icon" onclick="copyNote('${b.id}')" title="Copy Note">
+                                <i data-lucide="copy" style="width: 15px; height: 15px;"></i>
+                            </button>
+                            <button class="btn-card-icon" onclick="deleteNote('${b.id}')" title="Delete Note">
+                                <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Flashcard Logic
+        function toggleFlashcardMode() {
+            const section = document.getElementById('flashcardSection');
+            const btn = document.getElementById('btnToggleFlashcard');
+            isFlashcardMode = !isFlashcardMode;
+
+            if (isFlashcardMode) {
+                section.style.display = 'block';
+                btn.classList.add('active');
+                flashcardIndex = 0;
+                renderFlashcard();
+            } else {
+                section.style.display = 'none';
+                btn.classList.remove('active');
+            }
+            lucide.createIcons();
+        }
+
+        function renderFlashcard() {
+            const list = getFilteredBookmarks();
+            if (list.length === 0) return;
+
+            const card = list[flashcardIndex % list.length];
+            const inner = document.getElementById('flashcardElement');
+            inner.classList.remove('flipped');
+
+            document.getElementById('fcFrontTag').innerText = card.tag;
+            document.getElementById('fcFrontTitle').innerText = card.title;
+            document.getElementById('fcBackContent').innerText = card.content;
+            document.getElementById('flashcardIndexBadge').innerText = `Card ${(flashcardIndex % list.length) + 1} of ${list.length}`;
+            lucide.createIcons();
+        }
+
+        function flipCurrentCard() {
+            document.getElementById('flashcardElement').classList.toggle('flipped');
+        }
+
+        function nextFlashcard() {
+            const list = getFilteredBookmarks();
+            if (list.length === 0) return;
+            flashcardIndex = (flashcardIndex + 1) % list.length;
+            renderFlashcard();
+        }
+
+        function prevFlashcard() {
+            const list = getFilteredBookmarks();
+            if (list.length === 0) return;
+            flashcardIndex = (flashcardIndex - 1 + list.length) % list.length;
+            renderFlashcard();
+        }
+
+        // Modal actions
+        function openCreateModal() {
+            document.getElementById('createModal').classList.add('show');
+            lucide.createIcons();
+        }
+
+        function closeCreateModal() {
+            document.getElementById('createModal').classList.remove('show');
+        }
+
+        function saveCustomNote(e) {
+            e.preventDefault();
+            const type = document.getElementById('modalType').value;
+            const title = document.getElementById('modalTitle').value.trim();
+            const tag = document.getElementById('modalTag').value.trim();
+            const content = document.getElementById('modalContent').value.trim();
+
+            const newNote = {
+                id: 'custom-' + Date.now(),
+                type,
+                title,
+                tag,
+                content,
+                date: 'Just now',
+                extra: 'Personal Study Note'
+            };
+
+            bookmarks.unshift(newNote);
+            saveBookmarks();
+            closeCreateModal();
+            e.target.reset();
+        }
+
+        function deleteNote(id) {
+            if (confirm("Delete this bookmark from your notes?")) {
+                bookmarks = bookmarks.filter(b => b.id !== id);
+                saveBookmarks();
+                if (isFlashcardMode) {
+                    flashcardIndex = 0;
+                    renderFlashcard();
+                }
+            }
+        }
+
+        function copyNote(id) {
+            const note = bookmarks.find(b => b.id === id);
+            if (!note) return;
+            const text = `${note.title}\n\n${note.content}\n\nTag: ${note.tag} | Tech Indro Study Notes`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("✓ Note copied to clipboard!");
+            });
+        }
+
+        function exportNotes() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bookmarks, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "tech_indro_study_notes.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBookmarks();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

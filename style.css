@@ -7,10 +7,14 @@
     --accent: #ffb703;
     --bg: #ffffff;
     --surface: #ffffff;
-    --surface-glass: rgba(255, 255, 255, 1);
-    --text-main: #222222;
-    --text-muted: #555555;
-    --border: rgba(0, 0, 0, 0.08);
+    --surface-glass: rgba(255, 255, 255, 0.95);
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --input-bg: #f8fafc;
+    --input-border: #cbd5e1;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -20,6 +24,77 @@
     --radius-md: 0.5rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
+}
+
+[data-theme="dark"] {
+    --bg: #090d16;
+    --surface: #101728;
+    --surface-glass: rgba(16, 23, 40, 0.95);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #1e293b;
+    --card-bg: #101728;
+    --card-border: #1e293b;
+    --input-bg: #0b0f19;
+    --input-border: #28354f;
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.5);
+}
+
+[data-theme="dark"] header {
+    background: rgba(16, 23, 40, 0.92) !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+[data-theme="dark"] .logo-text .brand-name,
+[data-theme="dark"] .logo span {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .nav-link,
+[data-theme="dark"] .nav-links a {
+    color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-links a:hover {
+    color: #ff6b35 !important;
+}
+
+[data-theme="dark"] .channel-card,
+[data-theme="dark"] .ticket-card,
+[data-theme="dark"] .action-banner,
+[data-theme="dark"] .edit-card,
+[data-theme="dark"] .faq-item {
+    background: #101728 !important;
+    border-color: #1e293b !important;
+}
+
+[data-theme="dark"] .channel-title,
+[data-theme="dark"] .ticket-title,
+[data-theme="dark"] .faq-question,
+[data-theme="dark"] .faq-group-title,
+[data-theme="dark"] .hero-title,
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+    color: #f8fafc !important;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+    background: #090d16 !important;
+    border-color: #28354f !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] footer {
+    background: #070a12 !important;
+    border-top: 1px solid #1e293b !important;
+}
+
+[data-theme="dark"] footer p,
+[data-theme="dark"] footer a {
+    color: #94a3b8 !important;
 }
 
 * {

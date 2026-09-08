@@ -24,6 +24,10 @@
       "dest": "/support.html"
     },
     {
+      "src": "/bookmarks",
+      "dest": "/bookmarks.html"
+    },
+    {
       "src": "/cyber-playground",
       "dest": "/cyber-playground.html"
     },
