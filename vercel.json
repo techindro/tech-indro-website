@@ -16,10 +16,6 @@
       "dest": "/server.js"
     },
     {
-      "src": "/ai-tools",
-      "dest": "/ai-tools.html"
-    },
-    {
       "src": "/portfolio",
       "dest": "/portfolio.html"
     },
