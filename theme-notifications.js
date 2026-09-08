@@ -274,35 +274,6 @@
         const navContainer = document.querySelector('header nav .nav-links') || document.querySelector('header nav');
         if (!navContainer) return;
 
-        // Make sure "Study Notes" link exists in navbar
-        const navLinks = navContainer.querySelectorAll('a');
-        let hasBookmarks = false;
-        navLinks.forEach(a => {
-            if (a.getAttribute('href') === 'bookmarks.html' || a.innerText.toLowerCase().includes('notes')) {
-                hasBookmarks = true;
-            }
-        });
-
-        if (!hasBookmarks) {
-            // Find login button to insert before it
-            const loginBtn = navContainer.querySelector('.login-btn') || navContainer.querySelector('a[href="login.html"]');
-            const bookmarksLink = document.createElement(navContainer.tagName === 'UL' ? 'li' : 'a');
-            if (navContainer.tagName === 'UL') {
-                bookmarksLink.innerHTML = `<a href="bookmarks.html">Study Notes</a>`;
-            } else {
-                bookmarksLink.setAttribute('href', 'bookmarks.html');
-                bookmarksLink.className = 'nav-link';
-                bookmarksLink.innerText = 'Study Notes';
-            }
-
-            if (loginBtn) {
-                const targetNode = navContainer.tagName === 'UL' ? loginBtn.parentElement : loginBtn;
-                navContainer.insertBefore(bookmarksLink, targetNode);
-            } else {
-                navContainer.appendChild(bookmarksLink);
-            }
-        }
-
         // Create Header Controls Group (Bell + Theme Toggle + Dropdown)
         const controlsGroup = document.createElement('div');
         controlsGroup.id = 'headerControlsGroup';
@@ -311,7 +282,7 @@
         controlsGroup.innerHTML = `
             <!-- Notification Bell -->
             <button class="btn-header-action" onclick="window.toggleNotificationDropdown(event)" title="Notifications">
-                <i data-lucide="bell" style="width:18px;height:18px;"></i>
+                <i data-lucide="bell" style="width:16px;height:16px;"></i>
                 <span class="notif-badge-count" style="display:none;">0</span>
             </button>
 
@@ -326,18 +297,32 @@
 
             <!-- Dark / Light Mode Toggle Button -->
             <button class="btn-header-action btn-theme-toggle" onclick="window.toggleTheme()" title="Toggle Theme">
-                <i data-lucide="moon" style="width:18px;height:18px;"></i>
+                <i data-lucide="moon" style="width:16px;height:16px;"></i>
             </button>
         `;
 
-        // Insert controls group in navbar
+        // Insert controls group before login button or at the end
         const loginBtn = navContainer.querySelector('.login-btn') || navContainer.querySelector('a[href="login.html"]');
         if (loginBtn) {
             const targetNode = navContainer.tagName === 'UL' ? loginBtn.parentElement : loginBtn;
-            targetNode.insertAdjacentElement('afterend', controlsGroup);
+            targetNode.insertAdjacentElement('beforebegin', controlsGroup);
         } else {
             navContainer.appendChild(controlsGroup);
         }
+
+        updateThemeToggleIcons(currentTheme);
+        updateNotificationUI();
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('notificationDropdown');
+            if (dropdown && dropdown.classList.contains('show')) {
+                if (!controlsGroup.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+    }
 
         updateThemeToggleIcons(currentTheme);
         updateNotificationUI();

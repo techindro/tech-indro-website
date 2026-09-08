@@ -172,6 +172,12 @@ nav {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.logo span {
+    white-space: nowrap;
 }
 
 .logo-icon {
@@ -185,6 +191,7 @@ nav {
     color: white;
     font-weight: 800;
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .logo-text {
@@ -192,13 +199,15 @@ nav {
     font-weight: 800;
     color: var(--text-main);
     letter-spacing: -0.02em;
+    white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 1.8rem;
     align-items: center;
+    white-space: nowrap;
 }
 
 .nav-links a {
@@ -208,9 +217,10 @@ nav {
     font-size: 0.95rem;
     transition: var(--transition);
     position: relative;
+    white-space: nowrap;
 }
 
-.nav-links a:not(.login-btn)::after {
+.nav-links a:not(.login-btn):not(.dropdown-item)::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -226,23 +236,99 @@ nav {
     color: var(--text-main);
 }
 
-.nav-links a:not(.login-btn):hover::after {
+.nav-links a:not(.login-btn):not(.dropdown-item):hover::after {
     width: 100%;
 }
 
-.login-btn {
-    background: var(--primary);
-    color: white !important;
-    padding: 0.6rem 1.5rem;
-    border-radius: var(--radius-md);
+/* Features Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-dropdown-trigger {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 230px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    z-index: 2000;
+    list-style: none;
+    margin: 0;
+}
+
+.nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+}
+
+.nav-dropdown-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: var(--text-main);
     font-weight: 600;
-    transition: var(--transition);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-dropdown-menu li a::after {
+    display: none !important;
+}
+
+.nav-dropdown-menu li a:hover {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--primary);
+}
+
+.login-btn {
+    background: var(--primary) !important;
+    color: white !important;
+    padding: 0.55rem 1.45rem !important;
+    border-radius: 25px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
 }
 
 .login-btn:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.23);
+    background: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35) !important;
 }
 
 /* Hero Section */

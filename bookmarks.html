@@ -406,20 +406,27 @@
 <body>
     <header>
         <nav class="container">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px; white-space: nowrap; flex-shrink: 0;">
                 <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
-                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black; white-space: nowrap;">TECH INDRO</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="tsoc.html">TSOC</a></li>
-                <li><a href="cyber-playground.html">IndroLabs</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="bookmarks.html" style="color: var(--primary); font-weight: 700;">Study Notes</a></li>
-                <li><a href="support.html">Support</a></li>
-                <li><a href="quiz.html">Test Series</a></li>
-                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
-            </ul>
+            <div class="nav-links">
+                <a href="programs.html">Programs</a>
+                <a href="tsoc.html">TSOC</a>
+                <a href="cyber-playground.html">IndroLabs</a>
+                <div class="nav-dropdown">
+                    <a href="javascript:void(0)" class="nav-dropdown-trigger" style="color: var(--primary); font-weight: 700;">
+                        Features <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+                    </a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="portfolio.html" class="dropdown-item"><i data-lucide="file-text" style="width:16px;height:16px;color:var(--primary);"></i> Portfolio Builder</a></li>
+                        <li><a href="bookmarks.html" class="dropdown-item" style="color: var(--primary); font-weight: 700;"><i data-lucide="bookmark" style="width:16px;height:16px;color:var(--primary);"></i> Study Notes & Flashcards</a></li>
+                        <li><a href="support.html" class="dropdown-item"><i data-lucide="headphones" style="width:16px;height:16px;color:var(--primary);"></i> Support Desk</a></li>
+                    </ul>
+                </div>
+                <a href="quiz.html">Test Series</a>
+                <a href="login.html" class="login-btn">Login / Sign Up</a>
+            </div>
         </nav>
     </header>
 
