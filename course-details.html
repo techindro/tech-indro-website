@@ -258,37 +258,39 @@
 
             let course;
             try {
-                // Tier 1: Relative API route
-                const res = await fetch(`/api/courses/${courseId}`);
-                if (!res.ok) throw new Error("Status " + res.status);
-                course = await res.json();
-            } catch (err1) {
                 try {
-                    // Tier 2: Absolute localhost:5000
-                    const res = await fetch(`http://localhost:5000/api/courses/${courseId}`);
+                    // Tier 1: Relative API route
+                    const res = await fetch(`/api/courses/${courseId}`);
                     if (!res.ok) throw new Error("Status " + res.status);
                     course = await res.json();
-                } catch (err2) {
+                } catch (err1) {
                     try {
-                        // Tier 3: Static courses.json file
-                        const res = await fetch("courses.json");
+                        // Tier 2: Absolute localhost:5000
+                        const res = await fetch(`http://localhost:5000/api/courses/${courseId}`);
                         if (!res.ok) throw new Error("Status " + res.status);
-                        const all = await res.json();
-                        course = all.find(c => c.id === courseId);
-                        if (!course) throw new Error("Course not found in static list");
-                    } catch (err3) {
-                        // Tier 4: Direct embedded offline fallback
-                        if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES)) {
-                            course = window.TECH_INDRO_COURSES.find(c => c.id === courseId);
-                        }
-                        if (!course) {
-                            document.getElementById('courseTitle').innerText = "Course Not Found";
-                            document.getElementById('courseDesc').innerText = "Please ensure the backend is running on port 5000 or return to programs.";
-                            return;
+                        course = await res.json();
+                    } catch (err2) {
+                        try {
+                            // Tier 3: Static courses.json file
+                            const res = await fetch("courses.json");
+                            if (!res.ok) throw new Error("Status " + res.status);
+                            const all = await res.json();
+                            course = all.find(c => c.id === courseId);
+                            if (!course) throw new Error("Course not found in static list");
+                        } catch (err3) {
+                            // Tier 4: Direct embedded offline fallback
+                            if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES)) {
+                                course = window.TECH_INDRO_COURSES.find(c => c.id === courseId);
+                            }
                         }
                     }
                 }
-            }
+
+                if (!course) {
+                    document.getElementById('courseTitle').innerText = "Course Not Found";
+                    document.getElementById('courseDesc').innerText = "Please ensure the backend is running on port 5000 or return to programs.";
+                    return;
+                }
                 
                 // Update text
                 document.getElementById('courseTitle').innerText = course.title;
