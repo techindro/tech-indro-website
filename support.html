@@ -8,8 +8,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
-            background: #090d16;
-            color: #f8fafc;
+            background: #f8fafc;
+            color: #1e293b;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
@@ -17,40 +17,41 @@
         .hero-section {
             padding: 140px 20px 50px;
             text-align: center;
-            background: radial-gradient(circle at 50% 15%, rgba(255, 107, 53, 0.2) 0%, transparent 65%);
+            background: linear-gradient(180deg, #fff7ed 0%, #f8fafc 100%);
+            border-bottom: 1px solid #f1f5f9;
         }
         .support-pill {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 107, 53, 0.15);
-            border: 1px solid rgba(255, 107, 53, 0.4);
-            color: #ff8c5a;
+            background: #ffffff;
+            border: 1px solid #fed7aa;
+            color: #ea580c;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.82rem;
             font-weight: 700;
             margin-bottom: 16px;
             letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.08);
         }
         .hero-title {
             font-size: 2.8rem;
             font-weight: 800;
             margin: 0 0 12px;
-            background: linear-gradient(135deg, #ffffff 40%, #ff8c5a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0f172a;
+            letter-spacing: -0.5px;
         }
         .hero-subtitle {
             font-size: 1.1rem;
-            color: #94a3b8;
+            color: #475569;
             max-width: 620px;
             margin: 0 auto 35px;
             line-height: 1.6;
         }
         .container-content {
             max-width: 1100px;
-            margin: 0 auto 80px;
+            margin: 40px auto 80px;
             padding: 0 20px;
         }
 
@@ -62,40 +63,41 @@
             margin-bottom: 50px;
         }
         .channel-card {
-            background: #101728;
-            border: 1px solid #1e293b;
-            border-radius: 14px;
-            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 26px 22px;
             text-align: center;
             transition: all 0.25s ease;
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         .channel-card:hover {
             transform: translateY(-4px);
             border-color: #ff6b35;
-            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.15);
+            box-shadow: 0 12px 25px rgba(255, 107, 53, 0.12);
         }
         .channel-icon-circle {
-            width: 54px;
-            height: 54px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .channel-title {
-            color: #ffffff;
+            color: #0f172a;
             font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .channel-desc {
-            color: #94a3b8;
-            font-size: 0.85rem;
+            color: #64748b;
+            font-size: 0.88rem;
             line-height: 1.5;
             margin-bottom: 16px;
         }
@@ -122,22 +124,23 @@
         .faq-group-title {
             font-size: 1.5rem;
             font-weight: 800;
-            color: #fff;
+            color: #0f172a;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .faq-item {
-            background: #101728;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             margin-bottom: 12px;
             overflow: hidden;
-            transition: border-color 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
         }
         .faq-item:hover {
-            border-color: #334155;
+            border-color: #cbd5e1;
         }
         .faq-header {
             padding: 16px 20px;
@@ -150,12 +153,12 @@
         .faq-question {
             font-size: 0.95rem;
             font-weight: 600;
-            color: #f1f5f9;
+            color: #0f172a;
         }
         .faq-body {
             padding: 0 20px 18px;
-            font-size: 0.88rem;
-            color: #94a3b8;
+            font-size: 0.9rem;
+            color: #475569;
             line-height: 1.6;
             display: none;
         }
@@ -163,28 +166,28 @@
             display: block;
         }
         .faq-item.open .faq-header {
-            border-bottom: 1px solid #1e293b;
-            color: #ff6b35;
+            border-bottom: 1px solid #f1f5f9;
+            color: #ea580c;
         }
 
         /* Contact Ticket Form Card */
         .ticket-card {
-            background: #101728;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .ticket-title {
             margin-top: 0;
             font-size: 1.35rem;
-            font-weight: 700;
-            color: #fff;
+            font-weight: 800;
+            color: #0f172a;
             margin-bottom: 6px;
         }
         .ticket-subtitle {
             font-size: 0.88rem;
-            color: #94a3b8;
+            color: #64748b;
             margin-bottom: 20px;
             line-height: 1.5;
         }
@@ -195,22 +198,24 @@
             display: block;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #cbd5e1;
+            color: #334155;
             margin-bottom: 6px;
         }
         .form-input, .form-textarea {
             width: 100%;
             padding: 12px 14px;
-            background: #090d16;
-            border: 1px solid #28354f;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
-            color: #fff;
+            color: #0f172a;
             font-size: 0.92rem;
             box-sizing: border-box;
             outline: none;
             transition: all 0.2s;
+            font-family: inherit;
         }
         .form-input:focus, .form-textarea:focus {
+            background: #ffffff;
             border-color: #ff6b35;
             box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
         }
@@ -228,12 +233,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35);
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
             transition: all 0.2s ease;
         }
         .btn-submit-ticket:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(255, 107, 53, 0.5);
+            box-shadow: 0 6px 18px rgba(255, 107, 53, 0.4);
         }
         .status-alert {
             display: none;
@@ -244,14 +249,16 @@
             text-align: center;
         }
         .status-success {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid #10b981;
-            color: #10b981;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #059669;
+            font-weight: 600;
         }
         .status-error {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid #ef4444;
-            color: #ef4444;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -414,14 +421,14 @@
         </div>
     </div>
 
-    <footer style="background:#070a12; border-top:1px solid #1e293b; padding:40px 20px; text-align:center; color:#64748b; font-size:0.9rem;">
-        <p>© 2026 Tech Indro Engineering Hub. All Rights Reserved.</p>
+    <footer style="background:#ffffff; border-top:1px solid #e2e8f0; padding:40px 20px; text-align:center; color:#64748b; font-size:0.9rem;">
+        <p style="color:#475569; font-weight:500;">© 2026 Tech Indro Engineering Hub. All Rights Reserved.</p>
         <p style="margin-top:8px;">
-            <a href="index.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">Home</a> •
-            <a href="ai-tools.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">AI Tools</a> •
-            <a href="cyber-playground.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">IndroLabs</a> •
-            <a href="portfolio.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">Portfolio</a> •
-            <a href="support.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">Support</a>
+            <a href="index.html" style="color:#64748b; margin:0 10px; text-decoration:none; font-weight:500;">Home</a> •
+            <a href="ai-tools.html" style="color:#64748b; margin:0 10px; text-decoration:none; font-weight:500;">AI Tools</a> •
+            <a href="cyber-playground.html" style="color:#64748b; margin:0 10px; text-decoration:none; font-weight:500;">IndroLabs</a> •
+            <a href="portfolio.html" style="color:#64748b; margin:0 10px; text-decoration:none; font-weight:500;">Portfolio</a> •
+            <a href="support.html" style="color:#ff6b35; margin:0 10px; text-decoration:none; font-weight:600;">Support</a>
         </p>
     </footer>
 
