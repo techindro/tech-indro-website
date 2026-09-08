@@ -52,6 +52,10 @@
       "dest": "/checkout.html"
     },
     {
+      "src": "/privacy",
+      "dest": "/privacy.html"
+    },
+    {
       "handle": "filesystem"
     }
   ],

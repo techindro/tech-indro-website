@@ -231,15 +231,10 @@
             
             <!-- LOGIN SECTION -->
             <div id="loginSection">
-                <div class="login-tabs">
-                    <button type="button" class="tab-btn active" id="tabEmail" onclick="switchTab('email')">Email</button>
-                    <button type="button" class="tab-btn" id="tabMobile" onclick="switchTab('mobile')">Mobile Number</button>
-                </div>
-
                 <!-- Email Login Form -->
                 <form id="emailLoginForm">
                     <div class="form-group">
-                        <label class="form-label" for="email">Email Address</label>
+                        <label class="form-label" for="email">Student Email Address</label>
                         <input type="email" id="email" class="form-input" placeholder="you@example.com" required>
                     </div>
                     
@@ -251,29 +246,7 @@
                         <input type="password" id="password" class="form-input" placeholder="••••••••" required>
                     </div>
                     
-                    <button type="submit" class="auth-btn" id="loginBtn">Sign In</button>
-                </form>
-
-                <!-- Mobile Login Form -->
-                <form id="mobileLoginForm" style="display: none;">
-                    <div class="form-group" id="phoneGroup">
-                        <label class="form-label" for="mobile">Mobile Number</label>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="text" value="+91" style="width: 60px; text-align: center; font-weight: 600; color: #64748b; background: #e2e8f0; border: 1px solid #cbd5e1;" class="form-input" readonly>
-                            <input type="tel" id="mobile" class="form-input" placeholder="9876543210" pattern="[0-9]{10}" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" id="otpGroup" style="display: none;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <label class="form-label" for="otp" style="margin-bottom: 0;">Enter OTP</label>
-                            <a href="#" style="font-size: 0.8rem; color: #ff6b35; text-decoration: none;" onclick="sendOtp(event)">Resend OTP</a>
-                        </div>
-                        <input type="text" id="otp" class="form-input" placeholder="123456" maxlength="6">
-                    </div>
-                    
-                    <button type="button" class="auth-btn" id="sendOtpBtn" onclick="sendOtp(event)">Send OTP</button>
-                    <button type="button" class="auth-btn" id="verifyOtpBtn" style="display: none;" onclick="verifyOtp(event)">Verify & Login</button>
+                    <button type="submit" class="auth-btn" id="loginBtn">Sign In to Dashboard</button>
                 </form>
             </div>
 
@@ -334,83 +307,6 @@
                 footer.innerHTML = `Already have an account? <a href="#" onclick="toggleAuthMode(event)">Sign in here</a>`;
             }
         }
-
-        // Tab Switching Logic
-        function switchTab(mode) {
-            const emailForm = document.getElementById('emailLoginForm');
-            const mobileForm = document.getElementById('mobileLoginForm');
-            const tabEmail = document.getElementById('tabEmail');
-            const tabMobile = document.getElementById('tabMobile');
-
-            if (mode === 'email') {
-                if(emailForm) emailForm.style.display = 'block';
-                if(mobileForm) mobileForm.style.display = 'none';
-                if(tabEmail) tabEmail.classList.add('active');
-                if(tabMobile) tabMobile.classList.remove('active');
-            } else {
-                if(emailForm) emailForm.style.display = 'none';
-                if(mobileForm) mobileForm.style.display = 'block';
-                if(tabEmail) tabEmail.classList.remove('active');
-                if(tabMobile) tabMobile.classList.add('active');
-            }
-        }
-
-        // OTP Simulator
-        function sendOtp(e) {
-            e.preventDefault();
-            const mobile = document.getElementById('mobile').value;
-            if(mobile.length !== 10) {
-                alert("Please enter a valid 10-digit mobile number");
-                return;
-            }
-            
-            const btn = document.getElementById('sendOtpBtn');
-            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Sending...';
-            lucide.createIcons();
-
-            setTimeout(() => {
-                document.getElementById('phoneGroup').style.display = 'none';
-                document.getElementById('sendOtpBtn').style.display = 'none';
-                
-                document.getElementById('otpGroup').style.display = 'block';
-                document.getElementById('verifyOtpBtn').style.display = 'block';
-                
-                const toast = document.getElementById('oauth-toast');
-                document.getElementById('oauth-toast-msg').innerText = '📲 OTP sent to +91 ' + mobile;
-                toast.style.display = 'block';
-                setTimeout(() => { toast.style.display = 'none'; }, 3000);
-            }, 1000);
-        }
-
-        function verifyOtp(e) {
-            e.preventDefault();
-            const otp = document.getElementById('otp').value;
-            if(otp.length < 4) {
-                alert("Please enter the OTP");
-                return;
-            }
-            
-            let userName = prompt("OTP Verified! Please enter your name to setup your account:", "Student");
-            if (!userName) return;
-
-            const btn = document.getElementById('verifyOtpBtn');
-            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Verifying...';
-            lucide.createIcons();
-
-            setTimeout(() => {
-                const toast = document.getElementById('oauth-toast');
-                document.getElementById('oauth-toast-msg').innerText = '✅ Login Successful!';
-                toast.style.display = 'block';
-                
-                localStorage.setItem('techIndroUser', JSON.stringify({ name: userName, phone: document.getElementById('mobile').value, provider: 'OTP' }));
-                
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1000);
-            }, 1000);
-        }
-
-
     </script>
     <style>
         @keyframes spin { 100% { transform: rotate(360deg); } }

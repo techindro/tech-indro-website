@@ -1,0 +1,6 @@
+# Tech Indro Educational Platform - Robots Policy
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://tech-indro-website.vercel.app/sitemap.xml
