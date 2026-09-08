@@ -382,28 +382,29 @@
 
             let allCourses = [];
             try {
-                const res = await fetch("/api/courses");
-                if (!res.ok) throw new Error("Status " + res.status);
-                allCourses = await res.json();
-            } catch (err1) {
                 try {
-                    const res = await fetch("http://localhost:5000/api/courses");
+                    const res = await fetch("/api/courses");
                     if (!res.ok) throw new Error("Status " + res.status);
                     allCourses = await res.json();
-                } catch (err2) {
+                } catch (err1) {
                     try {
-                        const res = await fetch("courses.json");
+                        const res = await fetch("http://localhost:5000/api/courses");
                         if (!res.ok) throw new Error("Status " + res.status);
                         allCourses = await res.json();
-                    } catch (err3) {
-                        if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES)) {
-                            allCourses = window.TECH_INDRO_COURSES;
-                        } else {
-                            console.warn("Could not load courses in dashboard:", err3);
+                    } catch (err2) {
+                        try {
+                            const res = await fetch("courses.json");
+                            if (!res.ok) throw new Error("Status " + res.status);
+                            allCourses = await res.json();
+                        } catch (err3) {
+                            if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES)) {
+                                allCourses = window.TECH_INDRO_COURSES;
+                            } else {
+                                console.warn("Could not load courses in dashboard:", err3);
+                            }
                         }
                     }
                 }
-            }
                 
                 grid.innerHTML = ""; 
                 
