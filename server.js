@@ -26,6 +26,14 @@ const COURSES_FILE = path.join(__dirname, 'courses.json');
 const SHIKSHAK_COURSES_FILE = path.join(__dirname, 'shikshak-courses.json');
 const AI_TOOLS_FILE = path.join(__dirname, 'ai-tools.json');
 
+// Bundler-friendly in-memory defaults for Vercel Serverless
+let defaultCourses = [];
+try { defaultCourses = require('./courses.json'); } catch(e) {}
+let defaultShikshakCourses = [];
+try { defaultShikshakCourses = require('./shikshak-courses.json'); } catch(e) {}
+let defaultAiTools = [];
+try { defaultAiTools = require('./ai-tools.json'); } catch(e) {}
+
 // Middleware: Security Headers & Crash Protection
 app.use((req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -54,7 +62,7 @@ const rateLimitStores = {
 };
 
 // Automatic cleanup every 5 minutes to prevent memory leaks
-setInterval(() => {
+const cleanupTimer = setInterval(() => {
     const now = Date.now();
     for (const store of Object.values(rateLimitStores)) {
         for (const [ip, rec] of store.entries()) {
@@ -62,6 +70,7 @@ setInterval(() => {
         }
     }
 }, 5 * 60 * 1000);
+if (cleanupTimer.unref) cleanupTimer.unref();
 
 function createRateLimiter(storeKey, maxRequests, windowMs, message) {
     return (req, res, next) => {
@@ -285,6 +294,9 @@ app.post('/api/contact', contactLimiter, (req, res) => {
 // fetch all courses
 app.get('/api/courses', (req, res) => {
     try {
+        if (defaultCourses && defaultCourses.length > 0) {
+            return res.json(defaultCourses);
+        }
         const courses = JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8'));
         res.json(courses);
     } catch (err) {
@@ -295,6 +307,9 @@ app.get('/api/courses', (req, res) => {
 // fetch kids courses
 app.get('/api/shikshak-courses', (req, res) => {
     try {
+        if (defaultShikshakCourses && defaultShikshakCourses.length > 0) {
+            return res.json(defaultShikshakCourses);
+        }
         const courses = JSON.parse(fs.readFileSync(SHIKSHAK_COURSES_FILE, 'utf8'));
         res.json(courses);
     } catch (err) {
@@ -305,6 +320,9 @@ app.get('/api/shikshak-courses', (req, res) => {
 // fetch ai tools
 app.get('/api/ai-tools', (req, res) => {
     try {
+        if (defaultAiTools && defaultAiTools.length > 0) {
+            return res.json(defaultAiTools);
+        }
         const tools = JSON.parse(fs.readFileSync(AI_TOOLS_FILE, 'utf8'));
         res.json(tools);
     } catch (err) {
@@ -315,9 +333,8 @@ app.get('/api/ai-tools', (req, res) => {
 // fetch course details
 app.get('/api/courses/:id', (req, res) => {
     try {
-        if (!fs.existsSync(COURSES_FILE)) return res.status(404).json({ error: "Course not found" });
-        const courses = JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8'));
-        const course = courses.find(c => c.id === req.params.id);
+        const list = (defaultCourses && defaultCourses.length > 0) ? defaultCourses : (fs.existsSync(COURSES_FILE) ? JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8')) : []);
+        const course = list.find(c => c.id === req.params.id);
         
         if (course) res.json(course);
         else res.status(404).json({ error: "Course not found" });
@@ -1104,7 +1121,7 @@ app.use((err, req, res, next) => {
 });
 
 // 404 Handler for undefined API routes
-app.use('/api/*', (req, res) => {
+app.use('/api', (req, res) => {
     res.status(404).json({ error: `API endpoint '${req.originalUrl}' not found.`, success: false });
 });
 

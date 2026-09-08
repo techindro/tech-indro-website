@@ -227,21 +227,54 @@
             </a>
         </div>
 
+    <script src="courses-data.js"></script>
     <script>
         lucide.createIcons();
 
         let allCourses = [];
 
-        // Fetch courses and render them
+        // Fetch courses and render them with automatic multi-tier fallback
         document.addEventListener("DOMContentLoaded", async () => {
             const grid = document.getElementById("programsGrid");
             try {
-                const res = await fetch("/api/courses");
+                // Tier 1: Relative API route (when served directly from Express on port 5000)
+                let res = await fetch("/api/courses");
+                if (!res.ok) throw new Error("Status " + res.status);
                 allCourses = await res.json();
-                renderCourses(allCourses);
-            } catch (err) {
-                grid.innerHTML = "<p>Error loading programs. Please make sure the backend is running.</p>";
+            } catch (err1) {
+                try {
+                    // Tier 2: Absolute localhost:5000 (when opened via Live Server on port 5500/3000)
+                    let res = await fetch("http://localhost:5000/api/courses");
+                    if (!res.ok) throw new Error("Status " + res.status);
+                    allCourses = await res.json();
+                } catch (err2) {
+                    try {
+                        // Tier 3: Direct local courses.json file
+                        let res = await fetch("courses.json");
+                        if (!res.ok) throw new Error("Status " + res.status);
+                        allCourses = await res.json();
+                    } catch (err3) {
+                        // Tier 4: Direct embedded offline fallback
+                        if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES) && window.TECH_INDRO_COURSES.length > 0) {
+                            allCourses = window.TECH_INDRO_COURSES;
+                        } else {
+                            grid.innerHTML = `
+                                <div style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem;">
+                                    <i data-lucide="alert-circle" style="width: 44px; height: 44px; color: #ef4444; margin-bottom: 1rem;"></i>
+                                    <h3 style="margin-bottom: 0.5rem;">Unable to load programs</h3>
+                                    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 1.5rem;">
+                                        Please make sure the backend server is running (<code style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">npm start</code>) or open via <a href="http://localhost:5000/programs.html" style="color: var(--primary);">http://localhost:5000/programs.html</a>.
+                                    </p>
+                                    <button onclick="location.reload()" class="btn btn-primary" style="padding: 0.6rem 1.4rem; border-radius: 8px;">Retry Connection</button>
+                                </div>
+                            `;
+                            if (window.lucide) lucide.createIcons();
+                            return;
+                        }
+                    }
+                }
             }
+            renderCourses(allCourses);
         });
 
         function renderCourses(coursesToRender) {

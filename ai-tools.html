@@ -294,6 +294,7 @@
         </p>
     </footer>
 
+    <script src="ai-tools-data.js"></script>
     <script>
         lucide.createIcons();
 
@@ -302,18 +303,39 @@
 
         async function loadTools() {
             try {
-                const res = await fetch('ai-tools.json');
+                const res = await fetch('/api/ai-tools');
+                if (!res.ok) throw new Error("Status " + res.status);
                 allTools = await res.json();
-                renderTools(allTools);
-            } catch (err) {
-                console.error("Could not load ai-tools.json", err);
-                document.getElementById('toolsGrid').innerHTML = `
-                    <div class="empty-state">
-                        <h3>Error loading AI Tools</h3>
-                        <p>${err.message}</p>
-                    </div>
-                `;
+            } catch (err1) {
+                try {
+                    const res = await fetch('http://localhost:5000/api/ai-tools');
+                    if (!res.ok) throw new Error("Status " + res.status);
+                    allTools = await res.json();
+                } catch (err2) {
+                    try {
+                        const res = await fetch('ai-tools.json');
+                        if (!res.ok) throw new Error("Status " + res.status);
+                        allTools = await res.json();
+                    } catch (err3) {
+                        if (Array.isArray(window.TECH_INDRO_AI_TOOLS) && window.TECH_INDRO_AI_TOOLS.length > 0) {
+                            allTools = [...window.TECH_INDRO_AI_TOOLS];
+                        } else {
+                            console.error("Could not load ai-tools data", err3);
+                            document.getElementById('toolsGrid').innerHTML = `
+                                <div class="empty-state">
+                                    <i data-lucide="alert-circle" style="width:48px;height:48px; margin-bottom:12px; color:#ef4444;"></i>
+                                    <h3>Error loading AI Tools</h3>
+                                    <p>Please make sure the backend server is running (<code style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px; color:#38bdf8;">npm start</code>) or launch from <a href="http://localhost:5000/ai-tools.html" style="color:#38bdf8;">http://localhost:5000/ai-tools.html</a>.</p>
+                                    <button onclick="loadTools()" class="cat-btn active" style="margin-top:16px; cursor:pointer;">Retry Connection</button>
+                                </div>
+                            `;
+                            if (window.lucide) lucide.createIcons();
+                            return;
+                        }
+                    }
+                }
             }
+            renderTools(allTools);
         }
 
         function renderTools(tools) {

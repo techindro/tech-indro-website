@@ -353,7 +353,7 @@
             <p>&copy; 2026 Tech Indro Platform. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="courses-data.js"></script>
     <script>
         lucide.createIcons();
 
@@ -369,9 +369,9 @@
 
             if (enrolledList.length === 0) {
                 grid.innerHTML = `
-                    <div class="empty-state">
-                        <i data-lucide="book-open" style="width: 64px; height: 64px; color: rgba(255,255,255,0.3); margin-bottom: 1rem;"></i>
-                        <h3>You haven't enrolled in any courses yet.</h3>
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <i data-lucide="book-open" style="width: 48px; height: 48px; margin-bottom: 1rem; color: var(--text-muted);"></i>
+                        <h3>No Active Courses Found</h3>
                         <p style="color: var(--text-muted); margin: 1rem 0 2rem;">Start your Zero to One journey today!</p>
                         <a href="programs.html" class="btn-primary">Explore Programs</a>
                     </div>
@@ -380,9 +380,30 @@
                 return;
             }
 
+            let allCourses = [];
             try {
                 const res = await fetch("/api/courses");
-                const allCourses = await res.json();
+                if (!res.ok) throw new Error("Status " + res.status);
+                allCourses = await res.json();
+            } catch (err1) {
+                try {
+                    const res = await fetch("http://localhost:5000/api/courses");
+                    if (!res.ok) throw new Error("Status " + res.status);
+                    allCourses = await res.json();
+                } catch (err2) {
+                    try {
+                        const res = await fetch("courses.json");
+                        if (!res.ok) throw new Error("Status " + res.status);
+                        allCourses = await res.json();
+                    } catch (err3) {
+                        if (window.TECH_INDRO_COURSES && Array.isArray(window.TECH_INDRO_COURSES)) {
+                            allCourses = window.TECH_INDRO_COURSES;
+                        } else {
+                            console.warn("Could not load courses in dashboard:", err3);
+                        }
+                    }
+                }
+            }
                 
                 grid.innerHTML = ""; 
                 
