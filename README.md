@@ -16,11 +16,11 @@
 
 ## 📌 Overview
 
-**Tech Indro Web Platform** is an enterprise-grade EdTech web portal built in the tradition of **Unacademy** and **Coursera**, designed to democratize technological education across India. It empowers students, career-switchers, and tech enthusiasts to master **Artificial Intelligence, Ethical Hacking, Robotics, and Full-Stack Engineering** directly from the browser — without requiring high-end laptops or prior technical experience.
+**Tech Indro Web Platform** is an enterprise-grade EdTech web portal designed to democratize technological education across India. It empowers students, career-switchers, and tech enthusiasts to master **Artificial Intelligence, Ethical Hacking, Robotics, and Full-Stack Engineering** directly from the browser — without requiring high-end laptops or prior technical experience.
 
 ---
 
-## ✨ Unacademy & Tech Indro Style Features
+## ✨ Platform Features & Capabilities
 
 - 🤖 **24/7 AI Shikshak (Voice Doubts)**: Conversational audio/speech recognition and speech synthesis doubt solver with formatted code explanations.
 - 📚 **Comprehensive Course Batches**: Interactive syllabus, instructor profiles, and structured curriculum modules.
@@ -79,7 +79,7 @@ Visit `http://localhost:5000` to access the full web application.
 
 ```
 tech-indro-website/
-├── index.html               # Main landing page (Unacademy style hero & batch catalog)
+├── index.html               # Main landing page (Hero, features & batch catalog)
 ├── programs.html            # Course programs & curriculum
 ├── tsoc.html                # Tech Season of Code project hub
 ├── indrolabs.html           # In-browser compiler & cloud IDE
