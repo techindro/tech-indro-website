@@ -491,16 +491,16 @@
         <div class="controls-bar">
             <div class="tabs-group">
                 <button class="filter-tab active" onclick="setCategory('all', this)">
-                    All Notes (<span id="countAll">0</span>)
+                    <i data-lucide="layers" style="width: 15px; height: 15px; flex-shrink: 0;"></i> All Notes (<span id="countAll">0</span>)
                 </button>
                 <button class="filter-tab" onclick="setCategory('question', this)">
-                    ❓ GATE & ISRO (<span id="countQuestions">0</span>)
+                    <i data-lucide="help-circle" style="width: 15px; height: 15px; flex-shrink: 0;"></i> GATE & ISRO (<span id="countQuestions">0</span>)
                 </button>
                 <button class="filter-tab" onclick="setCategory('ai_note', this)">
-                    🤖 AI Shikshak (<span id="countAi">0</span>)
+                    <i data-lucide="bot" style="width: 15px; height: 15px; flex-shrink: 0;"></i> AI Shikshak (<span id="countAi">0</span>)
                 </button>
                 <button class="filter-tab" onclick="setCategory('personal_note', this)">
-                    📝 Personal Notes (<span id="countPersonal">0</span>)
+                    <i data-lucide="file-edit" style="width: 15px; height: 15px; flex-shrink: 0;"></i> Personal Notes (<span id="countPersonal">0</span>)
                 </button>
             </div>
 
@@ -528,9 +528,9 @@
                 <div class="form-group">
                     <label class="form-label">Category</label>
                     <select id="modalType" class="form-select">
-                        <option value="question">❓ ISRO / GATE Question</option>
-                        <option value="ai_note">🤖 AI Shikshak Explanation</option>
-                        <option value="personal_note">📝 Personal Revision Note</option>
+                        <option value="question">GATE & ISRO Question</option>
+                        <option value="ai_note">AI Shikshak Explanation</option>
+                        <option value="personal_note">Personal Revision Note</option>
                     </select>
                 </div>
 
