@@ -506,11 +506,18 @@
             lucide.createIcons();
         }
 
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
         function saveProfile() {
             document.getElementById('previewName').innerText = document.getElementById('inputName').value;
             document.getElementById('previewHeadline').innerText = document.getElementById('inputHeadline').value;
-            document.getElementById('previewEmail').innerHTML = `<i data-lucide="mail" style="width:14px;height:14px;vertical-align:middle;"></i> ${document.getElementById('inputEmail').value}`;
-            document.getElementById('previewGithub').innerHTML = `<i data-lucide="github" style="width:14px;height:14px;vertical-align:middle;"></i> ${document.getElementById('inputGithub').value}`;
+            document.getElementById('previewEmail').innerHTML = `<i data-lucide="mail" style="width:14px;height:14px;vertical-align:middle;"></i> ${escapeHTML(document.getElementById('inputEmail').value)}`;
+            document.getElementById('previewGithub').innerHTML = `<i data-lucide="github" style="width:14px;height:14px;vertical-align:middle;"></i> ${escapeHTML(document.getElementById('inputGithub').value)}`;
             toggleView('preview');
             lucide.createIcons();
         }

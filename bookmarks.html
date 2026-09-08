@@ -683,6 +683,16 @@
             });
         }
 
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         function renderNotes() {
             const grid = document.getElementById('notesGrid');
             const filtered = getFilteredBookmarks();
@@ -704,14 +714,14 @@
                 <div class="note-card">
                     <div>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="note-tag">${b.tag}</span>
-                            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">${b.date}</span>
+                            <span class="note-tag">${escapeHTML(b.tag)}</span>
+                            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">${escapeHTML(b.date)}</span>
                         </div>
-                        <h3 class="note-title">${b.title}</h3>
-                        <p class="note-content">${b.content}</p>
+                        <h3 class="note-title">${escapeHTML(b.title)}</h3>
+                        <p class="note-content">${escapeHTML(b.content)}</p>
                     </div>
                     <div class="note-footer">
-                        <span>${b.extra || 'Study Reference'}</span>
+                        <span>${escapeHTML(b.extra || 'Study Reference')}</span>
                         <div class="note-actions-row">
                             <button class="btn-card-icon" onclick="copyNote('${b.id}')" title="Copy Note">
                                 <i data-lucide="copy" style="width: 15px; height: 15px;"></i>

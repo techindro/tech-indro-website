@@ -26,10 +26,76 @@ const COURSES_FILE = path.join(__dirname, 'courses.json');
 const SHIKSHAK_COURSES_FILE = path.join(__dirname, 'shikshak-courses.json');
 const AI_TOOLS_FILE = path.join(__dirname, 'ai-tools.json');
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Middleware: Security Headers & Crash Protection
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    next();
+});
+
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token']
+}));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use(express.static(__dirname)); // Serve static files from the same directory
+
+// Lightweight In-Memory Sliding Window Rate Limiter (Anti-DDoS / Anti-Brute Force)
+const rateLimitStores = {
+    auth: new Map(),
+    compiler: new Map(),
+    chat: new Map(),
+    contact: new Map()
+};
+
+// Automatic cleanup every 5 minutes to prevent memory leaks
+setInterval(() => {
+    const now = Date.now();
+    for (const store of Object.values(rateLimitStores)) {
+        for (const [ip, rec] of store.entries()) {
+            if (now > rec.resetTime) store.delete(ip);
+        }
+    }
+}, 5 * 60 * 1000);
+
+function createRateLimiter(storeKey, maxRequests, windowMs, message) {
+    return (req, res, next) => {
+        const forwarded = req.headers['x-forwarded-for'];
+        const ip = (forwarded ? forwarded.split(',')[0].trim() : req.socket?.remoteAddress) || '127.0.0.1';
+        const now = Date.now();
+        const store = rateLimitStores[storeKey];
+
+        let record = store.get(ip);
+        if (!record || now > record.resetTime) {
+            record = { count: 1, resetTime: now + windowMs };
+            store.set(ip, record);
+            return next();
+        }
+
+        record.count += 1;
+        if (record.count > maxRequests) {
+            const retryAfterSec = Math.max(1, Math.ceil((record.resetTime - now) / 1000));
+            res.setHeader('Retry-After', retryAfterSec);
+            return res.status(429).json({
+                error: message || 'Too many requests. Please slow down and try again later.',
+                retryAfterSeconds: retryAfterSec,
+                success: false
+            });
+        }
+        next();
+    };
+}
+
+const authLimiter = createRateLimiter('auth', 10, 15 * 60 * 1000, 'Security Notice: Too many authentication attempts from this IP. Please wait 15 minutes.');
+const compilerLimiter = createRateLimiter('compiler', 20, 60 * 1000, 'Security Notice: Compiler execution rate limit reached (Max 20/min). Please wait a moment.');
+const chatLimiter = createRateLimiter('chat', 30, 60 * 1000, 'Security Notice: AI Mentor rate limit reached (Max 30 requests/min).');
+const contactLimiter = createRateLimiter('contact', 5, 10 * 60 * 1000, 'Please wait before sending another message.');
+
 
 // setup db file if missing
 function initDB() {
@@ -92,7 +158,7 @@ app.use((req, res, next) => {
 
 // --- routes ---
 
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/auth/login', authLimiter, (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ error: "Email and password are required" });
 
@@ -108,7 +174,7 @@ app.post('/api/auth/login', (req, res) => {
 });
 
 // register user
-app.post('/api/auth/register', (req, res) => {
+app.post('/api/auth/register', authLimiter, (req, res) => {
     const { name, email, password } = req.body;
     if (!name || !email || !password) return res.status(400).json({ error: "All fields are required" });
 
@@ -129,7 +195,7 @@ app.post('/api/auth/register', (req, res) => {
 const otpCache = new Map();
 
 // send OTP endpoint for mobile verification
-app.post('/api/auth/send-otp', (req, res) => {
+app.post('/api/auth/send-otp', authLimiter, (req, res) => {
     const { phone } = req.body;
     if (!phone || String(phone).trim().length < 10) {
         return res.status(400).json({ error: "Please enter a valid 10-digit mobile number" });
@@ -148,7 +214,7 @@ app.post('/api/auth/send-otp', (req, res) => {
 });
 
 // verify OTP endpoint
-app.post('/api/auth/verify-otp', (req, res) => {
+app.post('/api/auth/verify-otp', authLimiter, (req, res) => {
     const { phone, otp, name, goal, academicLevel, state, referralCode } = req.body;
     if (!phone) return res.status(400).json({ error: "Mobile number is required" });
     if (!otp) return res.status(400).json({ error: "Please enter the OTP" });
@@ -203,7 +269,7 @@ app.post('/api/auth/verify-otp', (req, res) => {
 });
 
 // contact form submission
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', contactLimiter, (req, res) => {
     const { name, email, message } = req.body;
     if (!name || !email || !message) return res.status(400).json({ error: "All fields are required" });
 
@@ -702,7 +768,7 @@ function generateAIMentorResponse(message, lang, agent) {
 }
 
 // chatbot api
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', chatLimiter, async (req, res) => {
     const { message, lang, agent } = req.body;
     if (!message) return res.status(400).json({ error: "Message is required" });
 
@@ -800,13 +866,43 @@ async function executeViaJudge0(lang, code, stdin) {
     }
 }
 
-app.post('/api/compiler/run', async (req, res) => {
+// Sandbox security scanner to protect host from destructive or malicious code
+function isMaliciousCode(code) {
+    const dangerousPatterns = [
+        /os\.system\s*\(/i,
+        /subprocess\.(Popen|run|call|check_output)/i,
+        /shutil\.rmtree/i,
+        /require\s*\(\s*['"]child_process['"]\s*\)/i,
+        /require\s*\(\s*['"]fs['"]\s*\)/i,
+        /process\.(exit|kill|abort)/i,
+        /system\s*\(\s*["'](rm\s|shutdown|del\s|format\s|taskkill)/i,
+        /Runtime\.getRuntime\(\)\.exec/i,
+        /ProcessBuilder/i
+    ];
+    return dangerousPatterns.some(pat => pat.test(code));
+}
+
+app.post('/api/compiler/run', compilerLimiter, async (req, res) => {
     const { language, code, stdin } = req.body;
     if (!code || typeof code !== 'string') {
         return res.status(400).json({ error: 'Code is required' });
     }
+    if (code.length > 50000) {
+        return res.status(400).json({ error: 'Code exceeds maximum size limit (50KB)' });
+    }
 
     const normLang = (language || 'javascript').toLowerCase();
+
+    // Security Sandbox: block dangerous system-level attempts
+    if (isMaliciousCode(code)) {
+        return res.status(403).json({
+            success: false,
+            output: '⚠️ Security Sandbox Alert: Execution of system-level commands, process controls, or filesystem deletion commands is prohibited by Tech Indro security policies.',
+            elapsed: 0,
+            exitCode: 1,
+            language: normLang
+        });
+    }
 
     // In serverless / Vercel environment, proxy directly to Judge0 CE sandbox
     if (isVercel) {
@@ -995,6 +1091,31 @@ except Exception as e:
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
+});
+
+// Global Express Error-Handling Middleware (Prevents Crashes & Leaking Internal Stacks)
+app.use((err, req, res, next) => {
+    console.error('Unhandled Route Exception:', err.stack || err);
+    if (res.headersSent) return next(err);
+    res.status(err.status || 500).json({
+        error: 'An internal server error occurred. Request was safely terminated.',
+        success: false
+    });
+});
+
+// 404 Handler for undefined API routes
+app.use('/api/*', (req, res) => {
+    res.status(404).json({ error: `API endpoint '${req.originalUrl}' not found.`, success: false });
+});
+
+// Graceful Shutdown Handlers
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received: closing server gracefully.');
+    process.exit(0);
+});
+process.on('SIGINT', () => {
+    console.log('SIGINT received: closing server gracefully.');
+    process.exit(0);
 });
 
 // Export or Start Server
