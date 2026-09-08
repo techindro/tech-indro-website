@@ -4,7 +4,8 @@
 
 <div align="center">
 
-[![Live Website](https://img.shields.io/badge/Live%20Website-tech--indro.vercel.app-6366f1?style=for-the-badge&logo=vercel)](https://tech-indro-website.vercel.app)
+[![Live Website](https://img.shields.io/badge/Live%20Website-tech--indro.vercel.app-6366f1?style=for-the-badge&logo=vercel)](https://tech-indro-official.vercel.app)
+[![REST API](https://img.shields.io/badge/REST%20API-Online%20v1.0-10b981?style=for-the-badge&logo=fastapi)](https://tech-indro-official.vercel.app/api/courses)
 [![Learners](https://img.shields.io/badge/Learners-1.2L%2B%20Enrolled-10b981?style=for-the-badge&logo=googleclassroom)](#)
 [![Rating](https://img.shields.io/badge/Rating-4.8%20★-f59e0b?style=for-the-badge&logo=star)](#)
 [![Security](https://img.shields.io/badge/Security-WAF%20Hardened-ef4444?style=for-the-badge&logo=shield)](#)
@@ -61,8 +62,8 @@ Tech Indro is built with a security-first and high-availability architecture:
 ### Local Setup
 ```bash
 # 1. Clone the repository
-git clone https://github.com/techindro/tech-indro-website.git
-cd tech-indro-website/tech-indro-website
+git clone https://github.com/techindro/tech-indro-official.git
+cd tech-indro-official
 
 # 2. Install dependencies
 npm install
@@ -75,10 +76,49 @@ Visit `http://localhost:5000` to access the full web application.
 
 ---
 
+## 🔌 REST API Reference & Endpoints
+
+Tech Indro features a high-performance, hardened REST API powering both the Web Platform and the React Native Mobile App:
+
+- **Production API Base**: `https://tech-indro-official.vercel.app/api`
+- **Local Development Base**: `http://localhost:5000/api`
+
+### 📡 Available Endpoints
+
+| Method | Endpoint | Description | Live Endpoint Link |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/courses` | Returns all 18+ flagship programs, syllabus, fees & ratings | [🔗 View JSON](https://tech-indro-official.vercel.app/api/courses) |
+| `GET` | `/api/courses/:id` | Detailed curriculum & modules for a specific course | [🔗 View Sample](https://tech-indro-official.vercel.app/api/courses/ai-mastery) |
+| `GET` | `/api/shikshak-courses` | Kids & beginner coding foundation courses | [🔗 View JSON](https://tech-indro-official.vercel.app/api/shikshak-courses) |
+| `GET` | `/api/ai-tools` | Directory of 50+ curated AI developer tools & resources | [🔗 View JSON](https://tech-indro-official.vercel.app/api/ai-tools) |
+| `GET` | `/api/analytics` | Real-time platform traffic & visitor analytics | [🔗 View JSON](https://tech-indro-official.vercel.app/api/analytics) |
+| `POST` | `/api/auth/register` | Student account registration with validation & encryption | `POST` |
+| `POST` | `/api/auth/login` | Secure JWT/Session authentication | `POST` |
+| `POST` | `/api/auth/send-otp` | Mobile phone verification via OTP | `POST` |
+| `POST` | `/api/auth/verify-otp` | Instant phone OTP verification & login | `POST` |
+| `POST` | `/api/chat` | 24/7 AI Shikshak doubt engine (Gemini 2.5 Flash / fallback) | `POST` |
+| `POST` | `/api/compiler/run` | Multi-language sandboxed code runner (Python, JS, C++, Java) | `POST` |
+| `POST` | `/api/payments/create-intent` | Smart payment session (UPI, Cards, NetBanking via Hyperswitch) | `POST` |
+| `POST` | `/api/payments/confirm` | Payment confirmation & auto-course enrollment | `POST` |
+| `POST` | `/api/contact` | Rate-limited student query & mentorship form submission | `POST` |
+
+#### ⚡ Quick API Example (Fetch Courses):
+```bash
+# cURL
+curl https://tech-indro-official.vercel.app/api/courses
+
+# JavaScript Fetch
+fetch("https://tech-indro-official.vercel.app/api/courses")
+  .then(res => res.json())
+  .then(courses => console.log(courses));
+```
+
+---
+
 ## 🗺️ Project Structure
 
 ```
-tech-indro-website/
+tech-indro-official/
 ├── index.html               # Main landing page (Hero, features & batch catalog)
 ├── programs.html            # Course programs & curriculum
 ├── tsoc.html                # Tech Season of Code project hub
@@ -98,5 +138,9 @@ tech-indro-website/
 ## 📄 Leadership & License
 
 - **Founder & Architect**: **Shubham Patel** (Tech Indro)
-- **Live Deployment**: [tech-indro-website.vercel.app](https://tech-indro-website.vercel.app)
+- **Live Deployment**: [tech-indro-official.vercel.app](https://tech-indro-official.vercel.app)
+- **Official API**: [tech-indro-official.vercel.app/api/courses](https://tech-indro-official.vercel.app/api/courses)
+- **LinkedIn**: [linkedin.com/company/tech-indro](https://www.linkedin.com/company/tech-indro/)
+- **YouTube**: [youtube.com/@TechIndro](https://www.youtube.com/@TechIndro)
+- **GitHub**: [@techindro](https://github.com/techindro)
 - **License**: [MIT License](LICENSE) © 2026 Tech Indro. All rights reserved.
