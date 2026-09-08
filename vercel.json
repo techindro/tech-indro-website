@@ -6,23 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "**/*.json",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "assets/**/*",
+      "src": "**/*",
       "use": "@vercel/static"
     }
   ],
@@ -30,6 +14,45 @@
     {
       "src": "/api/(.*)",
       "dest": "/server.js"
+    },
+    {
+      "src": "/ai-tools",
+      "dest": "/ai-tools.html"
+    },
+    {
+      "src": "/portfolio",
+      "dest": "/portfolio.html"
+    },
+    {
+      "src": "/support",
+      "dest": "/support.html"
+    },
+    {
+      "src": "/cyber-playground",
+      "dest": "/cyber-playground.html"
+    },
+    {
+      "src": "/tsoc",
+      "dest": "/tsoc.html"
+    },
+    {
+      "src": "/quiz",
+      "dest": "/quiz.html"
+    },
+    {
+      "src": "/login",
+      "dest": "/login.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/dashboard.html"
+    },
+    {
+      "src": "/checkout",
+      "dest": "/checkout.html"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }

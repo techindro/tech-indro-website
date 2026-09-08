@@ -6,6 +6,63 @@
       "email": "test@gmail.com",
       "password": "test@123",
       "createdAt": "2026-07-04T12:58:24.703Z"
+    },
+    {
+      "id": "1788793376699",
+      "name": "Rahul Sharma",
+      "phone": "7985714339",
+      "email": "7985714339@student.techindro.com",
+      "goal": "MNC Placements 2026",
+      "academicLevel": "College Student",
+      "state": "Delhi NCR",
+      "referralCode": "",
+      "provider": "phone_otp",
+      "createdAt": "2026-09-07T15:02:56.699Z"
+    },
+    {
+      "id": "cust_1788796942503",
+      "name": "aarav",
+      "email": "aarav@example.com",
+      "phone": "9876543210",
+      "enrolledCourses": [
+        {
+          "courseId": "ai-mastery-01",
+          "courseTitle": "Full Stack AI Mastery",
+          "paymentId": "hs_pay_1788796942503_6py1r",
+          "txnId": "TXN_HS_1788796942521",
+          "paymentMethod": "upi",
+          "orchestrator": "Hyperswitch by Juspay",
+          "enrolledAt": "2026-09-07T16:02:22.522Z"
+        }
+      ],
+      "createdAt": "2026-09-07T16:02:22.522Z"
+    },
+    {
+      "id": "cust_1788797414956",
+      "name": "student",
+      "email": "student@techindro.com",
+      "phone": "",
+      "enrolledCourses": [
+        {
+          "courseId": "coding-ai",
+          "courseTitle": "Complete AI & Machine Learning Bootcamp",
+          "paymentId": "hs_pay_1788798379501_rkawj",
+          "txnId": "TXN_HS_1788798379506",
+          "paymentMethod": "upi",
+          "orchestrator": "Hyperswitch by Juspay",
+          "enrolledAt": "2026-09-07T16:26:19.506Z"
+        },
+        {
+          "courseId": "ai-mastery-01",
+          "courseTitle": "Full Stack AI Mastery",
+          "paymentId": "hs_pay_1788797414956_smwdz",
+          "txnId": "TXN_HS_1788797414970",
+          "paymentMethod": "upi",
+          "orchestrator": "Hyperswitch by Juspay",
+          "enrolledAt": "2026-09-07T16:10:14.971Z"
+        }
+      ],
+      "createdAt": "2026-09-07T16:10:14.971Z"
     }
   ],
   "contacts": [],

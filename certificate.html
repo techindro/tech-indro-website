@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - Official Verified Certificate</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --mit-burgundy: #8B1E2D;
+        }
+
+        body {
+            background-color: #0F1117;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Top Bar */
+        .cert-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .cert-nav a, .cert-nav button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #F3F4F6;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .cert-nav a:hover, .cert-nav button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        .cert-nav-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        /* Main Workspace Container */
+        .cert-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2.5rem 1rem 4rem 1rem;
+        }
+
+        /* Certificate Frame Wrapper */
+        .cert-frame-shadow {
+            width: 100%;
+            max-width: 960px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            background-color: #ffffff;
+        }
+
+        /* ── Exact MIT Burgundy Multi-Line Stepped Border ── */
+        .techindro-certificate {
+            width: 100%;
+            background-color: #FFFFFF;
+            color: #111827;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+        .cert-border-outer {
+            border: 1.5px solid var(--mit-burgundy);
+            padding: 3.5px;
+            box-sizing: border-box;
+            background: #ffffff;
+        }
+        .cert-border-middle {
+            border: 3.2px solid var(--mit-burgundy);
+            padding: 3.5px;
+            box-sizing: border-box;
+        }
+        .cert-border-inner {
+            border: 1.5px solid var(--mit-burgundy);
+            box-sizing: border-box;
+            position: relative;
+            background: #ffffff;
+        }
+
+        /* 4 Stepped Corner Motifs */
+        .corner-square {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border: 1.5px solid var(--mit-burgundy);
+            z-index: 10;
+        }
+        .corner-tl { top: -6px; left: -6px; }
+        .corner-tr { top: -6px; right: -6px; }
+        .corner-bl { bottom: -6px; left: -6px; }
+        .corner-br { bottom: -6px; right: -6px; }
+
+        .cert-body-content {
+            padding: 36px 44px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* 1. Header: Logo + Professional Education */
+        .cert-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .cert-logo-img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+        }
+        .pro-edu-box {
+            text-align: left;
+        }
+        .pro-text, .edu-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--mit-burgundy);
+            line-height: 22px;
+            letter-spacing: -0.3px;
+        }
+
+        /* 2. Label */
+        .cert-certify-line {
+            font-size: 13.5px;
+            color: #374151;
+            margin-bottom: 14px;
+        }
+
+        /* 3. Recipient Name */
+        .cert-student-name {
+            font-size: 34px;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.4px;
+            margin-bottom: 18px;
+        }
+
+        /* 4. Center Crimson Seal */
+        .cert-seal-box {
+            margin-bottom: 18px;
+        }
+        .seal-circle-outer {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 1.5px solid var(--mit-burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        .seal-circle-middle {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 0.8px dashed var(--mit-burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        .seal-circle-inner {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            border: 1.2px solid var(--mit-burgundy);
+            background-color: #FFF8F8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .seal-text-top {
+            font-size: 6px;
+            font-weight: 800;
+            color: var(--mit-burgundy);
+            letter-spacing: 1px;
+        }
+        .seal-symbol-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 2px 0;
+            font-size: 13px;
+        }
+        .seal-text-bottom {
+            font-size: 4.8px;
+            font-weight: 700;
+            color: var(--mit-burgundy);
+            letter-spacing: 0.5px;
+        }
+
+        /* 5. Completion Label */
+        .cert-completed-line {
+            font-size: 13px;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+
+        /* 6. Course Title */
+        .cert-course-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.3px;
+            margin-bottom: 8px;
+        }
+
+        /* 7. Date */
+        .cert-date-line {
+            font-size: 12.5px;
+            color: #4B5563;
+            margin-bottom: 34px;
+        }
+
+        /* 8. Signatures Row */
+        .cert-signatures-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+        .cert-sig-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+        }
+        .cert-handwritten-sig {
+            font-family: 'Dancing Script', 'Caveat', cursive;
+            font-size: 23px;
+            color: #1F2937;
+            margin-bottom: 4px;
+            transform: rotate(-2deg);
+        }
+        .cert-dotted-divider {
+            width: 180px;
+            border-bottom: 1.4px dotted #6B7280;
+            margin-bottom: 6px;
+        }
+        .cert-signer-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .cert-signer-role {
+            font-size: 9.5px;
+            color: #4B5563;
+            margin-top: 1px;
+        }
+        .cert-signer-org {
+            font-size: 9px;
+            color: #6B7280;
+        }
+
+        /* Actions & Verification Box */
+        .cert-actions-card {
+            width: 100%;
+            max-width: 960px;
+            background: #1F2937;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+        .verify-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .action-btns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+        .action-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+        }
+        .btn-download-pdf {
+            background: var(--mit-burgundy);
+        }
+        .btn-linkedin {
+            background: #0A66C2;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+        }
+        .btn-print {
+            background: #374151;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .cert-body-content {
+                padding: 20px 14px;
+            }
+            .cert-student-name {
+                font-size: 24px;
+            }
+            .cert-course-title {
+                font-size: 18px;
+            }
+            .cert-signatures-row {
+                padding: 0;
+            }
+            .cert-sig-col {
+                width: 140px;
+            }
+            .cert-dotted-divider {
+                width: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="cert-nav">
+        <a href="dashboard.html">
+            <i data-lucide="arrow-left"></i> Back to Dashboard
+        </a>
+        <div class="cert-nav-title">Tech Indro Official Certificate</div>
+        <button onclick="downloadPDF()" class="btn-download-pdf" style="background: var(--mit-burgundy); border: none;">
+            <i data-lucide="download"></i> Download PDF
+        </button>
+    </nav>
+
+    <!-- Certificate Presentation Stage -->
+    <div class="cert-stage">
+        
+        <div class="cert-frame-shadow">
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- EXACT MIT BURGUNDY STEPPED-BORDER CERTIFICATE          -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <div class="techindro-certificate" id="certRenderNode">
+                
+                <div class="cert-border-outer">
+                    <div class="cert-border-middle">
+                        <div class="cert-border-inner">
+                            
+                            <!-- 4 Stepped Corner Motifs -->
+                            <div class="corner-square corner-tl"></div>
+                            <div class="corner-square corner-tr"></div>
+                            <div class="corner-square corner-bl"></div>
+                            <div class="corner-square corner-br"></div>
+
+                            <!-- Certificate Body Content -->
+                            <div class="cert-body-content">
+                                
+                                <!-- 1. Header: Logo + Professional Education -->
+                                <div class="cert-header-row">
+                                    <img src="assets/tech-indro-logo.png" alt="Tech Indro" class="cert-logo-img">
+                                    <div class="pro-edu-box">
+                                        <div class="pro-text">Professional</div>
+                                        <div class="edu-text">Education</div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. "This is to certify that" -->
+                                <div class="cert-certify-line">This is to certify that</div>
+
+                                <!-- 3. Recipient Name -->
+                                <div class="cert-student-name" id="viewStudentName">Rahul Sharma</div>
+
+                                <!-- 4. Centered Red Emblem Seal -->
+                                <div class="cert-seal-box">
+                                    <div class="seal-circle-outer">
+                                        <div class="seal-circle-middle">
+                                            <div class="seal-circle-inner">
+                                                <div class="seal-text-top">TECH INDRO</div>
+                                                <div class="seal-symbol-row">
+                                                    <span>🏛️</span>
+                                                </div>
+                                                <div class="seal-text-bottom">OFFICIAL SEAL • VERIFIED</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. "has successfully completed the" -->
+                                <div class="cert-completed-line">has successfully completed the</div>
+
+                                <!-- 6. Course Title -->
+                                <div class="cert-course-title" id="viewCourseTitle">Applied AI and Data Science Program</div>
+
+                                <!-- 7. Date -->
+                                <div class="cert-date-line" id="viewCertDate">July 2026</div>
+
+                                <!-- 8. Two Signatures Row with Dotted Lines -->
+                                <div class="cert-signatures-row">
+                                    <!-- Left Signatory: Founder & CEO -->
+                                    <div class="cert-sig-col">
+                                        <div class="cert-handwritten-sig">Shubham Patel</div>
+                                        <div class="cert-dotted-divider"></div>
+                                        <div class="cert-signer-name">Shubham Patel</div>
+                                        <div class="cert-signer-role">Founder & CEO</div>
+                                        <div class="cert-signer-org">Tech Indro</div>
+                                    </div>
+
+                                    <!-- Right Signatory: Dean of Academics -->
+                                    <div class="cert-sig-col">
+                                        <div class="cert-handwritten-sig">Dr. Arvind Sharma</div>
+                                        <div class="cert-dotted-divider"></div>
+                                        <div class="cert-signer-name">Dr. Arvind Sharma</div>
+                                        <div class="cert-signer-role">Dean of Academics</div>
+                                        <div class="cert-signer-org">Tech Indro</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Actions Card -->
+        <div class="cert-actions-card">
+            <div class="verify-pill">
+                <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+                <span id="viewCertId">Verified Credential: TI-CERT-2026-8942 • 100% Authentic</span>
+            </div>
+
+            <div class="action-btns-grid">
+                <button onclick="downloadPDF()" class="action-btn btn-download-pdf">
+                    <i data-lucide="download"></i> Download PDF (A4)
+                </button>
+                <button onclick="shareLinkedIn()" class="action-btn btn-linkedin">
+                    <i data-lucide="share-2"></i> Add to LinkedIn
+                </button>
+                <button onclick="shareWhatsApp()" class="action-btn btn-whatsapp">
+                    <i data-lucide="message-circle"></i> Share on WhatsApp
+                </button>
+                <button onclick="window.print()" class="action-btn btn-print">
+                    <i data-lucide="printer"></i> Print
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. Read URL Parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        let paramCourse = urlParams.get('courseName');
+        let paramStudent = urlParams.get('studentName');
+        let paramCertId = urlParams.get('certId') || 'TI-CERT-2026-8942';
+
+        // 2. Fallback to Local Storage user
+        if (!paramStudent) {
+            try {
+                const userObj = JSON.parse(localStorage.getItem('techIndroUser'));
+                if (userObj && userObj.name) paramStudent = userObj.name;
+            } catch(e) {}
+        }
+        if (!paramStudent) paramStudent = "Rahul Sharma";
+        if (!paramCourse) paramCourse = "Applied AI and Data Science Program";
+
+        // Set in DOM
+        document.getElementById('viewStudentName').innerText = paramStudent;
+        document.getElementById('viewCourseTitle').innerText = paramCourse;
+        document.getElementById('viewCertId').innerText = `Verified Credential: ${paramCertId} • 100% Authentic`;
+        
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        document.getElementById('viewCertDate').innerText = dateStr;
+
+        // 3. Download High-Res PDF using html2canvas & jsPDF
+        async function downloadPDF() {
+            const btn = document.querySelector('.btn-download-pdf');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="loader" class="spin-icon"></i> Generating PDF...';
+            lucide.createIcons();
+
+            try {
+                const node = document.getElementById('certRenderNode');
+                const canvas = await html2canvas(node, {
+                    scale: 3, // Ultra-sharp 300dpi print quality
+                    useCORS: true,
+                    backgroundColor: '#ffffff'
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+                pdf.save(`Tech_Indro_Certificate_${paramStudent.replace(/ /g, '_')}.pdf`);
+
+                btn.innerHTML = '<i data-lucide="check"></i> Downloaded!';
+                lucide.createIcons();
+                setTimeout(() => { btn.innerHTML = originalText; lucide.createIcons(); }, 3000);
+            } catch(err) {
+                console.error("PDF Error:", err);
+                alert("Failed to generate PDF. Please try again.");
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+            }
+        }
+
+        // 4. Social Sharing
+        const shareUrl = window.location.href;
+        function shareLinkedIn() {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+        }
+        function shareWhatsApp() {
+            const text = `I'm proud to share my verified Certificate of Completion from Tech Indro in "${paramCourse}"! 🎓\n\nVerify: ${shareUrl}`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -99,7 +99,7 @@
         }
     </style>
 
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Cinzel:wght@600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Cinzel:wght@600;800&family=Dancing+Script:wght@700&family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Certificate Hidden Container */
         #certificate-container {
@@ -380,9 +380,9 @@
                                 
                                 <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
                                     <a href="course-details.html?id=${course.id}" class="btn-primary" style="flex: 1; text-align: center; padding: 0.75rem;">Resume</a>
-                                    <button onclick="downloadCertificate('${course.title.replace(/'/g, "\'")}')" class="btn-secondary" style="flex: 1; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10b981;" title="Download NASA-Style Certificate">
+                                    <a href="certificate.html?courseName=${encodeURIComponent(course.title)}" class="btn-secondary" style="flex: 1; text-align: center; padding: 0.75rem; background: rgba(139, 30, 45, 0.15); border-color: rgba(139, 30, 45, 0.4); color: #f43f5e;" title="View & Download Official Verified Certificate">
                                         <i data-lucide="award"></i> Certificate
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         `;
@@ -473,44 +473,83 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
-    <!-- Hidden Certificate Template -->
+    <!-- Hidden Certificate Template (1:1 Tech Indro Professional Education Stepped-Border Design) -->
     <div id="certificate-container">
         <div class="techindro-certificate" id="certTemplate">
-            <!-- Colorful modern borders -->
-            <div class="cert-corner top-left"></div>
-            <div class="cert-corner bottom-right"></div>
-            
-            <div class="cert-inner">
-                <div class="cert-header">
-                    <img src="assets/user-photo.jpg" alt="Tech Indro" class="cert-logo-left">
-                    <div class="cert-partner">
-                        <span style="color:#0056D2; font-weight:800; font-size:24px; letter-spacing:1px;">TECH INDRO</span><br>
-                        <span style="color:#555; font-size:12px; letter-spacing:2px;">ONLINE LEARNING</span>
-                    </div>
-                </div>
-                
-                <div class="cert-body">
-                    <div class="cert-label">COURSE CERTIFICATE</div>
-                    <div class="cert-text">This is to certify that</div>
-                    <div class="cert-name" id="certUserName">John Doe</div>
-                    <div class="cert-text">has successfully completed</div>
-                    <div class="cert-course" id="certCourseName">Advanced Artificial Intelligence Bootcamp</div>
-                    <div class="cert-text" style="max-width: 600px; margin: 15px auto; font-size: 14px; line-height: 1.5; color: #555;">
-                        an online non-credit course authorized by Tech Indro and offered through our advanced e-learning platform.
-                    </div>
-                </div>
-                
-                <div class="cert-footer">
-                    <div class="signature-block">
-                        <div class="signature-img" style="font-family: 'Caveat', cursive; font-size: 54px; transform: rotate(-3deg) translateY(5px); color: #001133;">Shubham Patel</div>
-                        <div class="signature-line"></div>
-                        <div class="signature-name">Shubham Patel</div>
-                        <div class="signature-title">Founder & CEO, Tech Indro</div>
-                    </div>
-                    
-                    <div class="verify-block">
-                        <div class="cert-date" id="certDate">July 5, 2026</div>
-                        <div style="font-size: 10px; color: #777; margin-top: 5px;">Verify at: techindro.com/verify</div>
+            <!-- 1. Outer Burgundy Border Line -->
+            <div class="cert-border-outer">
+                <!-- 2. Middle Burgundy Border Line -->
+                <div class="cert-border-middle">
+                    <!-- 3. Inner Burgundy Border Line -->
+                    <div class="cert-border-inner">
+                        
+                        <!-- 4 Stepped Corner Motifs -->
+                        <div class="corner-box corner-tl"></div>
+                        <div class="corner-box corner-tr"></div>
+                        <div class="corner-box corner-bl"></div>
+                        <div class="corner-box corner-br"></div>
+
+                        <!-- Inner Content Padding -->
+                        <div class="cert-content">
+                            <!-- Top Header: Logo + Professional Education -->
+                            <div class="ti-cert-header-row">
+                                <img src="assets/tech-indro-logo.png" alt="Tech Indro" class="ti-cert-logo">
+                                <div class="ti-cert-pro-edu">
+                                    <div class="ti-cert-pro-title">Professional</div>
+                                    <div class="ti-cert-edu-title">Education</div>
+                                </div>
+                            </div>
+
+                            <!-- "This is to certify that" -->
+                            <div class="ti-cert-certify-label">This is to certify that</div>
+
+                            <!-- Student Name -->
+                            <div class="ti-cert-student-name" id="certUserName">Rahul Sharma</div>
+
+                            <!-- Center Circular Crimson Seal -->
+                            <div class="ti-cert-seal-wrap">
+                                <div class="ti-cert-seal-outer">
+                                    <div class="ti-cert-seal-middle">
+                                        <div class="ti-cert-seal-inner">
+                                            <div class="ti-cert-seal-top">TECH INDRO</div>
+                                            <div class="ti-cert-seal-emblem">🏛️</div>
+                                            <div class="ti-cert-seal-bot">OFFICIAL SEAL • VERIFIED</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- "has successfully completed the" -->
+                            <div class="ti-cert-completed-label">has successfully completed the</div>
+
+                            <!-- Course Title -->
+                            <div class="ti-cert-course-title" id="certCourseName">Applied AI and Data Science Program</div>
+
+                            <!-- Date -->
+                            <div class="ti-cert-date-label" id="certDate">July 2026</div>
+
+                            <!-- Two Signatures Row with Dotted Lines -->
+                            <div class="ti-cert-signatures-row">
+                                <!-- Left Signatory: Founder & CEO Shubham Patel -->
+                                <div class="ti-cert-sig-col">
+                                    <div class="ti-cert-handwritten-sig">Shubham Patel</div>
+                                    <div class="ti-cert-dotted-line"></div>
+                                    <div class="ti-cert-sig-name">Shubham Patel</div>
+                                    <div class="ti-cert-sig-role">Founder & CEO</div>
+                                    <div class="ti-cert-sig-org">Tech Indro</div>
+                                </div>
+
+                                <!-- Right Signatory: Dean of Academics Dr. Arvind Sharma -->
+                                <div class="ti-cert-sig-col">
+                                    <div class="ti-cert-handwritten-sig">Dr. Arvind Sharma</div>
+                                    <div class="ti-cert-dotted-line"></div>
+                                    <div class="ti-cert-sig-name">Dr. Arvind Sharma</div>
+                                    <div class="ti-cert-sig-role">Dean of Academics</div>
+                                    <div class="ti-cert-sig-org">Tech Indro</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -519,123 +558,214 @@
     
     <style>
         .techindro-certificate {
-            width: 1123px; /* A4 Landscape */
-            height: 794px;
-            background-color: #fcfcfc;
+            width: 1123px; /* Exact A4 Landscape standard (297mm @ 96dpi) */
+            height: 794px;  /* Exact A4 Landscape standard (210mm @ 96dpi) */
+            background-color: #ffffff;
             position: relative;
-            font-family: 'Space Grotesk', 'Arial', sans-serif;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        
-        .cert-corner {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #0056D2 0%, #10b981 100%);
-            z-index: 1;
-        }
-        .top-left {
-            top: -150px;
-            left: -150px;
-            transform: rotate(45deg);
-        }
-        .bottom-right {
-            bottom: -150px;
-            right: -150px;
-            transform: rotate(45deg);
-            background: linear-gradient(135deg, #ff6b35 0%, #facc15 100%);
-        }
-        
-        .cert-inner {
-            position: absolute;
-            top: 20px; left: 20px; right: 20px; bottom: 20px;
-            background: #ffffff;
-            z-index: 2;
-            border: 1px solid #eee;
-            padding: 50px 80px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             box-sizing: border-box;
-            background-image: repeating-linear-gradient(45deg, rgba(0,86,210,0.02) 0, rgba(0,86,210,0.02) 2px, transparent 2px, transparent 10px);
+            padding: 16px;
+            overflow: hidden;
         }
 
-        .cert-header {
+        /* Burgundy Stepped Triple-Border System */
+        .cert-border-outer {
+            border: 1.5px solid #8B1E2D;
+            padding: 4px;
+            height: 100%;
+            box-sizing: border-box;
+            background: #ffffff;
+        }
+        .cert-border-middle {
+            border: 3.5px solid #8B1E2D;
+            padding: 4px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .cert-border-inner {
+            border: 1.5px solid #8B1E2D;
+            height: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 4 Stepped Corner Motifs */
+        .corner-box {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ffffff;
+            border: 1.5px solid #8B1E2D;
+            z-index: 10;
+        }
+        .corner-tl { top: -7px; left: -7px; }
+        .corner-tr { top: -7px; right: -7px; }
+        .corner-bl { bottom: -7px; left: -7px; }
+        .corner-br { bottom: -7px; right: -7px; }
+
+        .cert-content {
+            height: 100%;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-        .cert-logo-left {
-            height: 70px;
-            border-radius: 8px;
-        }
-        .cert-partner {
-            text-align: right;
-        }
-        
-        .cert-body {
+            padding: 34px 48px 36px 48px;
+            box-sizing: border-box;
             text-align: center;
+            background: #ffffff;
         }
-        
-        .cert-label {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            letter-spacing: 4px;
-            color: #777;
-            margin-bottom: 30px;
+
+        /* Top Header */
+        .ti-cert-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
         }
-        
-        .cert-name {
-            font-family: 'Cinzel', serif;
-            font-size: 56px;
-            color: #111;
-            margin: 20px 0;
+        .ti-cert-logo {
+            height: 56px;
+            width: auto;
+            object-fit: contain;
+        }
+        .ti-cert-pro-edu {
+            text-align: left;
+        }
+        .ti-cert-pro-title, .ti-cert-edu-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
             font-weight: 800;
+            color: #8B1E2D;
+            line-height: 24px;
+            letter-spacing: -0.3px;
         }
-        
-        .cert-course {
-            font-size: 28px;
+
+        .ti-cert-certify-label {
+            font-size: 15px;
+            color: #374151;
+            margin-top: 4px;
+        }
+        .ti-cert-student-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin: 4px 0;
+        }
+
+        /* Center Red Emblem Seal */
+        .ti-cert-seal-wrap {
+            margin: 4px 0;
+        }
+        .ti-cert-seal-outer {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            border: 1.5px solid #8B1E2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        .ti-cert-seal-middle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px dashed #8B1E2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        .ti-cert-seal-inner {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 1.5px solid #8B1E2D;
+            background-color: #FFF8F8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        .ti-cert-seal-top {
+            font-size: 6.5px;
+            font-weight: 800;
+            color: #8B1E2D;
+            letter-spacing: 1px;
+        }
+        .ti-cert-seal-emblem {
+            font-size: 13px;
+            margin: 1px 0;
+        }
+        .ti-cert-seal-bot {
+            font-size: 5px;
             font-weight: 700;
-            color: #0056D2;
-            margin: 10px 0;
+            color: #8B1E2D;
+            letter-spacing: 0.5px;
         }
-        
-        .cert-footer {
+
+        .ti-cert-completed-label {
+            font-size: 15px;
+            color: #374151;
+            margin: 4px 0;
+        }
+        .ti-cert-course-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #111827;
+            letter-spacing: -0.3px;
+        }
+        .ti-cert-date-label {
+            font-size: 14px;
+            color: #4B5563;
+            margin: 2px 0 14px 0;
+        }
+
+        /* Signatures */
+        .ti-cert-signatures-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-top: 60px;
+            width: 100%;
+            padding: 0 40px;
+            box-sizing: border-box;
         }
-        
-        .signature-block {
-            text-align: left;
-            width: 300px;
+        .ti-cert-sig-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 240px;
         }
-        .signature-line {
-            border-top: 1px solid #333;
-            margin: 5px 0;
+        .ti-cert-handwritten-sig {
+            font-family: 'Dancing Script', 'Caveat', cursive;
+            font-size: 28px;
+            color: #1F2937;
+            margin-bottom: 4px;
+            transform: rotate(-2deg);
         }
-        .signature-name {
+        .ti-cert-dotted-line {
+            width: 220px;
+            border-bottom: 1.5px dotted #6B7280;
+            margin-bottom: 8px;
+        }
+        .ti-cert-sig-name {
+            font-size: 13px;
             font-weight: 700;
-            font-size: 14px;
-            color: #111;
+            color: #111827;
         }
-        .signature-title {
-            font-size: 12px;
-            color: #777;
+        .ti-cert-sig-role {
+            font-size: 11px;
+            color: #4B5563;
+            margin-top: 1px;
         }
-        
-        .verify-block {
-            text-align: right;
-            border-left: 2px solid #eee;
-            padding-left: 20px;
-        }
-        .cert-date {
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
+        .ti-cert-sig-org {
+            font-size: 10px;
+            color: #6B7280;
         }
     </style>
 </body>
-</html>
 </html>

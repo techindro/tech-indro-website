@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Indro - AI Resume & Developer Portfolio Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            background: #090d16;
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            max-width: 1080px;
+            margin: 110px auto 60px;
+            padding: 0 20px;
+        }
+        .action-banner {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(46, 16, 101, 0.6));
+            border: 1px solid #7c3aed;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        .action-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .sparkle-badge {
+            width: 44px;
+            height: 44px;
+            background: rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+        }
+        .action-banner h3 {
+            margin: 0 0 4px;
+            font-size: 1.15rem;
+            color: #fff;
+        }
+        .action-banner p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: #c4b5fd;
+        }
+        .action-buttons-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-ai-enhance {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+            transition: all 0.2s ease;
+        }
+        .btn-ai-enhance:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+        }
+        .btn-print {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .btn-print:hover {
+            background: #334155;
+            color: #38bdf8;
+        }
+        .btn-toggle-view {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-toggle-view.active {
+            background: #ff6b35;
+            border-color: #ff6b35;
+            color: white;
+        }
+
+        /* ATS Resume Sheet Styles (Crisp White Layout for PDF/Recruiters) */
+        .resume-sheet {
+            background: #ffffff;
+            color: #1e293b;
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            margin-bottom: 40px;
+        }
+        .resume-header {
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .resume-name {
+            margin: 0 0 6px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+        .resume-headline {
+            margin: 0 0 10px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ff6b35;
+        }
+        .resume-contact-row {
+            display: flex;
+            gap: 16px;
+            color: #64748b;
+            font-size: 0.88rem;
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+        .ats-badge {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #059669;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .resume-section {
+            margin-bottom: 24px;
+        }
+        .resume-section-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .resume-skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .resume-skill-tag {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .project-item {
+            margin-bottom: 16px;
+        }
+        .project-title-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+        .project-tech {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .resume-bullets {
+            margin: 0;
+            padding-left: 20px;
+            color: #334155;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .resume-bullets li {
+            margin-bottom: 6px;
+        }
+
+        /* Edit Mode Styles */
+        .edit-card {
+            display: none;
+            background: #101728;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #090d16;
+            border: 1px solid #28354f;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .form-input:focus {
+            border-color: #7c3aed;
+        }
+
+        /* Print Media Query for Clean ATS Resume PDF Export */
+        @media print {
+            header, .action-banner, .btn-toggle-view, footer, .edit-card {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .main-container {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .resume-sheet {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
+                <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="tsoc.html">TSOC</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="ai-tools.html">AI Tools</a></li>
+                <li><a href="portfolio.html" style="color: var(--primary); font-weight: 700;">Portfolio</a></li>
+                <li><a href="quiz.html">Test Series</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- AI Action & Controls Banner -->
+        <div class="action-banner">
+            <div class="action-banner-left">
+                <div class="sparkle-badge">
+                    <i data-lucide="sparkles" style="width:24px;height:24px;"></i>
+                </div>
+                <div>
+                    <h3>AI Resume & Portfolio Generator</h3>
+                    <p>Auto-generated from your enrolled courses, ISRO Lab simulations & test scores.</p>
+                </div>
+            </div>
+
+            <div class="action-buttons-group">
+                <button class="btn-toggle-view active" id="btnViewMode" onclick="toggleView('preview')">
+                    <i data-lucide="eye" style="width:16px;height:16px;"></i> Resume View
+                </button>
+                <button class="btn-toggle-view" id="btnEditMode" onclick="toggleView('edit')">
+                    <i data-lucide="edit-3" style="width:16px;height:16px;"></i> Edit Info
+                </button>
+                <button class="btn-ai-enhance" id="btnAiEnhance" onclick="enhanceWithAi()">
+                    <i data-lucide="zap" style="width:16px;height:16px;"></i> Enhance with AI
+                </button>
+                <button class="btn-print" onclick="window.print()">
+                    <i data-lucide="download" style="width:16px;height:16px;"></i> Print / PDF
+                </button>
+                <button class="btn-print" onclick="copyPortfolioLink()">
+                    <i data-lucide="share-2" style="width:16px;height:16px;"></i> Share
+                </button>
+            </div>
+        </div>
+
+        <!-- ATS Resume Sheet Preview -->
+        <div class="resume-sheet" id="resumePreview">
+            <div class="resume-header">
+                <div>
+                    <h1 class="resume-name" id="previewName">Rahul Sharma</h1>
+                    <div class="resume-headline" id="previewHeadline">Full Stack & AI Systems Engineer</div>
+                    <div class="resume-contact-row">
+                        <span id="previewEmail"><i data-lucide="mail" style="width:14px;height:14px;vertical-align:middle;"></i> rahul.sharma@techindro.dev</span>
+                        <span id="previewGithub"><i data-lucide="github" style="width:14px;height:14px;vertical-align:middle;"></i> github.com/rahul-techindro</span>
+                        <span><i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:middle;"></i> New Delhi, India</span>
+                    </div>
+                </div>
+                <div class="ats-badge">
+                    <i data-lucide="check-circle" style="width:14px;height:14px;"></i> ATS Score: 96/100
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="resume-section">
+                <div class="resume-section-title">
+                    <span>Technical Proficiencies</span>
+                </div>
+                <div class="resume-skills-grid">
+                    <span class="resume-skill-tag">Python 3.12</span>
+                    <span class="resume-skill-tag">TypeScript</span>
+                    <span class="resume-skill-tag">React & React Native</span>
+                    <span class="resume-skill-tag">Node.js & Express</span>
+                    <span class="resume-skill-tag">C++20</span>
+                    <span class="resume-skill-tag">PostgreSQL & SQLite</span>
+                    <span class="resume-skill-tag">Gemini API & LLM Agents</span>
+                    <span class="resume-skill-tag">Docker & Sandboxing</span>
+                    <span class="resume-skill-tag">Git CI/CD</span>
+                </div>
+            </div>
+
+            <!-- Project Highlights -->
+            <div class="resume-section">
+                <div class="resume-section-title">
+                    <span>Engineering Projects</span>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title-row">
+                        <span>Autonomous AI Mentor & Intelligent Tutor</span>
+                        <span>Tech Indro Ecosystem</span>
+                    </div>
+                    <div class="project-tech">TypeScript, React Native, Node.js, Google Gemini API, WebSockets</div>
+                    <ul class="resume-bullets" id="bulletsList1">
+                        <li>Architected an autonomous AI Shikshak with multi-role agent orchestration, reducing student doubt resolution time by 75%.</li>
+                        <li>Engineered contextual streaming responses with client-side fallback parsing, achieving 99.9% uptime.</li>
+                    </ul>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title-row">
+                        <span>ISRO Space Lab Telemetry & Rover Simulation</span>
+                        <span>National Space Tech Lab</span>
+                    </div>
+                    <div class="project-tech">Python, Orbit Telemetry Algorithms, Physics Simulation, Three.js</div>
+                    <ul class="resume-bullets" id="bulletsList2">
+                        <li>Simulated lunar rover telemetry algorithms for Chandrayaan mission control with 99.8% sensor downlink accuracy.</li>
+                        <li>Processed real-time orbital trajectory telemetry streams across virtual ground station relays.</li>
+                    </ul>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title-row">
+                        <span>IndroLabs Multi-Language Cloud Compiler Sandbox</span>
+                        <span>System Architecture</span>
+                    </div>
+                    <div class="project-tech">Node.js, Judge0 Engine, C++20, Python, SQLite, Linux Sandboxing</div>
+                    <ul class="resume-bullets" id="bulletsList3">
+                        <li>Engineered containerized in-browser code playground supporting 5 major languages with isolated sandboxing and sub-50ms execution.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Verified Credentials -->
+            <div class="resume-section">
+                <div class="resume-section-title">
+                    <span>Verified Credentials & Honors</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <div>
+                        <strong style="color:#0f172a;">Tech Summer of Code (TSOC) Fellow</strong> — Tech Indro Foundation
+                    </div>
+                    <span style="color:#64748b; font-size:0.85rem;">2026 Cohort</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <div>
+                        <strong style="color:#0f172a;">GATE & National Engineering Test Series</strong> — Top 5% Percentile
+                    </div>
+                    <span style="color:#64748b; font-size:0.85rem;">Rank Verified</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <div class="edit-card" id="editForm">
+            <h2 style="margin-top:0; color:#fff; font-size:1.4rem;">Customize Resume Profile</h2>
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="inputName" class="form-input" value="Rahul Sharma">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Professional Headline</label>
+                <input type="text" id="inputHeadline" class="form-input" value="Full Stack & AI Systems Engineer">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="inputEmail" class="form-input" value="rahul.sharma@techindro.dev">
+            </div>
+            <div class="form-group">
+                <label class="form-label">GitHub / Portfolio Link</label>
+                <input type="text" id="inputGithub" class="form-input" value="github.com/rahul-techindro">
+            </div>
+            <button class="btn-ai-enhance" onclick="saveProfile()" style="background:#10b981;">
+                <i data-lucide="check"></i> Save & View Resume
+            </button>
+        </div>
+    </div>
+
+    <footer style="background:#070a12; border-top:1px solid #1e293b; padding:40px 20px; text-align:center; color:#64748b; font-size:0.9rem;">
+        <p>© 2026 Tech Indro Engineering Hub. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleView(mode) {
+            const preview = document.getElementById('resumePreview');
+            const edit = document.getElementById('editForm');
+            const btnView = document.getElementById('btnViewMode');
+            const btnEdit = document.getElementById('btnEditMode');
+
+            if (mode === 'preview') {
+                preview.style.display = 'block';
+                edit.style.display = 'none';
+                btnView.classList.add('active');
+                btnEdit.classList.remove('active');
+            } else {
+                preview.style.display = 'none';
+                edit.style.display = 'block';
+                btnView.classList.remove('active');
+                btnEdit.classList.add('active');
+            }
+            lucide.createIcons();
+        }
+
+        function saveProfile() {
+            document.getElementById('previewName').innerText = document.getElementById('inputName').value;
+            document.getElementById('previewHeadline').innerText = document.getElementById('inputHeadline').value;
+            document.getElementById('previewEmail').innerHTML = `<i data-lucide="mail" style="width:14px;height:14px;vertical-align:middle;"></i> ${document.getElementById('inputEmail').value}`;
+            document.getElementById('previewGithub').innerHTML = `<i data-lucide="github" style="width:14px;height:14px;vertical-align:middle;"></i> ${document.getElementById('inputGithub').value}`;
+            toggleView('preview');
+            lucide.createIcons();
+        }
+
+        function enhanceWithAi() {
+            const btn = document.getElementById('btnAiEnhance');
+            btn.innerHTML = `<i data-lucide="loader-2" class="animate-spin" style="width:16px;height:16px;animation:spin 1s linear infinite;"></i> Enhancing...`;
+            lucide.createIcons();
+
+            setTimeout(() => {
+                document.getElementById('bulletsList1').innerHTML = `
+                    <li>Spearheaded development of full-stack AI mentor app utilizing Gemini Flash API, reducing student doubt resolution time by 75%.</li>
+                    <li>Orchestrated low-latency WebSocket event streaming with client-side fallback parsing, maintaining 99.9% uptime.</li>
+                `;
+                document.getElementById('bulletsList2').innerHTML = `
+                    <li>Simulated lunar rover telemetry algorithms for Chandrayaan mission control with 99.8% sensor downlink accuracy.</li>
+                    <li>Built real-time telemetry visualizer rendering 60 FPS orbital trajectories across virtual satellite relay nodes.</li>
+                `;
+                document.getElementById('bulletsList3').innerHTML = `
+                    <li>Architected isolated multi-language compiler sandbox (Python, C++, Node.js) processing code requests in under 20ms.</li>
+                `;
+
+                btn.innerHTML = `<i data-lucide="check"></i> AI Enhanced! ✨`;
+                lucide.createIcons();
+                alert("✨ AI Optimization Complete!\nResume bullet points upgraded with recruiter action verbs, ATS keywords, and quantifiable metrics.");
+            }, 1000);
+        }
+
+        function copyPortfolioLink() {
+            const name = document.getElementById('inputName').value.toLowerCase().replace(/\s+/g, '-');
+            const url = `https://techindro.dev/portfolio/${name}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`🔗 Public Portfolio Link Copied to Clipboard:\n${url}`);
+            }).catch(() => {
+                alert(`Portfolio URL: ${url}`);
+            });
+        }
+    </script>
+</body>
+</html>

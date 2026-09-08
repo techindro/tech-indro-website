@@ -3,80 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout - Tech Indro</title>
+    <title>Secure Checkout — Tech Indro (Hyperswitch by Juspay)</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Hyperswitch HyperLoader Client SDK -->
+    <script src="https://checkout.hyperswitch.io/v1/HyperLoader.js" async></script>
     <style>
-        .checkout-container {
-            max-width: 600px;
-            margin: 100px auto 50px;
-            padding: 3rem;
-            background: rgba(30, 30, 36, 0.8);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        .form-group input {
+        main.checkout-main {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 130px !important;
+            padding-bottom: 60px !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
             width: 100%;
-            padding: 1rem 1.25rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-md);
-            color: var(--text);
-            font-family: inherit;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        .checkout-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 2.2rem;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 8px 15px -6px rgba(0, 0, 0, 0.02);
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
         }
         .order-summary {
-            background: rgba(0,0,0,0.2);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
         }
         .order-summary h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
         }
         .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
-            color: var(--text-muted);
+            color: #64748b;
+            font-size: 0.9rem;
         }
         .summary-total {
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-weight: bold;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e2e8f0;
+            font-weight: 800;
+            color: #0f172a;
             font-size: 1.2rem;
-            color: white;
+        }
+        .summary-total span:last-child {
+            color: #ff6b35;
+        }
+        .hs-header-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.08);
+            border: 1px solid rgba(14, 165, 233, 0.25);
+            border-radius: 10px;
+            padding: 9px 14px;
+            margin-bottom: 1.25rem;
+            font-size: 0.85rem;
+            color: #0284c7;
+            font-weight: 600;
+        }
+        .method-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.25rem;
+        }
+        .method-tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 11px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .method-tab.active {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+        .quick-apps-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .quick-app-badge {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quick-app-badge:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+            background: #fff7ed;
         }
         .secure-badge {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            color: var(--text-muted);
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
         }
-        
         #paymentSuccess {
             display: none;
             text-align: center;
@@ -84,143 +185,278 @@
         #paymentFormContainer {
             display: block;
         }
+        .btn-pay {
+            width: 100%;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35);
+        }
+        .btn-pay:hover {
+            background: #ea580c;
+        }
+        .receipt-box {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .receipt-row strong {
+            color: #0f172a;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none; gap: 15px; height: 55px;">
-                <img src="assets/user-photo.jpg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
-                
+                <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
+                <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black;">TECH INDRO</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Back to Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="tsoc.html">TSOC</a></li>
+                <li><a href="cyber-playground.html">IndroLabs</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="quiz.html">Test Series</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="checkout-container fade-in" id="paymentFormContainer">
-            <h2 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                <i data-lucide="lock" style="color: var(--primary);"></i> Secure Checkout
+    <main class="checkout-main">
+        <!-- Checkout Form -->
+        <div class="checkout-container" id="paymentFormContainer">
+            <div class="hs-header-badge">
+                <i data-lucide="git-merge" style="width: 16px; height: 16px;"></i>
+                <span>Orchestrated by <strong>Juspay Hyperswitch</strong> (Smart Multi-Gateway)</span>
+            </div>
+
+            <h2 style="margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; font-size: 1.4rem;">
+                <i data-lucide="lock" style="color: #ff6b35;"></i> Secure Enrollment
             </h2>
 
             <div class="order-summary">
                 <h3>Order Summary</h3>
                 <div class="summary-row">
-                    <span>Course Name</span>
+                    <span>Course</span>
                     <span id="courseNameDisp">Loading...</span>
                 </div>
                 <div class="summary-row">
-                    <span>Access Duration</span>
-                    <span>Lifetime Access</span>
+                    <span>Duration</span>
+                    <span>Lifetime Access + Verified Certificate</span>
+                </div>
+                <div class="summary-row">
+                    <span>Scholarship Grant</span>
+                    <span style="color: #10b981;">-20% Applied</span>
                 </div>
                 <div class="summary-total">
-                    <span>Total Amount</span>
+                    <span>Total Payable</span>
                     <span id="coursePriceDisp">₹0</span>
                 </div>
             </div>
 
+            <!-- Payment Mode Tabs -->
+            <div class="method-tabs">
+                <div class="method-tab active" id="tabUpi" onclick="switchMethod('upi')">
+                    <i data-lucide="zap" style="width: 16px; height: 16px;"></i> Instant UPI
+                </div>
+                <div class="method-tab" id="tabCard" onclick="switchMethod('card')">
+                    <i data-lucide="credit-card" style="width: 16px; height: 16px;"></i> Cards & 3DS
+                </div>
+            </div>
+
             <form id="paymentForm">
-                <div class="form-group">
-                    <label>Cardholder Name</label>
-                    <input type="text" id="cardName" placeholder="e.g. John Doe" required>
-                </div>
-                <div class="form-group">
-                    <label>Card Number (Mock)</label>
-                    <input type="text" id="cardNumber" placeholder="1111 2222 3333 4444" required>
-                </div>
-                <div style="display: flex; gap: 1rem;">
-                    <div class="form-group" style="flex: 1;">
-                        <label>Expiry Date</label>
-                        <input type="text" placeholder="MM/YY" required>
+                <!-- UPI Panel -->
+                <div id="panelUpi">
+                    <div class="form-group">
+                        <label>UPI ID / VPA</label>
+                        <input type="text" id="upiId" placeholder="e.g. yourname@oksbi or mobile@paytm" value="student@okaxis" required>
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>CVV</label>
-                        <input type="password" placeholder="***" required>
+                    <div class="form-group">
+                        <label>Quick Select UPI App:</label>
+                        <div class="quick-apps-row">
+                            <span class="quick-app-badge" onclick="setVpa('@okaxis')">GPay</span>
+                            <span class="quick-app-badge" onclick="setVpa('@ybl')">PhonePe</span>
+                            <span class="quick-app-badge" onclick="setVpa('@paytm')">Paytm</span>
+                            <span class="quick-app-badge" onclick="setVpa('@upi')">BHIM</span>
+                        </div>
                     </div>
                 </div>
 
-                <div id="paymentError" style="color: #fb7185; margin-bottom: 1rem; display: none;"></div>
+                <!-- Card / NetBanking / Official 3DS Gateway Panel -->
+                <div id="panelCard" style="display: none;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 1.25rem;">
+                        <div style="width: 44px; height: 44px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #10b981;">
+                            <i data-lucide="shield-check" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <h4 style="margin: 0 0 6px; color: #0f172a; font-size: 0.98rem; font-weight: 700;">PCI-DSS & RBI Certified 3D Secure Gateway</h4>
+                        <p style="margin: 0; font-size: 0.84rem; color: #64748b; line-height: 1.5;">
+                            All Credit/Debit card transactions are verified via your bank's encrypted OTP page. No card details are ever collected or stored on this server.
+                        </p>
+                    </div>
+                </div>
 
-                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; border: none; font-size: 1.1rem; padding: 1rem;" id="payBtn">
-                    Pay Now <i data-lucide="arrow-right"></i>
+                <div id="paymentError" style="color: #fb7185; margin-bottom: 1rem; font-size: 0.88rem; display: none;"></div>
+
+                <button type="submit" class="btn-pay" id="payBtn">
+                    Pay <span id="payBtnAmount">₹0</span> & Unlock Course <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
                 </button>
             </form>
 
             <div class="secure-badge">
-                <i data-lucide="shield-check"></i> 256-bit SSL Secure Payment (Simulation)
+                <i data-lucide="shield-check" style="color: #10b981; width: 16px; height: 16px;"></i> 256-bit Encrypted • Juspay Hyperswitch Router
             </div>
         </div>
 
         <!-- Success View -->
-        <div class="checkout-container fade-in" id="paymentSuccess">
-            <div style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
-                <i data-lucide="check-circle" style="width: 40px; height: 40px; color: #10b981;"></i>
+        <div class="checkout-container" id="paymentSuccess">
+            <div style="width: 72px; height: 72px; background: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <i data-lucide="check-circle-2" style="width: 36px; height: 36px; color: #10b981;"></i>
             </div>
-            <h2 style="margin-bottom: 1rem; color: #10b981;">Payment Successful!</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Your course access has been unlocked. Transaction ID: <span id="txnIdDisp" style="color: white; font-weight: bold;"></span></p>
-            <a href="dashboard.html" class="btn-primary" style="justify-content: center;">Go to Dashboard</a>
+            <h2 style="margin-bottom: 0.5rem; color: #10b981; font-size: 1.5rem;">Enrollment Successful! 🎉</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem;">Your course access has been activated permanently.</p>
+
+            <div class="receipt-box">
+                <div class="receipt-row">
+                    <span>Transaction ID:</span>
+                    <strong id="txnIdDisp">TXN_HS_00000</strong>
+                </div>
+                <div class="receipt-row">
+                    <span>Payment Switch:</span>
+                    <strong style="color: #38bdf8;">Hyperswitch (Juspay)</strong>
+                </div>
+                <div class="receipt-row">
+                    <span>Routed Gateway:</span>
+                    <strong id="routedGatewayDisp">NPCI UPI Switch / Cashfree</strong>
+                </div>
+                <div class="receipt-row">
+                    <span>Amount Paid:</span>
+                    <strong style="color: #10b981;" id="paidAmountDisp">₹0</strong>
+                </div>
+                <div class="receipt-row">
+                    <span>Access Status:</span>
+                    <strong style="color: #10b981;">ACTIVE (Lifetime)</strong>
+                </div>
+            </div>
+
+            <a href="dashboard.html" class="btn-pay" style="text-decoration: none; text-align: center;">
+                Go to My Dashboard <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </a>
         </div>
     </main>
 
     <script>
         lucide.createIcons();
 
-        // Get course details from URL
+        let currentMethod = 'upi';
         const urlParams = new URLSearchParams(window.location.search);
-        const courseId = urlParams.get('id') || 'C101';
-        let amount = 4999; // Default mock price
-        
-        // Mock fetch course details
-        document.getElementById('courseNameDisp').innerText = "Tech Indro Premium Batch";
-        document.getElementById('coursePriceDisp').innerText = "₹" + amount;
+        const courseId = urlParams.get('id') || 'ai-robotics-01';
+        const courseTitle = urlParams.get('title') || 'Full Stack Web & AI Engineering';
+        let amount = parseInt(urlParams.get('price') || '799', 10);
 
-        // Payment Form Submission
+        document.getElementById('courseNameDisp').innerText = courseTitle;
+        document.getElementById('coursePriceDisp').innerText = '₹' + amount;
+        document.getElementById('payBtnAmount').innerText = '₹' + amount;
+
+        function switchMethod(method) {
+            currentMethod = method;
+            document.getElementById('tabUpi').classList.toggle('active', method === 'upi');
+            document.getElementById('tabCard').classList.toggle('active', method === 'card');
+            document.getElementById('panelUpi').style.display = method === 'upi' ? 'block' : 'none';
+            document.getElementById('panelCard').style.display = method === 'card' ? 'block' : 'none';
+        }
+
+        function setVpa(suffix) {
+            const current = document.getElementById('upiId').value.split('@')[0] || 'student';
+            document.getElementById('upiId').value = current + suffix;
+        }
+
+        // Handle Hyperswitch payment checkout submission
         document.getElementById('paymentForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const btn = document.getElementById('payBtn');
             const errorDiv = document.getElementById('paymentError');
-            const cardNumber = document.getElementById('cardNumber').value;
-            
-            btn.innerHTML = 'Processing... <i data-lucide="loader" class="spin"></i>';
-            btn.disabled = true;
             errorDiv.style.display = 'none';
 
+            btn.innerHTML = 'Authorizing with Hyperswitch... <i data-lucide="loader" class="spin"></i>';
+            btn.disabled = true;
+
             try {
-                const response = await fetch('/api/payment/checkout', {
+                // 1. Create Payment Intent
+                const intentRes = await fetch('/api/payments/create-intent', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        courseId: courseId,
-                        userId: "user_" + Date.now(),
                         amount: amount,
-                        cardNumber: cardNumber
+                        currency: 'INR',
+                        courseId: courseId,
+                        courseTitle: courseTitle,
+                        customerName: document.getElementById('cardName').value || 'Tech Indro Student',
+                        customerEmail: 'student@techindro.com'
                     })
                 });
 
-                const data = await response.json();
+                const intent = await intentRes.json();
+                if (!intent.success) throw new Error(intent.error || 'Intent creation failed');
 
-                if (data.success) {
-                    document.getElementById('paymentFormContainer').style.display = 'none';
-                    document.getElementById('paymentSuccess').style.display = 'block';
-                    document.getElementById('txnIdDisp').innerText = data.transactionId;
-                } else {
-                    errorDiv.innerText = data.error || "Payment failed. Please try again.";
-                    errorDiv.style.display = 'block';
-                    btn.innerHTML = 'Pay Now <i data-lucide="arrow-right"></i>';
-                    btn.disabled = false;
-                }
+                // 2. Confirm Payment Intent
+                const confirmRes = await fetch('/api/payments/confirm', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        paymentId: intent.paymentId,
+                        clientSecret: intent.clientSecret,
+                        paymentMethod: currentMethod,
+                        paymentMethodDetails: currentMethod === 'upi' ? {
+                            upiId: document.getElementById('upiId').value
+                        } : {
+                            type: 'card_3ds_gateway'
+                        },
+                        courseId: courseId,
+                        courseTitle: courseTitle,
+                        amount: amount
+                    })
+                });
+
+                const confirmData = await confirmRes.json();
+                if (!confirmData.success) throw new Error(confirmData.error || 'Payment confirmation failed');
+
+                // 3. Show Success View
+                document.getElementById('paymentFormContainer').style.display = 'none';
+                document.getElementById('paymentSuccess').style.display = 'block';
+                document.getElementById('txnIdDisp').innerText = confirmData.transactionId || ('TXN_HS_' + Date.now());
+                document.getElementById('routedGatewayDisp').innerText = confirmData.routedGateway || 'Hyperswitch Multi-Processor Switch';
+                document.getElementById('paidAmountDisp').innerText = '₹' + amount;
+                lucide.createIcons();
             } catch (err) {
-                console.error("Payment error:", err);
-                errorDiv.innerText = "Network error. Is the backend server running?";
+                console.error('Hyperswitch Error:', err);
+                errorDiv.innerText = err.message || 'Payment failed. Please try again.';
                 errorDiv.style.display = 'block';
-                btn.innerHTML = 'Pay Now <i data-lucide="arrow-right"></i>';
+                btn.innerHTML = `Pay ₹${amount} & Unlock Course <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>`;
                 btn.disabled = false;
+                lucide.createIcons();
             }
         });
     </script>
-    <script src="main.js"></script>
 </body>
 </html>

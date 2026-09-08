@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Indro - IndroLabs</title>
+    <title>Tech Indro - IndroLabs Cloud Playground & Compiler</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"></script>
@@ -12,60 +12,165 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
-            background: #f8fafc;
+            background: #0b0f19;
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         main {
             height: calc(100vh - 80px);
             margin-top: 80px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 16px 24px;
+            box-sizing: border-box;
         }
         .playground-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .header-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-title-group h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+        }
+        .engine-pill {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
         .controls {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
-        select#languageSelect {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
+        select.styled-select {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #334155;
             outline: none;
-            font-family: inherit;
-            background: white;
+            background: #1e293b;
+            color: #f8fafc;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        select.styled-select:hover {
+            border-color: #64748b;
+        }
+        .btn-run {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+            transition: all 0.2s ease;
+        }
+        .btn-run:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(79, 70, 229, 0.6);
+        }
+        .btn-ai {
+            background: linear-gradient(135deg, #1e1b4b, #2e1065);
+            border: 1px solid #a855f7;
+            color: #e9d5ff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .btn-ai:hover {
+            background: #3b0764;
+            border-color: #c084fc;
+            box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+        }
+        .btn-secondary-action {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-secondary-action:hover {
+            background: #334155;
+            color: #fff;
         }
         .playground-container {
             display: flex;
             flex: 1 1 auto;
-            gap: 20px;
+            gap: 16px;
             min-height: 0;
         }
         .editor-pane, .preview-pane {
             flex: 1 1 50%;
             display: flex;
             flex-direction: column;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
             overflow: hidden;
             min-height: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
         .pane-header {
-            background: var(--primary);
-            color: white;
-            padding: 10px 15px;
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 10px 16px;
             font-weight: 600;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid #334155;
+        }
+        .pane-dots {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .pane-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
         }
         .editor-wrapper {
             flex: 1 1 auto;
@@ -78,6 +183,7 @@
             bottom: 0;
             left: 0;
             right: 0;
+            font-size: 14.5px;
         }
         /* Outputs */
         iframe#livePreview {
@@ -90,19 +196,114 @@
         pre#terminalOutput {
             flex: 1;
             margin: 0;
-            padding: 15px;
-            background: #ffffff;
-            color: #333333;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
+            padding: 16px;
+            background: #050814;
+            color: #10b981;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
             overflow: auto;
-            display: none; /* hidden by default */
+            display: none;
+            white-space: pre-wrap;
         }
         .output-loading {
             display: none;
-            padding: 15px;
-            color: #64748b;
+            padding: 20px;
+            color: #94a3b8;
             font-style: italic;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .meta-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #cbd5e1;
+        }
+
+        /* AI Mentor Modal */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+        .modal-header {
+            padding: 16px 20px;
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: #e9d5ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            color: #e2e8f0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .modal-footer {
+            padding: 12px 20px;
+            background: #1e293b;
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .btn-apply-fix {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-apply-fix:hover {
+            background: #059669;
+        }
+        .btn-close-modal {
+            background: #334155;
+            color: #cbd5e1;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -115,105 +316,348 @@
             </a>
             <ul class="nav-links">
                 <li><a href="programs.html">Programs</a></li>
-                <li><a href="dashboard.html">My Dashboard</a></li>
-                <li><a href="cyber-playground.html">IndroLabs</a></li>
-                <li><a href="ai-mentor.html">AI Mentor</a></li>
+                <li><a href="tsoc.html">TSOC</a></li>
+                <li><a href="cyber-playground.html" style="color: var(--primary); font-weight: 700;">IndroLabs</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="quiz.html">Test Series</a></li>
+                <li><a href="login.html" class="login-btn">Login / Sign Up</a></li>
             </ul>
         </nav>
     </header>
 
-    <main style="padding-top: 120px;">
+    <main style="padding-top: 110px;">
         <div class="playground-header">
-            <h2><i data-lucide="terminal"></i> IndroLabs Compiler</h2>
+            <div class="header-title-group">
+                <h2><i data-lucide="terminal"></i> IndroLabs Playground</h2>
+                <div class="engine-pill"><i data-lucide="cpu" style="width:12px;height:12px;"></i> CLOUD SANDBOX READY</div>
+            </div>
+
             <div class="controls">
-                <select id="languageSelect">
-                    <option value="html">HTML / Web</option>
-                    <option value="python">Python</option>
-                    <option value="java">Java</option>
-                    <option value="cpp">C++</option>
-                    <option value="sql">SQL (SQLite)</option>
+                <!-- Preset Challenges -->
+                <select id="challengeSelect" class="styled-select" onchange="loadChallenge(this.value)">
+                    <option value="">⚡ Load Challenge / Template...</option>
+                    <option value="two-sum">DSA: Two Sum (Python)</option>
+                    <option value="palindrome">Algorithms: Palindrome (JS)</option>
+                    <option value="binary-search">DSA: Binary Search O(log N) (C++)</option>
+                    <option value="sql-students">Database: Course Leaderboard (SQL)</option>
+                    <option value="neon-card">Web: Neon Glow Card (HTML/CSS)</option>
                 </select>
-                <button class="btn-primary" onclick="executeCode()"><i data-lucide="play"></i> Run Code</button>
+
+                <!-- Language Selector -->
+                <select id="languageSelect" class="styled-select">
+                    <option value="python">Python 3.12</option>
+                    <option value="javascript">JavaScript (Node.js 20)</option>
+                    <option value="html">HTML / Web Engine</option>
+                    <option value="cpp">C++ (GCC 14)</option>
+                    <option value="java">Java (JDK 17)</option>
+                    <option value="sql">SQL (SQLite 3)</option>
+                </select>
+
+                <!-- AI Fix & Diagnose Button -->
+                <button class="btn-ai" onclick="askAiShikshak()"><i data-lucide="sparkles"></i> AI Fix & Explain</button>
+
+                <!-- Run Code Button -->
+                <button class="btn-run" onclick="executeCode()"><i data-lucide="play"></i> Run Code</button>
+
+                <!-- Reset Button -->
+                <button class="btn-secondary-action" onclick="resetTemplate()" title="Reset Code"><i data-lucide="rotate-ccw"></i></button>
             </div>
         </div>
+
         <div class="playground-container">
+            <!-- Left Editor Pane -->
             <div class="editor-pane">
                 <div class="pane-header">
-                    <span style="display:flex; gap:8px; align-items:center;"><i data-lucide="file-code-2"></i> <span id="filename">index.html</span></span>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <div class="pane-dots">
+                            <div class="pane-dot" style="background:#ef4444;"></div>
+                            <div class="pane-dot" style="background:#f59e0b;"></div>
+                            <div class="pane-dot" style="background:#10b981;"></div>
+                        </div>
+                        <span id="filename" style="font-family: monospace; color: #94a3b8;">script.py</span>
+                    </div>
+                    <span style="font-size:11px; color:#64748b;">Tech Indro V8 / Sandboxed</span>
                 </div>
                 <div class="editor-wrapper">
                     <div id="editor"></div>
                 </div>
             </div>
+
+            <!-- Right Preview / Output Pane -->
             <div class="preview-pane">
-                <div class="pane-header"><i data-lucide="monitor"></i> <span id="previewTitle">Output Preview</span></div>
-                <iframe id="livePreview"></iframe>
+                <div class="pane-header">
+                    <span style="display:flex; align-items:center; gap:8px;">
+                        <i data-lucide="monitor" style="width:14px;height:14px;"></i>
+                        <span id="previewTitle">Terminal Output</span>
+                    </span>
+                    <div id="metaBadges" style="display:flex; gap:6px; align-items:center;"></div>
+                </div>
+                <iframe id="livePreview" style="display:none;"></iframe>
                 <pre id="terminalOutput"></pre>
-                <div id="loadingIndicator" class="output-loading">Executing on remote server...</div>
+                <div id="loadingIndicator" class="output-loading" style="display:none;">
+                    <i data-lucide="loader-2" class="animate-spin" style="width:18px;height:18px; animation: spin 1s linear infinite;"></i>
+                    Compiling & executing sandboxed code...
+                </div>
             </div>
         </div>
     </main>
 
+    <!-- AI Shikshak Analysis Modal -->
+    <div id="aiModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i data-lucide="sparkles"></i> AI Shikshak Code Diagnosis</h3>
+                <button class="btn-close-modal" onclick="closeAiModal()"><i data-lucide="x"></i></button>
+            </div>
+            <div id="aiModalBody" class="modal-body">
+                Analyzing your code and execution error...
+            </div>
+            <div class="modal-footer">
+                <button id="applyFixBtn" class="btn-apply-fix" style="display:none;" onclick="applyAiFix()">
+                    <i data-lucide="check"></i> Apply Fix to Editor
+                </button>
+                <button class="btn-close-modal" onclick="closeAiModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+
     <script>
         lucide.createIcons();
 
-        // Boilerplate codes
+        // Template codes
         const templates = {
-            html: `<!DOCTYPE html>\n<html lang="en">\n<head>\n    <title>IndroLabs Test</title>\n    <style>\n        body { background: #f8fafc; font-family: sans-serif; text-align: center; margin-top: 50px; }\n        h1 { color: #4f46e5; }\n    </style>\n</head>\n<body>\n    <h1>Hello World</h1>\n    <p>Welcome to IndroLabs Web Compiler.</p>\n</body>\n</html>`,
-            python: `def greet(name):\n    print(f"Hello, {name}! Welcome to IndroLabs.")\n\ngreet("Developer")\nprint("Python compilation successful!")`,
-            java: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello from Java!");\n        System.out.println("IndroLabs Java Compiler running.");\n    }\n}`,
-            cpp: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, C++ World!" << std::endl;\n    std::cout << "IndroLabs C++ compiler ready." << std::endl;\n    return 0;\n}`,
-            sql: `CREATE TABLE users (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL\n);\n\nINSERT INTO users (name) VALUES ('TechIndro'), ('Rohini AI');\n\nSELECT * FROM users;`
+            python: `# Tech Indro Python Sandbox
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+primes = [x for x in range(1, 30) if is_prime(x)]
+print("Primes under 30:", primes)
+print("Total prime count:", len(primes))
+print("Algorithm complexity: O(N * sqrt(N))")`,
+
+            javascript: `// Tech Indro JavaScript (Node.js) Playground
+function calculateFibonacci(n) {
+  let a = 0, b = 1;
+  const series = [a, b];
+  for (let i = 2; i < n; i++) {
+    let next = a + b;
+    series.push(next);
+    a = b;
+    b = next;
+  }
+  return series;
+}
+
+console.log("Welcome to IndroLabs Runtime!");
+const result = calculateFibonacci(8);
+console.log("Fibonacci Series (first 8):", result);
+console.log("Status: Execution Successful! 🚀");`,
+
+            html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 0; padding: 30px; background: #090D16; font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 240px; }
+        .card { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2); color: #fff; max-width: 320px; text-align: center; }
+        h2 { color: #38bdf8; margin: 0 0 8px 0; }
+        p { color: #94a3b8; font-size: 13px; line-height: 1.5; margin: 0 0 16px 0; }
+        .btn { background: linear-gradient(90deg, #4f46e5, #06b6d4); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🚀 IndroLabs Web Engine</h2>
+        <p>Live Web DOM preview rendering directly inside the Tech Indro cloud runtime.</p>
+        <button class="btn" onclick="alert('IndroLabs Sandbox Activated!')">Test Interaction ⚡</button>
+    </div>
+</body>
+</html>`,
+
+            cpp: `// Tech Indro C++ Competitive Hub
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    vector<int> nums = {45, 12, 89, 3, 27};
+    sort(nums.begin(), nums.end());
+    
+    cout << "Sorted Array: ";
+    for (int n : nums) cout << n << " ";
+    cout << "\\nBinary Search for 27: FOUND at index 2" << endl;
+    return 0;
+}`,
+
+            java: `// Tech Indro Java 17 LTS Playground
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello from Java 17 LTS!");
+        String greeting = "Welcome to Tech Indro Engineering Hub";
+        System.out.println(greeting);
+        
+        int[] numbers = {10, 20, 30, 40, 50};
+        int sum = 0;
+        for (int n : numbers) sum += n;
+        System.out.println("Array Sum: " + sum);
+        System.out.println("JVM Status: Active & Sandboxed");
+    }
+}`,
+
+            sql: `-- Tech Indro Student Performance Query
+CREATE TABLE enrollments (
+  id INTEGER PRIMARY KEY,
+  student_name TEXT NOT NULL,
+  course TEXT NOT NULL,
+  score INTEGER NOT NULL
+);
+
+INSERT INTO enrollments (student_name, course, score) VALUES 
+  ('Aarav Sharma', 'Full Stack AI', 96),
+  ('Priya Patel', 'Space Tech ISRO', 98),
+  ('Kabir Verma', 'Full Stack AI', 88),
+  ('Sneha Iyer', 'Cybersecurity', 94);
+
+SELECT course, student_name, score FROM enrollments WHERE score >= 90 ORDER BY score DESC;`
+        };
+
+        // Challenges Data
+        const challenges = {
+            'two-sum': {
+                lang: 'python',
+                code: `# Problem: Two Sum (LeetCode #1)
+# Find indices of two numbers that add up to target
+def two_sum(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        diff = target - num
+        if diff in seen:
+            return [seen[diff], i]
+        seen[num] = i
+    return []
+
+test_nums = [2, 7, 11, 15]
+target = 9
+result = two_sum(test_nums, target)
+print(f"Input: {test_nums}, Target: {target}")
+print(f"Result Indices: {result}")`
+            },
+            'palindrome': {
+                lang: 'javascript',
+                code: `// Problem: Valid Palindrome (Two-Pointer Method)
+function isPalindrome(str) {
+  const clean = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  let left = 0, right = clean.length - 1;
+  while (left < right) {
+    if (clean[left] !== clean[right]) return false;
+    left++; right--;
+  }
+  return true;
+}
+
+const phrases = [
+  "A man, a plan, a canal: Panama",
+  "Tech Indro 2026",
+  "Was it a car or a cat I saw?"
+];
+
+phrases.forEach(p => console.log(\`"\${p}" -> \${isPalindrome(p) ? '✅ PALINDROME' : '❌ NOT PALINDROME'}\`));`
+            },
+            'binary-search': {
+                lang: 'cpp',
+                code: `// Binary Search O(log N)
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int binarySearch(const vector<int>& arr, int target) {
+    int low = 0, high = arr.size() - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == target) return mid;
+        if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    vector<int> arr = {3, 9, 14, 21, 28, 35, 42, 59, 70, 88};
+    int target = 42;
+    int idx = binarySearch(arr, target);
+    cout << "Array size: " << arr.size() << endl;
+    cout << "Target 42 found at index: " << idx << endl;
+    return 0;
+}`
+            },
+            'sql-students': {
+                lang: 'sql',
+                code: templates.sql
+            },
+            'neon-card': {
+                lang: 'html',
+                code: templates.html
+            }
         };
 
         // Initialize Ace Editor
         const editor = ace.edit("editor");
-        editor.setTheme("ace/theme/chrome");
-        editor.session.setMode("ace/mode/html");
-        editor.setValue(templates.html, -1);
+        editor.setTheme("ace/theme/tomorrow_night_eighties");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(templates.python, -1);
         editor.setOptions({
-            fontSize: "15px",
+            fontSize: "14px",
             showPrintMargin: false,
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
             wrap: true
         });
 
-        // DOM elements
         const langSelect = document.getElementById("languageSelect");
         const filenameDisplay = document.getElementById("filename");
         const iframePreview = document.getElementById("livePreview");
         const terminalOutput = document.getElementById("terminalOutput");
         const loadingIndicator = document.getElementById("loadingIndicator");
         const previewTitle = document.getElementById("previewTitle");
+        const metaBadges = document.getElementById("metaBadges");
+
+        const extMap = {
+            python: "script.py", javascript: "main.js", html: "index.html", cpp: "main.cpp", java: "Main.java", sql: "query.sql"
+        };
+        const modeMap = {
+            python: "ace/mode/python", javascript: "ace/mode/javascript", html: "ace/mode/html", cpp: "ace/mode/c_cpp", java: "ace/mode/java", sql: "ace/mode/sql"
+        };
 
         // Handle language change
         langSelect.addEventListener("change", (e) => {
             const lang = e.target.value;
-            
-            // Set mode and template
-            let mode = "ace/mode/" + (lang === "cpp" ? "c_cpp" : lang);
-            editor.session.setMode(mode);
+            editor.session.setMode(modeMap[lang]);
             editor.setValue(templates[lang], -1);
+            filenameDisplay.innerText = extMap[lang];
 
-            // Update filename
-            const files = {
-                html: "index.html", python: "main.py", java: "Main.java", cpp: "main.cpp", sql: "query.sql"
-            };
-            filenameDisplay.innerText = files[lang];
-
-            // Switch view
             if (lang === "html") {
                 terminalOutput.style.display = "none";
                 iframePreview.style.display = "block";
-                previewTitle.innerText = "Live Preview";
+                previewTitle.innerText = "Live Web DOM Viewport";
                 runHtml();
             } else {
                 iframePreview.style.display = "none";
                 terminalOutput.style.display = "block";
                 previewTitle.innerText = "Terminal Output";
-                terminalOutput.innerText = "Click 'Run Code' to execute " + lang.toUpperCase() + " program...";
+                terminalOutput.innerText = `Ready. Click 'Run Code' to compile & execute ${lang.toUpperCase()} program...`;
             }
+            metaBadges.innerHTML = "";
         });
 
         function runHtml() {
@@ -222,8 +666,38 @@
             doc.open();
             doc.write(code);
             doc.close();
+            metaBadges.innerHTML = `<span class="meta-badge" style="color:#38bdf8;">DOM Rendered</span>`;
         }
 
+        function resetTemplate() {
+            const lang = langSelect.value;
+            editor.setValue(templates[lang], -1);
+            if (lang === "html") runHtml();
+            else terminalOutput.innerText = "Template reset. Click 'Run Code' to execute.";
+        }
+
+        function loadChallenge(key) {
+            if (!key || !challenges[key]) return;
+            const ch = challenges[key];
+            langSelect.value = ch.lang;
+            editor.session.setMode(modeMap[ch.lang]);
+            editor.setValue(ch.code, -1);
+            filenameDisplay.innerText = extMap[ch.lang];
+
+            if (ch.lang === "html") {
+                terminalOutput.style.display = "none";
+                iframePreview.style.display = "block";
+                previewTitle.innerText = "Live Web DOM Viewport";
+                runHtml();
+            } else {
+                iframePreview.style.display = "none";
+                terminalOutput.style.display = "block";
+                previewTitle.innerText = "Terminal Output";
+                terminalOutput.innerText = `Challenge Loaded. Click 'Run Code' to test solution!`;
+            }
+        }
+
+        // Execution logic: Local Backend + Judge0 CE Failover
         async function executeCode() {
             const lang = langSelect.value;
             if (lang === "html") {
@@ -233,56 +707,158 @@
 
             const code = editor.getValue();
             terminalOutput.innerText = "";
-            loadingIndicator.style.display = "block";
+            loadingIndicator.style.display = "flex";
+            metaBadges.innerHTML = "";
 
-            // Piston API mapping
-            const languageMap = {
-                python: { language: "python", version: "3.10.0" },
-                java: { language: "java", version: "15.0.2" },
-                cpp: { language: "cpp", version: "10.2.0" },
-                sql: { language: "sqlite3", version: "3.36.0" }
-            };
+            const startTime = Date.now();
 
-            const payload = {
-                language: languageMap[lang].language,
-                version: languageMap[lang].version,
-                files: [{ content: code }]
+            // 1. Try local backend first
+            try {
+                const response = await fetch("/api/compiler/run", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ language: lang, code: code })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result && typeof result.output === "string") {
+                        displayOutput(result.output, result.elapsed, result.exitCode, result.language);
+                        return;
+                    }
+                }
+            } catch (backendErr) {
+                console.warn("Backend server not reachable, switching to Judge0 CE Cloud Sandbox:", backendErr);
+            }
+
+            // 2. Direct Judge0 CE Cloud Failover
+            const judge0Map = {
+                python: { id: 100, label: "Python 3.12" },
+                javascript: { id: 97, label: "Node.js 20" },
+                cpp: { id: 105, label: "GCC C++20" },
+                java: { id: 91, label: "OpenJDK 17" },
+                sql: { id: 82, label: "SQLite 3" }
             };
 
             try {
-                const response = await fetch("https://emkc.org/api/v2/piston/execute", {
+                const target = judge0Map[lang] || judge0Map.python;
+                const cloudRes = await fetch("https://ce.judge0.com/submissions?wait=true", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({
+                        source_code: code,
+                        language_id: target.id
+                    })
                 });
-                const result = await response.json();
-                
-                if (result.run) {
-                    terminalOutput.innerText = result.run.output || "No output";
-                } else if (result.message) {
-                    terminalOutput.innerText = "Error: " + result.message;
-                } else {
-                    terminalOutput.innerText = "Execution failed.";
-                }
+
+                const data = await cloudRes.json();
+                const elapsed = data.time ? Math.round(parseFloat(data.time) * 1000) : (Date.now() - startTime);
+
+                let out = "";
+                if (data.stdout) out += data.stdout;
+                if (data.stderr) out += (out ? "\n" : "") + data.stderr;
+                if (data.compile_output) out += (out ? "\n" : "") + data.compile_output;
+                if (data.message) out += (out ? "\n" : "") + data.message;
+
+                const exitCode = (data.status && data.status.id === 3) ? 0 : 1;
+                displayOutput(out || "Program executed with exit code 0 (no output).", elapsed, exitCode, target.label);
             } catch (err) {
-                terminalOutput.innerText = "Network Error: Could not reach execution server.";
-                console.error(err);
+                terminalOutput.innerText = `Execution Error: Could not connect to execution servers (${err.message}).`;
+                metaBadges.innerHTML = `<span class="meta-badge" style="color:#ef4444;">Failed</span>`;
             } finally {
                 loadingIndicator.style.display = "none";
             }
         }
 
-        // Initial run
-        runHtml();
-        
-        // Auto-run only for HTML
-        let timeout;
-        editor.session.on('change', () => {
-            if (langSelect.value === "html") {
-                clearTimeout(timeout);
-                timeout = setTimeout(runHtml, 500);
+        function displayOutput(text, elapsed, exitCode, langLabel) {
+            loadingIndicator.style.display = "none";
+            terminalOutput.style.display = "block";
+            terminalOutput.innerText = text;
+
+            const isSuccess = exitCode === 0;
+            metaBadges.innerHTML = `
+                <span class="meta-badge">${langLabel || 'Sandbox'}</span>
+                ${elapsed !== undefined ? `<span class="meta-badge">${elapsed}ms</span>` : ''}
+                <span class="meta-badge" style="color:${isSuccess ? '#10b981' : '#ef4444'};">Exit: ${exitCode}</span>
+            `;
+        }
+
+        // AI Shikshak Debugger Integration
+        let currentExtractedFix = null;
+
+        async function askAiShikshak() {
+            const modal = document.getElementById("aiModal");
+            const modalBody = document.getElementById("aiModalBody");
+            const applyBtn = document.getElementById("applyFixBtn");
+
+            modal.style.display = "flex";
+            modalBody.innerHTML = `
+                <div style="display:flex; align-items:center; gap:12px; padding: 20px 0; color:#c084fc;">
+                    <i data-lucide="loader-2" class="animate-spin" style="width:22px;height:22px; animation: spin 1s linear infinite;"></i>
+                    <span>AI Shikshak is analyzing your code and error...</span>
+                </div>
+            `;
+            applyBtn.style.display = "none";
+            currentExtractedFix = null;
+            lucide.createIcons();
+
+            const lang = langSelect.value;
+            const code = editor.getValue();
+            const output = terminalOutput.innerText || "No output yet";
+
+            const prompt = `You are the Tech Indro Code Shikshak & Debugger. Analyze this student's code and execution output:
+Language: ${lang}
+Code:
+\`\`\`${lang}
+${code}
+\`\`\`
+Terminal Output/Error:
+\`\`\`
+${output}
+\`\`\`
+Please provide:
+1. Diagnosis & Explanation in friendly Hinglish/English.
+2. Suggested Bug Fix or Optimization.
+3. If providing fixed code, wrap the complete corrected code inside \`\`\`${lang} ... \`\`\` so the student can apply it.`;
+
+            try {
+                const res = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: prompt })
+                });
+                const data = await res.json();
+                const reply = data.response || data.reply || "Could not analyze code at this time.";
+
+                modalBody.innerHTML = reply.replace(/\n/g, "<br>").replace(/```([a-zA-Z0-9_-]+)?([\s\S]*?)```/g, '<pre style="background:#050814; padding:12px; border-radius:8px; border:1px solid #334155; color:#38bdf8;">$2</pre>');
+
+                // Extract code snippet if present
+                const match = reply.match(/```(?:[a-zA-Z0-9_-]+)?\n([\s\S]*?)```/);
+                if (match && match[1] && match[1].trim().length > 10) {
+                    currentExtractedFix = match[1].trim();
+                    applyBtn.style.display = "inline-flex";
+                }
+            } catch (err) {
+                modalBody.innerHTML = `<p style="color:#ef4444;">Connection Error: ${err.message}</p><p>Check your syntax, indentation, and variable names!</p>`;
             }
-        });
+            lucide.createIcons();
+        }
+
+        function applyAiFix() {
+            if (currentExtractedFix) {
+                editor.setValue(currentExtractedFix, -1);
+                closeAiModal();
+                alert("✨ AI Suggested Fix has been applied to the code editor!");
+            }
+        }
+
+        function closeAiModal() {
+            document.getElementById("aiModal").style.display = "none";
+        }
+
+        // Initial setup
+        terminalOutput.style.display = "block";
+        terminalOutput.innerText = "IndroLabs Compiler Ready. Click 'Run Code' to execute Python 3.12...";
     </script>
 </body>
 </html>
