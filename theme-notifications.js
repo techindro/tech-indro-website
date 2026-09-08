@@ -324,20 +324,6 @@
         });
     }
 
-        updateThemeToggleIcons(currentTheme);
-        updateNotificationUI();
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (e) {
-            const dropdown = document.getElementById('notificationDropdown');
-            if (dropdown && dropdown.classList.contains('show')) {
-                if (!controlsGroup.contains(e.target)) {
-                    dropdown.classList.remove('show');
-                }
-            }
-        });
-    }
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupHeader);
     } else {
