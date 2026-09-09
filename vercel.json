@@ -16,6 +16,14 @@
       "dest": "/server.js"
     },
     {
+      "src": "/programs",
+      "dest": "/programs.html"
+    },
+    {
+      "src": "/course-details",
+      "dest": "/course-details.html"
+    },
+    {
       "src": "/portfolio",
       "dest": "/portfolio.html"
     },
@@ -32,12 +40,48 @@
       "dest": "/cyber-playground.html"
     },
     {
+      "src": "/playground",
+      "dest": "/playground.html"
+    },
+    {
       "src": "/tsoc",
       "dest": "/tsoc.html"
     },
     {
+      "src": "/tsoc-apply",
+      "dest": "/tsoc-apply.html"
+    },
+    {
+      "src": "/tsoc-mentor-apply",
+      "dest": "/tsoc-mentor-apply.html"
+    },
+    {
       "src": "/quiz",
       "dest": "/quiz.html"
+    },
+    {
+      "src": "/shikshak",
+      "dest": "/shikshak.html"
+    },
+    {
+      "src": "/shikshak-coding",
+      "dest": "/shikshak-coding.html"
+    },
+    {
+      "src": "/shikshak-rohini",
+      "dest": "/shikshak-rohini.html"
+    },
+    {
+      "src": "/ai-mentor",
+      "dest": "/ai-mentor.html"
+    },
+    {
+      "src": "/ai-tools",
+      "dest": "/ai-tools.html"
+    },
+    {
+      "src": "/isro-lab",
+      "dest": "/isro-lab.html"
     },
     {
       "src": "/login",
@@ -50,6 +94,26 @@
     {
       "src": "/checkout",
       "dest": "/checkout.html"
+    },
+    {
+      "src": "/certificate",
+      "dest": "/certificate.html"
+    },
+    {
+      "src": "/leaderboard",
+      "dest": "/leaderboard.html"
+    },
+    {
+      "src": "/parent-panel",
+      "dest": "/parent-panel.html"
+    },
+    {
+      "src": "/admin-analytics",
+      "dest": "/admin-analytics.html"
+    },
+    {
+      "src": "/admin-cms",
+      "dest": "/admin-cms.html"
     },
     {
       "src": "/privacy",

@@ -808,7 +808,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
                 config: { systemInstruction: systemInstruction, temperature: 0.7 }
             });
 
-            return res.json({ response: response.text });
+            return res.json({ response: response.text, reply: response.text });
         } catch (error) {
             console.warn("Gemini API Error, falling back to built-in AI Mentor engine:", error.message);
         }
@@ -817,7 +817,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     // Built-in High Quality AI Mentor Engine
     setTimeout(() => {
         const reply = generateAIMentorResponse(message, lang, agent);
-        res.json({ response: reply });
+        res.json({ response: reply, reply: reply });
     }, 400);
 });
 

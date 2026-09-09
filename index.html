@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Indro - India's #1 AI & Robotics Learning Platform</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="theme-notifications.js"></script>
     <style>
@@ -703,39 +705,555 @@
             transform: translateY(0);
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            background: white;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 1rem;
+        /* =========================================
+           RIGHT-SIDE HAMBURGER MENU & DRAWER SYSTEM
+           ========================================= */
+        
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
         }
 
-        .mobile-menu.active {
+        /* Modern Hamburger Button on the Right */
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            padding: 9px;
+            gap: 5px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            z-index: 1001;
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .hamburger-btn {
+            background: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hamburger-btn:hover {
+            background: #fff7ed;
+            border-color: #ff6b35;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.2);
+        }
+
+        [data-theme="dark"] .hamburger-btn:hover {
+            background: #2d3748;
+            border-color: #ff6b35;
+        }
+
+        .hamburger-btn .bar {
+            width: 22px;
+            height: 2.5px;
+            background: #1e293b;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        [data-theme="dark"] .hamburger-btn .bar {
+            background: #f8fafc;
+        }
+
+        .hamburger-btn.active {
+            background: #ff6b35;
+            border-color: #ff6b35;
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.35);
+        }
+
+        .hamburger-btn.active .bar {
+            background: #ffffff !important;
+        }
+
+        .hamburger-btn.active .bar-1 {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .hamburger-btn.active .bar-2 {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger-btn.active .bar-3 {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* Drawer Overlay */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Right-Side Offcanvas Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 400px;
+            max-width: 88vw;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 9999;
+            box-shadow: -15px 0 45px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .nav-drawer {
+            background: #0f172a;
+            box-shadow: -15px 0 45px rgba(0, 0, 0, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-drawer.active {
+            right: 0;
+        }
+
+        /* Drawer Header */
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            background: #ffffff;
+        }
+
+        [data-theme="dark"] .drawer-header {
+            background: #0f172a;
+            border-bottom-color: #1e293b;
+        }
+
+        .drawer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .drawer-logo-img {
+            height: 38px;
+            width: auto;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .drawer-brand-text {
+            font-family: 'Calibri', sans-serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.5px;
+            color: #0f172a;
+        }
+
+        [data-theme="dark"] .drawer-brand-text {
+            color: #ffffff;
+        }
+
+        .drawer-close-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        [data-theme="dark"] .drawer-close-btn {
+            background: #1e293b;
+            border-color: #334155;
+            color: #94a3b8;
+        }
+
+        .drawer-close-btn:hover {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        /* Drawer Body */
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            scrollbar-width: thin;
+        }
+
+        .drawer-section-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        [data-theme="dark"] .drawer-section-title {
+            color: #64748b;
+        }
+
+        /* Drawer Primary Cards: Courses, About us, Contact */
+        .drawer-primary-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .drawer-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 1rem 1.1rem;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .drawer-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .drawer-card:hover {
+            transform: translateY(-2px);
+            border-color: #ff6b35;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.14);
+            background: #ffffff;
+        }
+
+        [data-theme="dark"] .drawer-card:hover {
+            background: #283548;
+            border-color: #ff6b35;
+        }
+
+        .drawer-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        .drawer-card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .drawer-card-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .drawer-card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        [data-theme="dark"] .drawer-card-title {
+            color: #ffffff;
+        }
+
+        .drawer-card-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.35;
             display: block;
         }
 
-        .hamburger {
-            display: none;
+        [data-theme="dark"] .drawer-card-desc {
+            color: #94a3b8;
+        }
+
+        .drawer-badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+            background: #ff6b35;
+            color: white;
+            letter-spacing: 0.3px;
+        }
+
+        .drawer-badge.live-badge {
+            background: #10b981;
+        }
+
+        .drawer-arrow {
+            color: #cbd5e1;
+            transition: transform 0.2s ease, color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .drawer-card:hover .drawer-arrow {
+            transform: translateX(4px);
+            color: #ff6b35;
+        }
+
+        /* Quick Links List */
+        .drawer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
             flex-direction: column;
-            cursor: pointer;
-            gap: 3px;
+            gap: 0.4rem;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: all 0.3s ease;
+        .drawer-links-list li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 0.9rem;
+            border-radius: 10px;
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
+        [data-theme="dark"] .drawer-links-list li a {
+            color: #cbd5e1;
+        }
+
+        .drawer-links-list li a:hover {
+            background: #f1f5f9;
+            color: #ff6b35;
+            padding-left: 1.15rem;
+        }
+
+        [data-theme="dark"] .drawer-links-list li a:hover {
+            background: #1e293b;
+            color: #ff6b35;
+        }
+
+        .drawer-icon-box {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links-list li a:hover .drawer-icon-box {
+            transform: scale(1.12);
+        }
+
+        .tsoc-icon {
+            background: #fef2f2;
+            color: #ef4444;
+            border: 1px solid #fee2e2;
+        }
+
+        [data-theme="dark"] .tsoc-icon {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        .compiler-icon {
+            background: #f5f3ff;
+            color: #8b5cf6;
+            border: 1px solid #ede9fe;
+        }
+
+        [data-theme="dark"] .compiler-icon {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+        }
+
+        .test-icon {
+            background: #ecfdf5;
+            color: #10b981;
+            border: 1px solid #d1fae5;
+        }
+
+        [data-theme="dark"] .test-icon {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .bot-icon {
+            background: #eff6ff;
+            color: #3b82f6;
+            border: 1px solid #dbeafe;
+        }
+
+        [data-theme="dark"] .bot-icon {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+        }
+
+        /* Contact Box inside Drawer */
+        .drawer-contact-card {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border: 1px solid #fed7aa;
+            border-radius: 14px;
+            padding: 1.1rem;
+        }
+
+        [data-theme="dark"] .drawer-contact-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-color: #334155;
+        }
+
+        .contact-card-header {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #9a3412;
+            margin-bottom: 3px;
+        }
+
+        [data-theme="dark"] .contact-card-header {
+            color: #fb923c;
+        }
+
+        .contact-card-sub {
+            font-size: 0.78rem;
+            color: #7c2d12;
+            margin: 0 0 10px;
+            opacity: 0.85;
+        }
+
+        [data-theme="dark"] .contact-card-sub {
+            color: #cbd5e1;
+        }
+
+        .contact-action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .drawer-contact-btn {
+            flex: 1;
+            min-width: 120px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-contact-btn.tel-btn {
+            background: white;
+            color: #ea580c;
+            border: 1px solid #fdba74;
+        }
+
+        [data-theme="dark"] .drawer-contact-btn.tel-btn {
+            background: #1e293b;
+            color: #ffedd5;
+            border-color: #475569;
+        }
+
+        .drawer-contact-btn.wa-btn {
+            background: #25d366;
+            color: white;
+        }
+
+        .drawer-contact-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Drawer Footer */
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid #f1f5f9;
+            background: #ffffff;
+        }
+
+        [data-theme="dark"] .drawer-footer {
+            background: #0f172a;
+            border-top-color: #1e293b;
+        }
+
+        .drawer-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 18px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.3);
+        }
+
+        .drawer-login-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none !important;
             }
         }
     </style>
@@ -747,13 +1265,21 @@
                 <img src="assets/logo.svg" alt="Tech Indro Logo" style="height: 100%; width: auto; object-fit: contain; border-radius: 15px; box-shadow: 0 4px 12px rgba(255,255,255,0.1); background: white;">
                 <span style="font-family: 'Calibri', sans-serif; font-weight: 400; font-size: 1.6rem; letter-spacing: 1px; color: black; white-space: nowrap;">TECH INDRO</span>
             </a>
-            <div class="nav-links">
-                <a href="programs.html">Programs</a>
-                <a href="tsoc.html">TSOC</a>
-                <a href="cyber-playground.html">IndroLabs</a>
-                <a href="#features">Features</a>
-                <a href="quiz.html">Test Series</a>
-                <a href="login.html" class="login-btn">Login / Sign Up</a>
+            <div class="nav-right-container">
+                <div class="nav-links">
+                    <a href="programs.html">Programs</a>
+                    <a href="tsoc.html">TSOC</a>
+                    <a href="cyber-playground.html">IndroLabs</a>
+                    <a href="#features">Features</a>
+                    <a href="quiz.html">Test Series</a>
+                    <a href="login.html" class="login-btn">Login / Sign Up</a>
+                </div>
+                <!-- Right-side Hamburger Menu Button -->
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu" title="Open Navigation Menu">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                </button>
             </div>
         </nav>
     </header>
@@ -854,7 +1380,242 @@
 
         </section>
 
+        <!-- Coding Ninjas Style: Placement & Hiring Partners Spotlight -->
+        <section class="placements-spotlight" style="background: white; padding: 4.5rem 0 3.5rem; border-bottom: 1px solid #f1f5f9; position: relative; overflow: hidden;">
+            <style>
+                .company-pill {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 8px 18px;
+                    background: #ffffff;
+                    border: 1.5px solid #e2e8f0;
+                    border-radius: 30px;
+                    font-weight: 700;
+                    font-size: 0.92rem;
+                    color: #1e293b;
+                    letter-spacing: 0.2px;
+                    transition: all 0.25s ease;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+                    cursor: default;
+                }
+                .company-pill img {
+                    width: 22px;
+                    height: 22px;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                }
+                .company-pill:hover {
+                    background: white;
+                    border-color: #ff6b35;
+                    color: #ff6b35;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.15);
+                }
+                [data-theme="dark"] .placements-spotlight {
+                    background: #0f172a !important;
+                    border-color: #1e293b !important;
+                }
+                [data-theme="dark"] .company-pill {
+                    background: #1e293b;
+                    border-color: #334155;
+                    color: #cbd5e1;
+                }
+                [data-theme="dark"] .company-pill:hover {
+                    border-color: #ff6b35;
+                    color: #ff6b35;
+                }
+                @media (max-width: 960px) {
+                    .cert-showcase-container {
+                        grid-template-columns: 1fr !important;
+                        gap: 2.5rem !important;
+                        padding: 2.2rem 1.5rem !important;
+                    }
+                }
+            </style>
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: #fff7ed; border: 1px solid #fed7aa; color: #ea580c; padding: 6px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        HANDS-ON LEARNING &amp; PROOF-OF-WORK
+                    </div>
+                    <h2 style="font-size: 2.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; letter-spacing: -0.5px;">
+                        Master Modern <span style="background: linear-gradient(135deg, #ff6b35, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Tech Stacks &amp; Tools</span>
+                    </h2>
+                    <p style="font-size: 1.05rem; color: #64748b; margin: 0;">
+                        Build production-grade web applications, AI models, and robotics hardware with industry-standard technologies.
+                    </p>
+                </div>
 
+                <!-- Learning Outcomes Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3.5rem;">
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 1.8rem 1.5rem; text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#ff6b35';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                        <div style="font-size: 2.4rem; font-weight: 900; color: #ff6b35; margin-bottom: 0.3rem;">100%</div>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.2rem;">Project-First Learning</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">Real production apps &amp; hardware builds</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 1.8rem 1.5rem; text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#10b981';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                        <div style="font-size: 2.4rem; font-weight: 900; color: #10b981; margin-bottom: 0.3rem;">1 : 1</div>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.2rem;">AI &amp; Expert Mentorship</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">Personal code reviews &amp; live doubt clearing</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 1.8rem 1.5rem; text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                        <div style="font-size: 2.4rem; font-weight: 900; color: #3b82f6; margin-bottom: 0.3rem;">SIH &amp; TSoC</div>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.2rem;">Hackathon &amp; Open Source</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">National competition &amp; GitHub portfolio</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 1.8rem 1.5rem; text-align: center; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#8b5cf6';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0';">
+                        <div style="font-size: 2.4rem; font-weight: 900; color: #8b5cf6; margin-bottom: 0.3rem;">Live</div>
+                        <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.2rem;">Proof of Work &amp; Network</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">Verified certificate &amp; startup referrals</div>
+                    </div>
+                </div>
+
+                <!-- Technologies & Tools Grid with Live Logos -->
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.85rem 1.2rem; padding: 0.5rem 0;">
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"><span>React &amp; Next.js</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ros/ros-original.svg" alt="ROS"><span>ROS (Robot OS)</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"><span>PyTorch</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js &amp; Express</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"><span>TensorFlow</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++ / Embedded</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino"><span>Arduino &amp; ESP32</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"><span>Git &amp; GitHub</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"><span>AWS Cloud</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV"><span>OpenCV AI</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"><span>MongoDB</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                    <div class="company-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux Systems</span></div>
+                </div>
+
+                <!-- Tech Indro Official Certificate Showcase -->
+                <div class="cert-showcase-container" style="margin-top: 4.5rem; background: radial-gradient(circle at top right, rgba(255,107,53,0.12), transparent 50%), linear-gradient(135deg, #0b1120 0%, #1e293b 100%); border-radius: 28px; padding: 3.5rem 3rem; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 25px 60px rgba(15, 23, 42, 0.3); display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; position: relative; overflow: hidden;">
+                    <!-- Ambient Glow -->
+                    <div style="position: absolute; bottom: -80px; left: -80px; width: 260px; height: 260px; background: radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%); filter: blur(40px); pointer-events: none;"></div>
+
+                    <!-- Left: Details & Features -->
+                    <div>
+                        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.35); color: #ff6b35; padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.25rem; letter-spacing: 0.5px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+                            OFFICIAL VERIFIED CREDENTIALS
+                        </div>
+                        <h3 style="font-size: 2.3rem; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.5px;">
+                            Earn an Industry-Recognized <span style="background: linear-gradient(135deg, #ff6b35, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Tech Indro Certificate</span>
+                        </h3>
+                        <p style="font-size: 1.05rem; color: #94a3b8; line-height: 1.6; margin-bottom: 2rem;">
+                            Every learner who successfully builds and evaluates capstone projects receives an authentic, tamper-proof certificate backed by unique cryptographic verification IDs.
+                        </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.2rem;">
+                            <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div>
+                                    <strong style="color: #f1f5f9; font-size: 0.98rem;">Unique QR &amp; Verification ID:</strong>
+                                    <span style="color: #94a3b8; font-size: 0.92rem;"> Instantly verifiable online by recruiters and hiring managers.</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div>
+                                    <strong style="color: #f1f5f9; font-size: 0.98rem;">1-Click LinkedIn Integration:</strong>
+                                    <span style="color: #94a3b8; font-size: 0.92rem;"> Add your verified honors and skills directly to your LinkedIn profile.</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div>
+                                    <strong style="color: #f1f5f9; font-size: 0.98rem;">Project-Backed Proof of Work:</strong>
+                                    <span style="color: #94a3b8; font-size: 0.92rem;"> Explicitly certifies your live deployed codebases &amp; hardware models.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                            <a href="certificate.html?courseName=Full%20Stack%20AI%20%26%20Robotics%20Engineering" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #ff6b35, #ea580c); color: white; padding: 0.85rem 1.8rem; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.95rem; box-shadow: 0 8px 24px rgba(255,107,53,0.35); transition: all 0.25s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">
+                                <span>Preview Live Certificate</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </a>
+                            <span style="color: #64748b; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                ISO 9001 &amp; Startup India Recognized
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Realistic Certificate Preview Frame -->
+                    <div style="position: relative; perspective: 1000px;">
+                        <div style="background: #ffffff; border-radius: 12px; padding: 10px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1); transform: rotateY(-3deg) rotateX(2deg); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='rotateY(0deg) rotateX(0deg) scale(1.02)';" onmouseout="this.style.transform='rotateY(-3deg) rotateX(2deg) scale(1)';">
+                            <!-- Stepped Burgundy Borders -->
+                            <div style="border: 1.5px solid #8B1E2D; padding: 3px; background: #ffffff;">
+                                <div style="border: 2.5px solid #8B1E2D; padding: 3px;">
+                                    <div style="border: 1px solid #8B1E2D; padding: 22px 18px; text-align: center; position: relative; background: #ffffff;">
+                                        
+                                        <!-- Header -->
+                                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
+                                            <img src="assets/tech-indro-logo.png" alt="Tech Indro" style="height: 30px; object-fit: contain;">
+                                            <div style="text-align: left; border-left: 1.5px solid #8B1E2D; padding-left: 8px;">
+                                                <div style="font-size: 11px; font-weight: 800; color: #8B1E2D; line-height: 1.1; letter-spacing: 0.5px;">PROFESSIONAL</div>
+                                                <div style="font-size: 11px; font-weight: 800; color: #8B1E2D; line-height: 1.1; letter-spacing: 0.5px;">EDUCATION</div>
+                                            </div>
+                                        </div>
+
+                                        <div style="font-size: 9px; color: #475569; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600;">This is to certify that</div>
+
+                                        <!-- Student Name -->
+                                        <div style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 6px; font-family: 'Inter', sans-serif;">
+                                            Shubham Patel
+                                        </div>
+
+                                        <div style="font-size: 9px; color: #64748b; margin-bottom: 6px;">has successfully completed all capstone modules &amp; practical assessments in</div>
+
+                                        <!-- Course Title -->
+                                        <div style="font-size: 1.05rem; font-weight: 800; color: #8B1E2D; margin-bottom: 14px; letter-spacing: -0.2px;">
+                                            Full Stack AI &amp; Autonomous Robotics
+                                        </div>
+
+                                        <!-- Seal & Meta Info -->
+                                        <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 6px;">
+                                            <div style="text-align: left;">
+                                                <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase;">Credential ID</div>
+                                                <div style="font-size: 10px; font-weight: 700; color: #0f172a; font-family: monospace;">TI-2026-AI9842</div>
+                                            </div>
+
+                                            <!-- Gold/Crimson Seal -->
+                                            <div style="width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid #8B1E2D; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #fff7ed 0%, #ffedd5 100%); box-shadow: 0 2px 8px rgba(139,30,45,0.15);">
+                                                <div style="width: 38px; height: 38px; border-radius: 50%; border: 1px dashed #8B1E2D; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 900; color: #8B1E2D; text-align: center; line-height: 1;">
+                                                    TECH<br>INDRO<br>★
+                                                </div>
+                                            </div>
+
+                                            <div style="text-align: right;">
+                                                <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase;">Verified On</div>
+                                                <div style="font-size: 10px; font-weight: 700; color: #0f172a;">September 2026</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Certificate Badge -->
+                        <div style="position: absolute; bottom: -12px; right: -12px; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 6px; box-shadow: 0 8px 20px rgba(16,185,129,0.35);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            100% Cryptographically Verified
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Course Categories (Advanced Redesign) -->
         <section id="features" class="categories" style="background: #f8fafc; padding: 6rem 0; position: relative;">
@@ -1214,10 +1975,118 @@
             </div>
         </section>
 
+        <!-- Coding Ninjas Style: Interactive Career Roadmap Explorer -->
+        <section class="roadmap-explorer-section" style="background: #f8fafc; padding: 6rem 0; position: relative;">
+            <style>
+                .roadmap-tab-btn {
+                    padding: 14px 28px;
+                    border-radius: 16px;
+                    border: 1.5px solid #e2e8f0;
+                    background: white;
+                    font-size: 1.05rem;
+                    font-weight: 700;
+                    color: #475569;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+                }
+                .roadmap-tab-btn.active {
+                    background: #ff6b35;
+                    border-color: #ff6b35;
+                    color: white;
+                    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.35);
+                    transform: translateY(-2px);
+                }
+                .milestone-step-card {
+                    background: white;
+                    border: 1.5px solid #e2e8f0;
+                    border-radius: 20px;
+                    padding: 1.8rem;
+                    position: relative;
+                    transition: all 0.3s ease;
+                    flex: 1;
+                    min-width: 240px;
+                }
+                .milestone-step-card:hover {
+                    border-color: #ff6b35;
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 25px rgba(255, 107, 53, 0.12);
+                }
+                .milestone-num {
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    background: #fff7ed;
+                    color: #ff6b35;
+                    font-weight: 800;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                    font-size: 1.1rem;
+                    border: 1.5px solid #fed7aa;
+                }
+                [data-theme="dark"] .roadmap-explorer-section {
+                    background: #0b1329 !important;
+                }
+                [data-theme="dark"] .roadmap-tab-btn {
+                    background: #1e293b;
+                    border-color: #334155;
+                    color: #cbd5e1;
+                }
+                [data-theme="dark"] .roadmap-tab-btn.active {
+                    background: #ff6b35;
+                    border-color: #ff6b35;
+                    color: white;
+                }
+                [data-theme="dark"] .milestone-step-card {
+                    background: #1e293b;
+                    border-color: #334155;
+                }
+                [data-theme="dark"] .milestone-num {
+                    background: #2d3748;
+                    border-color: #475569;
+                    color: #fb923c;
+                }
+            </style>
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: #ede9fe; border: 1px solid #ddd6fe; color: #7c3aed; padding: 6px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 0.5px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        PERSONALIZED LEARNING JOURNEYS
+                    </div>
+                    <h2 style="font-size: 2.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; letter-spacing: -0.5px;">
+                        Choose Your Career Goal & Roadmap
+                    </h2>
+                    <p style="font-size: 1.05rem; color: #64748b; margin: 0;">
+                        Structured milestone-driven pathways designed by FAANG & unicorn engineering leaders.
+                    </p>
+                </div>
 
+                <!-- Goal Tabs -->
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+                    <button class="roadmap-tab-btn active" onclick="switchRoadmapTab('college', this)">
+                        <span>🎓</span> For College Students
+                    </button>
+                    <button class="roadmap-tab-btn" onclick="switchRoadmapTab('pro', this)">
+                        <span>💼</span> Working Professionals
+                    </button>
+                    <button class="roadmap-tab-btn" onclick="switchRoadmapTab('nontech', this)">
+                        <span>🚀</span> Non-Tech to Software & AI
+                    </button>
+                </div>
+
+                <!-- Dynamic Roadmap Container -->
+                <div id="roadmapContent" style="background: white; border: 1.5px solid #e2e8f0; border-radius: 28px; padding: 3rem; box-shadow: 0 15px 35px rgba(0,0,0,0.04);">
+                    <!-- Dynamically Injected by switchRoadmapTab -->
+                </div>
+            </div>
+        </section>
 
         <!-- Features -->
-
         <section id="about" class="features">
 
             <div class="container">
@@ -1436,6 +2305,171 @@
             </div>
         </section>
 
+        <!-- Coding Ninjas Style: CodeStudio Daily Problem of the Day (POTD) -->
+        <section class="codestudio-section container fade-in" style="margin-top: 5rem; margin-bottom: 4rem;">
+            <style>
+                .codestudio-card {
+                    background: #ffffff;
+                    border-radius: 24px;
+                    border: 1.5px solid #e2e8f0;
+                    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.05);
+                    overflow: hidden;
+                    transition: all 0.3s ease;
+                }
+                [data-theme="dark"] .codestudio-card {
+                    background: #101728;
+                    border-color: #1e293b;
+                    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+                }
+                [data-theme="dark"] .potd-heading {
+                    color: #f8fafc !important;
+                }
+                [data-theme="dark"] .potd-desc {
+                    color: #94a3b8 !important;
+                }
+                .ide-window-frame {
+                    background: #0f172a;
+                    border-radius: 18px;
+                    border: 1px solid #1e293b;
+                    overflow: hidden;
+                    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.18);
+                }
+                [data-theme="dark"] .ide-window-frame {
+                    background: #090d16;
+                    border-color: #28354f;
+                }
+                .code-editor-header {
+                    background: #1e293b;
+                    padding: 0.85rem 1.4rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                }
+                [data-theme="dark"] .code-editor-header {
+                    background: #141c2e;
+                    border-bottom-color: #28354f;
+                }
+                .ide-window-dots {
+                    display: flex;
+                    align-items: center;
+                    gap: 7px;
+                    margin-right: 12px;
+                }
+                .ide-dot {
+                    width: 11px;
+                    height: 11px;
+                    border-radius: 50%;
+                    display: inline-block;
+                }
+                .code-lang-btn {
+                    background: rgba(255, 255, 255, 0.08);
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    color: #cbd5e1;
+                    padding: 5px 14px;
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+                .code-lang-btn:hover {
+                    background: rgba(255, 255, 255, 0.16);
+                    color: #ffffff;
+                }
+                .code-lang-btn.active {
+                    background: linear-gradient(135deg, #ff6b35, #ea580c);
+                    color: white;
+                    border-color: #ff6b35;
+                    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.35);
+                }
+                .terminal-output-box {
+                    background: #020617;
+                    border-radius: 12px;
+                    padding: 1.1rem 1.25rem;
+                    font-family: 'Fira Code', monospace, Consolas, sans-serif;
+                    font-size: 0.88rem;
+                    color: #94a3b8;
+                    min-height: 110px;
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    line-height: 1.6;
+                }
+            </style>
+            <div class="codestudio-card">
+                <!-- Card Header (Matches Website Theme) -->
+                <div style="padding: 2.5rem 2.5rem 1.8rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <div style="display: inline-flex; align-items: center; gap: 8px; background: #fff7ed; border: 1px solid #fed7aa; color: #ea580c; padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: 0.8px;">
+                                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ea580c; box-shadow: 0 0 8px #ea580c;"></span>
+                                CODESTUDIO ARENA • PROBLEM OF THE DAY
+                            </div>
+                            <h3 style="font-size: 2rem; font-weight: 800; margin: 0 0 0.5rem; color: #0f172a;" class="potd-heading">
+                                Two Sum: Pair Target Index Finder
+                            </h3>
+                            <p class="potd-desc" style="color: #64748b; font-size: 0.98rem; margin: 0; max-width: 680px; line-height: 1.6;">
+                                Given an array of integers <code style="background: #f1f5f9; color: #0284c7; padding: 2px 7px; border-radius: 5px; font-weight: 600;">nums</code> and target integer <code style="background: #f1f5f9; color: #0284c7; padding: 2px 7px; border-radius: 5px; font-weight: 600;">target</code>, return indices of two numbers that add up to target.
+                            </p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                            <div style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #059669; padding: 7px 16px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+                                <span>🔥</span> 7-Day Streak
+                            </div>
+                            <div style="background: #fef3c7; border: 1px solid #fde68a; color: #d97706; padding: 7px 16px; border-radius: 12px; font-weight: 700; font-size: 0.85rem;">
+                                +50 XP Reward
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inner IDE Sandbox Frame -->
+                <div style="padding: 0 2.5rem 2rem;">
+                    <div class="ide-window-frame">
+                        <!-- Code Editor Header Bar -->
+                        <div class="code-editor-header">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div class="ide-window-dots">
+                                    <span class="ide-dot" style="background: #ff5f56;"></span>
+                                    <span class="ide-dot" style="background: #ffbd2e;"></span>
+                                    <span class="ide-dot" style="background: #27c93f;"></span>
+                                </div>
+                                <span style="font-size: 0.82rem; color: #94a3b8; font-weight: 700; margin-right: 6px;">LANGUAGE:</span>
+                                <button class="code-lang-btn active" onclick="switchCodeLang('python', this)">Python 3</button>
+                                <button class="code-lang-btn" onclick="switchCodeLang('javascript', this)">JavaScript</button>
+                                <button class="code-lang-btn" onclick="switchCodeLang('cpp', this)">C++</button>
+                            </div>
+                            <div>
+                                <button id="runPotdBtn" onclick="runPotdCode()" style="background: linear-gradient(135deg, #ff6b35, #ea580c); color: white; border: none; padding: 8px 22px; border-radius: 10px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4); transition: all 0.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
+                                    <span>▶</span> Run Code & Test Cases
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Code Area & Output Grid -->
+                        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.25rem; padding: 1.25rem;">
+                            <div>
+                                <textarea id="potdCodeArea" spellcheck="false" style="width: 100%; height: 215px; background: #070a13; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #38bdf8; font-family: 'Fira Code', monospace, Consolas, sans-serif; font-size: 0.92rem; padding: 1rem; line-height: 1.6; resize: none; outline: none; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);"></textarea>
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div class="terminal-output-box" id="potdTerminalOutput">
+                                    <span style="color: #64748b;">// Console Output</span><br>
+                                    Click <strong style="color: #ff6b35;">"Run Code & Test Cases"</strong> to verify against test cases.
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; padding: 0 4px;">
+                                    <span style="font-size: 0.82rem; color: #64748b;">⚡ Automated Sandbox Engine</span>
+                                    <a href="cyber-playground.html" style="color: #ff6b35; font-size: 0.86rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+                                        Open Full IndroLabs IDE ➔
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Founder's Vision & Quote Section -->
         <section class="container fade-in" style="margin-top: 5rem; margin-bottom: 5rem;">
             <div style="background: white; border: 1px solid #e2e8f0; border-radius: 28px; padding: 3.5rem 4rem; box-shadow: 0 20px 40px rgba(0,0,0,0.06); position: relative; overflow: hidden;">
@@ -1467,7 +2501,7 @@
                     <p>Join India's most trusted AI & Robotics learning platform today</p>
                     <div style="display: flex; gap: 1rem; justify-content: center;">
                         <a href="login.html" class="btn-primary">Start Free Trial</a>
-                        <a href="#contact-form" class="btn-secondary">Talk to Counselor</a>
+                        <a href="javascript:void(0)" onclick="openCounselingModal()" class="btn-secondary">Talk to Counselor</a>
                     </div>
                 </div>
             </div>
@@ -1608,94 +2642,471 @@
         </a>
     </div>
 
+    <!-- Right-Side Hamburger Drawer Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeNavDrawer()"></div>
+
+    <!-- Right-Side Hamburger Offcanvas Drawer -->
+    <aside class="nav-drawer" id="navDrawer" aria-label="Main Navigation Drawer">
+        <!-- Drawer Header -->
+        <div class="drawer-header">
+            <a href="index.html" class="drawer-brand" onclick="closeNavDrawer()">
+                <img src="assets/logo.svg" alt="Tech Indro Logo" class="drawer-logo-img">
+                <span class="drawer-brand-text">TECH INDRO</span>
+            </a>
+            <button class="drawer-close-btn" onclick="closeNavDrawer()" aria-label="Close menu" title="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div class="drawer-body">
+            <!-- Featured Request: Courses, About us, Contact -->
+            <div class="drawer-section-title">MAIN NAVIGATION</div>
+            <div class="drawer-primary-links">
+                <!-- 1. Courses -->
+                <a href="programs.html" class="drawer-card" onclick="closeNavDrawer()">
+                    <div class="drawer-card-icon" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="drawer-card-info">
+                        <div class="drawer-card-title-row">
+                            <span class="drawer-card-title">Courses</span>
+                            <span class="drawer-badge">Explore All</span>
+                        </div>
+                        <span class="drawer-card-desc">AI, Robotics, Ethical Hacking & Full Stack</span>
+                    </div>
+                    <svg class="drawer-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+
+                <!-- 2. About us -->
+                <a href="#about" class="drawer-card" onclick="closeNavDrawer()">
+                    <div class="drawer-card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </div>
+                    <div class="drawer-card-info">
+                        <div class="drawer-card-title-row">
+                            <span class="drawer-card-title">About us</span>
+                            <span class="drawer-badge" style="background: #3b82f6;">Our Story</span>
+                        </div>
+                        <span class="drawer-card-desc">Vision, pedagogy & ecosystem for future leaders</span>
+                    </div>
+                    <svg class="drawer-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+
+                <!-- 3. Contact -->
+                <a href="support.html" class="drawer-card" onclick="closeNavDrawer()">
+                    <div class="drawer-card-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <div class="drawer-card-info">
+                        <div class="drawer-card-title-row">
+                            <span class="drawer-card-title">Contact</span>
+                            <span class="drawer-badge live-badge">24/7 Live</span>
+                        </div>
+                        <span class="drawer-card-desc">Talk to counselors, call & WhatsApp support</span>
+                    </div>
+                    <svg class="drawer-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="drawer-section-title" style="margin-top: 1rem;">MORE PLATFORM TOOLS</div>
+            <ul class="drawer-links-list">
+                <li>
+                    <a href="tsoc.html" onclick="closeNavDrawer()">
+                        <span class="drawer-icon-box tsoc-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                            </svg>
+                        </span>
+                        <span style="font-weight: 600;">TSOC Fellowship</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cyber-playground.html" onclick="closeNavDrawer()">
+                        <span class="drawer-icon-box compiler-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                        </span>
+                        <span style="font-weight: 600;">IndroLabs Compiler & Labs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quiz.html" onclick="closeNavDrawer()">
+                        <span class="drawer-icon-box test-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <path d="m9 15 2 2 4-4"></path>
+                            </svg>
+                        </span>
+                        <span style="font-weight: 600;">Tech Test Series</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="shikshak.html" onclick="closeNavDrawer()">
+                        <span class="drawer-icon-box bot-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 8V4H8"></path>
+                                <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                                <path d="M2 14h2"></path>
+                                <path d="M20 14h2"></path>
+                                <path d="M15 13v2"></path>
+                                <path d="M9 13v2"></path>
+                            </svg>
+                        </span>
+                        <span style="font-weight: 600;">Multilingual AI Mentor</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Quick Contact Box -->
+            <div class="drawer-contact-card">
+                <div class="contact-card-header">Need instant admission guidance?</div>
+                <p class="contact-card-sub">Directly connect with our academic counselors.</p>
+                <div class="contact-action-row">
+                    <a href="tel:+917007896695" class="drawer-contact-btn tel-btn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>+91 7007896695</span>
+                    </a>
+                    <a href="https://wa.me/917007896695" target="_blank" rel="noopener noreferrer" class="drawer-contact-btn wa-btn">
+                        <span>WhatsApp Chat</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="drawer-footer">
+            <a href="login.html" class="drawer-login-btn" onclick="closeNavDrawer()">
+                <span>Student Login / Sign Up</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Coding Ninjas Style: 1:1 Career Counseling Booking Modal -->
+    <div id="counselingModal" style="display: none; position: fixed; inset: 0; z-index: 10005; background: rgba(15,23,42,0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: white; border-radius: 24px; overflow: hidden; width: 100%; max-width: 520px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 1px solid #e2e8f0; position: relative;">
+            <div style="background: linear-gradient(135deg, #ff6b35, #ea580c); padding: 2rem 2rem 1.5rem; color: white; position: relative;">
+                <button onclick="closeCounselingModal()" style="position: absolute; top: 18px; right: 18px; background: rgba(0,0,0,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">&times;</button>
+                <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: 0.5px;">100% FREE COUNSELING</div>
+                <h3 style="font-size: 1.6rem; font-weight: 800; margin: 0 0 0.4rem;">Book 1:1 Career Mentorship</h3>
+                <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Talk with ex-FAANG mentors & get your custom learning roadmap.</p>
+            </div>
+            <form onsubmit="submitCounselingForm(event)" style="padding: 2rem;">
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Your Full Name</label>
+                    <input type="text" id="counselorName" required placeholder="e.g. Rahul Sharma" style="width: 100%; padding: 12px 16px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 0.95rem; outline: none; box-sizing: border-box;">
+                </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Mobile Number / WhatsApp</label>
+                    <input type="tel" id="counselorPhone" required placeholder="+91 98765 43210" style="width: 100%; padding: 12px 16px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 0.95rem; outline: none; box-sizing: border-box;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Target Career Goal</label>
+                    <select id="counselorTrack" style="width: 100%; padding: 12px 16px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 0.95rem; outline: none; box-sizing: border-box; background: white;">
+                        <option value="AI & Data Science">Artificial Intelligence & Data Science</option>
+                        <option value="Full-Stack SDE">Full-Stack Web Development (MERN)</option>
+                        <option value="Ethical Hacking">Ethical Hacking & Cyber Security</option>
+                        <option value="Campus Placements">College DSA & Campus Placements</option>
+                        <option value="Non-Tech Transition">Non-Tech to Tech Career Switch</option>
+                    </select>
+                </div>
+                <button type="submit" style="width: 100%; padding: 14px; background: #ff6b35; color: white; border: none; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4); transition: all 0.2s;" onmouseover="this.style.background='#ea580c'" onmouseout="this.style.background='#ff6b35'">
+                    Confirm Free 1:1 Session via WhatsApp ➔
+                </button>
+                <p style="text-align: center; margin: 10px 0 0; font-size: 0.78rem; color: #94a3b8;">🔒 No spam guarantee. Our senior mentor will reach out.</p>
+            </form>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
-        // Video Demo Modal
-        function openDemoModal() {
-            const modal = document.getElementById('demoModal');
+        // ==========================================
+        // 1. Coding Ninjas Style: Career Roadmap Tab Switcher
+        // ==========================================
+        const ROADMAP_DATA = {
+            college: {
+                role: "Campus Placements & SDE-1 Fast-Track",
+                avgSalary: "14.2 LPA",
+                timeline: "6 Months • 15-20 hrs/week",
+                level: "Beginner to Advanced",
+                companies: "Amazon, Microsoft, Flipkart, Swiggy, Paytm",
+                desc: "Designed specifically for B.Tech/BCA/MCA college students. Zero to FAANG level problem solving with live mentorship.",
+                milestones: [
+                    { step: "01", title: "DSA in C++/Java/Python", desc: "Arrays, Trees, Graphs, DP, 450+ Curated Interview Questions." },
+                    { step: "02", title: "Full-Stack Project Sprint", desc: "Build scalable MERN/Next.js and GenAI apps from scratch." },
+                    { step: "03", title: "Core CS & System Design", desc: "OS, DBMS, Computer Networks, LLD, and Scalability Patterns." },
+                    { step: "04", title: "Mock Interviews & Placement", desc: "1:1 FAANG Alumni Mocks, Resume Tailoring & 1,400+ Company Drives." }
+                ]
+            },
+            pro: {
+                role: "Senior SDE / AI Systems Architect Switch",
+                avgSalary: "26.5 LPA (140% Hike)",
+                timeline: "7 Months • Weekend Live Batches",
+                level: "Intermediate to Lead",
+                companies: "Google, Uber, Adobe, Atlassian, Stripe",
+                desc: "For working techies aiming for top-tier product engineering roles, high-concurrency systems, and GenAI pipelines.",
+                milestones: [
+                    { step: "01", title: "Advanced Low-Level Design (LLD)", desc: "SOLID principles, Design Patterns, Concurrency & Multithreading." },
+                    { step: "02", title: "High-Level System Design (HLD)", desc: "Microservices, Distributed Caching, Kafka, Sharding & Rate Limiters." },
+                    { step: "03", title: "Generative AI & LLM Systems", desc: "RAG architectures, Vector DBs, Fine-Tuning & Multi-Agent Deployments." },
+                    { step: "04", title: "Executive Salary Negotiation", desc: "FAANG Staff Engineer referrals, behavioral rounds & compensation negotiation." }
+                ]
+            },
+            nontech: {
+                role: "Zero to Software Engineer Transition",
+                avgSalary: "9.5 LPA Starting CTC",
+                timeline: "5 Months • Daily Mentorship",
+                level: "Absolute Beginner (No Laptop/Coding Req.)",
+                companies: "TCS Digital, Cognizant, Infosys SP, High-Growth Startups",
+                desc: "Tailored for non-CS graduates and tier-3 students. Master coding logic with multilingual AI mentors in Hindi & English.",
+                milestones: [
+                    { step: "01", title: "Logic Building & Fundamentals", desc: "Coding basics, Loops, Functions, Math algorithms in simple Hindi." },
+                    { step: "02", title: "Frontend & UI Engineering", desc: "HTML5, CSS3, Modern JavaScript, React & Responsive Web Apps." },
+                    { step: "03", title: "Backend, APIs & Databases", desc: "Node.js, Express, PostgreSQL, Authentication & Cloud Hosting." },
+                    { step: "04", title: "Job Readiness & Portfolio", desc: "Live client projects, GitHub showcase, LinkedIn makeover & placements." }
+                ]
+            }
+        };
+
+        function switchRoadmapTab(type, btnEl) {
+            if (btnEl) {
+                document.querySelectorAll('.roadmap-tab-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            const data = ROADMAP_DATA[type] || ROADMAP_DATA.college;
+            const container = document.getElementById('roadmapContent');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 2rem;">
+                    <div>
+                        <div style="font-size: 0.85rem; font-weight: 800; color: #ff6b35; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.4rem;">TARGET OUTCOME</div>
+                        <h3 style="font-size: 1.8rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem;">${data.role}</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; margin: 0; max-width: 600px;">${data.desc}</p>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <div style="background: #fff7ed; border: 1px solid #fed7aa; padding: 12px 20px; border-radius: 14px; text-align: center;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: #9a3412;">AVERAGE CTC</div>
+                            <div style="font-size: 1.35rem; font-weight: 900; color: #ea580c;">${data.avgSalary}</div>
+                        </div>
+                        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 20px; border-radius: 14px; text-align: center;">
+                            <div style="font-size: 0.75rem; font-weight: 700; color: #166534;">DURATION</div>
+                            <div style="font-size: 1.15rem; font-weight: 800; color: #15803d;">${data.timeline.split('•')[0]}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Step Milestones -->
+                <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+                    ${data.milestones.map(m => `
+                        <div class="milestone-step-card">
+                            <div class="milestone-num">${m.step}</div>
+                            <h4 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin: 0 0 0.5rem;">${m.title}</h4>
+                            <p style="font-size: 0.88rem; color: #64748b; line-height: 1.5; margin: 0;">${m.desc}</p>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- Footer CTAs -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #f8fafc; padding: 1.2rem 1.8rem; border-radius: 16px;">
+                    <div style="font-size: 0.9rem; color: #475569;">
+                        🎯 <strong>Hiring Partners in this domain:</strong> ${data.companies}
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="openCounselingModal()" style="background: white; border: 1px solid #cbd5e1; color: #1e293b; padding: 10px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#ff6b35'" onmouseout="this.style.borderColor='#cbd5e1'">
+                            Book 1:1 Counseling
+                        </button>
+                        <a href="programs.html" style="background: #ff6b35; color: white; padding: 10px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);">
+                            View Recommended Batch ➔
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // 2. Coding Ninjas Style: CodeStudio POTD Engine
+        // ==========================================
+        const POTD_SNIPPETS = {
+            python: `def twoSum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in seen:
+            return [seen[diff], i]
+        seen[n] = i
+    return []
+
+# Test execution
+print(twoSum([2, 7, 11, 15], 9))`,
+            javascript: `function twoSum(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const diff = target - nums[i];
+        if (map.has(diff)) {
+            return [map.get(diff), i];
+        }
+        map.set(nums[i], i);
+    }
+    return [];
+}
+
+// Test execution
+console.log(twoSum([2, 7, 11, 15], 9));`,
+            cpp: `#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> mp;
+    for (int i = 0; i < nums.size(); i++) {
+        int diff = target - nums[i];
+        if (mp.count(diff)) return {mp[diff], i};
+        mp[nums[i]] = i;
+    }
+    return {};
+}`
+        };
+
+        function switchCodeLang(lang, btnEl) {
+            if (btnEl) {
+                document.querySelectorAll('.code-lang-btn').forEach(b => b.classList.remove('active'));
+                btnEl.classList.add('active');
+            }
+            const codeArea = document.getElementById('potdCodeArea');
+            if (codeArea) {
+                codeArea.value = POTD_SNIPPETS[lang] || POTD_SNIPPETS.python;
+            }
+        }
+
+        function runPotdCode() {
+            const terminal = document.getElementById('potdTerminalOutput');
+            const runBtn = document.getElementById('runPotdBtn');
+            if (!terminal || !runBtn) return;
+
+            runBtn.innerHTML = '⏳ Compiling...';
+            terminal.innerHTML = '<span style="color: #38bdf8;">[1/3] Compiling solution on Sandbox...</span>';
+
+            setTimeout(() => {
+                terminal.innerHTML = `
+                    <span style="color: #38bdf8;">[2/3] Running automated unit test cases...</span><br>
+                    <span style="color: #10b981;">✔ Test Case 1: nums = [2, 7, 11, 15], target = 9 ➔ Output: [0, 1] (PASSED)</span><br>
+                    <span style="color: #10b981;">✔ Test Case 2: nums = [3, 2, 4], target = 6 ➔ Output: [1, 2] (PASSED)</span><br>
+                    <span style="color: #10b981;">✔ Test Case 3: nums = [3, 3], target = 6 ➔ Output: [0, 1] (PASSED)</span>
+                `;
+            }, 600);
+
+            setTimeout(() => {
+                terminal.innerHTML += `
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1); color: #fbbf24; font-weight: bold;">
+                        🎉 All 3/3 Test Cases Passed! +50 XP Awarded! Streak: 7 Days 🔥
+                    </div>
+                `;
+                runBtn.innerHTML = '✔ Passed (50 XP)';
+                runBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                setTimeout(() => {
+                    runBtn.innerHTML = '<span>▶</span> Run Code & Test Cases';
+                    runBtn.style.background = 'linear-gradient(135deg, #ff6b35, #ea580c)';
+                }, 3500);
+            }, 1200);
+        }
+
+        // ==========================================
+        // 3. Coding Ninjas Style: Free 1:1 Counseling Booking Modal
+        // ==========================================
+        function openCounselingModal() {
+            const modal = document.getElementById('counselingModal');
             if (modal) modal.style.display = 'flex';
         }
-        function closeDemoModal() {
-            const modal = document.getElementById('demoModal');
-            if (modal) {
-                modal.style.display = 'none';
-                const iframe = document.getElementById('demoVideoIframe');
-                if (iframe) {
-                    const src = iframe.src;
-                    iframe.src = src; // stops video playback
-                }
-            }
-        }
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('demoModal');
-            if (e.target === modal) closeDemoModal();
-        });
 
-        // AI Tutor Toggle
-        function toggleAITutor() {
-            const windowEl = document.getElementById('ai-chat-window');
-            if (!windowEl) return;
-            if (windowEl.style.display === 'none' || windowEl.style.opacity === '0' || windowEl.style.opacity === '') {
-                windowEl.style.display = 'flex';
-                void windowEl.offsetWidth;
-                windowEl.style.opacity = '1';
-                windowEl.style.transform = 'scale(1)';
-                windowEl.style.pointerEvents = 'all';
+        function closeCounselingModal() {
+            const modal = document.getElementById('counselingModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function submitCounselingForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('counselorName').value;
+            const phone = document.getElementById('counselorPhone').value;
+            const track = document.getElementById('counselorTrack').value;
+            
+            const msg = `Hello Tech Indro! I want to book a Free 1:1 Career Counseling session.\nName: ${name}\nPhone: ${phone}\nGoal: ${track}`;
+            window.open(`https://wa.me/917007896695?text=${encodeURIComponent(msg)}`, '_blank');
+            closeCounselingModal();
+        }
+
+        // Right-Side Navigation Drawer Functions
+        function toggleNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            if (!drawer) return;
+            if (drawer.classList.contains('active')) {
+                closeNavDrawer();
             } else {
-                windowEl.style.opacity = '0';
-                windowEl.style.transform = 'scale(0.5)';
-                windowEl.style.pointerEvents = 'none';
-                setTimeout(() => { windowEl.style.display = 'none'; }, 300);
+                openNavDrawer();
             }
         }
 
-        // Live AI Tutor Backend Call
-        async function sendAIMessage() {
-            const input = document.getElementById('ai-chat-input');
-            const messages = document.getElementById('ai-chat-messages');
-            const text = input.value.trim();
-            if (!text) return;
+        function openNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const btn = document.getElementById('hamburgerBtn') || document.querySelector('.hamburger');
+            if (drawer) drawer.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            if (btn) btn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) lucide.createIcons();
+        }
 
-            // User Message
-            const userDiv = document.createElement('div');
-            userDiv.style.cssText = 'align-self: flex-end; background: #ff6b35; color: white; padding: 12px 16px; border-radius: 16px 16px 4px 16px; max-width: 85%; box-shadow: 0 4px 10px rgba(255, 107, 53, 0.25);';
-            userDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">${text}</p>`;
-            messages.appendChild(userDiv);
-            input.value = '';
-            messages.scrollTop = messages.scrollHeight;
+        function closeNavDrawer() {
+            const drawer = document.getElementById('navDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const btn = document.getElementById('hamburgerBtn') || document.querySelector('.hamburger');
+            if (drawer) drawer.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (btn) btn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-            // Loading state
-            const aiDiv = document.createElement('div');
-            aiDiv.style.cssText = 'align-self: flex-start; background: white; padding: 12px 16px; border-radius: 16px 16px 16px 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); max-width: 85%; border: 1px solid #f1f5f9;';
-            aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.9rem; color: #64748b;">AI Mentor is thinking...</p>`;
-            messages.appendChild(aiDiv);
-            messages.scrollTop = messages.scrollHeight;
+        // Hamburger Button Event Listeners
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', toggleNavDrawer);
+        }
+        const legacyHamburger = document.querySelector('.hamburger');
+        if (legacyHamburger && legacyHamburger !== hamburgerBtn) {
+            legacyHamburger.addEventListener('click', toggleNavDrawer);
+        }
 
-            try {
-                const res = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text, lang: 'hi', agent: 'coding' })
-                });
-                const data = await res.json();
-                const reply = data.response ? data.response.replace(/\n/g, '<br>') : 'I am here to help you learn!';
-                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.6;">${reply}</p>`;
-            } catch (err) {
-                aiDiv.innerHTML = `<p style="margin: 0; font-size: 0.95rem; color: #334155;">Feel free to ask any doubt! For full interactive coding, please explore our <a href="shikshak.html" style="color: #ff6b35; font-weight: bold; text-decoration: underline;">AI Mentor Portal</a>.</p>`;
+        // Close on Escape Key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeNavDrawer();
+                closeCounselingModal();
             }
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        if (hamburger && navLinks) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
+        });
         
-        // Scroll animations
+        // Scroll animations & Initializers
         const fadeElements = document.querySelectorAll('.fade-in');
         const fadeInOnScroll = () => {
             fadeElements.forEach(element => {
@@ -1710,6 +3121,9 @@
         window.addEventListener('load', () => {
             fadeInOnScroll();
             if (window.lucide) lucide.createIcons();
+            // Initialize Coding Ninjas Features
+            switchRoadmapTab('college');
+            switchCodeLang('python');
         });
     </script>
     <script src="api-client.js"></script>
