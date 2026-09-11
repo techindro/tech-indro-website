@@ -354,6 +354,816 @@ app.get('/api/analytics', (req, res) => {
 });
 
 // ============================================================================
+// AUTOMATED TECH JOB FETCHING SERVICE (Adzuna)
+// Daily fetch at 8 AM IST, deduplication, in-memory cache + JSON persistence
+// ============================================================================
+const https = require('https');
+const http = require('http');
+
+const ADZUNA_APP_ID = process.env.ADZUNA_APP_ID || '';
+const ADZUNA_APP_KEY = process.env.ADZUNA_APP_KEY || '';
+
+// In-memory job cache for fast reads
+let jobsCache = [];
+let jobsMetaCache = { lastFetchedAt: null, totalFetched: 0, providers: { adzuna: 0, remotive: 0 } };
+
+// Load jobs from DB into cache on startup
+function loadJobsCache() {
+    try {
+        const db = readDB();
+        jobsCache = db.jobs || [];
+        jobsMetaCache = db.jobsMeta || jobsMetaCache;
+    } catch (e) {
+        console.error('Failed to load jobs cache:', e);
+    }
+}
+loadJobsCache();
+
+// Helper: Make an HTTPS/HTTP request (returns Promise)
+function httpRequest(url, options = {}) {
+    return new Promise((resolve, reject) => {
+        const isHttps = url.startsWith('https');
+        const lib = isHttps ? https : http;
+        const urlObj = new URL(url);
+
+        const reqOptions = {
+            hostname: urlObj.hostname,
+            port: urlObj.port || (isHttps ? 443 : 80),
+            path: urlObj.pathname + urlObj.search,
+            method: options.method || 'GET',
+            headers: options.headers || {},
+            timeout: 15000
+        };
+
+        const req = lib.request(reqOptions, (res) => {
+            let data = '';
+            res.on('data', chunk => { data += chunk; });
+            res.on('end', () => {
+                try {
+                    resolve({ status: res.statusCode, data: JSON.parse(data) });
+                } catch (e) {
+                    resolve({ status: res.statusCode, data: data });
+                }
+            });
+        });
+
+        req.on('error', reject);
+        req.on('timeout', () => { req.destroy(); reject(new Error('Request timeout')); });
+
+        if (options.body) {
+            req.write(typeof options.body === 'string' ? options.body : JSON.stringify(options.body));
+        }
+        req.end();
+    });
+}
+
+// ============================================================================
+// COMPANY METADATA TIERS & ELITE EDUCATIONAL BACKGROUND ENGINE
+// ============================================================================
+const TIER_MAPPINGS = {
+    'faang': {
+        label: 'FAANG+',
+        badge: 'FAANG+',
+        iconName: 'rocket',
+        color: '#8b5cf6',
+        bg: 'rgba(139, 92, 246, 0.1)',
+        border: 'rgba(139, 92, 246, 0.3)',
+        companies: ['google', 'alphabet', 'meta', 'facebook', 'apple', 'amazon', 'netflix', 'microsoft', 'uber', 'airbnb', 'stripe', 'openai', 'linkedin', 'twitter', 'x corp', 'bytedance', 'nvidia']
+    },
+    'hft-quant': {
+        label: 'HFT & Quant',
+        badge: 'HFT & Quant',
+        iconName: 'zap',
+        color: '#d97706',
+        bg: 'rgba(217, 119, 6, 0.1)',
+        border: 'rgba(217, 119, 6, 0.3)',
+        companies: ['jane street', 'citadel', 'tower research', 'graviton', 'de shaw', 'optiver', 'jump trading', 'worldquant', 'quadeye', 'alphagrep', 'hudson river', 'millennium', 'two sigma', 'drw', 'flow traders', 'headlands']
+    },
+    'tier-1-product': {
+        label: 'Tier-1 Product',
+        badge: 'Tier-1 Product',
+        iconName: 'gem',
+        color: '#2563eb',
+        bg: 'rgba(37, 99, 235, 0.1)',
+        border: 'rgba(37, 99, 235, 0.3)',
+        companies: ['abb', 'morningstar', 'hp', 'hewlett packard', 'adobe', 'salesforce', 'oracle', 'cisco', 'atlassian', 'cornerstone', 'warner bros', "moody's", 's&p global', 'deutsche bank', 'intuit', 'sap', 'vmware', 'paypal', 'danaher', 'rx global', 'msd', 'jabil', 'arcelormittal', 'ab inbev', 'slack', 'postman', 'snowflake', 'databricks', 'zoom', 'intel', 'qualcomm', 'amd', 'broadcom', 'texas instruments', 'philips', 'siemens', 'honeywell', 'visa', 'mastercard', 'goldman sachs', 'morgan stanley', 'jpmorgan']
+    },
+    'startups': {
+        label: 'High-Growth Startups',
+        badge: 'High-Growth Startup',
+        iconName: 'trending-up',
+        color: '#059669',
+        bg: 'rgba(5, 150, 105, 0.1)',
+        border: 'rgba(5, 150, 105, 0.3)',
+        companies: ['cartrade', 'easemytrip', 'runable', 'zomato', 'swiggy', 'zepto', 'cred', 'razorpay', 'meesho', 'groww', 'zerodha', 'urban company', 'browserstack', 'inmobi', 'bharatpe', 'phonepe', 'paytm', 'khatabook', 'coinswitch', 'licious', 'mamaearth', 'unacademy', 'physicswallah', 'latentview', 'guru forum', 'upjob', 'crack the campus', 'zamstars', 'notionace', 'starzen', '9nexus', 'lightspun', 'everestdx', 'atain', 'hiringhood', 'jman group']
+    },
+    'mnc-it': {
+        label: 'MNCs & IT Services',
+        badge: 'MNC / IT Services',
+        iconName: 'building',
+        color: '#475569',
+        bg: 'rgba(71, 85, 105, 0.1)',
+        border: 'rgba(71, 85, 105, 0.3)',
+        companies: ['tcs', 'tata consultancy', 'infosys', 'wipro', 'cognizant', 'accenture', 'kyndryl', 'capgemini', 'hcl', 'lti mindtree', 'tech mahindra', 'dxc', 'infobeans', 'capco', 'rws', 'exl', 'sagility', 'black box', 'sloka it', 'datum technologies', 'thakral one', 'cryscol', 'mphasis', 'hexaware', 'persistent']
+    },
+    'research-institutes': {
+        label: 'Elite Research Institutes & Universities',
+        badge: 'Elite Research Lab',
+        iconName: 'landmark',
+        color: '#7c3aed',
+        bg: 'rgba(124, 58, 237, 0.1)',
+        border: 'rgba(124, 58, 237, 0.3)',
+        companies: [
+            'iisc', 'indian institute of science',
+            'iit bombay', 'iit delhi', 'iit madras', 'iit kanpur', 'iit kharagpur', 'iit roorkee', 'iit guwahati',
+            'mit', 'massachusetts institute of technology', 'csail',
+            'stanford', 'sail',
+            'harvard', 'seas',
+            'princeton',
+            'columbia',
+            'cornell',
+            'eth zurich', 'eth zürich',
+            'oxford', 'university of oxford',
+            'cambridge', 'university of cambridge',
+            'cmu', 'carnegie mellon',
+            'nus', 'national university of singapore',
+            'ntu', 'nanyang technological',
+            'tsinghua', 'tsinghua university',
+            'berkeley', 'uc berkeley', 'university of california berkeley',
+            'isro', 'indian space research organisation',
+            'drdo', 'defence research and development organisation',
+            'nasa', 'national aeronautics and space administration',
+            'spacex', 'space exploration technologies',
+            'microsoft research', 'google research', 'meta fair', 'ibm research'
+        ]
+    }
+};
+
+const EDU_MAPPINGS = {
+    'iits-iisc': {
+        label: 'IITs / IISc',
+        badge: 'IITs / IISc',
+        iconName: 'award',
+        color: '#ea580c',
+        bg: 'rgba(234, 88, 12, 0.1)',
+        border: 'rgba(234, 88, 12, 0.3)',
+        keywords: ['iit', 'bits', 'iisc', 'nit', 'premier institute', 'tier 1 college', 'top engineering']
+    },
+    'ivy-league': {
+        label: 'US Ivy League',
+        badge: 'US Ivy League',
+        iconName: 'landmark',
+        color: '#7c3aed',
+        bg: 'rgba(124, 58, 237, 0.1)',
+        border: 'rgba(124, 58, 237, 0.3)',
+        keywords: ['ivy', 'ivy league', 'harvard', 'yale', 'princeton', 'columbia', 'upenn', 'cornell', 'dartmouth', 'brown']
+    },
+    'global-elite': {
+        label: 'Global Elite',
+        badge: 'Global Elite (MIT/Stanford/ETH)',
+        iconName: 'globe',
+        color: '#0284c7',
+        bg: 'rgba(2, 132, 199, 0.1)',
+        border: 'rgba(2, 132, 199, 0.3)',
+        keywords: ['mit', 'stanford', 'berkeley', 'carnegie mellon', 'cmu', 'caltech', 'eth zurich', 'oxford', 'cambridge', 'imperial']
+    },
+    'top-asian': {
+        label: 'Top Asian',
+        badge: 'Top Asian (NUS/NTU)',
+        iconName: 'compass',
+        color: '#0d9488',
+        bg: 'rgba(13, 148, 136, 0.1)',
+        border: 'rgba(13, 148, 136, 0.3)',
+        keywords: ['nus', 'ntu', 'tsinghua', 'peking', 'hkust', 'tokyo university']
+    }
+};
+
+const COMPANY_DOMAINS = {
+    'google': 'google.com',
+    'alphabet': 'google.com',
+    'microsoft': 'microsoft.com',
+    'amazon': 'amazon.com',
+    'apple': 'apple.com',
+    'meta': 'meta.com',
+    'facebook': 'meta.com',
+    'netflix': 'netflix.com',
+    'uber': 'uber.com',
+    'airbnb': 'airbnb.com',
+    'stripe': 'stripe.com',
+    'openai': 'openai.com',
+    'nvidia': 'nvidia.com',
+    'tower research': 'tower-research.com',
+    'graviton': 'gravitonresearch.com',
+    'jane street': 'janestreet.com',
+    'citadel': 'citadel.com',
+    'de shaw': 'deshaw.com',
+    'optiver': 'optiver.com',
+    'jump trading': 'jumptrading.com',
+    'quadeye': 'quadeye.com',
+    'worldquant': 'worldquant.com',
+    'morningstar': 'morningstar.com',
+    "moody's": 'moodys.com',
+    'moodys': 'moodys.com',
+    'abb': 'abb.com',
+    'adobe': 'adobe.com',
+    'salesforce': 'salesforce.com',
+    'oracle': 'oracle.com',
+    'cisco': 'cisco.com',
+    'atlassian': 'atlassian.com',
+    'rx global': 'rxglobal.com',
+    'elsevier': 'elsevier.com',
+    'intuit': 'intuit.com',
+    'sap': 'sap.com',
+    'intel': 'intel.com',
+    'qualcomm': 'qualcomm.com',
+    'tcs': 'tcs.com',
+    'tata consultancy': 'tcs.com',
+    'infosys': 'infosys.com',
+    'wipro': 'wipro.com',
+    'cognizant': 'cognizant.com',
+    'accenture': 'accenture.com',
+    'capgemini': 'capgemini.com',
+    'kyndryl': 'kyndryl.com',
+    'capco': 'capco.com',
+    'zomato': 'zomato.com',
+    'swiggy': 'swiggy.com',
+    'zepto': 'zeptonow.com',
+    'cred': 'cred.club',
+    'razorpay': 'razorpay.com',
+    'groww': 'groww.in',
+    'zerodha': 'zerodha.com',
+    'phonepe': 'phonepe.com',
+    'paytm': 'paytm.com',
+    'browserstack': 'browserstack.com',
+    'goldman sachs': 'goldmansachs.com',
+    'morgan stanley': 'morganstanley.com',
+    'jpmorgan': 'jpmorgan.com',
+    'iisc': 'iisc.ac.in',
+    'indian institute of science': 'iisc.ac.in',
+    'iit bombay': 'iitb.ac.in',
+    'iit delhi': 'iitd.ac.in',
+    'iit madras': 'iitm.ac.in',
+    'iit kanpur': 'iitk.ac.in',
+    'iit kharagpur': 'iitkgp.ac.in',
+    'iit roorkee': 'iitr.ac.in',
+    'iit guwahati': 'iitg.ac.in',
+    'mit': 'mit.edu',
+    'massachusetts institute of technology': 'mit.edu',
+    'csail': 'mit.edu',
+    'stanford': 'stanford.edu',
+    'sail': 'stanford.edu',
+    'harvard': 'harvard.edu',
+    'seas': 'harvard.edu',
+    'princeton': 'princeton.edu',
+    'columbia': 'columbia.edu',
+    'cornell': 'cornell.edu',
+    'eth zurich': 'ethz.ch',
+    'eth zürich': 'ethz.ch',
+    'oxford': 'ox.ac.uk',
+    'cambridge': 'cam.ac.uk',
+    'cmu': 'cmu.edu',
+    'carnegie mellon': 'cmu.edu',
+    'nus': 'nus.edu.sg',
+    'ntu': 'ntu.edu.sg',
+    'tsinghua': 'tsinghua.edu.cn',
+    'berkeley': 'berkeley.edu',
+    'isro': 'isro.gov.in',
+    'drdo': 'drdo.gov.in',
+    'nasa': 'nasa.gov',
+    'spacex': 'spacex.com',
+    'microsoft research': 'microsoft.com',
+    'google research': 'google.com',
+    'meta fair': 'meta.com',
+    'ibm research': 'ibm.com'
+};
+
+const INSTITUTION_LOCAL_LOGOS = {
+    'iisc': '/assets/logos/iisc.svg',
+    'indian institute of science': '/assets/logos/iisc.svg',
+    'iit bombay': '/assets/logos/iitb.svg',
+    'iit delhi': '/assets/logos/iitd.svg',
+    'iit madras': '/assets/logos/iitm.svg',
+    'mit': '/assets/logos/mit.svg',
+    'massachusetts institute of technology': '/assets/logos/mit.svg',
+    'csail': '/assets/logos/mit.svg',
+    'stanford': '/assets/logos/stanford.svg',
+    'sail': '/assets/logos/stanford.svg',
+    'berkeley': '/assets/logos/berkeley.svg',
+    'uc berkeley': '/assets/logos/berkeley.svg',
+    'university of california berkeley': '/assets/logos/berkeley.svg',
+    'bair': '/assets/logos/berkeley.svg',
+    'harvard': '/assets/logos/harvard.svg',
+    'seas': '/assets/logos/harvard.svg',
+    'princeton': '/assets/logos/princeton.svg',
+    'columbia': '/assets/logos/columbia.svg',
+    'cornell': '/assets/logos/cornell.svg',
+    'eth zurich': '/assets/logos/ethz.svg',
+    'eth zürich': '/assets/logos/ethz.svg',
+    'cmu': '/assets/logos/cmu.svg',
+    'carnegie mellon': '/assets/logos/cmu.svg',
+    'oxford': '/assets/logos/oxford.svg',
+    'cambridge': '/assets/logos/cambridge.svg',
+    'nus': '/assets/logos/nus.svg',
+    'national university of singapore': '/assets/logos/nus.svg',
+    'ntu': '/assets/logos/ntu.svg',
+    'nanyang technological': '/assets/logos/ntu.svg',
+    'tsinghua': '/assets/logos/tsinghua.svg',
+    'tsinghua university': '/assets/logos/tsinghua.svg',
+    'isro': '/assets/logos/isro.svg',
+    'indian space research organisation': '/assets/logos/isro.svg',
+    'drdo': '/assets/logos/drdo.svg',
+    'defence research and development organisation': '/assets/logos/drdo.svg',
+    'nasa': '/assets/logos/nasa.svg',
+    'national aeronautics and space administration': '/assets/logos/nasa.svg',
+    'jpl': '/assets/logos/nasa.svg',
+    'spacex': '/assets/logos/spacex.svg',
+    'space exploration technologies': '/assets/logos/spacex.svg',
+    'microsoft research': '/assets/logos/msr.svg',
+    'google research': '/assets/logos/google-research.svg'
+};
+
+function getCompanyLogo(company) {
+    const clean = (company || '').toLowerCase().trim();
+    for (const [key, logoPath] of Object.entries(INSTITUTION_LOCAL_LOGOS)) {
+        if (clean.includes(key)) {
+            return logoPath;
+        }
+    }
+    for (const [key, domain] of Object.entries(COMPANY_DOMAINS)) {
+        if (clean.includes(key)) {
+            return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+        }
+    }
+    const cleanDomain = clean.replace(/[^a-z0-9]/g, '');
+    return `https://www.google.com/s2/favicons?domain=${cleanDomain}.com&sz=128`;
+}
+
+// Utility function to auto-assign company tiers, education tags, logos, & opportunity type
+function assignJobMetadata(job) {
+    const companyLower = (job.company || '').toLowerCase();
+    const textLower = ((job.title || '') + ' ' + (job.snippet || '')).toLowerCase();
+
+    // Research Internship detection (MS / PhD / Pre-Doc / Research Fellow / Visiting Scholar)
+    const isResearchInternship = job.opportunityType === 'research-internship' ||
+                                 textLower.includes('research intern') ||
+                                 textLower.includes('research fellow') ||
+                                 textLower.includes('visiting researcher') ||
+                                 textLower.includes('visiting scholar') ||
+                                 textLower.includes('pre-doctoral') ||
+                                 textLower.includes('predoctoral') ||
+                                 textLower.includes('phd intern') ||
+                                 textLower.includes('ms intern') ||
+                                 textLower.includes('graduate research') ||
+                                 textLower.includes('summer research fellow') ||
+                                 ((companyLower.includes('iit') || companyLower.includes('iisc') || companyLower.includes('mit') || companyLower.includes('stanford') || companyLower.includes('harvard') || companyLower.includes('princeton') || companyLower.includes('eth') || companyLower.includes('oxford') || companyLower.includes('cambridge') || companyLower.includes('cmu') || companyLower.includes('nus') || companyLower.includes('ntu') || companyLower.includes('research')) && (textLower.includes('intern') || textLower.includes('fellow') || textLower.includes('scholar')));
+
+    // Standard Industry Internship detection
+    const isStandardInternship = !isResearchInternship && (
+        job.opportunityType === 'internship' ||
+        textLower.includes('intern') || 
+        textLower.includes('trainee') || 
+        textLower.includes('apprentice') || 
+        (job.type || '').toLowerCase().includes('intern')
+    );
+
+    let opportunityType = 'job';
+    let finalType = job.type || 'Full-time';
+    if (isResearchInternship) {
+        opportunityType = 'research-internship';
+        finalType = 'Research Internship (MS/PhD)';
+    } else if (isStandardInternship) {
+        opportunityType = 'internship';
+        finalType = 'Internship';
+    }
+
+    let matchedTier = null;
+    for (const [tierKey, config] of Object.entries(TIER_MAPPINGS)) {
+        if (config.companies.some(c => companyLower.includes(c))) {
+            matchedTier = tierKey;
+            break;
+        }
+    }
+
+    // Heuristics for unlisted companies
+    if (!matchedTier) {
+        if (isResearchInternship) {
+            matchedTier = 'research-institutes';
+        } else if (textLower.includes('quant') || textLower.includes('hft') || textLower.includes('algo trading') || textLower.includes('low latency')) {
+            matchedTier = 'hft-quant';
+        } else if (companyLower.includes('solutions') || companyLower.includes('consulting') || companyLower.includes('technologies') || companyLower.includes('services') || companyLower.includes('infotech')) {
+            matchedTier = 'mnc-it';
+        } else if (companyLower.includes('labs') || companyLower.includes('io') || companyLower.includes('tech') || companyLower.includes('.com') || companyLower.includes('inc')) {
+            matchedTier = 'startups';
+        } else {
+            matchedTier = 'tier-1-product';
+        }
+    }
+
+    const tierConfig = TIER_MAPPINGS[matchedTier] || TIER_MAPPINGS['tier-1-product'];
+
+    // Determine target educational pedigree
+    const eduTags = new Set();
+    if (companyLower.includes('iit') || companyLower.includes('iisc')) {
+        eduTags.add('iits-iisc');
+    }
+    if (companyLower.includes('harvard') || companyLower.includes('princeton') || companyLower.includes('columbia') || companyLower.includes('cornell') || companyLower.includes('yale') || companyLower.includes('upenn') || companyLower.includes('brown') || companyLower.includes('dartmouth')) {
+        eduTags.add('ivy-league');
+    }
+    if (companyLower.includes('mit') || companyLower.includes('stanford') || companyLower.includes('eth') || companyLower.includes('oxford') || companyLower.includes('cambridge') || companyLower.includes('cmu') || companyLower.includes('carnegie mellon') || companyLower.includes('berkeley') || companyLower.includes('caltech')) {
+        eduTags.add('global-elite');
+    }
+    if (companyLower.includes('nus') || companyLower.includes('ntu') || companyLower.includes('tsinghua') || companyLower.includes('peking') || companyLower.includes('hkust') || companyLower.includes('tokyo')) {
+        eduTags.add('top-asian');
+    }
+    if (companyLower.includes('microsoft research') || companyLower.includes('google research')) {
+        eduTags.add('iits-iisc');
+        eduTags.add('global-elite');
+    }
+
+    if (eduTags.size === 0) {
+        if (matchedTier === 'hft-quant') {
+            eduTags.add('iits-iisc');
+            eduTags.add('global-elite');
+            eduTags.add('ivy-league');
+        } else if (matchedTier === 'faang') {
+            eduTags.add('iits-iisc');
+            eduTags.add('global-elite');
+            eduTags.add('top-asian');
+        } else if (matchedTier === 'tier-1-product') {
+            eduTags.add('iits-iisc');
+            eduTags.add('global-elite');
+        } else if (matchedTier === 'startups') {
+            eduTags.add('iits-iisc');
+            eduTags.add('top-asian');
+        } else {
+            eduTags.add('iits-iisc');
+        }
+    }
+
+    // Keyword scan
+    for (const [eduKey, config] of Object.entries(EDU_MAPPINGS)) {
+        if (config.keywords.some(kw => textLower.includes(kw))) {
+            eduTags.add(eduKey);
+        }
+    }
+
+    const eduTagsArr = Array.from(eduTags);
+    const eduLabels = eduTagsArr.map(t => EDU_MAPPINGS[t]?.label || t);
+    const eduBadges = eduTagsArr.map(t => EDU_MAPPINGS[t]?.badge || t);
+
+    return {
+        type: finalType,
+        opportunityType,
+        companyLogo: getCompanyLogo(job.company),
+        companyTier: matchedTier,
+        companyTierLabel: tierConfig.label,
+        companyTierBadge: tierConfig.badge,
+        companyTierIcon: tierConfig.iconName,
+        companyTierColor: tierConfig.color,
+        companyTierBg: tierConfig.bg,
+        companyTierBorder: tierConfig.border,
+        educationTags: eduTagsArr,
+        educationTagLabels: eduLabels,
+        educationTagBadges: eduBadges
+    };
+}
+
+// Generate a deduplication hash from job fields
+function jobHash(title, company, location) {
+    const normalize = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+    return `${normalize(title)}|${normalize(company)}|${normalize(location)}`;
+}
+
+// Fetch jobs from Adzuna API
+async function fetchAdzunaJobs() {
+    if (!ADZUNA_APP_ID || !ADZUNA_APP_KEY || ADZUNA_APP_ID.includes('your_') || ADZUNA_APP_KEY.includes('your_')) {
+        console.log('⏭️  Adzuna: No API keys configured, skipping...');
+        return [];
+    }
+
+    const searches = [
+        'software engineer',
+        'AI developer',
+        'full stack developer',
+        'data scientist',
+        'frontend developer',
+        'cloud engineer',
+        'Google OR Microsoft OR Amazon OR Meta',
+        'Jane Street OR Tower Research OR Graviton OR Quant',
+        'software engineer intern India',
+        'web developer intern India',
+        'data science intern India',
+        'AI ML intern India'
+    ];
+
+    const allJobs = [];
+
+    for (const keyword of searches) {
+        try {
+            const encodedKeyword = encodeURIComponent(keyword);
+            const url = `https://api.adzuna.com/v1/api/jobs/in/search/1?app_id=${ADZUNA_APP_ID}&app_key=${ADZUNA_APP_KEY}&what=${encodedKeyword}&results_per_page=15&content-type=application/json`;
+
+            const response = await httpRequest(url);
+
+            if (response.status === 200 && response.data && response.data.results) {
+                const normalized = response.data.results.map(job => {
+                    const raw = {
+                        id: `adzuna_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+                        title: (job.title || 'Untitled Position').replace(/<[^>]*>/g, '').trim(),
+                        company: ((job.company && job.company.display_name) || 'Company Not Disclosed').trim(),
+                        location: ((job.location && job.location.display_name) || 'India').trim(),
+                        salary: job.salary_min && job.salary_max ? `₹${Math.round(job.salary_min / 1000)}K – ₹${Math.round(job.salary_max / 1000)}K` :
+                                job.salary_min ? `₹${Math.round(job.salary_min / 1000)}K+` : null,
+                        url: job.redirect_url || '#',
+                        source: 'adzuna',
+                        snippet: (job.description || '').replace(/<[^>]*>/g, '').slice(0, 200).trim(),
+                        type: job.contract_time === 'part_time' ? 'Part-time' : 'Full-time',
+                        postedAt: job.created || new Date().toISOString(),
+                        fetchedAt: new Date().toISOString()
+                    };
+                    const meta = assignJobMetadata(raw);
+                    return { ...raw, ...meta };
+                });
+                allJobs.push(...normalized);
+            }
+
+            await new Promise(r => setTimeout(r, 400));
+        } catch (err) {
+            console.error(`Adzuna fetch error for "${keyword}":`, err.message);
+        }
+    }
+
+    console.log(`✅ Adzuna: Fetched ${allJobs.length} jobs`);
+    return allJobs;
+}
+
+// Fetch jobs from Remotive API (free, no auth key required)
+async function fetchRemotiveJobs() {
+    const categories = ['software-dev', 'data', 'devops', 'cyber-security'];
+    const allJobs = [];
+
+    for (const category of categories) {
+        try {
+            const url = `https://remotive.com/api/remote-jobs?category=${category}&limit=20`;
+            const response = await httpRequest(url, {
+                headers: { 'User-Agent': 'TechIndro-JobService/1.0' }
+            });
+
+            if (response.status === 200 && response.data && response.data.jobs) {
+                const normalized = response.data.jobs.map(job => {
+                    const raw = {
+                        id: `remotive_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+                        title: (job.title || 'Untitled Position').replace(/<[^>]*>/g, '').trim(),
+                        company: (job.company_name || 'Company Not Disclosed').trim(),
+                        location: (job.candidate_required_location || 'Remote / Worldwide').trim(),
+                        salary: job.salary || null,
+                        url: job.url || '#',
+                        source: 'remotive',
+                        snippet: (job.description || '').replace(/<[^>]*>/g, '').slice(0, 200).trim(),
+                        type: job.job_type ? job.job_type.replace('_', '-') : 'Full-time',
+                        postedAt: job.publication_date || new Date().toISOString(),
+                        fetchedAt: new Date().toISOString()
+                    };
+                    const meta = assignJobMetadata(raw);
+                    return { ...raw, ...meta };
+                });
+                allJobs.push(...normalized);
+            }
+
+            // Respect Remotive's rate limit (max 2 requests/min)
+            await new Promise(r => setTimeout(r, 1200));
+        } catch (err) {
+            console.error(`Remotive fetch error for "${category}":`, err.message);
+        }
+    }
+
+    console.log(`✅ Remotive: Fetched ${allJobs.length} jobs`);
+    return allJobs;
+}
+
+// Deduplicate jobs by title + company + location hash
+function deduplicateJobs(newJobs, existingJobs) {
+    const existingHashes = new Set(existingJobs.map(j => jobHash(j.title, j.company, j.location)));
+    const seenHashes = new Set();
+    const unique = [];
+
+    for (const job of newJobs) {
+        const hash = jobHash(job.title, job.company, job.location);
+        if (!existingHashes.has(hash) && !seenHashes.has(hash)) {
+            seenHashes.add(hash);
+            unique.push(job);
+        }
+    }
+
+    return unique;
+}
+
+// Main orchestrator: fetch from all providers, deduplicate, and save
+async function runJobFetchCycle() {
+    console.log('\n📡 Starting Job Fetch Cycle at', new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+
+    try {
+        const [adzunaJobs, remotiveJobs] = await Promise.allSettled([
+            fetchAdzunaJobs(),
+            fetchRemotiveJobs()
+        ]);
+
+        const fetchedAdzuna = adzunaJobs.status === 'fulfilled' ? adzunaJobs.value : [];
+        const fetchedRemotive = remotiveJobs.status === 'fulfilled' ? remotiveJobs.value : [];
+        const allFetched = [...fetchedAdzuna, ...fetchedRemotive];
+
+        if (allFetched.length === 0) {
+            console.log('⚠️  No jobs fetched from any provider');
+            return;
+        }
+
+        // Load current jobs from DB
+        const db = readDB();
+        const existingJobs = db.jobs || [];
+
+        // Deduplicate against existing jobs
+        const newUniqueJobs = deduplicateJobs(allFetched, existingJobs);
+
+        // Merge: new jobs on top, keep max 500 most recent
+        const mergedJobs = [...newUniqueJobs, ...existingJobs].slice(0, 500);
+
+        // Update DB
+        db.jobs = mergedJobs;
+        db.jobsMeta = {
+            lastFetchedAt: new Date().toISOString(),
+            totalFetched: (db.jobsMeta ? db.jobsMeta.totalFetched : 0) + newUniqueJobs.length,
+            providers: {
+                adzuna: (db.jobsMeta && db.jobsMeta.providers ? db.jobsMeta.providers.adzuna : 0) + fetchedAdzuna.length,
+                remotive: (db.jobsMeta && db.jobsMeta.providers ? db.jobsMeta.providers.remotive : 0) + fetchedRemotive.length
+            }
+        };
+        writeDB(db);
+
+        // Update in-memory cache
+        jobsCache = mergedJobs;
+        jobsMetaCache = db.jobsMeta;
+
+        console.log(`✅ Job Fetch Complete: ${newUniqueJobs.length} new unique jobs added (${mergedJobs.length} total in DB)`);
+        console.log(`   Adzuna: ${fetchedAdzuna.length} | Remotive: ${fetchedRemotive.length}`);
+    } catch (err) {
+        console.error('❌ Job Fetch Cycle Error:', err);
+    }
+}
+
+// Schedule daily job fetch at 8:00 AM IST
+function initJobScheduler() {
+    const IST_OFFSET = 5.5 * 60 * 60 * 1000;
+    const TARGET_HOUR = 8;
+    const TARGET_MINUTE = 0;
+
+    const now = new Date();
+    const nowIST = new Date(now.getTime() + IST_OFFSET);
+    const todayIST = new Date(Date.UTC(nowIST.getUTCFullYear(), nowIST.getUTCMonth(), nowIST.getUTCDate(), TARGET_HOUR, TARGET_MINUTE, 0));
+    const targetUTC = new Date(todayIST.getTime() - IST_OFFSET);
+
+    let msUntilNext = targetUTC.getTime() - now.getTime();
+    if (msUntilNext <= 0) msUntilNext += 24 * 60 * 60 * 1000;
+
+    const hoursUntilFirst = (msUntilNext / (1000 * 60 * 60)).toFixed(1);
+    console.log(`⏰ Job Scheduler: Next fetch at 8:00 AM IST (in ${hoursUntilFirst} hours)`);
+
+    const firstTimer = setTimeout(() => {
+        runJobFetchCycle();
+        const dailyInterval = setInterval(runJobFetchCycle, 24 * 60 * 60 * 1000);
+        if (dailyInterval.unref) dailyInterval.unref();
+    }, msUntilNext);
+    if (firstTimer.unref) firstTimer.unref();
+
+    // Fetch on startup if cache is empty or stale (>24h old)
+    const staleThreshold = 24 * 60 * 60 * 1000;
+    const isStale = !jobsMetaCache.lastFetchedAt || (Date.now() - new Date(jobsMetaCache.lastFetchedAt).getTime()) > staleThreshold;
+    if (jobsCache.length === 0 || isStale) {
+        console.log('🔄 Jobs cache is empty or stale, fetching on startup...');
+        setTimeout(() => runJobFetchCycle(), 3000);
+    }
+}
+
+// Initialize the scheduler (only in worker 1 to prevent duplicate fetches in cluster mode)
+// In cluster mode, primary forks workers — only worker 1 should run the scheduler.
+// On Vercel (serverless) there's no cluster, so always run.
+if (isVercel || (!cluster.isPrimary && (!cluster.isWorker || cluster.worker.id === 1))) {
+    initJobScheduler();
+} else if (!cluster.isPrimary) {
+    // Other workers just load cache
+    loadJobsCache();
+}
+
+// Rate limiter for manual job fetch trigger
+const jobFetchLimiter = createRateLimiter('auth', 3, 60 * 60 * 1000, 'Job fetch rate limit reached. Please wait 1 hour.');
+
+// GET /api/jobs - List jobs with search, filtering, and pagination
+app.get('/api/jobs', (req, res) => {
+    try {
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = Math.min(50, Math.max(1, parseInt(req.query.limit) || 12));
+        const search = (req.query.search || '').toLowerCase().trim();
+        const location = (req.query.location || '').toLowerCase().trim();
+        const source = (req.query.source || '').toLowerCase().trim();
+        const tier = (req.query.tier || '').toLowerCase().trim();
+        const edu = (req.query.edu || '').toLowerCase().trim();
+        const type = (req.query.type || '').toLowerCase().trim();
+
+        let filtered = [...jobsCache];
+
+        // Filter by Opportunity Type (job vs internship vs research-internship)
+        if (type === 'research-internship') {
+            filtered = filtered.filter(j => j.opportunityType === 'research-internship' || (j.type || '').toLowerCase().includes('research'));
+        } else if (type === 'internship') {
+            filtered = filtered.filter(j => (j.opportunityType === 'internship' || (j.type || '').toLowerCase().includes('intern')) && j.opportunityType !== 'research-internship' && !(j.type || '').toLowerCase().includes('research'));
+        } else if (type === 'job') {
+            filtered = filtered.filter(j => j.opportunityType === 'job' || (!j.opportunityType && !(j.type || '').toLowerCase().includes('intern') && !(j.type || '').toLowerCase().includes('research')));
+        }
+
+        // Filter by search term (matches title, company, snippet)
+        if (search) {
+            filtered = filtered.filter(j =>
+                (j.title || '').toLowerCase().includes(search) ||
+                (j.company || '').toLowerCase().includes(search) ||
+                (j.snippet || '').toLowerCase().includes(search)
+            );
+        }
+
+        // Filter by location
+        if (location) {
+            filtered = filtered.filter(j =>
+                (j.location || '').toLowerCase().includes(location)
+            );
+        }
+
+        // Filter by source provider
+        if (source && ['adzuna', 'remotive'].includes(source)) {
+            filtered = filtered.filter(j => j.source === source);
+        }
+
+        // Filter by Company Metadata Tier
+        if (tier && Object.keys(TIER_MAPPINGS).includes(tier)) {
+            filtered = filtered.filter(j => j.companyTier === tier);
+        }
+
+        // Filter by Elite Educational Background Tag
+        if (edu && Object.keys(EDU_MAPPINGS).includes(edu)) {
+            filtered = filtered.filter(j => j.educationTags && j.educationTags.includes(edu));
+        }
+
+        // Pagination
+        const totalJobs = filtered.length;
+        const totalPages = Math.ceil(totalJobs / limit);
+        const startIndex = (page - 1) * limit;
+        const paginatedJobs = filtered.slice(startIndex, startIndex + limit);
+
+        res.json({
+            success: true,
+            jobs: paginatedJobs,
+            pagination: {
+                page,
+                limit,
+                totalJobs,
+                totalPages,
+                hasMore: page < totalPages
+            },
+            meta: {
+                lastFetchedAt: jobsMetaCache.lastFetchedAt,
+                totalInDB: jobsCache.length,
+                providers: jobsMetaCache.providers,
+                availableTiers: Object.entries(TIER_MAPPINGS).map(([k, v]) => ({
+                    key: k,
+                    label: v.label,
+                    badge: v.badge,
+                    color: v.color
+                })),
+                availableEduTags: Object.entries(EDU_MAPPINGS).map(([k, v]) => ({
+                    key: k,
+                    label: v.label,
+                    badge: v.badge,
+                    color: v.color
+                }))
+            }
+        });
+    } catch (err) {
+        console.error('Jobs API Error:', err);
+        res.status(500).json({ error: 'Failed to fetch jobs', success: false });
+    }
+});
+
+
+// POST /api/jobs/fetch - Manual trigger to refresh jobs (admin use)
+app.post('/api/jobs/fetch', jobFetchLimiter, async (req, res) => {
+    try {
+        res.json({ message: 'Job fetch cycle started. New jobs will appear shortly.', success: true });
+        // Run fetch asynchronously
+        runJobFetchCycle();
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to trigger job fetch', success: false });
+    }
+});
+
+
+// ============================================================================
 // HYPERSWITCH (JUSPAY) OPEN-SOURCE PAYMENT ORCHESTRATOR
 // Unified routing for UPI (GPay, PhonePe, Paytm), Cards, NetBanking, Gateways
 // ============================================================================

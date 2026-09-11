@@ -27,6 +27,7 @@
 - 📚 **Comprehensive Course Batches**: Interactive syllabus, instructor profiles, and structured curriculum modules.
 - 🏆 **TSOC (Tech Season of Code)**: Open-source project fellowship featuring production repositories:
   - *[GhostPose](https://github.com/techindro/GhostPose-Through-Wall-Wi-Fi-3D-Sensing)* — Through-Wall Wi-Fi 3D Sensing.
+  - *[ZiaLabs-AI](https://github.com/techindro/ZiaLabs-AI)* — Multilingual AI academic paper search & research assistant.
   - *[Khicho-Chatbots](https://github.com/techindro/Khicho-Chatbots)* — Multilingual AI conversational agents.
 - 💻 **IndroLabs Cloud IDE**: Real-time browser compiler for Python, JavaScript, and HTML/CSS.
 - 📝 **Adaptive Test Series & Mock Exams**: Full quiz portal with instant answer keys, percentile ranking, and deep analytics.

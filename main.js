@@ -245,4 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) lucide.createIcons();
         }
     } catch(e) {}
+
+    // Auto-mount Cookie Consent Engine if not yet loaded
+    if (!window.TechIndroCookies && !document.querySelector('script[src*="cookie-consent.js"]')) {
+        const s = document.createElement('script');
+        s.src = 'cookie-consent.js';
+        s.defer = true;
+        document.head.appendChild(s);
+    }
 });
