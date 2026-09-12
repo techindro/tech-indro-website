@@ -27,12 +27,13 @@ const SHIKSHAK_COURSES_FILE = path.join(__dirname, 'shikshak-courses.json');
 const AI_TOOLS_FILE = path.join(__dirname, 'ai-tools.json');
 
 // Bundler-friendly in-memory defaults for Vercel Serverless
+// Using fs.readFileSync (not require) to avoid Node.js module cache - changes to JSON are always fresh
 let defaultCourses = [];
-try { defaultCourses = require('./courses.json'); } catch(e) {}
+try { defaultCourses = JSON.parse(fs.readFileSync(path.join(__dirname, 'courses.json'), 'utf8')); } catch(e) {}
 let defaultShikshakCourses = [];
-try { defaultShikshakCourses = require('./shikshak-courses.json'); } catch(e) {}
+try { defaultShikshakCourses = JSON.parse(fs.readFileSync(path.join(__dirname, 'shikshak-courses.json'), 'utf8')); } catch(e) {}
 let defaultAiTools = [];
-try { defaultAiTools = require('./ai-tools.json'); } catch(e) {}
+try { defaultAiTools = JSON.parse(fs.readFileSync(path.join(__dirname, 'ai-tools.json'), 'utf8')); } catch(e) {}
 
 // Middleware: Security Headers & Crash Protection
 app.use((req, res, next) => {
@@ -294,12 +295,12 @@ app.post('/api/contact', contactLimiter, (req, res) => {
 // fetch all courses
 app.get('/api/courses', (req, res) => {
     try {
-        if (defaultCourses && defaultCourses.length > 0) {
-            return res.json(defaultCourses);
-        }
+        // Always read fresh from disk so edits to courses.json are instant (no restart needed)
         const courses = JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8'));
         res.json(courses);
     } catch (err) {
+        // Fallback to in-memory if file read fails
+        if (defaultCourses && defaultCourses.length > 0) return res.json(defaultCourses);
         res.status(500).json({ error: 'Failed to fetch courses data' });
     }
 });
@@ -307,12 +308,10 @@ app.get('/api/courses', (req, res) => {
 // fetch kids courses
 app.get('/api/shikshak-courses', (req, res) => {
     try {
-        if (defaultShikshakCourses && defaultShikshakCourses.length > 0) {
-            return res.json(defaultShikshakCourses);
-        }
         const courses = JSON.parse(fs.readFileSync(SHIKSHAK_COURSES_FILE, 'utf8'));
         res.json(courses);
     } catch (err) {
+        if (defaultShikshakCourses && defaultShikshakCourses.length > 0) return res.json(defaultShikshakCourses);
         res.status(500).json({ error: 'Failed to fetch shikshak courses data' });
     }
 });
@@ -320,12 +319,10 @@ app.get('/api/shikshak-courses', (req, res) => {
 // fetch ai tools
 app.get('/api/ai-tools', (req, res) => {
     try {
-        if (defaultAiTools && defaultAiTools.length > 0) {
-            return res.json(defaultAiTools);
-        }
         const tools = JSON.parse(fs.readFileSync(AI_TOOLS_FILE, 'utf8'));
         res.json(tools);
     } catch (err) {
+        if (defaultAiTools && defaultAiTools.length > 0) return res.json(defaultAiTools);
         res.status(500).json({ error: 'Failed to fetch ai tools data' });
     }
 });
@@ -333,7 +330,7 @@ app.get('/api/ai-tools', (req, res) => {
 // fetch course details
 app.get('/api/courses/:id', (req, res) => {
     try {
-        const list = (defaultCourses && defaultCourses.length > 0) ? defaultCourses : (fs.existsSync(COURSES_FILE) ? JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8')) : []);
+        const list = fs.existsSync(COURSES_FILE) ? JSON.parse(fs.readFileSync(COURSES_FILE, 'utf8')) : defaultCourses;
         const course = list.find(c => c.id === req.params.id);
         
         if (course) res.json(course);

@@ -1,4 +1,4 @@
-// Standalone Courses data fallback for Tech Indro platform
+// Standalone Courses data fallback
 window.TECH_INDRO_COURSES = [
     {
         "id": "coding-ai",
@@ -61,62 +61,443 @@ window.TECH_INDRO_COURSES = [
     },
     {
         "id": "sih-hackathon",
-        "title": "Crack Smart India Hackathon & ISRO Research",
-        "description": "Don't just study—win! Learn how to build winning projects for SIH, collaborate on ISRO research, and use Google Cloud to deploy massive architectures.",
-        "instructor": "Multilingual AI Agent",
+        "title": "Smart India Hackathon (SIH)",
+        "description": "Crack India's premier national hackathon organized by MoE & AICTE. Master decoding ministry problem statements, 36-hour rapid hardware/software prototyping, pitch deck creation, and scalable cloud deployment.",
+        "instructor": "Multilingual AI Hackathon Mentor",
         "duration": "3 Months",
         "perks": [
-            "Taught in any language (Hindi, Bhojpuri, Tamil, etc.)",
-            "SIH Winning Strategies",
-            "ISRO Research Methodologies",
-            "Google Cloud Architectures"
+            "Taught in all Indian languages (Hindi, English, Tamil, etc.)",
+            "Govt Ministry & PSU Problem Statement Decoding",
+            "36-Hour Non-Stop MVP Prototyping Blueprint",
+            "Winning Pitch Deck & Jury Q&A Framework",
+            "₹1,00,00,000+ National Prize Opportunities"
         ],
         "modules": [
             {
                 "title": "Module 1: Ideation & Problem Statements",
-                "desc": "How to select and decode SIH problem statements."
+                "desc": "How to select and decode SIH problem statements from Ministries & PSUs."
             },
             {
                 "title": "Module 2: Rapid Prototyping",
-                "desc": "Building MVP software and hardware in 36 hours."
+                "desc": "Building MVP software, AI models, and IoT hardware in 36 hours."
             },
             {
-                "title": "Module 3: Cloud Deployment",
-                "desc": "Scaling projects using Google Cloud."
+                "title": "Module 3: Cloud Architecture & Deployment",
+                "desc": "Scaling projects using Cloud & resilient microservices."
             },
             {
-                "title": "Module 4: ISRO & Space Tech",
-                "desc": "Contributing to Bharatiya Antariksh Anusandhan."
+                "title": "Module 4: Jury Pitching & Evaluation Rubrics",
+                "desc": "Live presentation drills, jury Q&A handling, and winning demonstration techniques."
             }
         ],
         "resources": [
             {
-                "title": "SIH Portal",
+                "title": "SIH Official Portal",
                 "url": "https://sih.gov.in/",
                 "type": "website"
             },
             {
-                "title": "ISRO E-Learning",
+                "title": "SIH Winning Projects Repository",
+                "url": "https://github.com/topics/sih",
+                "type": "github"
+            },
+            {
+                "title": "Ministry of Education Innovation Cell (MIC)",
+                "url": "https://mic.gov.in/",
+                "type": "website"
+            },
+            {
+                "title": "Cloud Architecture & Scalability Guide",
+                "url": "https://aws.amazon.com/architecture/",
+                "type": "certificate"
+            }
+        ],
+        "image": "https://h2svision.github.io/publicAssets/SIH_Sr/eventPageNewBannerSIH.png"
+    },
+    {
+        "id": "microsoft-imagine-cup",
+        "title": "Microsoft Imagine Cup",
+        "description": "Master the world's premier student tech competition by Microsoft. Build world-changing AI, Earth, Health, or Education solutions using Azure OpenAI, GitHub Copilot, and cloud architectures to compete for $100,000 USD and mentorship with Microsoft CEO Satya Nadella.",
+        "instructor": "Multilingual AI Hackathon Mentor",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, Tamil, etc.)",
+            "Azure AI Studio & OpenAI Integration Mastery",
+            "$100K Global Grand Prize Preparation",
+            "Global Semifinals & World Championship Pitching",
+            "Working MVP & Enterprise Cloud Architecture"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Choosing a Global Category",
+                "desc": "Ideation across Earth, Education, Health, and Equality categories with maximum real-world impact."
+            },
+            {
+                "title": "Module 2: Building with Microsoft Azure AI",
+                "desc": "Hands-on integration with Azure OpenAI, Cognitive Services, and GitHub Copilot."
+            },
+            {
+                "title": "Module 3: MVP Development & Scalability",
+                "desc": "Developing a robust working MVP, measuring user metrics, and enterprise cloud architecture."
+            },
+            {
+                "title": "Module 4: Global Semifinals Pitch Video & Jury Rubric",
+                "desc": "Crafting the 3-minute pitch video, live demo scripts, and executive business viability rubrics."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Microsoft Imagine Cup Official Portal",
+                "url": "https://imaginecup.microsoft.com/",
+                "type": "website"
+            },
+            {
+                "title": "Microsoft for Startups Founders Hub",
+                "url": "https://startups.microsoft.com/",
+                "type": "website"
+            },
+            {
+                "title": "Azure AI Documentation & Free Student Credits",
+                "url": "https://azure.microsoft.com/en-us/free/students/",
+                "type": "certificate"
+            },
+            {
+                "title": "Imagine Cup World Champions Repositories",
+                "url": "https://github.com/topics/microsoft-azure",
+                "type": "github"
+            }
+        ],
+        "image": "https://imaginestorageprod.blob.core.windows.net/public/images/How_It_Works_Builder_Series_717x365_v2_1.png"
+    },
+    {
+        "id": "amazon-hackon",
+        "title": "Amazon - HackOne (HackOn Campus)",
+        "description": "Conquer Amazon HackOn—the premier nationwide collegiate innovation hackathon by Amazon. Master scalable e-commerce microservices, GenAI customer experience, high-concurrency systems, and AWS Serverless architectures to earn direct SDE internship/FTE interview opportunities.",
+        "instructor": "Multilingual AI Hackathon Mentor",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "Direct Amazon SDE Interview Prep & PPI Pathways",
+            "High-Scale System Design & AWS Serverless (Lambda, DynamoDB)",
+            "GenAI for Customer & Supply Chain Optimization",
+            "Live Coding & Hackathon Prototype Sprints"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Amazon Problem Tracks & Leadership Principles",
+                "desc": "Deconstructing Amazon e-commerce tracks and aligning solutions with Amazon's 16 Leadership Principles."
+            },
+            {
+                "title": "Module 2: High-Concurrency Backend Architecture",
+                "desc": "Designing fault-tolerant systems using AWS Lambda, DynamoDB, API Gateway, and Redis caching."
+            },
+            {
+                "title": "Module 3: AI & Recommendation Engines",
+                "desc": "Implementing recommendation algorithms, semantic search, and predictive inventory systems."
+            },
+            {
+                "title": "Module 4: Code Benchmarking & Grand Finale Defense",
+                "desc": "Performance profiling, automated testing, and presenting architecture to Amazon Principal Engineers."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Amazon HackOn Portal (Unstop)",
+                "url": "https://unstop.com/hackathons/amazon-hackon",
+                "type": "website"
+            },
+            {
+                "title": "AWS Architecture Center & Well-Architected Framework",
+                "url": "https://aws.amazon.com/architecture/",
+                "type": "certificate"
+            },
+            {
+                "title": "System Design Primer & Scalability Patterns",
+                "url": "https://github.com/donnemartin/system-design-primer",
+                "type": "github"
+            },
+            {
+                "title": "Amazon Leadership Principles Guide",
+                "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+                "type": "website"
+            }
+        ],
+        "image": "https://d8it4huxumps7.cloudfront.net/uploads/competition-sharable/6644829d87f67_SEO.jpg"
+    },
+    {
+        "id": "tcs-codevita",
+        "title": "TCS CodeVita - World's Largest Coding Arena",
+        "description": "Conquer the Guinness World Record holder for the World's Largest Coding Competition. Crack complex competitive programming, advanced data structures, graph theory, dynamic programming, and mathematical algorithms to secure direct TCS Digital & Innovator package offers.",
+        "instructor": "Multilingual AI Hackathon Mentor",
+        "duration": "2.5 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "Direct TCS Digital (₹7.5+ LPA) & Innovator (₹9-12 LPA) Offers",
+            "Guinness World Record Certified Global Competition Prep",
+            "Speed, Memory & Complex Time Complexity Optimization",
+            "100+ Previous CodeVita Problems with Video Solutions"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: CodeVita Arena & Submission Rules",
+                "desc": "Mastering CodeVita console I/O, strict execution limits, memory constraints, and anti-plagiarism guidelines."
+            },
+            {
+                "title": "Module 2: Advanced Graph Theory & Tree Algorithms",
+                "desc": "Shortest paths, BFS/DFS traversals, Disjoint Set Union, Minimum Spanning Trees, and Topological Sort."
+            },
+            {
+                "title": "Module 3: Dynamic Programming & Math Puzzles",
+                "desc": "Multi-dimensional DP, digit DP, game theory, bitmasking, and combinatorics frequently asked in CodeVita."
+            },
+            {
+                "title": "Module 4: Full-Length Mock CodeVita Rounds",
+                "desc": "Timed round simulations, problem selection strategies, and clearing the top 1000 cutoff rank."
+            }
+        ],
+        "resources": [
+            {
+                "title": "TCS CodeVita Official Portal",
+                "url": "https://codevita.tcsapps.com/",
+                "type": "website"
+            },
+            {
+                "title": "TCS NextStep Portal",
+                "url": "https://nextstep.tcs.com/",
+                "type": "website"
+            },
+            {
+                "title": "CP-Algorithms Online Library",
+                "url": "https://cp-algorithms.com/",
+                "type": "research"
+            },
+            {
+                "title": "Competitive Programming Handbooks & Code Templates",
+                "url": "https://github.com/raymond-u/competitive-programming",
+                "type": "github"
+            }
+        ],
+        "image": "https://codevita.tcsapps.com/assets_public/img/gallery/Season-10-Winner.webp"
+    },
+    {
+        "id": "flipkart-grid",
+        "title": "Flipkart GRID 8.0 - Tech & Robotics Challenge",
+        "description": "Dominate Flipkart GRID 8.0—India's flagship engineering campus challenge by Flipkart. Crack cutting-edge tracks in Generative AI, Information Security, Robotics & Automated Guided Vehicles, and Autonomous Supply Chain systems to win ₹1 Crore+ prize pool and direct PPI/PPO SDE offers.",
+        "instructor": "Multilingual AI Hackathon Mentor",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "Direct Flipkart SDE-1 / SDE Intern Interview Fast-Track (PPIs)",
+            "Robotics, Computer Vision & GenAI E-Commerce Tracks",
+            "Information Security & Zero-Trust Architecture Track",
+            "₹1,00,00,000+ Total Prize Pool Preparation"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Flipkart GRID Tracks & Tech Elimination Quiz",
+                "desc": "Decoding problem tracks, eligibility criteria, and scoring 95%+ in the Level 1 national elimination quiz."
+            },
+            {
+                "title": "Module 2: GenAI & Software Engineering Track",
+                "desc": "LLM agents, conversational commerce, multi-modal search, and ultra-fast vector retrieval."
+            },
+            {
+                "title": "Module 3: Robotics & Supply Chain Automation Track",
+                "desc": "Autonomous mobile robots (AMRs), ROS 2 navigation, LiDAR SLAM, and automated package sorting."
+            },
+            {
+                "title": "Module 4: National Grand Finale: Prototype Defense",
+                "desc": "Live hardware/software showcase before Flipkart engineering directors and leadership evaluation."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Flipkart GRID Official Portal (Unstop)",
+                "url": "https://unstop.com/hackathons/flipkart-grid",
+                "type": "website"
+            },
+            {
+                "title": "Robot Operating System (ROS 2) Documentation",
+                "url": "https://docs.ros.org/",
+                "type": "website"
+            },
+            {
+                "title": "Hugging Face Open-Source AI Transformers",
+                "url": "https://huggingface.co/docs",
+                "type": "github"
+            },
+            {
+                "title": "Flipkart Tech Engineering Blog",
+                "url": "https://tech.flipkart.com/",
+                "type": "research"
+            }
+        ],
+        "image": "https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/mobile_banner/6687c45cc1232_flipkart-grid-60-software-development-track.png"
+    },
+    {
+        "id": "google-gsoc",
+        "title": "Google Summer of Code (GSoC & GSSoC)",
+        "description": "Crack Google Summer of Code (GSoC) and GirlScript Summer of Code (GSSoC). Master open-source contributions, selecting top mentoring organizations (Linux, Apache, Python, TensorFlow), drafting winning contributor proposals, Git workflows, and earning competitive stipends ($1500 - $3000 USD).",
+        "instructor": "Multilingual AI Open-Source Mentor",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "Global Prestige, Google Certificate & $1500 - $3000 USD Stipend",
+            "Winning GSoC Proposal Writing Blueprint (Approved Case Studies)",
+            "Finding Good First Issues & Deep Codebase Navigation",
+            "Direct Mentorship from Core Linux/Apache/Python Maintainers"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: Open Source Foundations & Organization Selection",
+                "desc": "How GSoC works, finding ideal organizations, inspecting project ideas lists, and joining community channels."
+            },
+            {
+                "title": "Module 2: Making First Impactful PRs & Community Standing",
+                "desc": "Locating 'good first issues', understanding code review etiquette, contributing tests, and gaining maintainer trust."
+            },
+            {
+                "title": "Module 3: Writing an Irresistible GSoC Proposal",
+                "desc": "Structuring proposal timeline, architecture diagrams, milestones, deliverable breakdown, and contingency plans."
+            },
+            {
+                "title": "Module 4: 12-Week Coding Period & Final Evaluations",
+                "desc": "Sprint planning, midterm evaluation survival, writing documentation, and earning graduation certificates."
+            }
+        ],
+        "resources": [
+            {
+                "title": "Google Summer of Code Official Portal",
+                "url": "https://summerofcode.withgoogle.com/",
+                "type": "website"
+            },
+            {
+                "title": "GSoC Official Student Contributor Guide",
+                "url": "https://google.github.io/gsocguides/student/",
+                "type": "research"
+            },
+            {
+                "title": "GirlScript Summer of Code (GSSoC)",
+                "url": "https://gssoc.girlscript.tech/",
+                "type": "website"
+            },
+            {
+                "title": "First Contributions Guide & Practice Sandbox",
+                "url": "https://github.com/firstcontributions/first-contributions",
+                "type": "github"
+            }
+        ],
+        "image": "assets/gsoc_banner.jpg"
+    },
+    {
+        "id": "isro-antariksh-hackathon",
+        "title": "ISRO - Bharatiya Antariksh Hackathon & Robotics Challenge",
+        "description": "Compete in ISRO's prestigious National Space Hackathon & Robotics Challenge. Build AI-driven satellite imagery analytics, lunar/martian rover obstacle navigation with ROS, space debris tracking, payload telemetry systems, and GIS software for Indian Space Research Organisation.",
+        "instructor": "Multilingual AI Aerospace Mentor",
+        "duration": "3 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "Official ISRO & IIRS Geospatial Datasets Access",
+            "Space Robotics, Rover Navigation & Computer Vision Algorithms",
+            "Satellite Remote Sensing & GIS Processing using Bhuvan/ISRO APIs",
+            "Opportunity to Visit ISRO Headquarters & URSC Bengaluru"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: ISRO Problem Statements & Geospatial Remote Sensing",
+                "desc": "Accessing Bhuvan, MOSDAC, and Cartosat/Resourcesat datasets for automated terrain and vegetation analysis."
+            },
+            {
+                "title": "Module 2: Space Robotics & Rover Navigation",
+                "desc": "Building ROS 2 simulation nodes for lunar rovers, stereo camera obstacle avoidance, and SLAM mapping."
+            },
+            {
+                "title": "Module 3: Satellite Telemetry, Orbital Mechanics & GIS",
+                "desc": "Decoders for Cubesat telemetry, orbital propagation (TLE calculations), and real-time disaster alerts."
+            },
+            {
+                "title": "Module 4: Grand Finale: Live Demonstration to ISRO Scientists",
+                "desc": "Deploying production-ready space apps, submitting technical whitepapers, and winning ISRO awards."
+            }
+        ],
+        "resources": [
+            {
+                "title": "ISRO Official Portal",
+                "url": "https://www.isro.gov.in/",
+                "type": "website"
+            },
+            {
+                "title": "Bhuvan Indian Geo-Platform of ISRO",
+                "url": "https://bhuvan.nrsc.gov.in/",
+                "type": "website"
+            },
+            {
+                "title": "IIRS Distance Learning & Space Data",
                 "url": "https://elearning.iirs.gov.in/",
                 "type": "website"
             },
             {
-                "title": "Smart City Traffic Vision (IoT+AI)",
-                "url": "https://github.com/OlafenwaMoses/ImageAI",
+                "title": "NASA & ISRO Open Remote Sensing Tools",
+                "url": "https://github.com/nasa",
                 "type": "github"
-            },
-            {
-                "title": "Google Cloud Skills Boost (Free Badges)",
-                "url": "https://www.cloudskillsboost.google/",
-                "type": "certificate"
-            },
-            {
-                "title": "The Google File System (Cloud Base)",
-                "url": "https://research.google.com/archive/gfs-sosp2003.pdf",
-                "type": "research"
             }
         ],
-        "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+        "image": "https://res.cloudinary.com/dpfi3rnqf/image/upload/v1781249588/bah_2026_bgbpja.webp"
+    },
+    {
+        "id": "nasa-space-apps",
+        "title": "NASA Space Apps Challenge",
+        "description": "Join the world's largest annual global hackathon by NASA. Collaborate with coders, scientists, and designers worldwide to solve Earth and Space challenges using NASA's open data. Compete across Earth Observation, Planetary Science, and Heliophysics for Global Winner recognition.",
+        "instructor": "Multilingual AI Hackathon Mentor",
+        "duration": "2.5 Months",
+        "perks": [
+            "Taught in any language (Hindi, English, etc.)",
+            "World's Largest Global Hackathon with 180+ Countries Participating",
+            "Direct Access to NASA, ESA, JAXA, CSA & ISRO Open Datasets",
+            "Invitation to Attend a NASA Rocket Launch in USA for Global Winners",
+            "Hands-on Earth Observation, Kepler/James Webb Data & AI Processing"
+        ],
+        "modules": [
+            {
+                "title": "Module 1: NASA Space Apps Challenges & Mission Selection",
+                "desc": "Analyzing NASA challenge statements across Earth Observation, Astrophysics, Climate, and Planetary Exploration."
+            },
+            {
+                "title": "Module 2: Navigating NASA Open Data APIs",
+                "desc": "Fetching and transforming data from Earthdata, NASA Exoplanet Archive, GIBS, and NASA API catalog."
+            },
+            {
+                "title": "Module 3: Rapid 48-Hour Prototyping",
+                "desc": "Building interactive 3D WebGL visualizations, predictive ML models, and compelling scientific storytelling."
+            },
+            {
+                "title": "Module 4: 7-Slide Global Pitch & 30-Second Video Demo",
+                "desc": "Structuring project page documentation, recording 30-sec demo, and meeting NASA Global Judging standards."
+            }
+        ],
+        "resources": [
+            {
+                "title": "NASA Space Apps Challenge Official Portal",
+                "url": "https://www.spaceappschallenge.org/",
+                "type": "website"
+            },
+            {
+                "title": "NASA Open Data Portal",
+                "url": "https://data.nasa.gov/",
+                "type": "website"
+            },
+            {
+                "title": "NASA APIs for Developers",
+                "url": "https://api.nasa.gov/",
+                "type": "website"
+            },
+            {
+                "title": "Global Winning NASA Space Apps Repositories",
+                "url": "https://github.com/topics/spaceapps",
+                "type": "github"
+            }
+        ],
+        "image": "https://assets.spaceappschallenge.org/media/original_images/Space_Apps_2026_Logo_OG.jpg"
     },
     {
         "id": "marketing-sales",

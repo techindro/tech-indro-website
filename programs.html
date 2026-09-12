@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="firebase-config.js"></script>
+    <script src="courses-data.js"></script>
     <style>
         .programs-grid {
             display: grid;
@@ -98,6 +99,7 @@
 
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
                 <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="hackathons">Competitive Hackathons 🏆</button>
                 <button class="filter-btn" data-filter="coding">Coding & AI</button>
                 <button class="filter-btn" data-filter="business">Business & Startup</button>
                 <button class="filter-btn" data-filter="life">Life Skills</button>
@@ -289,7 +291,14 @@
 
             const imageMap = {
                 'coding-ai': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80',
-                'sih-hackathon': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+                'sih-hackathon': 'https://h2svision.github.io/publicAssets/SIH_Sr/eventPageNewBannerSIH.png',
+                'microsoft-imagine-cup': 'https://imaginestorageprod.blob.core.windows.net/public/images/How_It_Works_Builder_Series_717x365_v2_1.png',
+                'amazon-hackon': 'https://d8it4huxumps7.cloudfront.net/uploads/competition-sharable/6644829d87f67_SEO.jpg',
+                'tcs-codevita': 'https://codevita.tcsapps.com/assets_public/img/gallery/Season-10-Winner.webp',
+                'flipkart-grid': 'https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/mobile_banner/6687c45cc1232_flipkart-grid-60-software-development-track.png',
+                'google-gsoc': 'assets/gsoc_banner.jpg',
+                'isro-antariksh-hackathon': 'https://res.cloudinary.com/dpfi3rnqf/image/upload/v1781249588/bah_2026_bgbpja.webp',
+                'nasa-space-apps': 'https://assets.spaceappschallenge.org/media/original_images/Space_Apps_2026_Logo_OG.jpg',
                 'marketing-sales': 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80',
                 'communication': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80',
                 'freelancing': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80',
@@ -300,11 +309,12 @@
             coursesToRender.forEach(course => {
                 const card = document.createElement("div");
                 card.className = "course-card";
-                const imageUrl = course.image || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80';
+                const imageUrl = course.image || imageMap[course.id] || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80';
+                const fallbackUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80';
                 
                 card.innerHTML = `
                     <div class="course-thumbnail">
-                        <img src="${imageUrl}" alt="${course.title}">
+                        <img src="${imageUrl}" alt="${course.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';" loading="lazy">
                         <span class="course-badge">${course.duration}</span>
                     </div>
                     <div class="course-content">
@@ -360,8 +370,28 @@
         function applyFilterAndSearch(filter, baseList) {
             if (filter === 'all') {
                 renderCourses(baseList);
+            } else if (filter === 'hackathons') {
+                const hackathonIds = [
+                    'sih-hackathon',
+                    'microsoft-imagine-cup',
+                    'amazon-hackon',
+                    'tcs-codevita',
+                    'flipkart-grid',
+                    'google-gsoc',
+                    'isro-antariksh-hackathon',
+                    'nasa-space-apps'
+                ];
+                renderCourses(baseList.filter(c => hackathonIds.includes(c.id)));
             } else if (filter === 'coding') {
-                renderCourses(baseList.filter(c => ['coding-ai', 'sih-hackathon', 'research-papers', 'ethical-hacking'].includes(c.id)));
+                const codingIds = [
+                    'coding-ai', 'software-engineering', 'data-science', 'devops', 
+                    'vlsi-engineer', 'dsa-cracking', 'sql-mastery', 'cybersecurity', 
+                    'ethical-hacking', 'app-development', 'agentic-ai', 'advanced-robotics',
+                    'research-papers', 'sih-hackathon', 'microsoft-imagine-cup', 
+                    'amazon-hackon', 'tcs-codevita', 'flipkart-grid', 'google-gsoc', 
+                    'isro-antariksh-hackathon', 'nasa-space-apps'
+                ];
+                renderCourses(baseList.filter(c => codingIds.includes(c.id)));
             } else if (filter === 'business') {
                 renderCourses(baseList.filter(c => ['marketing-sales', 'freelancing'].includes(c.id)));
             } else if (filter === 'life') {
